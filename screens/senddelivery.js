@@ -49,14 +49,7 @@ function SendDelivery() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `departure=${departure}&arrival=${arrival}&date=${date}`,
     });
-
-    // function de recherchhe
-    async function searchClick(){
-        var responce = await fetch("http://192.168.1.33:3000/searchKryer", {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `departure=${departure}&arrival=${arrival}&date=${date}`
-            });
+  }
 
   return (
     <NativeBaseProvider>
