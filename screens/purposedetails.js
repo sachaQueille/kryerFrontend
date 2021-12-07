@@ -12,7 +12,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function PurposeDetails({ route, navigation }) {
-  const { departure, arrival, weight } = route.params;
+  const { departure, arrival, weight, dateJourney } = route.params;
 
   const [recuperationPlace, setRecuperationPlace] = useState("");
   const [deliveryPlace, setDeliveryPlace] = useState("");
@@ -30,11 +30,12 @@ export default function PurposeDetails({ route, navigation }) {
       deliveryPlace,
       deliveryDate,
       pricePerKg,
+      dateJourney,
     };
-    const response = await fetch("http://192.168.1.33:3000/saveMission/", {
+    const response = await fetch("http://192.168.0.30:3000/saveMission/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `departure=${data.departure}&arrival=${data.arrival}&weight=${data.weight}&recuperationPlace=${data.recuperationPlace}&recuperationDate=${data.recuperationDate}&deliveryPlace=${data.deliveryPlace}&deliveryDate=${data.deliveryDate}&pricePerKg=${data.pricePerKg}`,
+      body: `departure=${data.departure}&arrival=${data.arrival}&weight=${data.weight}&dateJourney=${data.dateJourney}&recuperationPlace=${data.recuperationPlace}&recuperationDate=${data.recuperationDate}&deliveryPlace=${data.deliveryPlace}&deliveryDate=${data.deliveryDate}&pricePerKg=${data.pricePerKg}`,
     });
     console.log(data);
   };
