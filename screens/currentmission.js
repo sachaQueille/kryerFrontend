@@ -1,14 +1,12 @@
-import React from "react";
-import { View, Text } from 'react-native';
+import React from 'react';
+import { NativeBaseProvider, Text } from 'native-base';
 
-function CurrentMission(props) {
+export default function CurrentMission() {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}>
+        <NativeBaseProvider>
             <Text>
-                Mission en cours
+            Mission en cours
             </Text>
-        </View>
-    );
+        </NativeBaseProvider>
+    )
 }
-
-export default CurrentMission;
