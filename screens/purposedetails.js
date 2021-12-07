@@ -39,7 +39,14 @@ export default function PurposeDetails({ route, navigation }) {
 
   return (
     <NativeBaseProvider>
-      <VStack width="80%" mx="auto" justifyContent="center" alignItems="center">
+      <VStack
+        width="80%"
+        mx="auto"
+        marginTop="70"
+        marginBottom="50"
+        justifyContent="center"
+        alignItems="center"
+      >
         <FormControl isRequired>
           <FormControl.Label _text={{ bold: true }}>
             Récupération du colis
@@ -85,11 +92,10 @@ export default function PurposeDetails({ route, navigation }) {
             onChangeText={(e) => setPricePerKg(e)}
           />
         </FormControl>
-
-        <Button colorScheme="indigo" onPress={sendToDB}>
-          Valider
-        </Button>
       </VStack>
+      <Button colorScheme="indigo" mx="12" onPress={sendToDB}>
+        Valider
+      </Button>
     </NativeBaseProvider>
   );
 }

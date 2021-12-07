@@ -6,6 +6,7 @@ import {
   Input,
   Button,
 } from "native-base";
+import { EvilIcons } from "@expo/vector-icons";
 
 export default function PurposeJourney({ navigation }) {
   const [weight, setWeight] = useState("");
@@ -14,18 +15,30 @@ export default function PurposeJourney({ navigation }) {
 
   return (
     <NativeBaseProvider>
-      <VStack width="80%" mx="auto" justifyContent="center" alignItems="center">
+      <VStack
+        width="80%"
+        mx="auto"
+        marginTop="70"
+        marginBottom="50"
+        justifyContent="center"
+        alignItems="center"
+      >
         <FormControl isRequired>
           <FormControl.Label _text={{ bold: true }}>Départ</FormControl.Label>
           <Input
             placeholder="Ex : Paris"
+            marginBottom="5"
             onChangeText={(e) => setDeparture(e)}
           />
         </FormControl>
 
         <FormControl isRequired>
           <FormControl.Label _text={{ bold: true }}>Arrivée</FormControl.Label>
-          <Input placeholder="Ex : Rome" onChangeText={(e) => setArrival(e)} />
+          <Input
+            placeholder="Ex : Rome"
+            marginBottom="5"
+            onChangeText={(e) => setArrival(e)}
+          />
         </FormControl>
 
         <FormControl isRequired>
@@ -34,11 +47,17 @@ export default function PurposeJourney({ navigation }) {
           </FormControl.Label>
           <Input placeholder="En kg" onChangeText={(e) => setWeight(e)} />
         </FormControl>
-
-        <Button colorScheme="indigo">Simuler</Button>
+      </VStack>
+      <Button.Group
+        display="flex"
+        flexDirection="column"
+        size="lg"
+        marginTop="4"
+        mx="12"
+      >
+        <Button marginBottom="4">Simuler</Button>
 
         <Button
-          colorScheme="indigo"
           onPress={() =>
             navigation.navigate("PurposeDetails", {
               departure: departure,
@@ -46,10 +65,12 @@ export default function PurposeJourney({ navigation }) {
               weight: weight,
             })
           }
+          leftIcon={<EvilIcons name="arrow-right" size={24} color="white" />}
+          colorScheme="indigo"
         >
           Suivant
         </Button>
-      </VStack>
+      </Button.Group>
     </NativeBaseProvider>
   );
 }
