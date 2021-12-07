@@ -25,7 +25,7 @@ const Tab = createBottomTabNavigator();
 function StackJourneyNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Journey" component={Journey} />
+      <Stack.Screen name="JourneyScreen" component={Journey} />
       <Stack.Screen name="NewMission" component={NewMission} />
       <Stack.Screen name="NewMissionOne" component={NewMissionOne} />
       <Stack.Screen name="CurrentMission" component={CurrentMission} />
@@ -40,7 +40,7 @@ function StackJourneyNavigator() {
 function StackHomeNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="HomeScreen" component={Home} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />

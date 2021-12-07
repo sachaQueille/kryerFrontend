@@ -4,6 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 // import { View, Text } from 'react-native';
 
 import { NativeBaseProvider, Center, HStack, Badge, Box, Button, Stack, Icon, Text, VStack, Avatar, Image, Modal, FormControl, Input, } from 'native-base';
+import { ScrollView } from "react-native-gesture-handler";
 
 
 export default function NewMissionOne(props) {
@@ -11,124 +12,124 @@ export default function NewMissionOne(props) {
     const [showModal, setShowModal] = useState(false)
     return (
         <NativeBaseProvider>
+            <ScrollView>
+                <Center
+                    bg="indigo.800"
+                    _text={{
+                        color: "#9b59b6",
+                        fontWeight: "600",
+                        fontSize: "32",
 
-            <Center
-                bg="indigo.800"
-                _text={{
-                    color: "#9b59b6",
-                    fontWeight: "600",
-                    fontSize: "32",
-
-                }}
-                height={130}
-                width="100%">
-
-                Nouvelle mission
-            </Center>
-
-
-
-            <Stack flex={1}
-                direction={{
-                    base: "column",
-                    md: "row",
-                    justifyContent: 'center',
-
-                }}
-                space={8}
-                px="10"
-                py="10"
-                width="100%"
-                height="0%"
-                flexDir="column">
-                <VStack
-                    space={2}
-                    alignItems={{
-                        base: "center",
-                        md: "flex-start",
                     }}
-                >
-                    <Avatar
-                        bg="purple.600"
-                        alignSelf="center"
-                        size="2xl"
-                        source={{
-                            uri: "./assets/avatarfemal.jpg",
+                    height={130}
+                    width="100%">
+
+                    Nouvelle mission
+                </Center>
+
+
+
+                <Stack flex={1}
+                    direction={{
+                        base: "column",
+                        md: "row",
+                        justifyContent: 'center',
+
+                    }}
+                    space={8}
+                    px="10"
+                    py="10"
+                    width="100%"
+                    height="0%"
+                    flexDir="column">
+                    <VStack
+                        space={2}
+                        alignItems={{
+                            base: "center",
+                            md: "flex-start",
                         }}
                     >
+                        <Avatar
+                            bg="purple.600"
+                            alignSelf="center"
+                            size="2xl"
+                            source={{
+                                uri: "./assets/avatarfemal.jpg",
+                            }}
+                        >
 
-                    </Avatar>
-                    <Text>
-                        Alice DUPONT
-                    </Text>
+                        </Avatar>
+                        <Text>
+                            Alice DUPONT
+                        </Text>
 
-                </VStack>
+                    </VStack>
 
-                <VStack>
-                    <Image
-                        source={{
-                            uri: "https://wallpaperaccess.com/full/317501.jpg",
-                        }}
-                        alt="Alternate Text"
-                        size="2xl"
-                    />
-                    <Avatar
-                        bg="black"
-                    >
-                        10 kg
-                    </Avatar>
-                </VStack>
+                    <VStack>
+                        <Image
+                            source={{
+                                uri: "https://wallpaperaccess.com/full/317501.jpg",
+                            }}
+                            alt="Alternate Text"
+                            size="2xl"
+                        />
+                        <Avatar
+                            bg="black"
+                        >
+                            10 kg
+                        </Avatar>
+                    </VStack>
 
-                <VStack>
-                    <Button onPress={() => setShowModal(true)}>Dimensions</Button>
-                    <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-                        <Modal.Content maxWidth="400px">
-                            <Modal.CloseButton />
-                            <Modal.Header>Dimensions</Modal.Header>
-                            <Modal.Body>
-                                <FormControl>
-                                    <FormControl.Label>Largeur : 13 cm</FormControl.Label>
-                                </FormControl>
-                                <FormControl mt="3">
-                                    <FormControl.Label>Longueur : 21 cm</FormControl.Label>
-                                </FormControl>
-                                <FormControl mt="3">
-                                    <FormControl.Label>Hauteur : 8 cm</FormControl.Label>
-                                </FormControl>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button.Group space={2}>
-                                    <Button
-                                        onPress={() => {
-                                            setShowModal(false)
-                                        }}
-                                    >
-                                        Revenir
-                                    </Button>
-                                </Button.Group>
-                            </Modal.Footer>
-                        </Modal.Content>
-                    </Modal>
-                </VStack>
+                    <VStack>
+                        <Button onPress={() => setShowModal(true)}>Dimensions</Button>
+                        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                            <Modal.Content maxWidth="400px">
+                                <Modal.CloseButton />
+                                <Modal.Header>Dimensions</Modal.Header>
+                                <Modal.Body>
+                                    <FormControl>
+                                        <FormControl.Label>Largeur : 13 cm</FormControl.Label>
+                                    </FormControl>
+                                    <FormControl mt="3">
+                                        <FormControl.Label>Longueur : 21 cm</FormControl.Label>
+                                    </FormControl>
+                                    <FormControl mt="3">
+                                        <FormControl.Label>Hauteur : 8 cm</FormControl.Label>
+                                    </FormControl>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button.Group space={2}>
+                                        <Button
+                                            onPress={() => {
+                                                setShowModal(false)
+                                            }}
+                                        >
+                                            Revenir
+                                        </Button>
+                                    </Button.Group>
+                                </Modal.Footer>
+                            </Modal.Content>
+                        </Modal>
+                    </VStack>
 
-                <VStack>
-                    <Button.Group
-                        colorScheme="indigo"
-                        mx={{
-                            base: "auto",
-                            md: 0,
-                        }}
-                        size="lg"
-                    >
-                        <Button>Save</Button>
-                        <Button>Cancel</Button>
-                    </Button.Group>
-                </VStack>
+                    <VStack>
+                        <Button.Group
+                            colorScheme="indigo"
+                            mx={{
+                                base: "auto",
+                                md: 0,
+                            }}
+                            size="lg"
+                        >
+                            <Button>Save</Button>
+                            <Button>Cancel</Button>
+                        </Button.Group>
+                    </VStack>
 
 
 
-            </Stack>
-
+                </Stack>
+            </ScrollView>
 
 
         </NativeBaseProvider>
