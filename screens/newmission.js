@@ -15,17 +15,17 @@ export default function NewMission(props) {
                 _text={{
                     color: "#9b59b6",
                     fontWeight: "600",
-                    fontSize: "32",
+                    fontSize: 32,
 
                 }}
                 height={160}
                 width="100%">
 
-                Nouvelle mission
+                <Text>Nouvelle mission</Text>
             </Center>
 
 
-
+           
             <Stack flex={1}
                 direction={{
                     base: "column",
@@ -48,9 +48,9 @@ export default function NewMission(props) {
                             uri: "./assets/avatarfemal.jpg",
                         }}
                     />}
-                    rightIcon={<FontAwesome name="cube" size="32" type="Ionicons" color="white" >13 kg </FontAwesome>}
+                    rightIcon={<FontAwesome name="cube" size={32} type="Ionicons" color="white" >13 kg </FontAwesome>}
                     colorScheme="purple"
-                    onPress={() => props.navigation.navigate('NewMissionOne')}
+                   onPress={() => props.navigation.navigate('NewMissionOne')} 
                 >
                     Alice DUPONT
                     <Text> Paris/Martinique</Text>
@@ -66,7 +66,7 @@ export default function NewMission(props) {
                             uri: "./assets/avatarfemal.jpg",
                         }}
                     />}
-                    rightIcon={<FontAwesome name="cube" size="32" type="Ionicons" color="white" >13 kg </FontAwesome>}
+                    rightIcon={<FontAwesome name="cube" size={32} type="Ionicons" color="white" >13 kg </FontAwesome>}
                     colorScheme="purple"
                     onPress={() => props.navigation.navigate('NewMissionOne')}
                 >
@@ -84,7 +84,7 @@ export default function NewMission(props) {
                             uri: "./assets/avatarfemal.jpg",
                         }}
                     />}
-                    rightIcon={<FontAwesome name="cube" size="32" type="Ionicons" color="white" >13 kg </FontAwesome>}
+                    rightIcon={<FontAwesome name="cube" size={32} type="Ionicons" color="white" >13 kg </FontAwesome>}
                     colorScheme="purple"
                     onPress={() => props.navigation.navigate('NewMissionOne')}
                 >

@@ -18,6 +18,7 @@ import PurposeJourney from "./screens/purposejourney";
 import SendDelivery from "./screens/senddelivery";
 import PurposeDetails from "./screens/purposedetails";
 import NewMissionOne from "./screens/newmissionone";
+import CurrentMissionClient from "./screens/currentmissionsclients";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,6 +34,7 @@ function StackJourneyNavigator() {
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
+      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} />
     </Stack.Navigator>
   );
 }
