@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View , StyleSheet} from 'react-native';
 import { Button, NativeBaseProvider} from 'native-base';
 
 
@@ -8,14 +8,14 @@ export default function Home(props) {
         <NativeBaseProvider>
              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View>
-                <Button
+                <Button style={styles.btn}
                  
                     onPress={() => props.navigation.navigate('PurposeJourney')}
                 >Proposer une mission</Button>
             </View>
 
             <View>
-                <Button
+                <Button style={styles.btn}
                    
                     onPress={() => props.navigation.navigate('SendDelivery')}
                 >Envoyer colis</Button>
@@ -25,3 +25,11 @@ export default function Home(props) {
        
     );
 }
+
+const styles = new StyleSheet.create({
+    btn:{
+        backgroundColor:'indigo',
+        width:200,
+        margin:10
+    }
+})
