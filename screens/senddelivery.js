@@ -7,10 +7,7 @@ import {connect} from 'react-redux';
 
 function SendDelivery(props){
 
-    //format date
-    function formatDate (date){
-        return ('0'+date.getDate()).slice(-2)+'/'+ ('0'+parseInt(date.getMonth()+1)).slice(-2)+'/'+date.getFullYear();
-    };
+
 
     
     const [date, setDate] = useState(formatDate(new Date()));
@@ -33,9 +30,17 @@ function SendDelivery(props){
     const [width, setWidth] = useState("");
     const [length, setLength] = useState("");
 
+  //pour afficher la date selectionnée
+  var messageDate = dateIsChoose ? `recherche a partir du ${date}` : "";
 
-   //pour afficher la date selectionnée
-   var messageDate = dateIsChoose ? `recherche a partir du ${date}` : "";
+  // function de recherchhe
+  async function searchClick() {
+    var responce = await fetch("http://192.168.0.30:3000/searchKryer", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `departure=${departure}&arrival=${arrival}&date=${date}`,
+    });
+  }
 
     // function de recherche de Kryer
     async function searchClick(){
@@ -248,23 +253,23 @@ function SendDelivery(props){
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 10,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    title: {
-      textAlign: 'center',
-      fontSize: 20,
-      fontWeight: 'bold',
-      padding: 20,
-    },
-    datePickerStyle: {
-      width: 200,
-      marginTop: 20,
-    },
-  });
+  container: {
+    flex: 1,
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    padding: 20,
+  },
+  datePickerStyle: {
+    width: 200,
+    marginTop: 20,
+  },
+});
 
   function mapDispatchToProps(dispatch) {
     return {
