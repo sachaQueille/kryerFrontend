@@ -18,8 +18,23 @@ export default function PurposeDetails({ route, navigation }) {
   const [pricePerKg, setPricePerKg] = useState("");
   const [recuperationDate, setRecuperationDate] = useState("");
 
-  const sendToDB = () => {
-    console.log(departure);
+  const sendToDB = async () => {
+    const data = {
+      departure,
+      arrival,
+      weight,
+      recuperationPlace,
+      recuperationDate,
+      deliveryPlace,
+      deliveryDate,
+      pricePerKg,
+    };
+    const response = await fetch("http://192.168.0.30:3000/saveMission/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `departure=${data.departure}&arrival=${data.arrival}&weight=${data.weight}&recuperationPlace=${data.recuperationPlace}&recuperationDate=${data.recuperationDate}&deliveryPlace=${data.deliveryPlace}&deliveryDate=${data.deliveryDate}&pricePerKg=${data.pricePerKg}`,
+    });
+    console.log(data);
   };
 
   return (
