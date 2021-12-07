@@ -93,6 +93,7 @@ export default function App(props) {
        <Tab.Navigator
        
       screenOptions={({ route }) => ({
+        headerShown: false,
         tabBarStyle:{ backgroundColor: 'indigo' },
         tabBarIcon: ({ color }) => {
           let iconName;
