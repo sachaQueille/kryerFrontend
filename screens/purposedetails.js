@@ -6,8 +6,10 @@ import {
   Input,
   Button,
   HStack,
+  Icon,
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function PurposeDetails({ route, navigation }) {
   const { departure, arrival, weight } = route.params;
@@ -52,9 +54,20 @@ export default function PurposeDetails({ route, navigation }) {
             Récupération du colis
           </FormControl.Label>
           <HStack space={2}>
-            <MaterialIcons name="location-history" size={24} color="black" />
             <Input
               placeholder="Lieu de récupération"
+              w={{
+                base: "75%",
+                md: "25%",
+              }}
+              marginBottom="2"
+              InputLeftElement={
+                <MaterialIcons
+                  name="location-history"
+                  size={25}
+                  color="indigo"
+                />
+              }
               onChangeText={(e) => setRecuperationPlace(e)}
             />
           </HStack>
@@ -63,6 +76,14 @@ export default function PurposeDetails({ route, navigation }) {
         <FormControl isRequired>
           <Input
             placeholder="Date"
+            w={{
+              base: "75%",
+              md: "25%",
+            }}
+            marginBottom="5"
+            InputLeftElement={
+              <MaterialIcons name="calendar-today" size={25} color="indigo" />
+            }
             onChangeText={(e) => setRecuperationDate(e)}
           />
         </FormControl>
@@ -73,11 +94,27 @@ export default function PurposeDetails({ route, navigation }) {
           </FormControl.Label>
           <Input
             placeholder="Lieu de livraison"
+            w={{
+              base: "75%",
+              md: "25%",
+            }}
+            marginBottom="2"
+            InputLeftElement={
+              <MaterialIcons name="location-history" size={25} color="indigo" />
+            }
             onChangeText={(e) => setDeliveryPlace(e)}
           />
           <FormControl isRequired>
             <Input
               placeholder="Date de livraison"
+              w={{
+                base: "75%",
+                md: "25%",
+              }}
+              marginBottom="5"
+              InputLeftElement={
+                <MaterialIcons name="calendar-today" size={25} color="indigo" />
+              }
               onChangeText={(e) => setDeliveryDate(e)}
             />
           </FormControl>
@@ -89,11 +126,19 @@ export default function PurposeDetails({ route, navigation }) {
           </FormControl.Label>
           <Input
             placeholder="Prix par kg"
+            w={{
+              base: "75%",
+              md: "25%",
+            }}
+            marginBottom="5"
+            InputLeftElement={
+              <FontAwesome5 name="coins" size={25} color="indigo" />
+            }
             onChangeText={(e) => setPricePerKg(e)}
           />
         </FormControl>
       </VStack>
-      <Button colorScheme="indigo" mx="12" onPress={sendToDB}>
+      <Button colorScheme="indigo" mx="12" size="lg" onPress={sendToDB}>
         Valider
       </Button>
     </NativeBaseProvider>
