@@ -17,16 +17,17 @@ import FinishedMissions from "./screens/finishedmissions";
 import PurposeJourney from "./screens/purposejourney";
 import SendDelivery from "./screens/senddelivery";
 import PurposeDetails from "./screens/purposedetails";
-import CurrentMissionClient from "./screens/currentmissionsclients";
+import NewMissionOne from "./screens/newmissionone";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function StackNavigator() {
+function StackJourneyNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Journey" component={Journey} />
       <Stack.Screen name="NewMission" component={NewMission} />
+      <Stack.Screen name="NewMissionOne" component={NewMissionOne} />
       <Stack.Screen name="CurrentMission" component={CurrentMission} />
       <Stack.Screen name="FinishedMissions" component={FinishedMissions} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
@@ -49,37 +50,61 @@ function StackHomeNavigator() {
 }
 
 export default function App(props) {
+
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Tab.Navigator
+
         screenOptions={({ route }) => ({
-          tabBarStyle: { backgroundColor: "indigo" },
+          headerShown: false,
+          tabBarStyle: { backgroundColor: '#3730a3' },
           tabBarIcon: ({ color }) => {
             let iconName;
-            if (route.name === "Home") {
-              iconName = "home";
-            } else if (route.name === "DeliveryStatus") {
-              iconName = "cube";
-            } else if (route.name === "Journey") {
-              iconName = "rocket";
-            } else if (route.name === "Tchat") {
-              iconName = "comments";
-            } else if (route.name === "User") {
-              iconName = "user";
+            if (route.name === 'Home') {
+              iconName = 'home';
+            } else if (route.name === 'DeliveryStatus') {
+              iconName = 'cube';
+            } else if (route.name === 'Journey') {
+              iconName = 'rocket';
+            } else if (route.name === 'Tchat') {
+              iconName = 'comments';
+            } else if (route.name === 'User') {
+              iconName = 'user';
             }
             return <FontAwesome name={iconName} size={25} color={color} />;
           },
+          
+
         })}
         tabBarOptions={{
-          activeTintColor: "#9b59b6",
-          inactiveTintColor: "#c4b5fd",
+          activeTintColor: '#9b59b6',
+          inactiveTintColor: '#c4b5fd',
+          style: {
+            backgroundColor: '#3730a3',
+          }
         }}
+
       >
-        <Tab.Screen name="Home" component={StackHomeNavigator} />
-        <Tab.Screen name="DeliveryStatus" component={DeliveryStatus} />
-        <Tab.Screen name="Journey" component={StackNavigator} />
-        <Tab.Screen name="Tchat" component={Tchat} />
-        <Tab.Screen name="User" component={User} />
+        <Tab.Screen
+          name="Home"
+          component={StackHomeNavigator}
+        />
+        <Tab.Screen
+          name="DeliveryStatus"
+          component={DeliveryStatus}
+        />
+        <Tab.Screen
+          name="Journey"
+          component={StackJourneyNavigator}
+        />
+        <Tab.Screen
+          name="Tchat"
+          component={Tchat}
+        />
+        <Tab.Screen
+          name="User"
+          component={User}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
