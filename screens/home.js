@@ -1,23 +1,27 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { View } from 'react-native';
+import { Button, NativeBaseProvider} from 'native-base';
+
 
 export default function Home(props) {
     return (
-        
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <View >
+        <NativeBaseProvider>
+             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View>
                 <Button
-                    title="Proposer une mission"
+                 
                     onPress={() => props.navigation.navigate('PurposeJourney')}
-                />
+                >Proposer une mission</Button>
             </View>
 
             <View>
                 <Button
-                    title="Envoyer colis"
+                   
                     onPress={() => props.navigation.navigate('SendDelivery')}
-                />
+                >Envoyer colis</Button>
             </View>
             </View>
+        </NativeBaseProvider>
+       
     );
 }
