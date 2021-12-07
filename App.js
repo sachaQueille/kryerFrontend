@@ -1,24 +1,29 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import React from 'react';
+import { StyleSheet ,View, Text} from 'react-native';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Home from "./screens/home";
-import DeliveryStatus from "./screens/deliverystatus";
-import Journey from "./screens/journey";
-import User from "./screens/user";
-import Tchat from "./screens/tchat";
-import NewMission from "./screens/newmission";
-import CurrentMission from "./screens/currentmission";
-import FinishedMissions from "./screens/finishedmissions";
-import PurposeJourney from "./screens/purposejourney";
-import SendDelivery from "./screens/senddelivery";
-import PurposeDetails from "./screens/purposedetails";
-import NewMissionOne from "./screens/newmissionone";
-import CurrentMissionClient from "./screens/currentmissionsclients";
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
+
+
+
+import Home from './screens/home';
+import DeliveryStatus from './screens/deliverystatus';
+import Journey from './screens/journey';
+import User from './screens/user';
+import Tchat from './screens/tchat';
+import NewMission from './screens/newmission';
+import CurrentMission from './screens/currentmission';
+import FinishedMissions from './screens/finishedmissions';
+import PurposeJourney from './screens/purposejourney';
+import SendDelivery from './screens/senddelivery';
+import KryerList from './screens/kryerList';
+import NewMissionOne from './screens/newmissionone';
+import PurposeDetails from './screens/purposedetails';
+import CurrentMissionClient from './screens/currentmissionsclients';
 
 // redux
 import {Provider} from 'react-redux';
@@ -47,7 +52,6 @@ function StackJourneyNavigator() {
     </Stack.Navigator>
   );
 }
-
 
 function StackHomeNavigator() {
   return (

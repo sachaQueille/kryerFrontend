@@ -34,10 +34,4 @@ export default function Home(props) {
   );
 }
 
-const styles = new StyleSheet.create({
-  btn: {
-    backgroundColor: "indigo",
-    width: 200,
-    margin: 10,
-  },
-});
+

@@ -33,22 +33,13 @@ function SendDelivery(props){
   //pour afficher la date selectionnée
   var messageDate = dateIsChoose ? `recherche a partir du ${date}` : "";
 
-  // function de recherchhe
-  async function searchClick() {
-    var responce = await fetch("http://192.168.0.30:3000/searchKryer", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `departure=${departure}&arrival=${arrival}&date=${date}`,
-    });
-  }
-
+  //format date     
+  function formatDate (date){         
+      return ('0'+date.getDate()).slice(-2)+'/'+ ('0'+parseInt(date.getMonth()+1)).slice(-2)+'/'+date.getFullYear();     
+    };
     // function de recherche de Kryer
     async function searchClick(){
-<<<<<<< HEAD
         var responce = await fetch("http://172.17.1.16:3000/searchKryer", {
-=======
-        var responce = await fetch("http://172.17.1.42:3000/searchKryer", {
->>>>>>> fa4624dec7dd02ccf4f5601cb2971045e92d9eac
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `departure=${departure}&arrival=${arrival}&date=${date}&weight=${weight}`
