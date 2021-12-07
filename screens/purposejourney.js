@@ -5,6 +5,9 @@ import {
   FormControl,
   Input,
   Button,
+  Modal,
+  HStack,
+  Text,
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
 
@@ -13,6 +16,8 @@ export default function PurposeJourney({ navigation }) {
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
   const [dateJourney, setDateJourney] = useState("");
+
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <NativeBaseProvider>
@@ -66,7 +71,9 @@ export default function PurposeJourney({ navigation }) {
         marginTop="4"
         mx="12"
       >
-        <Button marginBottom="4">Simuler</Button>
+        <Button onPress={() => setShowModal(true)} marginBottom="4">
+          Simuler
+        </Button>
 
         <Button
           onPress={() =>
@@ -83,6 +90,38 @@ export default function PurposeJourney({ navigation }) {
           Suivant
         </Button>
       </Button.Group>
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
+        <Modal.Content maxWidth="350">
+          <Modal.CloseButton />
+          <Modal.Header>Mes gains potentiels</Modal.Header>
+          <Modal.Body>
+            <VStack space={3}>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">Kilos disponibles</Text>
+                <Text color="blueGray.400">{weight} kg</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">Prix au kg recommandé par KRYER</Text>
+                <Text color="blueGray.400">2 €</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">Total</Text>
+                <Text color="green.500">{weight * 2} €</Text>
+              </HStack>
+            </VStack>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              flex="1"
+              onPress={() => {
+                setShowModal(false);
+              }}
+            >
+              Continuer
+            </Button>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
     </NativeBaseProvider>
   );
 }
