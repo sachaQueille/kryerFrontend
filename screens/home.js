@@ -7,28 +7,40 @@ export default function Home(props) {
     <NativeBaseProvider>
       <VStack
         mx="auto"
-        marginTop={80}
+        marginTop="40%"
         justifyContent="center"
         alignItems="center"
       >
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>KRYER</Text>
+        <Text style={{ fontSize: 40, fontWeight: "bold" }}>KRYER</Text>
+      </VStack>
 
+      <VStack
+        mx="auto"
+        marginTop="30%"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Text>Envoyez vos colis à l'international à moindre frais</Text>
+
         <Button
           style={{ backgroundColor: "indigo" }}
           onPress={() => props.navigation.navigate("PurposeJourney")}
+          marginBottom={10}
+          marginTop={20}
+          mx="12"
+          size="lg"
         >
           Proposer une mission
         </Button>
 
-        <View>
-          <Button
-            style={{ backgroundColor: "indigo" }}
-            onPress={() => props.navigation.navigate("SendDelivery")}
-          >
-            Envoyer colis
-          </Button>
-        </View>
+        <Button
+          style={{ backgroundColor: "indigo" }}
+          onPress={() => props.navigation.navigate("SendDelivery")}
+          mx="12"
+          size="lg"
+        >
+          Envoyer colis
+        </Button>
       </VStack>
     </NativeBaseProvider>
   );

@@ -45,7 +45,7 @@ export default function PurposeDetails({ route, navigation }) {
       <VStack
         width="80%"
         mx="auto"
-        marginTop="70"
+        marginTop="40%"
         marginBottom="50"
         justifyContent="center"
         alignItems="center"
