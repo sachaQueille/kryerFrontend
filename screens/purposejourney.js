@@ -12,6 +12,7 @@ export default function PurposeJourney({ navigation }) {
   const [weight, setWeight] = useState("");
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
+  const [dateJourney, setDateJourney] = useState("");
 
   return (
     <NativeBaseProvider>
@@ -45,7 +46,17 @@ export default function PurposeJourney({ navigation }) {
           <FormControl.Label _text={{ bold: true }}>
             Capacité de transport:
           </FormControl.Label>
-          <Input placeholder="En kg" onChangeText={(e) => setWeight(e)} />
+          <Input
+            placeholder="En kg"
+            marginBottom="5"
+            onChangeText={(e) => setWeight(e)}
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormControl.Label _text={{ bold: true }}>
+            Date de trajet
+          </FormControl.Label>
+          <Input placeholder="Date" onChangeText={(e) => setDateJourney(e)} />
         </FormControl>
       </VStack>
       <Button.Group
@@ -63,6 +74,7 @@ export default function PurposeJourney({ navigation }) {
               departure: departure,
               arrival: arrival,
               weight: weight,
+              dateJourney: dateJourney,
             })
           }
           leftIcon={<EvilIcons name="arrow-right" size={24} color="white" />}
