@@ -15,7 +15,7 @@ export default function Home(props) {
 
         <Text>Envoyez vos colis à l'international à moindre frais</Text>
         <Button
-          colorScheme="indigo"
+          style={{ backgroundColor: "indigo" }}
           onPress={() => props.navigation.navigate("PurposeJourney")}
         >
           Proposer une mission
@@ -23,7 +23,7 @@ export default function Home(props) {
 
         <View>
           <Button
-            colorScheme="indigo"
+            style={{ backgroundColor: "indigo" }}
             onPress={() => props.navigation.navigate("SendDelivery")}
           >
             Envoyer colis
@@ -33,5 +33,3 @@ export default function Home(props) {
     </NativeBaseProvider>
   );
 }
-
-

@@ -139,7 +139,12 @@ export default function PurposeDetails({ route, navigation }) {
           />
         </FormControl>
       </VStack>
-      <Button colorScheme="indigo" mx="12" size="lg" onPress={sendToDB}>
+      <Button
+        style={{ backgroundColor: "indigo" }}
+        mx="12"
+        size="lg"
+        onPress={sendToDB}
+      >
         Valider
       </Button>
     </NativeBaseProvider>

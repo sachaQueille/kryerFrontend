@@ -78,7 +78,7 @@ export default function PurposeJourney({ navigation }) {
             })
           }
           leftIcon={<EvilIcons name="arrow-right" size={24} color="white" />}
-          colorScheme="indigo"
+          style={{ backgroundColor: "indigo" }}
         >
           Suivant
         </Button>
