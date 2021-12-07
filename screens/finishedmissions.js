@@ -1,14 +1,12 @@
-import React from "react";
-import { View, Button, Text } from 'react-native';
+import React from 'react';
+import { NativeBaseProvider, Text } from 'native-base';
 
-function FinishedMissions(props) {
+export default function FinishedMissions() {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',}}>
+        <NativeBaseProvider>
             <Text>
-                Missions accomplie
+            Missions accomplie
             </Text>
-        </View>
-    );
+        </NativeBaseProvider>
+    )
 }
-
-export default FinishedMissions;

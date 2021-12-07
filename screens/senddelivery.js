@@ -50,9 +50,13 @@ function SendDelivery() {
       body: `departure=${departure}&arrival=${arrival}&date=${date}`,
     });
 
-    responce = await responce.json();
-    console.log(responce);
-  }
+    // function de recherchhe
+    async function searchClick(){
+        var responce = await fetch("http://192.168.1.33:3000/searchKryer", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `departure=${departure}&arrival=${arrival}&date=${date}`
+            });
 
   return (
     <NativeBaseProvider>
