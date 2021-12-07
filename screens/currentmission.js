@@ -15,13 +15,15 @@ const newColorTheme = {
 
 const theme = extendTheme({ colors: newColorTheme });
 
-export default function CurrentMission() {
+export default function CurrentMission({navigation}) {
     return (
         <NativeBaseProvider theme={theme}>
             <Center>
             <Box border="1" borderRadius="md">
                 <VStack space="4" divider={<Divider />}>
-                    <Box px="4" pt="4">
+                    <Box px="4" pt="4" onPress={() =>
+                    navigation.navigate("CurrentMissionClient")
+                    }>
                     Paris / Martinique le 26/12/2021
                     </Box>
                     <Box px="4">

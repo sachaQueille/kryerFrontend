@@ -17,6 +17,7 @@ import FinishedMissions from "./screens/finishedmissions";
 import PurposeJourney from "./screens/purposejourney";
 import SendDelivery from "./screens/senddelivery";
 import PurposeDetails from "./screens/purposedetails";
+import CurrentMissionClient from "./screens/currentmissionsclients";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,6 +35,7 @@ function StackNavigator() {
     </Stack.Navigator>
   );
 }
+
 
 function StackHomeNavigator() {
   return (

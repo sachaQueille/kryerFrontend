@@ -24,7 +24,7 @@ function SendDelivery(){
 
     // function de recherchhe
     async function searchClick(){
-        var responce = await fetch("http://172.20.10.14:3000/searchKryer", {
+        var responce = await fetch("http://172.17.1.16:3000/searchKryer", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `departure=${departure}&arrival=${arrival}&date=${date}`
