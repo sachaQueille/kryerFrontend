@@ -1,42 +1,74 @@
 import React , {useState} from 'react';
-import { NativeBaseProvider, Input, Stack, Center, Button, FormControl, Icon,Modal, Text} from 'native-base';
-import { Ionicons ,MaterialCommunityIcons, MaterialIcons, AntDesign} from "@expo/vector-icons"
+import { NativeBaseProvider, Input, Stack, Center, Button, FormControl, Icon,Modal, Text, View} from 'native-base';
+import { Ionicons ,MaterialCommunityIcons, MaterialIcons, AntDesign, FontAwesome5} from "@expo/vector-icons"
 import DatePicker from 'react-native-datepicker';
 import {StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
 
-function SendDelivery(){
+function SendDelivery(props){
 
-    //format date
-    function formatDate (date){
-        return ('0'+date.getDate()).slice(-2)+'/'+ ('0'+parseInt(date.getMonth()+1)).slice(-2)+'/'+date.getFullYear();
-    };
 
+
+    
     const [date, setDate] = useState(formatDate(new Date()));
+
     const [showModal, setShowModal] = useState(false);
+
+    //boolen pour mettre une condition pour afficher la date choisie
     const [dateIsChoose, setDateIsChoose] = useState(false);
+
+    // boolen pour savoir quelle modale afficher (est ce que j'ai cliqué sur dimension)
+    const [measureClick, setMeasureClick] = useState(false);
+
+    // valeur des input a envoyer dans la route poste
     const [departure, setDeparture] = useState("");
     const [arrival, setArrival] = useState("");
     const [weight, setWeight] = useState("");
-    const [measure, setMeasure] = useState("");
 
-   //pour afficher la date selectionnée
-   var messageDate = dateIsChoose ? `recherche a partir du ${date}` : "";
+    //dimensions
+    const [height, setHeight] = useState("");
+    const [width, setWidth] = useState("");
+    const [length, setLength] = useState("");
 
-    // function de recherchhe
+  //pour afficher la date selectionnée
+  var messageDate = dateIsChoose ? `recherche a partir du ${date}` : "";
+
+  // function de recherchhe
+  async function searchClick() {
+    var responce = await fetch("http://192.168.0.30:3000/searchKryer", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `departure=${departure}&arrival=${arrival}&date=${date}`,
+    });
+  }
+
+    // function de recherche de Kryer
     async function searchClick(){
+<<<<<<< HEAD
         var responce = await fetch("http://172.17.1.16:3000/searchKryer", {
+=======
+        var responce = await fetch("http://172.17.1.42:3000/searchKryer", {
+>>>>>>> fa4624dec7dd02ccf4f5601cb2971045e92d9eac
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `departure=${departure}&arrival=${arrival}&date=${date}`
+            body: `departure=${departure}&arrival=${arrival}&date=${date}&weight=${weight}`
             });
 
-            responce = await responce.json();
-            console.log(responce)
-    }
+        responce = await responce.json();
+        console.log(responce);
+        props.kryerList(responce);
+        props.infoDelivery({height:height,width:width,length:length});
+        props.navigation.navigate('KryerList')
+
+            
+    };
     
     return (
         <NativeBaseProvider>
             <Center flex={1} px="3">
+
+                      {/* trouver un Kryer */}
+
             <Stack space={4} w="100%" alignItems="center" marginBottom="10%">
                  <FormControl.Label>Trouve un Kryer</FormControl.Label>
                 <Input
@@ -72,14 +104,118 @@ function SendDelivery(){
                     onChangeText={(e) => setArrival(e)}
                     value={arrival}/>
                  
-                {/* button pour la modale pour choisir la date + l'affichage du choix de la date */}
-                 <Button onPress={() => {setShowModal(true);setDateIsChoose(true)}} style={{backgroundColor:"indigo.800"}}>Choisi une date</Button>
+                         {/* button pour la modale pour choisir la date + l'affichage du choix de la date */}
+
+                 <Button onPress={() => {setMeasureClick(false);setShowModal(true);setDateIsChoose(true)}}  style={{backgroundColor:"indigo",width:'75%'}}>Choisi une date</Button>
                  <Text>{messageDate}</Text>
             
-                {/* modale avec la mecanique propre a la date a l'interieur */}
-                <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+            </Stack>
+
+                         {/* information sur le colis */}
+
+            <Stack space={4} w="100%" alignItems="center">
+                 <FormControl.Label>Information sur votre Colis</FormControl.Label>
+                <Input
+                    w={{
+                    base: "75%",
+                    md: "25%",
+                    }}
+                    InputLeftElement={
+                    <Icon
+                        as={<MaterialCommunityIcons name="weight-kilogram" />}
+                        size={5}
+                        ml="2"
+                        color="indigo.800"
+                    />
+                    }
+                    placeholder="Poid"
+                    onChangeText={(e) => setWeight(e)}
+                    value={weight}/>
+
+                <Button onPress={() => {setMeasureClick(true); setShowModal(true)}} style={{backgroundColor:"indigo",width:'75%'}} >dimensions</Button>
+               
+               
+               <Button  style={{backgroundColor:"indigo.800"}} onPress={()=>searchClick()}> <Icon
+                        as={<AntDesign name="search1" color="indigo"/>}
+                        size={5}
+                        ml="2"
+                        color="indigo.800"
+                    /></Button>
+
+            </Stack>
+           
+
+            </Center>
+
+
+                {/* modale ( affichage selon si je click sur dimension ou sur choisir une date) */}
+
+                <Modal isOpen={showModal} onClose={() => setShowModal(false)} >
                 <Modal.Content maxWidth="400px">
                 <Modal.CloseButton />
+                {measureClick ? 
+
+                //  dimension 
+
+                <View>
+                    <Modal.Header>Dimensions en cm</Modal.Header>
+                    <Modal.Body>
+                     <Input
+                    w={{
+                    base: "75%",
+                    md: "25%",
+                    }}
+                    InputLeftElement={
+                    <Icon
+                        as={<MaterialIcons name="height" />}
+                        size={5}
+                        ml="2"
+                        color="indigo.800"
+                    />
+                    }
+                    placeholder="hauteur"
+                    onChangeText={(e) => setHeight(e)}
+                    value={height}/>
+
+                    <Input
+                    w={{
+                    base: "75%",
+                    md: "25%",
+                    }}
+                    InputLeftElement={
+                    <Icon
+                        as={<FontAwesome5 name="arrows-alt-h" />}
+                        size={5}
+                        ml="2"
+                        color="indigo.800"
+                    />
+                    }
+                    placeholder="largeur"
+                    onChangeText={(e) => setWidth(e)}
+                    value={width}/>
+
+                    <Input
+                    w={{
+                    base: "75%",
+                    md: "25%",
+                    }}
+                    InputLeftElement={
+                    <Icon
+                        as={<AntDesign name="arrowsalt" />}
+                        size={5}
+                        ml="2"
+                        color="indigo.800"
+                    />
+                    }
+                    placeholder="longeur"
+                    onChangeText={(e) => setLength(e)}
+                    value={length}/>
+                    </Modal.Body>
+                </View> :
+
+                // date 
+
+                <View>
                 <Modal.Header>Choisi une date</Modal.Header>
                 <Modal.Body>
                      <DatePicker
@@ -112,77 +248,45 @@ function SendDelivery(){
                     />
                    
                 </Modal.Body>
+                </View> }
                 </Modal.Content>
                 </Modal>
-            </Stack>
 
-            <Stack space={4} w="100%" alignItems="center">
-                 <FormControl.Label>Information sur votre Colis</FormControl.Label>
-                <Input
-                    w={{
-                    base: "75%",
-                    md: "25%",
-                    }}
-                    InputLeftElement={
-                    <Icon
-                        as={<MaterialCommunityIcons name="weight-kilogram" />}
-                        size={5}
-                        ml="2"
-                        color="indigo.800"
-                    />
-                    }
-                    placeholder="Poid"
-                    onChangeText={(e) => setWeight(e)}
-                    value={weight}/>
-                <Input
-                    w={{
-                    base: "75%",
-                    md: "25%",
-                    }}
-                    InputLeftElement={
-                    <Icon
-                        as={<MaterialIcons name="height" />}
-                        size={5}
-                        ml="2"
-                        color="indigo.800"
-                    />
-                    }
-                    placeholder="Dimension"
-                    onChangeText={(e) => setMeasure(e)}
-                    value={measure}/>
-               
-               <Button  style={{backgroundColor:"indigo.800"}} onPress={()=>searchClick()}> <Icon
-                        as={<AntDesign name="search1" color="indigo"/>}
-                        size={5}
-                        ml="2"
-                        color="indigo.800"
-                    /></Button>
-
-            </Stack>
-           
-
-            </Center>
         </NativeBaseProvider>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 10,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    title: {
-      textAlign: 'center',
-      fontSize: 20,
-      fontWeight: 'bold',
-      padding: 20,
-    },
-    datePickerStyle: {
-      width: 200,
-      marginTop: 20,
-    },
-  });
+  container: {
+    flex: 1,
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    padding: 20,
+  },
+  datePickerStyle: {
+    width: 200,
+    marginTop: 20,
+  },
+});
 
-export default SendDelivery;
+  function mapDispatchToProps(dispatch) {
+    return {
+      kryerList: function(e) {
+            dispatch( {type: 'kryerList', kryerList:e} )
+        },
+      infoDelivery: function(e) {
+            dispatch( {type: 'infoDelivery', infoDelivery:e} )
+        }
+    }
+   };
+
+   export default connect(
+    null,
+    mapDispatchToProps
+    )(SendDelivery);
