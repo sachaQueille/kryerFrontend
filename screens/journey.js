@@ -29,7 +29,7 @@ export default function Home(props) {
                     mx="12"
                     size="lg"
                 >
-                    Nouvelle mission
+                    Nouvelles missions
                 </Button>
 
                 <Button
@@ -39,7 +39,7 @@ export default function Home(props) {
                     mx="12"
                     size="lg"
                 >
-                    Mission en cours
+                    Missions en cours
                 </Button>
                 <Button
                     style={{ backgroundColor: "indigo" }}
@@ -47,45 +47,10 @@ export default function Home(props) {
                     mx="12"
                     size="lg"
                 >
-                    Mission accomplie
+                    Missions accomplies
                 </Button>
             </VStack>
         </NativeBaseProvider>
     );
 }
 
-
-
-// import React from "react";
-// import { Box, Heading,NativeBaseProvider, Progress, Center, Avatar,
-// FormControl, Select,CheckIcon,VStack, Divider, Image, Flex,Badge, Button, Text } from 'native-base';
-
-// function Journey(props) {
-//     return (
-        
-//         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//             <View >
-//                 <Button
-//                     title="Nouvelle mission"
-//                     onPress={() => props.navigation.navigate('NewMission')}
-//                 />
-//             </View>
-
-//             <View>
-//                 <Button
-//                     title="Mission en cours"
-//                     onPress={() => props.navigation.navigate('CurrentMission')}
-//                 />
-//             </View>
-
-//             <View>
-//                 <Button
-//                     title="Mission accomplie"
-//                     onPress={() => props.navigation.navigate('FinishedMissions')}
-//                 />
-//             </View>
-//         </View>
-//     );
-// }
-
-// export default Journey;
