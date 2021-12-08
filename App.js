@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -27,9 +26,6 @@ import ConnectionScreen from "./screens/connectionScreen";
 import signIn from "./screens/signIn";
 import signUp from "./screens/signUp";
 
-
-
-
 // redux
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
@@ -37,8 +33,12 @@ import kryerListReducer from "./reducers/kryerListReducer";
 import kryerReducer from "./reducers/kryerReducer";
 import infoDelivery from "./reducers/infoDeliveryReducer";
 
+<<<<<<< HEAD
 
 const store = createStore(combineReducers({ kryerListReducer, kryerReducer, infoDelivery }));
+=======
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer }));
+>>>>>>> b90746c3f97e05f9c1927eb3240db0bbdf65d273
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -54,7 +54,14 @@ function StackJourneyNavigator() {
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery}/>
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
+<<<<<<< HEAD
       <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient}/>
+=======
+      <Stack.Screen
+        name="CurrentMissionClient"
+        component={CurrentMissionClient}
+      />
+>>>>>>> b90746c3f97e05f9c1927eb3240db0bbdf65d273
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );
@@ -69,18 +76,22 @@ function StackHomeNavigator() {
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="KryerList" component={KryerList} />
       <Stack.Screen name="Kryer" component={Kryer} />
-      <Stack.Screen name="ReceipientCoordinate" component={ReceipientCoordinate} />
+      <Stack.Screen
+        name="ReceipientCoordinate"
+        component={ReceipientCoordinate}
+      />
     </Stack.Navigator>
   );
 }
 
-function StackProfilNavigator(props){
+function StackProfilNavigator(props) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {props.user ? 
-      <Stack.Screen name="User" component={User} /> :
-      <Stack.Screen name="ConnectionScreen" component={ConnectionScreen} />
-      }
+      {props.user ? (
+        <Stack.Screen name="User" component={User} />
+      ) : (
+        <Stack.Screen name="ConnectionScreen" component={ConnectionScreen} />
+      )}
       <Stack.Screen name="signIn" component={signIn} />
       <Stack.Screen name="signUp" component={signUp} />
     </Stack.Navigator>
@@ -97,37 +108,36 @@ export default function App(props) {
             tabBarStyle: { backgroundColor: "indigo" },
             tabBarIcon: ({ color }) => {
               let iconName;
-              if (route.name === "Home") {
+              if (route.name === "Accueil") {
                 iconName = "home";
-              } else if (route.name === "DeliveryStatus") {
+              } else if (route.name === "Colis") {
                 iconName = "cube";
-              } else if (route.name === "Journey") {
+              } else if (route.name === "Missions") {
                 iconName = "rocket";
               } else if (route.name === "Tchat") {
                 iconName = "comments";
-              } else if (route.name === "User") {
+              } else if (route.name === "Profil") {
                 iconName = "user";
               }
               return <FontAwesome name={iconName} size={25} color={color} />;
             },
+            tabBarActiveTintColor: "#22d3ee",
+            tabBarInactiveTintColor: "#FFFFFF",
           })}
         >
+<<<<<<< HEAD
           <Tab.Screen name="Home" component={StackHomeNavigator} /> 
           <Tab.Screen name="DeliveryStatus" component={DeliveryStatus} />
           <Tab.Screen name="Journey" component={StackJourneyNavigator} />
+=======
+          <Tab.Screen name="Accueil" component={StackHomeNavigator} />
+          <Tab.Screen name="Colis" component={DeliveryStatus} />
+          <Tab.Screen name="Missions" component={StackJourneyNavigator} />
+>>>>>>> b90746c3f97e05f9c1927eb3240db0bbdf65d273
           <Tab.Screen name="Tchat" component={Tchat} />
-          <Tab.Screen name="User" component={StackProfilNavigator} />
+          <Tab.Screen name="Profil" component={StackProfilNavigator} />
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
