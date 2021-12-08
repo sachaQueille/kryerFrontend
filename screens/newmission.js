@@ -35,11 +35,11 @@ export const MissionList = (props) => {
     useEffect(() => {
 
         async function loadMission() {
-            const rawResponse = await fetch('http://192.168.1.33:3000/getMission');
+            const rawResponse = await fetch('http://172.17.1.16:3000/getMission');
             const response = await rawResponse.json();
             console.log("response : ", response);
-            setDataNewMission([...dataNewMission, response]);
-
+            /* setDataNewMission([...dataNewMission, response]); */
+            setDataNewMission(response);
             console.log("depart :", response.departure_journey)
             console.log("dataMission", dataNewMission)
 
