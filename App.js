@@ -23,7 +23,9 @@ import SendDelivery from './screens/senddelivery';
 import KryerList from './screens/kryerList';
 import NewMissionOne from './screens/newmissionone';
 import PurposeDetails from './screens/purposedetails';
-import Kryer from './screens/kryer'
+import Kryer from './screens/kryer';
+import CurrentMissionClient from './screens/currentmissionsclients';
+import TerminateMission from './screens/terminatemission';
 
 // redux
 import {Provider} from 'react-redux';
@@ -34,7 +36,7 @@ import kryerReducer from './reducers/kryerReducer'
 const store = createStore(combineReducers({kryerListReducer,kryerReducer}));
 
 
-const store = createStore(combineReducers({ kryerReducer }));
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
