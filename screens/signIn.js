@@ -17,7 +17,7 @@ function signIn(props) {
 
   var handleSubmitSignin = async () => {
  
-    const data = await fetch("http://172.17.1.42:3000/saveMission/", {
+    const data = await fetch("http://172.17.1.42:3000/signIn", {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`

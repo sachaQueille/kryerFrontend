@@ -20,7 +20,7 @@ function signUp(props) {
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
     
-    const data = await fetch("http://172.17.1.42:3000/saveMission/", {
+    const data = await fetch("http://172.17.1.42:3000/signUp/", {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `usernameFromFront=${signUpUsername}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`
@@ -66,7 +66,7 @@ function signUp(props) {
             <Input
             placeholder="XX XX XX XX XX"
             marginBottom="5"
-            onChangeText={(e) => setSignUpPassword(e)}
+            onChangeText={(e) => setSignUpPhone(e)}
             />
           </FormControl>
           <FormControl isRequired>
@@ -74,12 +74,12 @@ function signUp(props) {
             <Input
             placeholder="********"
             marginBottom="5"
-            onChangeText={(e) => setSignUpPhone(e)}
+            onChangeText={(e) => setSignUpPassword(e)}
             />
           </FormControl>
 
           <Button size="sm" colorScheme="indigo"
-          onPress={handleSubmitSignup}
+          onPress={()=> handleSubmitSignup()}
           >
             Connexion
           </Button>
