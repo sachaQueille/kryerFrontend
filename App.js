@@ -24,6 +24,7 @@ import KryerList from './screens/kryerList';
 import NewMissionOne from './screens/newmissionone';
 import PurposeDetails from './screens/purposedetails';
 import CurrentMissionClient from './screens/currentmissionsclients';
+import TerminateMission from './screens/terminatemission';
 
 // redux
 import {Provider} from 'react-redux';
@@ -49,6 +50,7 @@ function StackJourneyNavigator() {
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} />
+      <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );
 }
