@@ -7,8 +7,8 @@ import {
   Button,
   VStack,
   FormControl,
-  Input,
-  Button,
+  Input
+ 
 } from "native-base";
 
 function signIn(props) {

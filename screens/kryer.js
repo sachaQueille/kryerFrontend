@@ -16,6 +16,14 @@ import {
 
 function Kryer(props){
 
+    const acceptClick=()=>{
+        if(props.user){
+            props.navigation.navigate('ReceipientCoordinate')
+        }else{
+            props.navigation.navigate('User')
+        }
+    }
+
     console.log(props.kryer)
 
     return (
@@ -163,7 +171,7 @@ function Kryer(props){
 
             <View style={{flexDirection:'row',marginTop:20}}> 
                 <Button variant="outline" colorScheme='indigo' style={{marginRight:50}} onPress={()=>props.navigation.navigate('KryerList')}>retour</Button>
-                <Button colorScheme='indigo'>Accepter</Button>
+                <Button colorScheme='indigo' onPress={()=> acceptClick()}>Accepter</Button>
             </View>
 
         </Center>

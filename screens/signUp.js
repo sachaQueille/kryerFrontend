@@ -7,8 +7,8 @@ import {
   Button,
   VStack,
   FormControl,
-  Input,
-  Button,
+  Input
+ 
 } from "native-base";
 
 function signUp(props) {
@@ -18,19 +18,19 @@ function signUp(props) {
         <Text>Je crée mon compte</Text>
 
         <VStack space={3} mt="5">
-          <FormControl>
+          <FormControl isRequired>
             <FormControl.Label>Nom d'utilisateur</FormControl.Label>
             <Input />
           </FormControl>
-          <FormControl>
+          <FormControl isRequired>
             <FormControl.Label>Email</FormControl.Label>
             <Input />
           </FormControl>
-          <FormControl>
+          <FormControl isRequired>
             <FormControl.Label>Téléphone</FormControl.Label>
             <Input />
-          </FormControl>
-          <FormControl>
+          </FormControl >
+          <FormControl isRequired>
             <FormControl.Label>Mot de passe</FormControl.Label>
             <Input />
           </FormControl>

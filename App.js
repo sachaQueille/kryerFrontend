@@ -22,12 +22,18 @@ import PurposeDetails from "./screens/purposedetails";
 import Kryer from "./screens/kryer";
 import CurrentMissionClient from "./screens/currentmissionsclients";
 import TerminateMission from "./screens/terminatemission";
+import ReceipientCoordinate from "./screens/receipientCoordinate"
+import ConnectionScreen from "./screens/connectionScreen";
+import signIn from "./screens/signIn";
+import signUp from "./screens/signUp";
+
 
 // redux
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import kryerListReducer from "./reducers/kryerListReducer";
 import kryerReducer from "./reducers/kryerReducer";
+
 
 const store = createStore(combineReducers({ kryerListReducer, kryerReducer }));
 
@@ -45,9 +51,7 @@ function StackJourneyNavigator() {
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen
-        name="CurrentMissionClient"
-        component={CurrentMissionClient}
+      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient}
       />
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
@@ -63,6 +67,20 @@ function StackHomeNavigator() {
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="KryerList" component={KryerList} />
       <Stack.Screen name="Kryer" component={Kryer} />
+      <Stack.Screen name="ReceipientCoordinate" component={ReceipientCoordinate} />
+    </Stack.Navigator>
+  );
+}
+
+function StackProfilNavigator(props){
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {props.user ? 
+      <Stack.Screen name="User" component={User} /> :
+      <Stack.Screen name="ConnectionScreen" component={ConnectionScreen} />
+      }
+      <Stack.Screen name="signIn" component={signIn} />
+      <Stack.Screen name="signUp" component={signUp} />
     </Stack.Navigator>
   );
 }
@@ -96,7 +114,7 @@ export default function App(props) {
           <Tab.Screen name="DeliveryStatus" component={DeliveryStatus} />
           <Tab.Screen name="Journey" component={StackJourneyNavigator} />
           <Tab.Screen name="Tchat" component={Tchat} />
-          <Tab.Screen name="User" component={User} />
+          <Tab.Screen name="User" component={StackProfilNavigator} />
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>
