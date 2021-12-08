@@ -2,7 +2,7 @@ import React , {useState} from 'react';
 import { NativeBaseProvider, Input, Stack, Center, Button, FormControl, Icon,Modal, Text, View} from 'native-base';
 import { Ionicons ,MaterialCommunityIcons, MaterialIcons, AntDesign, FontAwesome5} from "@expo/vector-icons"
 import DatePicker from 'react-native-datepicker';
-import {StyleSheet} from 'react-native';
+import {StyleSheet,KeyboardAvoidingView} from 'react-native';
 import {connect} from 'react-redux';
 
 function SendDelivery(props){
@@ -62,7 +62,7 @@ function SendDelivery(props){
 
             <Stack space={4} w="100%" alignItems="center" marginBottom="10%">
                  <FormControl.Label>Trouve un Kryer</FormControl.Label>
-                <Input
+                <Input isRequired
                     w={{
                     base: "75%",
                     md: "25%",
@@ -78,7 +78,7 @@ function SendDelivery(props){
                     placeholder="Depart"
                     onChangeText={(e) => setDeparture(e)}
                     value={departure}/>
-                <Input
+                <Input isRequired
                     w={{
                     base: "75%",
                     md: "25%",
@@ -140,16 +140,17 @@ function SendDelivery(props){
 
 
                 {/* modale ( affichage selon si je click sur dimension ou sur choisir une date) */}
-
+                                      
                 <Modal isOpen={showModal} onClose={() => setShowModal(false)} >
                 <Modal.Content maxWidth="400px">
                 <Modal.CloseButton />
                 {measureClick ? 
 
                 //  dimension 
-
+                
                 <View>
                     <Modal.Header>Dimensions en cm</Modal.Header>
+                   
                     <Modal.Body>
                      <Input
                     w={{
@@ -205,6 +206,7 @@ function SendDelivery(props){
                     //value={length}
                     />
                     </Modal.Body>
+                    
                 </View> :
 
                 // date 
@@ -245,6 +247,8 @@ function SendDelivery(props){
                 </View> }
                 </Modal.Content>
                 </Modal>
+               
+                
 
         </NativeBaseProvider>
     )

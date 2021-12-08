@@ -10,8 +10,9 @@ import {
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { ScrollView } from "react-native-gesture-handler";
 
-export default function PurposeDetails({ route, navigation }) {
+export default function PurposeDetails({ route, navigation  }) {
   const { departure, arrival, weight, dateJourney } = route.params;
 
   const [recuperationPlace, setRecuperationPlace] = useState("");
@@ -42,6 +43,7 @@ export default function PurposeDetails({ route, navigation }) {
 
   return (
     <NativeBaseProvider>
+      <ScrollView>
       <VStack
         width="80%"
         mx="auto"
@@ -143,6 +145,7 @@ export default function PurposeDetails({ route, navigation }) {
       >
         Valider
       </Button>
+      </ScrollView>
     </NativeBaseProvider>
   );
 }

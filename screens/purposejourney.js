@@ -10,8 +10,10 @@ import {
   Text,
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
+import { ScrollView } from "react-native-gesture-handler";
 
-export default function PurposeJourney({ navigation }) {
+
+export default function PurposeJourney(props) {
   const [weight, setWeight] = useState("");
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
@@ -21,6 +23,7 @@ export default function PurposeJourney({ navigation }) {
 
   return (
     <NativeBaseProvider>
+      <ScrollView>
       <VStack
         width="80%"
         mx="auto"
@@ -76,13 +79,14 @@ export default function PurposeJourney({ navigation }) {
         </Button>
 
         <Button
-          onPress={() =>
-            navigation.navigate("PurposeDetails", {
+          onPress={() => props.user ?
+            props.navigation.navigate("PurposeDetails", {
               departure: departure,
               arrival: arrival,
               weight: weight,
               dateJourney: dateJourney,
-            })
+            }) :
+            props.navigation.navigate("User")
           }
           leftIcon={<EvilIcons name="arrow-right" size={24} color="white" />}
           style={{ backgroundColor: "indigo" }}
@@ -90,6 +94,7 @@ export default function PurposeJourney({ navigation }) {
           Suivant
         </Button>
       </Button.Group>
+      </ScrollView>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
         <Modal.Content maxWidth="350">
           <Modal.CloseButton />
