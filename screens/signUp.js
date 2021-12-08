@@ -7,9 +7,12 @@ import {
   Button,
   VStack,
   FormControl,
-  Input
+  Input,
+  Heading
  
 } from "native-base";
+import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function signUp(props) {
   const [signUpFirstname, setSignUpFirstname] = useState('');
@@ -17,6 +20,7 @@ function signUp(props) {
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const [signUpPhone, setSignUpPhone] = useState('');
+  const [listErrorsSignup, setErrorsSignup] = useState([]);
 
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
@@ -28,24 +32,34 @@ function signUp(props) {
     })
 
     const body = await data.json(); 
-    console.log(body);   
     
-    /*
     if(body.result === true){
-      props.addToken(body.token);
-      setUserExists(true);
+      props.addUser(body.user);
+      setToken(body.token);
     } else {
       setErrorsSignup(body.error)
     }
-    */
+    
   }
+
+  //possibilité d'utiliser la liste des erreurs pour afficher un message
+
 
   return (
     <NativeBaseProvider>
       <Box flex={1} bg="#fff" alignItems="center" justifyContent="center">
-        <Text>Je crée mon compte</Text>
+        <Heading
+          size="lg"
+          fontWeight="600"
+          color="coolGray.800"
+          _dark={{
+            color: "warmGray.50",
+          }}
+        >
+          Je crée mon compte
+        </Heading>
 
-        <VStack space={3} mt="5">
+        <VStack space={1} mt="3">
           <FormControl isRequired>
             <FormControl.Label>Nom</FormControl.Label>
             <Input
@@ -88,7 +102,7 @@ function signUp(props) {
           </FormControl>
 
           <Button size="sm" colorScheme="indigo"
-          onPress={()=>handleSubmitSignup()}
+          onPress={()=>{handleSubmitSignup(); AsyncStorage.setItem('token',JSON.stringify(token))}}
           >
             Connexion
           </Button>
@@ -99,4 +113,15 @@ function signUp(props) {
   );
 }
 
-export default signUp;
+function mapDispatchToProps(dispatch) {
+  return {
+    addUser: function(user) {
+        dispatch( {type: 'addUser', user: user} )
+    }
+  }
+ }
+
+ export default connect(
+  null,
+  mapDispatchToProps
+)(signUp);

@@ -7,13 +7,19 @@ import {
   Button,
   VStack,
   FormControl,
-  Input
+  Input,
+  Heading
  
 } from "native-base";
+import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function signIn(props) {
   const [signInEmail, setSignInEmail] = useState('')
-  const [signInPassword, setSignInPassword] = useState('')
+  const [signInPassword, setSignInPassword] = useState('');
+  const [listErrorsSignin, setErrorsSignin] = useState([]);
+  const [token, setToken] = useState('');
+  const [userExists, setUserExists] = useState(false);
 
   var handleSubmitSignin = async () => {
  
@@ -24,21 +30,32 @@ function signIn(props) {
     })
 
     const body = await data.json()
-    console.log(body);
 
-    /* if(body.result === true){
-      props.addToken(body.token);
-      setUserExists(true)
+     if(body.result === true){
+      props.addUser(body.user);
+      setToken(body.token);
+      setUserExists(true);
+      //props.navigation.navigate("User");
     }  else {
       setErrorsSignin(body.error)
-    } */
+    } 
   }
 
+  //possibilité d'utiliser la liste des erreurs pour afficher un message spécifique
 
   return (
     <NativeBaseProvider>
       <Box flex={1} bg="#fff" alignItems="center" justifyContent="center">
-        <Text>Je me connecte</Text>
+        <Heading
+          size="lg"
+          fontWeight="600"
+          color="coolGray.800"
+          _dark={{
+            color: "warmGray.50",
+          }}
+        >
+          Je me connecte
+        </Heading>
 
         <VStack space={3} mt="5">
           <FormControl isRequired>
@@ -64,17 +81,13 @@ function signIn(props) {
           </FormControl>
 
           <Button size="sm" colorScheme="indigo"
-          onPress={()=>handleSubmitSignin()}
+          onPress={()=>{
+            handleSubmitSignin(); 
+            AsyncStorage.setItem('token',JSON.stringify(token));
+          }
+          }
           >
             Connexion
-          </Button>
-
-          <Text>Vous n'avez pas de compte ?</Text>
-
-          <Button size="sm" colorScheme="indigo"
-          onPress={() => props.navigation.navigate("signUp")}
-          >
-            Inscription
           </Button>
         </VStack>
       </Box>
@@ -82,4 +95,15 @@ function signIn(props) {
   );
 }
 
-export default signIn;
+function mapDispatchToProps(dispatch) {
+  return {
+    addUser: function(user) {
+        dispatch( {type: 'addUser', user: user} )
+    }
+  }
+ }
+
+ export default connect(
+  null,
+  mapDispatchToProps
+)(signIn);

@@ -35,9 +35,10 @@ import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import kryerListReducer from "./reducers/kryerListReducer";
 import kryerReducer from "./reducers/kryerReducer";
+import userReducer from "./reducers/userReducer";
 
 
-const store = createStore(combineReducers({ kryerListReducer, kryerReducer }));
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer }));
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

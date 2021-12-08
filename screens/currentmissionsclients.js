@@ -6,6 +6,7 @@ FormControl, Select,CheckIcon,VStack, Divider, Image, Flex,Badge, Button, Text }
 
 
 export default function CurrentMissionClient(props) {
+    
     return (
         <NativeBaseProvider marginTop="4">
             <Center style={{flex:1}}>
