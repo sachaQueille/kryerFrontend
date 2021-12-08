@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-// import { View, Text } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 import {
     NativeBaseProvider,
@@ -20,16 +19,15 @@ import {
 
 export const MissionList = (props) => {
     const [dataNewMission, setDataNewMission] = useState([]);
-    // const [dataUser, setDataUser] = useState([]);
-    // const [dataDelivery, setDataDelivery] = useState([]);
 
 
     useEffect(() => {
 
         async function loadMission() {
             const rawResponse = await fetch('http://192.168.1.33:3000/getMission');
-            const response = await rawResponse.json();          
-            setDataNewMission(response);        }
+            const response = await rawResponse.json();
+            setDataNewMission(response);
+        }
         loadMission()
     }, []);
 
@@ -84,21 +82,22 @@ export const MissionList = (props) => {
                                             color: "warmGray.200",
                                         }}
                                     >
-                                        {item.departure_journey} / {item.arrival_journey}
+                                        {item.departure_journey}  <FontAwesome name="arrow-right"/>  {item.arrival_journey}
                                     </Text>
                                 </VStack>
                                 <Spacer />
                                 <Text
                                     fontSize="xs"
+                                    fontWeight="bold"
                                     _dark={{
                                         color: "warmGray.50",
                                     }}
                                     color="coolGray.800"
                                     alignSelf="flex-start"
                                 >
-                                    {item.transport_capacity_total}
+                                    {item.transport_capacity_total} kg
                                 </Text>
-                                <FontAwesome name="cube" size={32} type="Ionicons" color="purple" />
+                                <FontAwesome name="cube" size={32} type="Ionicons" color="indigo" />
                             </HStack>
                         </Box>
                     </TouchableOpacity>
@@ -113,24 +112,26 @@ export default function NewMission(props) {
 
     return (
         <NativeBaseProvider>
-                            
-                <Center
-                    bg="#3730a3"
-                    _text={{
-                        color: "#9b59b6",
-                        fontWeight: "600",
-                        fontSize: "32",
-                    }}
-                    height={120}
-                    width="100%">
-                    Nouvelle mission
-                </Center>
 
-                <Center flex={1} px="3">
-                    <MissionList {...props} />
-                </Center>
-                                
-            
+            <Center
+                style={{ backgroundColor: "indigo" }}
+                _text={{
+                    color: "#ffffff",
+                    fontWeight: "600",
+                    fontSize: "32",
+                    marginTop: "10%"
+                    
+                }}
+                height={120}
+                width="100%">
+                Nouvelles missions
+            </Center>
+
+            <Center flex={1} px="3">
+                <MissionList {...props} />
+            </Center>
+
+
         </NativeBaseProvider>
     );
 }

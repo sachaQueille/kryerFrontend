@@ -9,6 +9,7 @@ import {
   FormControl,
   Input,
 } from "native-base";
+import { ScrollView } from "react-native-gesture-handler";
 
 function signUp(props) {
   const [signUpFirstname, setSignUpFirstname] = useState("");
@@ -19,7 +20,7 @@ function signUp(props) {
 
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
-    const data = await fetch("http://172.17.1.16:3000/signUp/", {
+    const data = await fetch("http://192.168.1.33:3000/signUp/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`,
@@ -40,6 +41,7 @@ function signUp(props) {
 
   return (
     <NativeBaseProvider>
+      <ScrollView>
       <VStack
         space={3}
         mt="5"
@@ -103,9 +105,10 @@ function signUp(props) {
           size="lg"
           onPress={() => handleSubmitSignup()}
         >
-          Connexion
+          Inscription
         </Button>
       </VStack>
+      </ScrollView>
     </NativeBaseProvider>
   );
 }

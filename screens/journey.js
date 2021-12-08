@@ -7,7 +7,7 @@ export default function Home(props) {
         <NativeBaseProvider>
             <VStack
                 mx="auto"
-                marginTop="20%"
+                marginTop="50%"
                 justifyContent="flex-end"
                 alignItems="flex-end"
             >
