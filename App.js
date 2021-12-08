@@ -20,7 +20,7 @@ import KryerList from './screens/kryerList';
 import NewMissionOne from './screens/newmissionone';
 import PurposeDetails from './screens/purposedetails';
 import Kryer from './screens/kryer';
-import CurrentMissionClient from './screens/currentmissionclients';
+import CurrentMissionClient from './screens/currentmissionsclients';
 import TerminateMission from './screens/terminatemission';
 
 // redux
