@@ -26,13 +26,12 @@ export const MissionList = (props) => {
     useEffect(() => {
 
         async function loadMission() {
-            const rawResponse = await fetch('http://192.168.1.33:3000/getMission');
+            const rawResponse = await fetch('http://172.17.1.42:3000/getMission');
             const response = await rawResponse.json();
-            console.log("response : ", response);
-            setDataNewMission([response]);
+          
+            setDataNewMission(response);
 
-            console.log("depart :", response.departure_journey)
-            console.log("dataMission", dataNewMission)
+           
 
             //     const rawUserResponse = await fetch('http://192.168.1.33:3000/user');
             //     const userRespclearronse = await rawUserResponse.json();
@@ -90,7 +89,7 @@ export const MissionList = (props) => {
                                         color="coolGray.800"
                                         bold
                                     >
-                                        {item.place_receipt}
+                                        {item.departure_journey} / {item.arrival_journey}
                                     </Text>
                                     <Text
                                         color="coolGray.600"
@@ -98,7 +97,7 @@ export const MissionList = (props) => {
                                             color: "warmGray.200",
                                         }}
                                     >
-                                        {item.departure_journey}
+                                        {item.date_journey}
                                     </Text>
                                 </VStack>
                                 <Spacer />
@@ -117,7 +116,7 @@ export const MissionList = (props) => {
                         </Box>
                     </TouchableOpacity>
                 )}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item) => item.id}
             />
         </Box>
     )
