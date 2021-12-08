@@ -11,7 +11,7 @@ export default function Home(props) {
                 justifyContent="flex-end"
                 alignItems="flex-end"
             >
-                <Text style={{ fontSize: 40, fontWeight: "bold", color: "indigo"}}>KRYER</Text>
+                <Text style={{ fontSize: 40, fontWeight: "bold"}}>KRYER</Text>
             </VStack>
 
             <VStack
