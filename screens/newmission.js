@@ -14,6 +14,7 @@ import {
     Heading,
     VStack,
     Spacer,
+    Avatar,
 } from 'native-base';
 
 
@@ -27,22 +28,8 @@ export const MissionList = (props) => {
 
         async function loadMission() {
             const rawResponse = await fetch('http://192.168.1.33:3000/getMission');
-            const response = await rawResponse.json();
-          
-            setDataNewMission(response);
-
-           
-
-            //     const rawUserResponse = await fetch('http://192.168.1.33:3000/user');
-            //     const userRespclearronse = await rawUserResponse.json();
-            //     console.log("userResponse : ", userResponse);
-            //     setDataUser();
-
-            //     const rawDeliveryResponse = await fetch('http://192.168.1.33:3000/delivery');
-            //     const deliveryResponse = await rawDeliveryResponse.json();
-            //     console.log("deliveryResponse : ", deliveryResponse);
-            //     setDataDelivery();
-        }
+            const response = await rawResponse.json();          
+            setDataNewMission(response);        }
         loadMission()
     }, []);
 
@@ -74,13 +61,13 @@ export const MissionList = (props) => {
                             py="2"
                         >
                             <HStack
-                                space={3} justifyContent="space-evenly">
-                                {/* <Avatar
+                                space={3} justifyContent="space-between">
+                                <Avatar
                                     size="48px"
                                     source={{
                                         uri: item.avatarUrl,
                                     }}
-                                /> */}
+                                />
                                 <VStack>
                                     <Text
                                         _dark={{
@@ -89,7 +76,7 @@ export const MissionList = (props) => {
                                         color="coolGray.800"
                                         bold
                                     >
-                                        {item.departure_journey} / {item.arrival_journey}
+                                        {item.firstName} {item.lastName}
                                     </Text>
                                     <Text
                                         color="coolGray.600"
@@ -97,7 +84,7 @@ export const MissionList = (props) => {
                                             color: "warmGray.200",
                                         }}
                                     >
-                                        {item.date_journey}
+                                        {item.departure_journey} / {item.arrival_journey}
                                     </Text>
                                 </VStack>
                                 <Spacer />
