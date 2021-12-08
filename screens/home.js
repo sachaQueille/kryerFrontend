@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import { Button, NativeBaseProvider, VStack } from "native-base";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { connect } from "react-redux";
 
-export default function Home(props) {
+function Home(props) {
+
+
+    useEffect(()=>{
+
+        
+             AsyncStorage.getItem("token", function(error, data) {
+            console.log(data);
+
+            if (data){
+                async function loadUser(){
+                var user = await fetch(`http://172.17.1.42:3000/getUser?token=${data}`);
+                user = await user.json();
+                console.log(user);
+                props.addUser(user);
+            }
+            
+            loadUser()
+            
+            } 
+           
+          });
+        
+       
+
+    },[])
+
     return (
         <NativeBaseProvider>
             <VStack
@@ -45,3 +73,17 @@ export default function Home(props) {
         </NativeBaseProvider>
     );
 }
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+      kryerList: function(e) {
+            dispatch( {type: 'addUser', user:e} )
+        }
+    }
+   };
+
+   export default connect(
+    null,
+    mapDispatchToProps
+    )(Home);

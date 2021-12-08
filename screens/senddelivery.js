@@ -39,7 +39,7 @@ function SendDelivery(props){
  
     // function de recherche de Kryer
     async function searchClick(){
-        var responce = await fetch("http://172.17.1.42:3000/searchKryer", {
+        var responce = await fetch("http://172.17.1.16:3000/searchKryer", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `departure=${departure}&arrival=${arrival}&date=${date}&weight=${weight}`
@@ -48,7 +48,7 @@ function SendDelivery(props){
         responce = await responce.json();
         console.log(responce);
         props.kryerList(responce);
-        props.infoDelivery({height:height,width:width,length:length});
+        props.infoDelivery({height:height,width:width,length:length, weight:weight});
         props.navigation.navigate('KryerList')
 
             

@@ -64,7 +64,7 @@ function signIn(props) {
           </FormControl>
 
           <Button size="sm" colorScheme="indigo"
-          onPress={handleSubmitSignin}
+          onPress={()=>handleSubmitSignin()}
           >
             Connexion
           </Button>

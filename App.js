@@ -22,7 +22,7 @@ import PurposeDetails from "./screens/purposedetails";
 import Kryer from "./screens/kryer";
 import CurrentMissionClient from "./screens/currentmissionsclients";
 import TerminateMission from "./screens/terminatemission";
-import ReceipientCoordinate from "./screens/receipientCoordinate"
+import ReceipientCoordinate from "./screens/receipientCoordinate";
 import ConnectionScreen from "./screens/connectionScreen";
 import signIn from "./screens/signIn";
 import signUp from "./screens/signUp";
@@ -35,9 +35,10 @@ import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import kryerListReducer from "./reducers/kryerListReducer";
 import kryerReducer from "./reducers/kryerReducer";
+import infoDelivery from "./reducers/infoDeliveryReducer";
 
 
-const store = createStore(combineReducers({ kryerListReducer, kryerReducer }));
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer, infoDelivery }));
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,10 +52,9 @@ function StackJourneyNavigator() {
       <Stack.Screen name="CurrentMission" component={CurrentMission} />
       <Stack.Screen name="FinishedMissions" component={FinishedMissions} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
-      <Stack.Screen name="SendDelivery" component={SendDelivery} />
+      <Stack.Screen name="SendDelivery" component={SendDelivery}/>
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient}
-      />
+      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient}/>
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );
@@ -112,7 +112,7 @@ export default function App(props) {
             },
           })}
         >
-          <Tab.Screen name="Home" component={StackHomeNavigator} />
+          <Tab.Screen name="Home" component={StackHomeNavigator} /> 
           <Tab.Screen name="DeliveryStatus" component={DeliveryStatus} />
           <Tab.Screen name="Journey" component={StackJourneyNavigator} />
           <Tab.Screen name="Tchat" component={Tchat} />
