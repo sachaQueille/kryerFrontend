@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import {
   NativeBaseProvider,
@@ -7,23 +7,21 @@ import {
   Button,
   VStack,
   FormControl,
-  Input
- 
+  Input,
 } from "native-base";
 
 function signIn(props) {
-  const [signInEmail, setSignInEmail] = useState('')
-  const [signInPassword, setSignInPassword] = useState('')
+  const [signInEmail, setSignInEmail] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
 
   var handleSubmitSignin = async () => {
- 
     const data = await fetch("http://172.17.1.16:3000/signIn/", {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
-    })
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`,
+    });
 
-    const body = await data.json()
+    const body = await data.json();
     console.log(body);
 
     /* if(body.result === true){
@@ -32,52 +30,63 @@ function signIn(props) {
     }  else {
       setErrorsSignin(body.error)
     } */
-  }
-
+  };
 
   return (
     <NativeBaseProvider>
-      <Box flex={1} bg="#fff" alignItems="center" justifyContent="center">
+      <VStack
+        space={3}
+        mt="5"
+        width="80%"
+        mx="auto"
+        marginTop="40%"
+        marginBottom="50"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Text>Je me connecte</Text>
-
-        <VStack space={3} mt="5">
-          <FormControl isRequired>
-            <FormControl.Label>Email</FormControl.Label>
-            <Input
+        <FormControl isRequired>
+          <FormControl.Label>Email</FormControl.Label>
+          <Input
             w={{
-              base: "75%",
+              base: "100%",
               md: "25%",
-              }}
-            placeholder="john@doe.fr"
+            }}
+            placeholder="Adresse email"
             marginBottom="5"
             onChangeText={(e) => setSignInEmail(e)}
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormControl.Label>Mot de passe</FormControl.Label>
-            <Input
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormControl.Label>Mot de passe</FormControl.Label>
+          <Input
             type="password"
-            placeholder="********"
+            placeholder="Mot de passe"
             marginBottom="5"
             onChangeText={(e) => setSignInPassword(e)}
-            />
-          </FormControl>
+          />
+        </FormControl>
 
-          <Button size="sm" colorScheme="indigo"
-          onPress={()=>handleSubmitSignin()}
-          >
-            Connexion
-          </Button>
+        <Button
+          style={{ backgroundColor: "indigo" }}
+          mx="12"
+          size="lg"
+          onPress={() => handleSubmitSignin()}
+        >
+          Connexion
+        </Button>
 
-          <Text>Vous n'avez pas de compte ?</Text>
+        <Text>Vous n'avez pas de compte ?</Text>
 
-          <Button size="sm" colorScheme="indigo"
+        <Button
+          style={{ backgroundColor: "indigo" }}
+          mx="12"
+          size="lg"
           onPress={() => props.navigation.navigate("signUp")}
-          >
-            Inscription
-          </Button>
-        </VStack>
-      </Box>
+        >
+          Inscription
+        </Button>
+      </VStack>
     </NativeBaseProvider>
   );
 }
