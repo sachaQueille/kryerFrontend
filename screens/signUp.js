@@ -12,7 +12,8 @@ import {
 } from "native-base";
 
 function signUp(props) {
-  const [signUpUsername, setSignUpUsername] = useState('');
+  const [signUpFirstname, setSignUpFirstname] = useState('');
+  const [signUpLastname, setSignUpLastname] = useState('');
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const [signUpPhone, setSignUpPhone] = useState('');
@@ -20,14 +21,14 @@ function signUp(props) {
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
     
-    const data = await fetch("http://172.17.1.42:3000/saveMission/", {
+    const data = await fetch("http://172.17.1.16:3000/signUp/", {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `usernameFromFront=${signUpUsername}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`
+      body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`
     })
 
     const body = await data.json(); 
-    console.log(body.token);   
+    console.log(body);   
     
     /*
     if(body.result === true){
@@ -46,11 +47,19 @@ function signUp(props) {
 
         <VStack space={3} mt="5">
           <FormControl isRequired>
-            <FormControl.Label>Nom d'utilisateur</FormControl.Label>
+            <FormControl.Label>Nom</FormControl.Label>
             <Input
             placeholder="John Doe"
             marginBottom="5"
-            onChangeText={(e) => setSignUpUsername(e)}
+            onChangeText={(e) => setSignUpFirstname(e)}
+            />
+          </FormControl>
+          <FormControl isRequired>
+            <FormControl.Label>Prénom</FormControl.Label>
+            <Input
+            placeholder="John Doe"
+            marginBottom="5"
+            onChangeText={(e) => setSignUpLastname(e)}
             />
           </FormControl>
           <FormControl isRequired>
@@ -66,7 +75,7 @@ function signUp(props) {
             <Input
             placeholder="XX XX XX XX XX"
             marginBottom="5"
-            onChangeText={(e) => setSignUpPassword(e)}
+            onChangeText={(e) => setSignUpPhone(e)}
             />
           </FormControl>
           <FormControl isRequired>
@@ -74,12 +83,12 @@ function signUp(props) {
             <Input
             placeholder="********"
             marginBottom="5"
-            onChangeText={(e) => setSignUpPhone(e)}
+            onChangeText={(e) => setSignUpPassword(e)}
             />
           </FormControl>
 
           <Button size="sm" colorScheme="indigo"
-          onPress={handleSubmitSignup}
+          onPress={()=>handleSubmitSignup()}
           >
             Connexion
           </Button>
