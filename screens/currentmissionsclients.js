@@ -1,71 +1,85 @@
 import React from "react";
 import { Box, Heading,NativeBaseProvider, Progress, Center, Avatar,
-FormControl, Select,CheckIcon,VStack, Divider, Image, Flex } from 'native-base';
+FormControl, Select,CheckIcon,VStack, Divider, Image, Flex,Badge, Button, Text } from 'native-base';
 
 //
 
 
-export default function CurrentMission() {
+export default function CurrentMissionClient(props) {
     return (
-        <NativeBaseProvider>
-            <Center>
-            <Box w="90%">
-                <Center mb="10">
-                    <Heading size="md">Capacite de transport restante:</Heading>
-                </Center>
-                <Progress colorScheme="primary" bg="cyan.200" mb="4" value={75} mx="4" />
+        <NativeBaseProvider marginTop="4">
+            <Center style={{flex:1}}>
+                <Box w="90%">
+                    <Center mb="10">
+                        <Heading size="md">Capacite de transport restante:</Heading>
+                    </Center>
+                    <Progress colorScheme="primary" bg="cyan.200" mb="4" value={75} mx="4" />
                 </Box>  
                 <Avatar size={32}>45€</Avatar>
+
+                <FormControl marginTop="4" style={{width:'50%'}} isRequired isInvalid>
+                    <FormControl.Label>Selectionner un client</FormControl.Label>
+                    <Select
+                    minWidth="200"
+                    accessibilityLabel="Appliquer le filtre"
+                    placeholder="Appliquer le filtre"
+                    _selectedItem={{
+                        bg: "teal.600",
+                        endIcon: <CheckIcon size={5} />,
+                    }}
+                    mt="1"
+                    >
+                        <Select.Item label="Alice Dupont" value="cl1" />
+                        <Select.Item label="Joh Doe" value="cl2" />
+                        <Select.Item label="Alex Leblanc" value="cl3" />
+                    </Select>                
+                </FormControl>
             </Center>
 
-            <FormControl isRequired isInvalid>
-                <FormControl.Label>Clients</FormControl.Label>
-                <Select
-                minWidth="200"
-                accessibilityLabel="Appliquer le filtre"
-                placeholder="Appliquer le filtre"
-                _selectedItem={{
-                    bg: "teal.600",
-                    endIcon: <CheckIcon size={5} />,
+            <Center>
+            
+            <Box>
+                <Image
+                source={{
+                uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
                 }}
-                mt="1"
-                >
-                    <Select.Item label="Alice Dupont" value="cl1" />
-                    <Select.Item label="Joh Doe" value="cl2" />
-                    <Select.Item label="Alex Leblanc" value="cl3" />
-                </Select>
-                
-            </FormControl>
-
+                alt="image"
+                />
+                <Text>Poids</Text>
+                <Text>Hauteur</Text>
+                <Text>Longueur</Text>
+                <Text>Largeur</Text>
+            </Box>
             <Box border="1" borderRadius="md">
                 <VStack space="4" divider={<Divider />}> 
-                <Flex direction="row">
-                    <Box px="4" pt="4">
-                            <Image source={require('../assets/splash.png')} alt="cl" size={20}>                        
-                            </Image>
-
-                            <Box>
-                                Hello
-                            </Box>
-                    </Box>
-
-                    <Box px="4" pt="4">
-                    Dimensions
-                    </Box>
-                </Flex>                   
-                    
-
-                    <Box px="4">
-                    coordo
-                    </Box>
-
-                    <Box px="4" pb="4">
-                    coordonnees du receveur
-                    </Box>
+                    <Badge>
+                        Coordonnées receveur
+                    </Badge>
                 </VStack>
             </Box>
-                  
-                        
+            </Center> 
+
+            <Center>
+                <Button.Group
+                display="flex"
+                flexDirection="row"
+                size="lg"
+                marginTop="4"
+                marginBottom="4"
+                mx="12"
+                >
+                    <Button style={{width:'50%'}}>
+                        Annuler
+                    </Button> 
+
+                    <Button 
+                    style={{backgroundColor:"indigo",width:'50%'}}
+                    onPress={() => props.navigation.navigate("TerminateMission")}
+                    >
+                        Terminer
+                    </Button>   
+                </Button.Group> 
+            </Center>                     
         </NativeBaseProvider>        
     );
 }

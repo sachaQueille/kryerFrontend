@@ -3,12 +3,30 @@ import React, { useState } from "react";
 import { FontAwesome } from '@expo/vector-icons';
 // import { View, Text } from 'react-native';
 
-import { NativeBaseProvider, Center, HStack, Badge, Box, Button, Stack, Icon, Text, VStack, Avatar, Image, Modal, FormControl, Input, } from 'native-base';
+import {
+    NativeBaseProvider,
+    Center,
+    HStack,
+    Badge,
+    Box,
+    Button,
+    Stack,
+    Icon,
+    Text,
+    VStack,
+    Avatar,
+    Image,
+    Modal,
+    FormControl,
+    Input,
+    AspectRatio,
+} from 'native-base';
+
+
 import { ScrollView } from "react-native-gesture-handler";
 
 
 export default function NewMissionOne(props) {
-
     const [showModal, setShowModal] = useState(false)
     return (
         <NativeBaseProvider>
@@ -50,35 +68,46 @@ export default function NewMissionOne(props) {
                         }}
                     >
                         <Avatar
-                            bg="purple.600"
-                            alignSelf="center"
-                            size="2xl"
+                            bg="amber.500"
+                            size="xl"
                             source={{
-                                uri: "./assets/avatarfemal.jpg",
+                                uri: "https://meragor.com/files/styles//ava_800_800_wm/dlya_devochek2.jpg",
                             }}
-                        >
-
-                        </Avatar>
+                        />
+                        
                         <Text>
                             Alice DUPONT
                         </Text>
 
                     </VStack>
 
-                    <VStack>
-                        <Image
-                            source={{
-                                uri: "https://wallpaperaccess.com/full/317501.jpg",
+                    <Box>
+                        <AspectRatio w="100%" ratio={16 / 9}>
+                            <Image
+                                source={{
+                                    uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                                }}
+                                alt="image"
+                            />
+                        </AspectRatio>
+                        <Center
+                            bg="violet.500"
+                            _dark={{
+                                bg: "violet.400",
                             }}
-                            alt="Alternate Text"
-                            size="2xl"
-                        />
-                        <Avatar
-                            bg="black"
+                            _text={{
+                                color: "warmGray.50",
+                                fontWeight: "700",
+                                fontSize: "xs",
+                            }}
+                            position="absolute"
+                            bottom="0"
+                            px="3"
+                            py="1.5"
                         >
-                            10 kg
-                        </Avatar>
-                    </VStack>
+                            15 kg
+                        </Center>
+                    </Box>
 
                     <VStack>
                         <Button onPress={() => setShowModal(true)}>Dimensions</Button>
@@ -121,8 +150,8 @@ export default function NewMissionOne(props) {
                             }}
                             size="lg"
                         >
-                            <Button>Save</Button>
-                            <Button>Cancel</Button>
+                            <Button>Refuser</Button>
+                            <Button>Accepter</Button>
                         </Button.Group>
                     </VStack>
 
