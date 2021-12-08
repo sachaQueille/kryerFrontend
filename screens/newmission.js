@@ -126,7 +126,7 @@ export const MissionList = (props) => {
                         </Box>
                     </TouchableOpacity>
                 )}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item._id}
             />
         </Box>
     )
@@ -136,8 +136,7 @@ export default function NewMission(props) {
 
     return (
         <NativeBaseProvider>
-            <ScrollView>
-                
+                            
                 <Center
                     bg="#3730a3"
                     _text={{
@@ -154,7 +153,7 @@ export default function NewMission(props) {
                     <MissionList {...props} />
                 </Center>
                                 
-            </ScrollView>
+            
         </NativeBaseProvider>
     );
 }

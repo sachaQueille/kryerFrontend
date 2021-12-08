@@ -1,5 +1,6 @@
-import React from "react";
-import { VStack, Box, Divider, extendTheme, NativeBaseProvider, Button, Center, ScrollView } from 'native-base';
+import React,{useState} from "react";
+import { VStack, Box, Divider, extendTheme, NativeBaseProvider, 
+    Button, Center, ScrollView, StatusBar } from 'native-base';
 
 //
 
@@ -16,8 +17,17 @@ const newColorTheme = {
 const theme = extendTheme({ colors: newColorTheme, px:"20px" });
 
 export default function CurrentMission(props) {
+    /* const [data, setData] = useState([]);
+    const fetchData = async () => {
+        const resp = await fetch("http://172.17.1.16:3000/getMission");
+        const data = await resp.json();
+        setData(data);
+        console.log(data);
+      };
+      fetchData(); */
     return (
         <NativeBaseProvider theme={theme} style={{flex:1}}>
+        <StatusBar backgroundColor="#3700B3" barStyle="light-content" />
             <ScrollView _contentContainerStyle={{
                 px: "20px",
                 mb: "4",

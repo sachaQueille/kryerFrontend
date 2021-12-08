@@ -5,7 +5,7 @@ FormControl, Select,CheckIcon,VStack, Divider, Image, Flex,Badge, Button, Text }
 //
 
 
-export default function CurrentMission() {
+export default function CurrentMissionClient(props) {
     return (
         <NativeBaseProvider marginTop="4">
             <Center style={{flex:1}}>
@@ -16,26 +16,28 @@ export default function CurrentMission() {
                     <Progress colorScheme="primary" bg="cyan.200" mb="4" value={75} mx="4" />
                 </Box>  
                 <Avatar size={32}>45€</Avatar>
+
+                <FormControl marginTop="4" style={{width:'50%'}} isRequired isInvalid>
+                    <FormControl.Label>Selectionner un client</FormControl.Label>
+                    <Select
+                    minWidth="200"
+                    accessibilityLabel="Appliquer le filtre"
+                    placeholder="Appliquer le filtre"
+                    _selectedItem={{
+                        bg: "teal.600",
+                        endIcon: <CheckIcon size={5} />,
+                    }}
+                    mt="1"
+                    >
+                        <Select.Item label="Alice Dupont" value="cl1" />
+                        <Select.Item label="Joh Doe" value="cl2" />
+                        <Select.Item label="Alex Leblanc" value="cl3" />
+                    </Select>                
+                </FormControl>
             </Center>
 
             <Center>
-            <FormControl isRequired isInvalid>
-                <FormControl.Label>Clients</FormControl.Label>
-                <Select
-                minWidth="200"
-                accessibilityLabel="Appliquer le filtre"
-                placeholder="Appliquer le filtre"
-                _selectedItem={{
-                    bg: "teal.600",
-                    endIcon: <CheckIcon size={5} />,
-                }}
-                mt="1"
-                >
-                    <Select.Item label="Alice Dupont" value="cl1" />
-                    <Select.Item label="Joh Doe" value="cl2" />
-                    <Select.Item label="Alex Leblanc" value="cl3" />
-                </Select>                
-            </FormControl>
+            
             <Box>
                 <Image
                 source={{
@@ -63,10 +65,19 @@ export default function CurrentMission() {
                 flexDirection="row"
                 size="lg"
                 marginTop="4"
+                marginBottom="4"
                 mx="12"
                 >
-                    <Button >Annuler</Button> 
-                    <Button colorScheme="indigo">Terminer</Button>   
+                    <Button style={{width:'50%'}}>
+                        Annuler
+                    </Button> 
+
+                    <Button 
+                    style={{backgroundColor:"indigo",width:'50%'}}
+                    onPress={() => props.navigation.navigate("TerminateMission")}
+                    >
+                        Terminer
+                    </Button>   
                 </Button.Group> 
             </Center>                     
         </NativeBaseProvider>        
