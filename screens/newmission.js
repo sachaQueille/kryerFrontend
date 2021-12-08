@@ -29,7 +29,7 @@ export const MissionList = (props) => {
             const rawResponse = await fetch('http://192.168.1.33:3000/getMission');
             const response = await rawResponse.json();
             console.log("response : ", response);
-            setDataNewMission([...dataNewMission, response]);
+            setDataNewMission([response]);
 
             console.log("depart :", response.departure_journey)
             console.log("dataMission", dataNewMission)
