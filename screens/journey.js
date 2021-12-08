@@ -1,32 +1,48 @@
 import React from "react";
-import { View, Button } from 'react-native';
+import { View } from "react-native";
+import { Button, NativeBaseProvider, VStack } from "native-base";
 
 function Journey(props) {
-    return (
-        
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <View >
-                <Button
-                    title="Nouvelle mission"
-                    onPress={() => props.navigation.navigate('NewMission')}
-                />
-            </View>
+  return (
+    <NativeBaseProvider>
+      <VStack
+        mx="auto"
+        marginTop="60%"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Button
+          style={{ backgroundColor: "indigo" }}
+          mx="12"
+          size="lg"
+          marginBottom="3%"
+          onPress={() => props.navigation.navigate("NewMission")}
+        >
+          Nouvelles Missions
+        </Button>
 
-            <View>
-                <Button
-                    title="Mission en cours"
-                    onPress={() => props.navigation.navigate('CurrentMission')}
-                />
-            </View>
+        <Button
+          style={{ backgroundColor: "indigo" }}
+          mx="12"
+          size="lg"
+          marginBottom="3%"
+          onPress={() => props.navigation.navigate("CurrentMission")}
+        >
+          Missions en cours
+        </Button>
 
-            <View>
-                <Button
-                    title="Mission accomplie"
-                    onPress={() => props.navigation.navigate('FinishedMissions')}
-                />
-            </View>
-        </View>
-    );
+        <Button
+          style={{ backgroundColor: "indigo" }}
+          mx="12"
+          size="lg"
+          marginBottom="3%"
+          onPress={() => props.navigation.navigate("FinishedMissions")}
+        >
+          Missions Accomplies
+        </Button>
+      </VStack>
+    </NativeBaseProvider>
+  );
 }
 
 export default Journey;
