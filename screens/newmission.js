@@ -8,22 +8,13 @@ import {
     NativeBaseProvider,
     Center,
     HStack,
-    Badge,
     Box,
-    Button,
-    Stack,
-    Icon,
     Text,
-    Avatar,
     FlatList,
     Heading,
     VStack,
     Spacer,
-    ScrollView,
-    View
 } from 'native-base';
-
-// import { ScrollView } from "react-native-gesture-handler";
 
 
 export const MissionList = (props) => {

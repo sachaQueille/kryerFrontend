@@ -23,7 +23,9 @@ import SendDelivery from './screens/senddelivery';
 import KryerList from './screens/kryerList';
 import NewMissionOne from './screens/newmissionone';
 import PurposeDetails from './screens/purposedetails';
-import Kryer from './screens/kryer'
+import Kryer from './screens/kryer';
+import CurrentMissionClient from './screens/currentmissionclients';
+import TerminateMission from './screens/terminatemission';
 
 // redux
 import {Provider} from 'react-redux';
