@@ -29,7 +29,7 @@ export default function PurposeDetails({ route, navigation }) {
       deliveryDate,
       pricePerKg,
     };
-    const response = await fetch("http://192.168.1.33:3000/saveMission/", {
+    const response = await fetch("http://172.17.1.42:3000/saveMission/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `departure=${data.departure}&arrival=${data.arrival}&weight=${data.weight}&recuperationPlace=${data.recuperationPlace}&recuperationDate=${data.recuperationDate}&deliveryPlace=${data.deliveryPlace}&deliveryDate=${data.deliveryDate}&pricePerKg=${data.pricePerKg}`,

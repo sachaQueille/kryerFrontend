@@ -22,14 +22,16 @@ import PurposeJourney from './screens/purposejourney';
 import SendDelivery from './screens/senddelivery';
 import KryerList from './screens/kryerList';
 import NewMissionOne from './screens/newmissionone';
-import PurposeDetails from './screens/purposedetails'
+import PurposeDetails from './screens/purposedetails';
+import Kryer from './screens/kryer'
 
 // redux
 import {Provider} from 'react-redux';
 import {createStore, combineReducers}  from 'redux';
-import kryerReducer from './reducers/kryerReducer';
+import kryerListReducer from './reducers/kryerListReducer';
+import kryerReducer from './reducers/kryerReducer'
 
-const store = createStore(combineReducers({kryerReducer}));
+const store = createStore(combineReducers({kryerListReducer,kryerReducer}));
 
 
 
@@ -60,6 +62,7 @@ function StackHomeNavigator() {
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name = 'KryerList' component={KryerList}/>
+      <Stack.Screen name = 'Kryer' component={Kryer}/>
     </Stack.Navigator>
   );
 }
@@ -92,8 +95,8 @@ export default function App(props) {
           
         })}
         tabBarOptions={{
-          activeTintColor: '#9b59b6',
-          inactiveTintColor: '#c4b5fd',
+          activeTintColor: '#c4b5fd',
+          inactiveTintColor: '#FFFFFF',
         }}
       
       >
@@ -107,7 +110,7 @@ export default function App(props) {
         />        
         <Tab.Screen
           name="Journey"
-          component={StackNavigator}
+          component={StackJourneyNavigator}
         />
         <Tab.Screen
           name="Tchat"

@@ -7,7 +7,10 @@ import {connect} from 'react-redux';
 
 function SendDelivery(props){
 
-
+    //format date
+    function formatDate (date){
+        return ('0'+date.getDate()).slice(-2)+'/'+ ('0'+parseInt(date.getMonth()+1)).slice(-2)+'/'+date.getFullYear();
+    };
 
     
     const [date, setDate] = useState(formatDate(new Date()));
@@ -30,18 +33,10 @@ function SendDelivery(props){
     const [width, setWidth] = useState("");
     const [length, setLength] = useState("");
 
-  //pour afficher la date selectionnée
-  var messageDate = dateIsChoose ? `recherche a partir du ${date}` : "";
+    //pour afficher la date selectionnée
+    var messageDate = dateIsChoose ? `recherche a partir du ${date}` : "";
 
-  // function de recherchhe
-  async function searchClick() {
-    var responce = await fetch("http://192.168.0.30:3000/searchKryer", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `departure=${departure}&arrival=${arrival}&date=${date}`,
-    });
-  }
-
+ 
     // function de recherche de Kryer
     async function searchClick(){
         var responce = await fetch("http://172.17.1.42:3000/searchKryer", {
@@ -102,7 +97,7 @@ function SendDelivery(props){
                  
                          {/* button pour la modale pour choisir la date + l'affichage du choix de la date */}
 
-                 <Button onPress={() => {setMeasureClick(false);setShowModal(true);setDateIsChoose(true)}}  style={{backgroundColor:"indigo",width:'75%'}}>Choisi une date</Button>
+                 <Button onPress={() => {setMeasureClick(false);setShowModal(true);setDateIsChoose(true)}}  style={{width:'75%'}} variant="outline" colorScheme='indigo'>Choisi une date</Button>
                  <Text>{messageDate}</Text>
             
             </Stack>
@@ -128,11 +123,11 @@ function SendDelivery(props){
                     onChangeText={(e) => setWeight(e)}
                     value={weight}/>
 
-                <Button onPress={() => {setMeasureClick(true); setShowModal(true)}} style={{backgroundColor:"indigo",width:'75%'}} >dimensions</Button>
+                <Button onPress={() => {setMeasureClick(true); setShowModal(true)}} style={{width:'75%'}} variant="outline" colorScheme='indigo'>dimensions</Button>
                
                
-               <Button  style={{backgroundColor:"indigo.800"}} onPress={()=>searchClick()}> <Icon
-                        as={<AntDesign name="search1" color="indigo"/>}
+               <Button  colorScheme='indigo' onPress={()=>searchClick()}> <Icon
+                        as={<AntDesign name="search1" color="#ffffff"/>}
                         size={5}
                         ml="2"
                         color="indigo.800"
@@ -171,7 +166,8 @@ function SendDelivery(props){
                     }
                     placeholder="hauteur"
                     onChangeText={(e) => setHeight(e)}
-                    value={height}/>
+                    //value={height}
+                    />
 
                     <Input
                     w={{
@@ -188,7 +184,8 @@ function SendDelivery(props){
                     }
                     placeholder="largeur"
                     onChangeText={(e) => setWidth(e)}
-                    value={width}/>
+                    //value={width}
+                    />
 
                     <Input
                     w={{
@@ -205,7 +202,8 @@ function SendDelivery(props){
                     }
                     placeholder="longeur"
                     onChangeText={(e) => setLength(e)}
-                    value={length}/>
+                    //value={length}
+                    />
                     </Modal.Body>
                 </View> :
 
