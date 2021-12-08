@@ -1,7 +1,10 @@
-import React from 'react';
-import { StyleSheet ,View, Text} from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import React from "react";
+import { StyleSheet, View, Text } from "react-native";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -28,15 +31,12 @@ import CurrentMissionClient from './screens/currentmissionclients';
 import TerminateMission from './screens/terminatemission';
 
 // redux
-import {Provider} from 'react-redux';
-import {createStore, combineReducers}  from 'redux';
-import kryerListReducer from './reducers/kryerListReducer';
-import kryerReducer from './reducers/kryerReducer'
+import { Provider } from "react-redux";
+import { createStore, combineReducers } from "redux";
+import kryerListReducer from "./reducers/kryerListReducer";
+import kryerReducer from "./reducers/kryerReducer";
 
-const store = createStore(combineReducers({kryerListReducer,kryerReducer}));
-
-
-const store = createStore(combineReducers({ kryerReducer }));
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer }));
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -52,7 +52,10 @@ function StackJourneyNavigator() {
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} />
+      <Stack.Screen
+        name="CurrentMissionClient"
+        component={CurrentMissionClient}
+      />
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );
@@ -65,8 +68,8 @@ function StackHomeNavigator() {
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen name = 'KryerList' component={KryerList}/>
-      <Stack.Screen name = 'Kryer' component={Kryer}/>
+      <Stack.Screen name="KryerList" component={KryerList} />
+      <Stack.Screen name="Kryer" component={Kryer} />
     </Stack.Navigator>
   );
 }
