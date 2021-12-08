@@ -1,12 +1,15 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { Button, NativeBaseProvider, VStack, Input, StatusBar, Center, Box } from "native-base";
+import { Button, NativeBaseProvider, VStack, Input, StatusBar, Center, Box, KeyboardAvoidingView } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function TerminateMission(props) {
   return (
+    
     <NativeBaseProvider>
+    <KeyboardAvoidingView>
     <StatusBar backgroundColor="#3700B3" barStyle="light-content" />
+    
     <ScrollView>
       <VStack
         mx="auto"
@@ -27,7 +30,9 @@ export default function TerminateMission(props) {
 
       </VStack>
       </ScrollView>
+      </KeyboardAvoidingView>
     </NativeBaseProvider>
+    
   );
 }
 
