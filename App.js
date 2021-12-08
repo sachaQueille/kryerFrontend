@@ -1,42 +1,35 @@
-import React from 'react';
-import { StyleSheet ,View, Text} from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import React from "react";
+import { StyleSheet, View, Text } from "react-native";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
-
-
-
-import Home from './screens/home';
-import DeliveryStatus from './screens/deliverystatus';
-import Journey from './screens/journey';
-import User from './screens/user';
-import Tchat from './screens/tchat';
-import NewMission from './screens/newmission';
-import CurrentMission from './screens/currentmission';
-import FinishedMissions from './screens/finishedmissions';
-import PurposeJourney from './screens/purposejourney';
-import SendDelivery from './screens/senddelivery';
-import KryerList from './screens/kryerList';
-import NewMissionOne from './screens/newmissionone';
-import PurposeDetails from './screens/purposedetails';
-import Kryer from './screens/kryer';
-import CurrentMissionClient from './screens/currentmissionsclients';
-import TerminateMission from './screens/terminatemission';
+import Home from "./screens/home";
+import DeliveryStatus from "./screens/deliverystatus";
+import Journey from "./screens/journey";
+import User from "./screens/user";
+import Tchat from "./screens/tchat";
+import NewMission from "./screens/newmission";
+import CurrentMission from "./screens/currentmission";
+import FinishedMissions from "./screens/finishedmissions";
+import PurposeJourney from "./screens/purposejourney";
+import SendDelivery from "./screens/senddelivery";
+import KryerList from "./screens/kryerList";
+import NewMissionOne from "./screens/newmissionone";
+import PurposeDetails from "./screens/purposedetails";
+import Kryer from "./screens/kryer";
+import CurrentMissionClient from "./screens/currentmissionsclients";
+import TerminateMission from "./screens/terminatemission";
 
 // redux
-import {Provider} from 'react-redux';
-import {createStore, combineReducers}  from 'redux';
-import kryerListReducer from './reducers/kryerListReducer';
-import kryerReducer from './reducers/kryerReducer'
+import { Provider } from "react-redux";
+import { createStore, combineReducers } from "redux";
+import kryerListReducer from "./reducers/kryerListReducer";
+import kryerReducer from "./reducers/kryerReducer";
 
-const store = createStore(combineReducers({kryerListReducer,kryerReducer}));
-
-
-
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer }));
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -52,7 +45,10 @@ function StackJourneyNavigator() {
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} />
+      <Stack.Screen
+        name="CurrentMissionClient"
+        component={CurrentMissionClient}
+      />
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );
@@ -65,8 +61,8 @@ function StackHomeNavigator() {
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen name = 'KryerList' component={KryerList}/>
-      <Stack.Screen name = 'Kryer' component={Kryer}/>
+      <Stack.Screen name="KryerList" component={KryerList} />
+      <Stack.Screen name="Kryer" component={Kryer} />
     </Stack.Navigator>
   );
 }
