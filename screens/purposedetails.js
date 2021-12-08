@@ -45,7 +45,7 @@ export default function PurposeDetails({ route, navigation }) {
       <VStack
         width="80%"
         mx="auto"
-        marginTop="70"
+        marginTop="40%"
         marginBottom="50"
         justifyContent="center"
         alignItems="center"
@@ -58,7 +58,7 @@ export default function PurposeDetails({ route, navigation }) {
             <Input
               placeholder="Lieu de récupération"
               w={{
-                base: "75%",
+                base: "100%",
                 md: "25%",
               }}
               marginBottom="2"
@@ -78,7 +78,6 @@ export default function PurposeDetails({ route, navigation }) {
           <Input
             placeholder="Date"
             w={{
-              base: "75%",
               md: "25%",
             }}
             marginBottom="5"
@@ -96,7 +95,6 @@ export default function PurposeDetails({ route, navigation }) {
           <Input
             placeholder="Lieu de livraison"
             w={{
-              base: "75%",
               md: "25%",
             }}
             marginBottom="2"
@@ -109,7 +107,6 @@ export default function PurposeDetails({ route, navigation }) {
             <Input
               placeholder="Date de livraison"
               w={{
-                base: "75%",
                 md: "25%",
               }}
               marginBottom="5"
@@ -128,7 +125,6 @@ export default function PurposeDetails({ route, navigation }) {
           <Input
             placeholder="Prix par kg"
             w={{
-              base: "75%",
               md: "25%",
             }}
             marginBottom="5"
@@ -139,7 +135,12 @@ export default function PurposeDetails({ route, navigation }) {
           />
         </FormControl>
       </VStack>
-      <Button colorScheme="indigo" mx="12" size="lg" onPress={sendToDB}>
+      <Button
+        style={{ backgroundColor: "indigo" }}
+        mx="12"
+        size="lg"
+        onPress={sendToDB}
+      >
         Valider
       </Button>
     </NativeBaseProvider>

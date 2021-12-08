@@ -27,13 +27,11 @@ import CurrentMissionClient from './screens/currentmissionsclients';
 import TerminateMission from './screens/terminatemission';
 
 // redux
-import {Provider} from 'react-redux';
-import {createStore, combineReducers}  from 'redux';
-import kryerReducer from './reducers/kryerReducer';
+import { Provider } from "react-redux";
+import { createStore, combineReducers } from "redux";
+import kryerReducer from "./reducers/kryerReducer";
 
-const store = createStore(combineReducers({kryerReducer}));
-
-
+const store = createStore(combineReducers({ kryerReducer }));
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -57,71 +55,47 @@ function StackJourneyNavigator() {
 
 function StackHomeNavigator() {
   return (
-    
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomeScreen" component={Home} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen name = 'KryerList' component={KryerList}/>
+      <Stack.Screen name="KryerList" component={KryerList} />
     </Stack.Navigator>
   );
 }
 
 export default function App(props) {
-
   return (
     <Provider store={store}>
       <NavigationContainer>
         <Tab.Navigator
-        
-        screenOptions={({ route }) => ({
-          headerShown: false,
-          tabBarStyle:{ backgroundColor: 'indigo' },
-          tabBarIcon: ({ color }) => {
-            let iconName;
-            if (route.name === 'Home') {
-              iconName = 'home';
-            } else if (route.name === 'DeliveryStatus') {
-              iconName = 'cube';
-            }else if (route.name === 'Journey') {
-              iconName = 'rocket';
-            }else if (route.name === 'Tchat') {
-              iconName = 'comments';
-            }else if (route.name === 'User') {
-              iconName = 'user';
-            }
-            return <FontAwesome name={iconName} size={25} color={color} />;
-          },
-          
-        })}
-        tabBarOptions={{
-          activeTintColor: '#9b59b6',
-          inactiveTintColor: '#c4b5fd',
-        }}
-      
-      >
-        <Tab.Screen
-          name="Home"
-          component={StackHomeNavigator}
-        />
-        <Tab.Screen
-          name="DeliveryStatus"
-          component={DeliveryStatus}
-        />        
-        <Tab.Screen
-          name="Journey"
-          component={StackJourneyNavigator}
-        />
-        <Tab.Screen
-          name="Tchat"
-          component={Tchat}
-        />
-        <Tab.Screen
-          name="User"
-          component={User}
-        />
-      </Tab.Navigator>
+          screenOptions={({ route }) => ({
+            headerShown: false,
+            tabBarStyle: { backgroundColor: "indigo" },
+            tabBarIcon: ({ color }) => {
+              let iconName;
+              if (route.name === "Home") {
+                iconName = "home";
+              } else if (route.name === "DeliveryStatus") {
+                iconName = "cube";
+              } else if (route.name === "Journey") {
+                iconName = "rocket";
+              } else if (route.name === "Tchat") {
+                iconName = "comments";
+              } else if (route.name === "User") {
+                iconName = "user";
+              }
+              return <FontAwesome name={iconName} size={25} color={color} />;
+            },
+          })}
+        >
+          <Tab.Screen name="Home" component={StackHomeNavigator} />
+          <Tab.Screen name="DeliveryStatus" component={DeliveryStatus} />
+          <Tab.Screen name="Journey" component={StackJourneyNavigator} />
+          <Tab.Screen name="Tchat" component={Tchat} />
+          <Tab.Screen name="User" component={User} />
+        </Tab.Navigator>
       </NavigationContainer>
     </Provider>
   );
