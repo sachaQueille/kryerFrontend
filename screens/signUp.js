@@ -7,44 +7,40 @@ import {
   VStack,
   FormControl,
   Input,
-  ScrollView
- 
+  ScrollView,
 } from "native-base";
-import {connect} from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { connect } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function signUp(props) {
-  const [signUpFirstname, setSignUpFirstname] = useState('');
-  const [signUpLastname, setSignUpLastname] = useState('');
-  const [signUpEmail, setSignUpEmail] = useState('');
-  const [signUpPassword, setSignUpPassword] = useState('');
-  const [signUpPhone, setSignUpPhone] = useState('');
-  
+  const [signUpFirstname, setSignUpFirstname] = useState("");
+  const [signUpLastname, setSignUpLastname] = useState("");
+  const [signUpEmail, setSignUpEmail] = useState("");
+  const [signUpPassword, setSignUpPassword] = useState("");
+  const [signUpPhone, setSignUpPhone] = useState("");
+
   const [listErrorsSignup, setErrorsSignup] = useState([]);
 
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
-    
-    const data = await fetch("http://172.17.1.42:3000/signUp", {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`
-    })
+    const data = await fetch("http://192.168.0.30:3000/signUp", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`,
+    });
 
-    const body = await data.json(); 
-    
-    if(body.result === true){
+    const body = await data.json();
+
+    if (body.result === true) {
       props.addUser(body.user);
-      AsyncStorage.setItem('token',JSON.stringify(body.token));
-      props.navigation.navigate("Profil",{screen:'User'});   
+      AsyncStorage.setItem("token", JSON.stringify(body.token));
+      props.navigation.navigate("Profil", { screen: "User" });
     } else {
-      setErrorsSignup(body.error)
+      setErrorsSignup(body.error);
     }
-    
-  }
+  };
 
   //possibilité d'utiliser la liste des erreurs pour afficher un message
-
 
   return (
     <NativeBaseProvider>
@@ -121,17 +117,12 @@ function signUp(props) {
   );
 }
 
-
-
 function mapDispatchToProps(dispatch) {
   return {
-    addUser: function(user) {
-        dispatch( {type: 'addUser', user: user} )
-    }
-  }
- }
+    addUser: function (user) {
+      dispatch({ type: "addUser", user: user });
+    },
+  };
+}
 
- export default connect(
-  null,
-  mapDispatchToProps
-)(signUp);
+export default connect(null, mapDispatchToProps)(signUp);
