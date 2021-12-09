@@ -16,22 +16,23 @@ import {
     Avatar,
 } from 'native-base';
 
-
+//recupération du user avec les missions et delivery en clef étrangère
 export const MissionList = (props) => {
-    const [dataNewMission, setDataNewMission] = useState([]);
-
-
+    const [dataUser, setDataUser] = useState([]);
+    
     useEffect(() => {
-
-        async function loadMission() {
-            const rawResponse = await fetch('http://192.168.1.33:3000/getMission');
+        async function loadUser() {
+            const rawResponse = await fetch('http://192.168.1.33:3000/searchUser');
             const response = await rawResponse.json();
-            setDataNewMission(response);
+            setDataUser(response);
+
+            console.log("response", response)
         }
-        loadMission()
+        loadUser()
     }, []);
 
-    const data = dataNewMission
+    //data est la variable intégrée pour la flatList
+    const data = dataUser
 
     return (
         <Box
@@ -42,6 +43,8 @@ export const MissionList = (props) => {
         >
             <Heading fontSize="xl" p="4" pb="3" />
 
+            {/* permet d'afficher les différentes informations du KRYER 
+            pour les missions qu'on lui propose*/}
             <FlatList
                 data={data}
                 renderItem={({ item }) => (
@@ -59,7 +62,7 @@ export const MissionList = (props) => {
                             py="2"
                         >
                             <HStack
-                                space={3} justifyContent="space-between">
+                                space={3}>
                                 <Avatar
                                     size="48px"
                                     source={{
@@ -82,10 +85,11 @@ export const MissionList = (props) => {
                                             color: "warmGray.200",
                                         }}
                                     >
-                                        {item.departure_journey}  <FontAwesome name="arrow-right"/>  {item.arrival_journey}
+                                        {item.departure_journey}  <FontAwesome name="arrow-right" />  {item.arrival_journey}
                                     </Text>
                                 </VStack>
                                 <Spacer />
+                                <Center>
                                 <Text
                                     fontSize="xs"
                                     fontWeight="bold"
@@ -95,14 +99,15 @@ export const MissionList = (props) => {
                                     color="coolGray.800"
                                     alignSelf="flex-start"
                                 >
-                                    {item.transport_capacity_total} kg
+                                    {item.transport_capacity_total}15 kg
                                 </Text>
                                 <FontAwesome name="cube" size={32} type="Ionicons" color="indigo" />
+                            </Center>
                             </HStack>
                         </Box>
                     </TouchableOpacity>
                 )}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item._id}
             />
         </Box>
     )
@@ -120,7 +125,7 @@ export default function NewMission(props) {
                     fontWeight: "600",
                     fontSize: "32",
                     marginTop: "10%"
-                    
+
                 }}
                 height={120}
                 width="100%">
