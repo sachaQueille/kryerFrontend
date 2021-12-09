@@ -23,7 +23,7 @@ function signIn(props) {
 
   var handleSubmitSignin = async () => {
  
-    const data = await fetch("http://172.17.1.16:3000/signIn/", {
+    const data = await fetch("http://192.168.1.109:3000/signIn/", {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
@@ -35,7 +35,6 @@ function signIn(props) {
       props.addUser(body.user);
       setToken(body.token);
       setUserExists(true);
-      //props.navigation.navigate("User");
     }  else {
       setErrorsSignin(body.error)
     } 
@@ -45,55 +44,55 @@ function signIn(props) {
 
   return (
     <NativeBaseProvider>
-      <Box flex={1} bg="#fff" alignItems="center" justifyContent="center">
-        <Heading
-          size="lg"
-          fontWeight="600"
-          color="coolGray.800"
-          _dark={{
-            color: "warmGray.50",
-          }}
-        >
-          Je me connecte
-        </Heading>
-
-        <VStack space={3} mt="5">
-          <FormControl isRequired>
-            <FormControl.Label>Email</FormControl.Label>
-            <Input
+      <VStack
+        space={3}
+        mt="5"
+        width="80%"
+        mx="auto"
+        marginTop="40%"
+        marginBottom="50"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Text>Je me connecte</Text>
+        <FormControl isRequired>
+          <FormControl.Label>Email</FormControl.Label>
+          <Input
             w={{
-              base: "75%",
+              base: "100%",
               md: "25%",
-              }}
-            placeholder="john@doe.fr"
+            }}
+            placeholder="Adresse email"
             marginBottom="5"
             onChangeText={(e) => setSignInEmail(e)}
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormControl.Label>Mot de passe</FormControl.Label>
-            <Input
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormControl.Label>Mot de passe</FormControl.Label>
+          <Input
             type="password"
-            placeholder="********"
+            placeholder="Mot de passe"
             marginBottom="5"
             onChangeText={(e) => setSignInPassword(e)}
-            />
-          </FormControl>
+          />
+        </FormControl>
 
-          <Button size="sm" colorScheme="indigo"
-          onPress={()=>{
-            handleSubmitSignin(); 
-            AsyncStorage.setItem('token',JSON.stringify(token));
-          }
-          }
-          >
-            Connexion
-          </Button>
-        </VStack>
-      </Box>
+        <Button
+          style={{ backgroundColor: "indigo" }}
+          mx="12"
+          size="lg"
+          onPress={()=>{handleSubmitSignin();
+                        AsyncStorage.setItem('token',JSON.stringify(token));
+                        props.navigation.navigate('User');
+                  }}
+        >
+          Connexion
+        </Button>
+      </VStack>
     </NativeBaseProvider>
   );
 }
+
 
 function mapDispatchToProps(dispatch) {
   return {

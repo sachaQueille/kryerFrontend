@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from "react";
 import { VStack, Box, Divider, extendTheme, NativeBaseProvider, 
-    Button, Center, ScrollView, StatusBar } from 'native-base';
+    Button, Center, ScrollView, StatusBar,FlatList,Text } from 'native-base';
 
 //
 
@@ -22,37 +22,40 @@ export default function CurrentMission(props) {
     useEffect(() => {
 
         async function loadMission() {
-            const rawResponse = await fetch('http://172.17.1.16:3000/getMission');
+            const rawResponse = await fetch('http://192.168.1.109:3000/getMission');
             const response = await rawResponse.json();          
             setDataCurrentMission(response);
         }
         loadMission()
     }, []);
 
-    const data = dataCurrentMission
+    const data = dataCurrentMission;
+    /* console.log(data); */
     return (
-        <NativeBaseProvider theme={theme} style={{flex:1}}>
+        <NativeBaseProvider>
         <StatusBar backgroundColor="#3700B3" barStyle="light-content" />
         
-            <ScrollView _contentContainerStyle={{
-                px: "20px",
-                mb: "4",
-                minW: "72",
-                flex: 1,
-            }}>
-                <Center style={{flex:1}}>
-                    <Box border="1" borderRadius="md">
-                        
+            <ScrollView>
+                                       
                         <VStack space="4" divider={<Divider />}>
+                        <FlatList
+                            data={data}
+                            
+                            renderItem={({item}) => 
+                            
                             <Button variant="outline"
+                            mx="12"
+                            size="lg"
+                            marginBottom="5"
                             onPress={() => props.navigation.navigate("CurrentMissionClient")}
                             >
-                            Paris / Martinique le 26/12/2021
-                            </Button>
+                               <Text>
+                                   {item.departure_journey} / {item.arrival_journey} le {item.date_delivery}
+                               </Text> 
+                            </Button> }
+                        />
                         </VStack>
                                     
-                    </Box>
-                </Center>
             </ScrollView> 
         </NativeBaseProvider>        
     );

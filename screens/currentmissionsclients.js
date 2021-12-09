@@ -1,9 +1,8 @@
 import React from "react";
 import { Box, Heading,NativeBaseProvider, Progress, Center, Avatar,
-FormControl, Select,CheckIcon,VStack, Divider, Image, Flex,Badge, Button, Text } from 'native-base';
+FormControl, Select,CheckIcon, Image, Button, Text} from 'native-base';
 
-//
-
+const logo = require("../assets/avatarfemal.jpg");
 
 export default function CurrentMissionClient(props) {
     
@@ -15,6 +14,7 @@ export default function CurrentMissionClient(props) {
                         <Heading size="md">Capacite de transport restante:</Heading>
                     </Center>
                     <Progress colorScheme="primary" bg="cyan.200" mb="4" value={75} mx="4" />
+                    
                 </Box>  
                 <Avatar size={32}>45€</Avatar>
 
@@ -25,7 +25,7 @@ export default function CurrentMissionClient(props) {
                     accessibilityLabel="Appliquer le filtre"
                     placeholder="Appliquer le filtre"
                     _selectedItem={{
-                        bg: "teal.600",
+                        bg: "cyan.200",
                         endIcon: <CheckIcon size={5} />,
                     }}
                     mt="1"
@@ -39,25 +39,34 @@ export default function CurrentMissionClient(props) {
 
             <Center>
             
-            <Box>
-                <Image
-                source={{
-                uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
-                }}
-                alt="image"
-                />
-                <Text>Poids</Text>
-                <Text>Hauteur</Text>
-                <Text>Longueur</Text>
-                <Text>Largeur</Text>
+            <Box style={{   flexDirection:'row', 
+                            paddingVertical: 0, 
+                            justifyContent:'space-between',
+                            padding: 10,
+                            margin:10}}
+            >
+
+                    <Box p="3">
+                        <Image
+                        source={logo}
+                        alt="image"
+                        />
+                    </Box>
+                    
+                    <Box p="3">
+                        <Text>Poids</Text>
+                        <Text>Hauteur</Text>
+                        <Text>Longueur</Text>
+                        <Text>Largeur</Text>
+                    </Box>
+
+                    <Box p="3">
+                        <Text>Coordonnées</Text>
+                        <Text>Nom</Text>
+                        <Text>Telephone</Text>
+                    </Box>                
             </Box>
-            <Box border="1" borderRadius="md">
-                <VStack space="4" divider={<Divider />}> 
-                    <Badge>
-                        Coordonnées receveur
-                    </Badge>
-                </VStack>
-            </Box>
+
             </Center> 
 
             <Center>
