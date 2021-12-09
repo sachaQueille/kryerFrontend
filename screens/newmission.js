@@ -1,144 +1,255 @@
-import React, { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native";
-
-import { FontAwesome } from '@expo/vector-icons';
-
+import React, { useState, useEffect } from "react";
 import {
-    NativeBaseProvider,
-    Center,
-    HStack,
-    Box,
-    Text,
-    FlatList,
-    Heading,
-    VStack,
-    Spacer,
-    Avatar,
+    VStack, Box, Divider, extendTheme, NativeBaseProvider,
+    Button, Center, ScrollView, StatusBar, FlatList, Text
 } from 'native-base';
+import {connect} from 'react-redux';
 
-//recupération du user avec les missions et delivery en clef étrangère
-export const MissionList = (props) => {
-    const [dataUser, setDataUser] = useState([]);
-    
+
+// Extend the theme to include custom colors, fonts, etc
+const newColorTheme = {
+    brand: {
+        900: '#8287af',
+        800: '#7c83db',
+        700: '#b3bef6',
+    },
+};
+
+const theme = extendTheme({ colors: newColorTheme, px: "20px" });
+
+function NewMission(props) {
+    const [dataNewMission, setDataNewMission] = useState([]);
+
     useEffect(() => {
-        async function loadUser() {
-            const rawResponse = await fetch('http://192.168.1.33:3000/searchUser');
-            const response = await rawResponse.json();
-            setDataUser(response);
 
-            console.log("response", response)
+        async function loadMission() {
+            const rawResponse = await fetch('http://192.168.1.33:3000/getMission');
+            const response = await rawResponse.json();
+            setDataNewMission(response.missions);
+
+            // console.log("response", response.missions)
         }
-        loadUser()
+        loadMission()
     }, []);
 
-    //data est la variable intégrée pour la flatList
-    const data = dataUser
-
-    return (
-        <Box
-            w={{
-                base: "100%",
-                md: "25%",
-            }}
-        >
-            <Heading fontSize="xl" p="4" pb="3" />
-
-            {/* permet d'afficher les différentes informations du KRYER 
-            pour les missions qu'on lui propose*/}
-            <FlatList
-                data={data}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        onPress={() => props.navigation.navigate('NewMissionOne')}
-                    >
-                        <Box
-                            borderBottomWidth="1"
-                            _dark={{
-                                borderColor: "gray.600",
-                            }}
-                            borderColor="coolGray.200"
-                            pl="4"
-                            pr="5"
-                            py="2"
-                        >
-                            <HStack
-                                space={3}>
-                                <Avatar
-                                    size="48px"
-                                    source={{
-                                        uri: item.avatarUrl,
-                                    }}
-                                />
-                                <VStack>
-                                    <Text
-                                        _dark={{
-                                            color: "warmGray.50",
-                                        }}
-                                        color="coolGray.800"
-                                        bold
-                                    >
-                                        {item.firstName} {item.lastName}
-                                    </Text>
-                                    <Text
-                                        color="coolGray.600"
-                                        _dark={{
-                                            color: "warmGray.200",
-                                        }}
-                                    >
-                                        {item.departure_journey}  <FontAwesome name="arrow-right" />  {item.arrival_journey}
-                                    </Text>
-                                </VStack>
-                                <Spacer />
-                                <Center>
-                                <Text
-                                    fontSize="xs"
-                                    fontWeight="bold"
-                                    _dark={{
-                                        color: "warmGray.50",
-                                    }}
-                                    color="coolGray.800"
-                                    alignSelf="flex-start"
-                                >
-                                    {item.transport_capacity_total}15 kg
-                                </Text>
-                                <FontAwesome name="cube" size={32} type="Ionicons" color="indigo" />
-                            </Center>
-                            </HStack>
-                        </Box>
-                    </TouchableOpacity>
-                )}
-                keyExtractor={(item) => item._id}
-            />
-        </Box>
-    )
-}
-
-export default function NewMission(props) {
-
+    const data = dataNewMission;
+    /* console.log(data); */
     return (
         <NativeBaseProvider>
-
             <Center
-                style={{ backgroundColor: "indigo" }}
-                _text={{
-                    color: "#ffffff",
-                    fontWeight: "600",
-                    fontSize: "32",
-                    marginTop: "10%"
+                    style={{ backgroundColor: "indigo" }}
+                    _text={{
+                        color: "#ffffff",
+                        fontWeight: "600",
+                        fontSize: "32",
+                        marginTop: "10%"
 
-                }}
-                height={120}
-                width="100%">
-                Nouvelles missions
-            </Center>
+                    }}
+                    height={120}
+                    width="100%">
+                    Nouvelles missions
+                </Center>
+                
+            <StatusBar backgroundColor="#3700B3" barStyle="light-content" />
 
-            <Center flex={1} px="3">
-                <MissionList {...props} />
-            </Center>
+            <VStack 
+            marginTop="10%"
+            space="4" divider={<Divider />}>
+                <FlatList
+                    data={data}
 
+                    renderItem={({ item }) =>
+
+                        <Button variant="outline"
+                            mx="12"
+                            size="lg"
+                            marginBottom="5"
+                            onPress={() => {props.navigation.navigate("NewMissionDetails"); props.saveidmission(item._id)}}
+
+                        >
+                            <Text>
+                                {item.departure_journey} / {item.arrival_journey} le {item.date_journey}
+                            </Text>
+                        </Button>}
+                    keyExtractor={(item) => item._id}
+                />
+            </VStack>
 
         </NativeBaseProvider>
     );
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+      saveidmission: function(idmission) {
+          dispatch( {type: 'saveidmission', idmission: idmission} )
+      }
+    }
+   }
+  
+   export default connect(
+    null,
+    mapDispatchToProps
+  )(NewMission);
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import {
+//     VStack,
+//     Box,
+//     Divider,
+//     extendTheme,
+//     NativeBaseProvider,
+//     Button,
+//     Center,
+//     ScrollView,
+//     StatusBar,
+//     Text
+// } from 'native-base';
+
+// //
+
+
+// // Extend the theme to include custom colors, fonts, etc
+// const newColorTheme = {
+//     brand: {
+//         900: '#8287af',
+//         800: '#7c83db',
+//         700: '#b3bef6',
+//     },
+// };
+
+// const theme = extendTheme({ colors: newColorTheme, px: "20px" });
+
+// export default function CurrentMission(props) {
+//     const [dataCurrentMission, setDataCurrentMission] = useState([]);
+
+//     useEffect(() => {
+
+//         async function loadMission() {
+//             const rawResponse = await fetch('172.17.1.42:3000/getMission');
+//             const response = await rawResponse.json();          
+//             setDataCurrentMission(response);
+//         }
+//         loadMission()
+//     }, []);
+
+//     const data = dataCurrentMission;
+//     /* console.log(data); */
+//     return (
+//         <NativeBaseProvider theme={theme} style={{ flex: 1 }}>
+//             <Center
+//                 style={{ backgroundColor: "indigo" }}
+//                 _text={{
+//                     color: "#ffffff",
+//                     fontWeight: "600",
+//                     fontSize: "32",
+//                     marginTop: "10%"
+
+//                 }}
+//                 height={120}
+//                 width="100%">
+//                 Missions en cours
+//             </Center>
+
+//             <StatusBar backgroundColor="#3700B3" barStyle="light-content" />
+
+//             <ScrollView _contentContainerStyle={{
+//                 px: "20px",
+//                 mb: "4",
+//                 minW: "72",
+//                 flex: 1,
+//             }}>
+
+
+//                 <Center style={{ flex: 1 }}>
+//                     <Box border="1" borderRadius="md" size="sm" width="80%">
+
+//                         <VStack space="4" divider={<Divider />}>
+//                             <Button
+//                                 borderWidth="3"
+//                                 borderColor="#581c87"
+//                                 variant="outline"
+//                                 onPress={() => props.navigation.navigate("CurrentMissionClient")}
+//                             >
+//                                 <Text
+//                                 fontSize="md"
+//                                 fontWeight="bold"
+//                                 style={{
+//                                     color: "black",                                    
+//                                 }}>
+//                                     Paris / Martinique le 26/12/2021
+//                                 </Text>
+//                             </Button>
+
+//                             <Button
+//                                 borderWidth="3"
+//                                 borderColor="#581c87"
+//                                 variant="outline"
+//                                 onPress={() => props.navigation.navigate("CurrentMissionClient")}
+//                             >
+//                                 <Text                                
+//                                 fontSize="md"
+//                                 fontWeight="bold" style={{
+//                                     color: "black",
+//                                 }}>
+//                                     Paris / Martinique le 26/12/2021
+//                                 </Text>
+//                             </Button>
+//                             <Button
+//                                 borderWidth="3"
+//                                 borderColor="#581c87"
+//                                 variant="outline"
+//                                 onPress={() => props.navigation.navigate("CurrentMissionClient")}
+//                             >
+//                                 <Text
+//                                 fontSize="md"
+//                                 fontWeight="bold"
+//                                  style={{
+//                                     color: "black",
+//                                 }}>
+//                                     Martinque / Paris le 06/01/2021
+//                                     </Text>
+//                             </Button>
+//                             <Button
+//                                 borderWidth="3"
+//                                 borderColor="#581c87"
+//                                 variant="outline"
+//                                 onPress={() => props.navigation.navigate("CurrentMissionClient")}
+//                             >
+//                                 <Text
+//                                 fontSize="md"
+//                                 fontWeight="bold"
+//                                  style={{
+//                                     color: "black",
+//                                 }}>
+//                                     Martinque / Paris le 06/01/2021
+//                                     </Text>
+//                             </Button>
+//                             <Button
+//                                 borderWidth="3"
+//                                 borderColor="#581c87"
+//                                 variant="outline"
+//                                 onPress={() => props.navigation.navigate("CurrentMissionClient")}
+//                             >
+//                                 <Text
+//                                 fontSize="md"
+//                                 fontWeight="bold"
+//                                  style={{
+//                                     color: "black",
+//                                 }}>
+//                                     Martinque / Paris le 06/01/2021
+//                                     </Text>
+//                             </Button>
+//                         </VStack>
+
+//                     </Box>
+//                 </Center>
+//             </ScrollView>
+//         </NativeBaseProvider>
+//     );
+// }
 
 

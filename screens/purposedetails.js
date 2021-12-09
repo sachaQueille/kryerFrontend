@@ -12,12 +12,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 
-<<<<<<< HEAD
 export default function PurposeDetails({ route, navigation }) {
-=======
-
-export default function PurposeDetails({ route, navigation  }) {
->>>>>>> 5833fe3cefc2c7a197e7113181e3dd4c782f1be7
   const { departure, arrival, weight, dateJourney } = route.params;
 
   const [recuperationPlace, setRecuperationPlace] = useState("");
