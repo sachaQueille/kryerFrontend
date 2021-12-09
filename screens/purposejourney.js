@@ -11,8 +11,7 @@ import {
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
-import {connect} from 'react-redux';
-
+import { connect } from "react-redux";
 
 function PurposeJourney(props) {
   const [weight, setWeight] = useState("");
@@ -43,7 +42,9 @@ function PurposeJourney(props) {
           </FormControl>
 
           <FormControl isRequired>
-            <FormControl.Label _text={{ bold: true }}>Arrivée</FormControl.Label>
+            <FormControl.Label _text={{ bold: true }}>
+              Arrivée
+            </FormControl.Label>
             <Input
               placeholder="Ex : Rome"
               marginBottom="5"
@@ -132,11 +133,8 @@ function PurposeJourney(props) {
   );
 }
 
-function mapStateToProps(state){
-  return {user: state.userReducer}
+function mapStateToProps(state) {
+  return { user: state.userReducer };
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(PurposeJourney);
+export default connect(mapStateToProps, null)(PurposeJourney);

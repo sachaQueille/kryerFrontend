@@ -40,8 +40,8 @@ export default function PurposeDetails({ route, navigation }) {
     });
     console.log(data);
 
-    if(data){
-      navigation.navigate('Missions');
+    if (data) {
+      navigation.navigate("Missions");
     }
   };
 
@@ -105,7 +105,11 @@ export default function PurposeDetails({ route, navigation }) {
               }}
               marginBottom="2"
               InputLeftElement={
-                <MaterialIcons name="location-history" size={25} color="indigo" />
+                <MaterialIcons
+                  name="location-history"
+                  size={25}
+                  color="indigo"
+                />
               }
               onChangeText={(e) => setDeliveryPlace(e)}
             />
@@ -117,7 +121,11 @@ export default function PurposeDetails({ route, navigation }) {
                 }}
                 marginBottom="5"
                 InputLeftElement={
-                  <MaterialIcons name="calendar-today" size={25} color="indigo" />
+                  <MaterialIcons
+                    name="calendar-today"
+                    size={25}
+                    color="indigo"
+                  />
                 }
                 onChangeText={(e) => setDeliveryDate(e)}
               />
