@@ -19,6 +19,7 @@ function signUp(props) {
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const [signUpPhone, setSignUpPhone] = useState('');
+  const [token, setToken] = useState('');
   const [listErrorsSignup, setErrorsSignup] = useState([]);
 
   //fonction  submit signUp

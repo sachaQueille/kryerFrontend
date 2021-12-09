@@ -22,7 +22,7 @@ export default function CurrentMission(props) {
     useEffect(() => {
 
         async function loadMission() {
-            const rawResponse = await fetch('http://192.168.1.109:3000/getMission');
+            const rawResponse = await fetch('http://172.17.1.16:3000/getMission');
             const response = await rawResponse.json();          
             setDataCurrentMission(response);
         }

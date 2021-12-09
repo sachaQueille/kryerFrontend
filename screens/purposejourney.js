@@ -11,9 +11,10 @@ import {
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
+import {connect} from 'react-redux';
 
 
-export default function PurposeJourney(props) {
+function PurposeJourney(props) {
   const [weight, setWeight] = useState("");
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
@@ -86,7 +87,7 @@ export default function PurposeJourney(props) {
               weight: weight,
               dateJourney: dateJourney,
             }) :
-            props.navigation.navigate("User")
+            props.navigation.navigate("Profil")
           }
           leftIcon={<EvilIcons name="arrow-right" size={24} color="white" />}
           style={{ backgroundColor: "indigo" }}
@@ -130,3 +131,12 @@ export default function PurposeJourney(props) {
     </NativeBaseProvider>
   );
 }
+
+function mapStateToProps(state){
+  return {user: state.userReducer}
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(PurposeJourney);

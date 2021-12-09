@@ -1,4 +1,4 @@
-export default function (user={}, action) {
+export default function (user=null, action) {
  
     if(action.type == 'addUser') {
      console.log(action.user)

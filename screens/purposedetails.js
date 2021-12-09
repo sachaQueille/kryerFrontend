@@ -12,6 +12,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 
+
 export default function PurposeDetails({ route, navigation  }) {
   const { departure, arrival, weight, dateJourney } = route.params;
 
@@ -39,6 +40,10 @@ export default function PurposeDetails({ route, navigation  }) {
       body: `departure=${data.departure}&arrival=${data.arrival}&weight=${data.weight}&dateJourney=${data.dateJourney}&recuperationPlace=${data.recuperationPlace}&recuperationDate=${data.recuperationDate}&deliveryPlace=${data.deliveryPlace}&deliveryDate=${data.deliveryDate}&pricePerKg=${data.pricePerKg}`,
     });
     console.log(data);
+
+    if(data.result){
+      navigation.navigate('Missions');
+    }
   };
 
   return (

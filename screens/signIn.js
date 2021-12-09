@@ -20,9 +20,9 @@ function signIn(props) {
   const [signInPassword, setSignInPassword] = useState('');
   const [listErrorsSignin, setErrorsSignin] = useState([]);
   const [token, setToken] = useState('');
-  const [userExists, setUserExists] = useState(true);
+  const [userExists, setUserExists] = useState(false);
 
-
+  console.log(token);
   var handleSubmitSignin = async () => {
     const data = await fetch("http://172.17.1.16:3000/signIn/", {
       method: 'POST',
@@ -30,22 +30,31 @@ function signIn(props) {
       body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
     })
 
-    const body = await data.json()
+    const body = await data.json();
+    console.log(body.token);
 
-     if(body.result === true){
-      props.addUser(body.user);
-      setToken(body.token);
+     if(body.result === true){      
+      props.addUser(body.user);      
+      /* setToken(body.token); */
+      AsyncStorage.setItem('token',JSON.stringify(body.token))
       setUserExists(true);
+      console.log(token);
+      props.navigation.navigate("Profil",{screen:'User'});      
     }  else {
       setErrorsSignin(body.error)
     } 
 
-    if(userExists){
-      props.navigation.navigate("user");
-    }
+     
   }
 
   //possibilité d'utiliser la liste des erreurs pour afficher un message spécifique
+  console.log("testuser",userExists);
+  /* if(!userExists){
+    
+  } else {
+    console.log("Hello");
+    props.navigation.navigate("Profil");
+  } */
 
   return (
     <NativeBaseProvider>
@@ -86,9 +95,7 @@ function signIn(props) {
           style={{ backgroundColor: "indigo" }}
           mx="12"
           size="lg"
-          onPress={()=>{handleSubmitSignin();
-                        AsyncStorage.setItem('token',JSON.stringify(token))
-                  }}
+          onPress={()=>handleSubmitSignin()}
         >
           Connexion
         </Button>

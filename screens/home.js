@@ -8,14 +8,12 @@ function Home(props) {
 
 
     useEffect(()=>{
-
-        
-             AsyncStorage.getItem("token", function(error, data) {
+            AsyncStorage.getItem("token", function(error, data) {
             console.log(data);
 
             if (data){
                 async function loadUser(){
-                var user = await fetch(`http://172.17.1.42:3000/getUser?token=${data}`);
+                var user = await fetch(`http://172.17.1.16:3000/getUser?token=${JSON.parse(data)}`);
                 user = await user.json();
                 console.log(user);
                 props.addUser(user);
@@ -77,7 +75,7 @@ function Home(props) {
 
 function mapDispatchToProps(dispatch) {
     return {
-      kryerList: function(e) {
+      addUser: function(e) {
             dispatch( {type: 'addUser', user:e} )
         }
     }
@@ -87,3 +85,4 @@ function mapDispatchToProps(dispatch) {
     null,
     mapDispatchToProps
     )(Home);
+

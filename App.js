@@ -23,7 +23,6 @@ import Kryer from "./screens/kryer";
 import CurrentMissionClient from "./screens/currentmissionsclients";
 import TerminateMission from "./screens/terminatemission";
 import ReceipientCoordinate from "./screens/receipientCoordinate";
-import ConnectionScreen from "./screens/connectionScreen";
 import signIn from "./screens/signIn";
 import signUp from "./screens/signUp";
 
@@ -67,10 +66,7 @@ function StackHomeNavigator() {
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="KryerList" component={KryerList} />
       <Stack.Screen name="Kryer" component={Kryer} />
-      <Stack.Screen
-        name="ReceipientCoordinate"
-        component={ReceipientCoordinate}
-      />
+      <Stack.Screen name="ReceipientCoordinate" component={ReceipientCoordinate} />
     </Stack.Navigator>
   );
 }
@@ -78,16 +74,17 @@ function StackHomeNavigator() {
 function StackProfilNavigator(props) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {props.user ? (
-        <Stack.Screen name="User" component={User} />
-      ) : (
-        <Stack.Screen name="ConnectionScreen" component={ConnectionScreen} />
-      )}
+      <Stack.Screen name="User" component={User} />
       <Stack.Screen name="signIn" component={signIn} />
       <Stack.Screen name="signUp" component={signUp} />
     </Stack.Navigator>
   );
 }
+
+function mapStateToProps(state){
+  return {user:state.userReducer};
+}
+
 
 export default function App(props) {
   return (
