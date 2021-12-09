@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Home from "./screens/home";
+import MyDelivery from "./screens/delivery"
 import DeliveryStatus from "./screens/deliverystatus";
 import Journey from "./screens/journey";
 import User from "./screens/user";
@@ -81,8 +82,13 @@ function StackProfilNavigator(props) {
   );
 }
 
-function mapStateToProps(state){
-  return {user:state.userReducer};
+function StackDeliveryNavigator(props) {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="MyDelivery" component={MyDelivery} />
+      <Stack.Screen name="DeliveryStatus" component={DeliveryStatus} />
+    </Stack.Navigator>
+  );
 }
 
 
@@ -114,7 +120,7 @@ export default function App(props) {
           })}
         >
           <Tab.Screen name="Accueil" component={StackHomeNavigator} /> 
-          <Tab.Screen name="Colis" component={DeliveryStatus} />
+          <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
           <Tab.Screen name="Missions" component={StackJourneyNavigator} />
           <Tab.Screen name="Tchat" component={Tchat} />
           <Tab.Screen name="Profil" component={StackProfilNavigator} />
