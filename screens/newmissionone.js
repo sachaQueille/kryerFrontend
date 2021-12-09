@@ -85,7 +85,7 @@ export default function NewMissionOne(props) {
                         <AspectRatio w="100%" ratio={16 / 9}>
                             <Image
                                 source={{
-                                    uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                                    uri: "https://www.colissimo.entreprise.laposte.fr/sites/default/files/styles/adaptative_large/public/2021-01/dimensions-colis.jpg?itok=eKVEkig7",
                                 }}
                                 alt="image"
                             />
@@ -110,6 +110,8 @@ export default function NewMissionOne(props) {
                         </Center>
                     </Box>
 
+
+                    {/* modal pour afficher les informations du colis(Largeur, longueur, hauteur et poid) */}
                     <VStack>
                         <Button style={{ backgroundColor: "indigo" }} onPress={() => setShowModal(true)}>Dimensions</Button>
                         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>

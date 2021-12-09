@@ -9,52 +9,36 @@ import {
   VStack,
   FormControl,
   Input,
-  Heading
- 
+  Heading,
 } from "native-base";
-import {connect} from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { connect } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function signIn(props) {
-  const [signInEmail, setSignInEmail] = useState('')
-  const [signInPassword, setSignInPassword] = useState('');
+  const [signInEmail, setSignInEmail] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
   const [listErrorsSignin, setErrorsSignin] = useState([]);
-  const [token, setToken] = useState('');
-  const [userExists, setUserExists] = useState(false);
 
-  console.log(token);
   var handleSubmitSignin = async () => {
-    const data = await fetch("http://172.17.1.16:3000/signIn/", {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
-    })
+    const data = await fetch("http://192.168.0.30:3000/signIn", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`,
+    });
 
     const body = await data.json();
-    console.log(body.token);
+    console.log(body.result);
 
-     if(body.result === true){      
-      props.addUser(body.user);      
-      /* setToken(body.token); */
-      AsyncStorage.setItem('token',JSON.stringify(body.token))
-      setUserExists(true);
-      console.log(token);
-      props.navigation.navigate("Profil",{screen:'User'});      
-    }  else {
-      setErrorsSignin(body.error)
-    } 
-
-     
-  }
+    if (body.result === true) {
+      props.addUser(body.user);
+      AsyncStorage.setItem("token", JSON.stringify(body.token));
+      props.navigation.navigate("Profil", { screen: "User" });
+    } else {
+      setErrorsSignin(body.error);
+    }
+  };
 
   //possibilité d'utiliser la liste des erreurs pour afficher un message spécifique
-  console.log("testuser",userExists);
-  /* if(!userExists){
-    
-  } else {
-    console.log("Hello");
-    props.navigation.navigate("Profil");
-  } */
 
   return (
     <NativeBaseProvider>
@@ -95,7 +79,7 @@ function signIn(props) {
           style={{ backgroundColor: "indigo" }}
           mx="12"
           size="lg"
-          onPress={()=>handleSubmitSignin()}
+          onPress={() => handleSubmitSignin()}
         >
           Connexion
         </Button>
@@ -104,16 +88,12 @@ function signIn(props) {
   );
 }
 
-
 function mapDispatchToProps(dispatch) {
   return {
-    addUser: function(user) {
-        dispatch( {type: 'addUser', user: user} )
-    }
-  }
- }
+    addUser: function (user) {
+      dispatch({ type: "addUser", user: user });
+    },
+  };
+}
 
- export default connect(
-  null,
-  mapDispatchToProps
-)(signIn);
+export default connect(null, mapDispatchToProps)(signIn);

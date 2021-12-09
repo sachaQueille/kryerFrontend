@@ -11,7 +11,7 @@ export default function Home(props) {
                 justifyContent="flex-end"
                 alignItems="flex-end"
             >
-                <Text style={{ fontSize: 40, fontWeight: "bold"}}>KRYER</Text>
+                <Text style={{ fontSize: 40, fontWeight: "bold" }}>KRYER</Text>
             </VStack>
 
             <VStack
@@ -43,7 +43,7 @@ export default function Home(props) {
                 </Button>
                 <Button
                     style={{ backgroundColor: "indigo" }}
-                    onPress={() => props.navigation.navigate("FinishedMission")}
+                    onPress={() => props.navigation.navigate("FinishedMissions")}
                     mx="12"
                     size="lg"
                 >

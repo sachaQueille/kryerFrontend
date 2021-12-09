@@ -6,7 +6,8 @@ import {
     Button,
     VStack,
     FormControl,
-    Input
+    Input,
+    Modal
 } from "native-base";
 
 
@@ -21,6 +22,7 @@ function ReceipientCoordinate(props){
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [modalIsVisible, setModalIsVisible] = useState(false);
 
     async function validateClick(){
         const response = await fetch("http://172.17.1.42:3000/saveDelivery", {
@@ -28,7 +30,11 @@ function ReceipientCoordinate(props){
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: `height=${props.infoDelivery.height}&length=${props.infoDelivery.length}&width=${props.infoDelivery.width}&weight=${props.infoDelivery.weight}&price=${props.route.params.price}&firstname=${firstname}&lastname=${lastname}&email=${email}&phone=${phone}`,//&expeditorId=${props.user._id}
     });
+    props.navigation.navigate("Colis");
+
+    
     }
+
 
     return (
       <NativeBaseProvider>
@@ -62,7 +68,7 @@ function ReceipientCoordinate(props){
   
           <FormControl isRequired>
             <FormControl.Label _text={{ bold: true }}>
-              email
+            numero de telephone
             </FormControl.Label>
             <Input
               placeholder="XX XX XX XX XX"
@@ -72,7 +78,7 @@ function ReceipientCoordinate(props){
           </FormControl>
           <FormControl isRequired>
             <FormControl.Label _text={{ bold: true }}>
-             numero de telephone
+             email
             </FormControl.Label>
             <Input placeholder="willy.Wonka@chocolat.com" onChangeText={(e) => setEmail(e)} />
           </FormControl>
@@ -81,13 +87,47 @@ function ReceipientCoordinate(props){
          
           <Button
           marginTop="5"
-            onPress={() => validateClick()}
+            onPress={() => setModalIsVisible(true)}
             style={{ backgroundColor: "indigo" }}
           >valider</Button>
           
          </VStack>
        
         </ScrollView>
+
+
+
+                {/* modal  */}
+
+                <Modal isOpen={modalIsVisible} onClose={setModalIsVisible} size={"lg"}>
+                  <Modal.Content maxH="212">
+                    <Modal.CloseButton />
+                    <Modal.Header>Felicition !</Modal.Header>
+                    <Modal.Body>
+                      <ScrollView>
+                        <Text>
+                          Tu viens de faire une demande aupres d'un Kryer.
+                          Il faut maintenant qu'il accepte.
+                          Verrifier dans la partie colis pour connaitre l'etat de la demande.
+                          Une fois accepté , tu y trouvera un code de verification.
+                          Transmet ce code a la personne qui recupera le colis car il lui sera 
+                          demandé lors de l'echange entre le Kryer et cette personne. 
+                          
+                        </Text>
+                      </ScrollView>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button
+                        colorScheme="indigo"
+                          onPress={() => validateClick()}
+                        >
+                          Embarquer dans l'avanture
+                        </Button>
+                      
+                    </Modal.Footer>
+                  </Modal.Content>
+                </Modal>
+
     </NativeBaseProvider>
     )
 }
