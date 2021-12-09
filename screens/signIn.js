@@ -19,26 +19,21 @@ function signIn(props) {
   const [signInEmail, setSignInEmail] = useState('')
   const [signInPassword, setSignInPassword] = useState('');
   const [listErrorsSignin, setErrorsSignin] = useState([]);
-  const [token, setToken] = useState('');
-  const [userExists, setUserExists] = useState(false);
 
-  console.log(token);
+
   var handleSubmitSignin = async () => {
-    const data = await fetch("http://172.17.1.16:3000/signIn/", {
+    const data = await fetch("http://172.17.1.42:3000/signIn", {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
     })
 
     const body = await data.json();
-    console.log(body.token);
+    console.log(body.result)
 
      if(body.result === true){      
       props.addUser(body.user);      
-      /* setToken(body.token); */
       AsyncStorage.setItem('token',JSON.stringify(body.token))
-      setUserExists(true);
-      console.log(token);
       props.navigation.navigate("Profil",{screen:'User'});      
     }  else {
       setErrorsSignin(body.error)
@@ -48,13 +43,7 @@ function signIn(props) {
   }
 
   //possibilité d'utiliser la liste des erreurs pour afficher un message spécifique
-  console.log("testuser",userExists);
-  /* if(!userExists){
-    
-  } else {
-    console.log("Hello");
-    props.navigation.navigate("Profil");
-  } */
+
 
   return (
     <NativeBaseProvider>

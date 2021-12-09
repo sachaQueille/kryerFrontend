@@ -19,13 +19,13 @@ function signUp(props) {
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const [signUpPhone, setSignUpPhone] = useState('');
-  const [token, setToken] = useState('');
+  
   const [listErrorsSignup, setErrorsSignup] = useState([]);
 
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
     
-    const data = await fetch("http://192.168.1.109:3000/signUp/", {
+    const data = await fetch("http://172.17.1.42:3000/signUp/", {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`
@@ -35,7 +35,8 @@ function signUp(props) {
     
     if(body.result === true){
       props.addUser(body.user);
-      setToken(body.token);
+      AsyncStorage.setItem('token',JSON.stringify(body.token));
+      props.navigation.navigate("Profil",{screen:'User'});   
     } else {
       setErrorsSignup(body.error)
     }
@@ -109,10 +110,9 @@ function signUp(props) {
           style={{ backgroundColor: "indigo" }}
           mx="12"
           size="lg"
-          onPress={()=>{
-            handleSubmitSignup(); 
-            AsyncStorage.setItem('token',JSON.stringify(token))
-          }}
+          onPress={()=>
+            handleSubmitSignup()
+          }
         >
           Inscription
         </Button>
