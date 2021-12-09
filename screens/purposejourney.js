@@ -11,8 +11,7 @@ import {
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
-import {connect} from 'react-redux';
-
+import { connect } from "react-redux";
 
 function PurposeJourney(props) {
   const [weight, setWeight] = useState("");
@@ -43,7 +42,9 @@ function PurposeJourney(props) {
           </FormControl>
 
           <FormControl isRequired>
-            <FormControl.Label _text={{ bold: true }}>Arrivée</FormControl.Label>
+            <FormControl.Label _text={{ bold: true }}>
+              Arrivée
+            </FormControl.Label>
             <Input
               placeholder="Ex : Rome"
               marginBottom="5"
@@ -51,65 +52,27 @@ function PurposeJourney(props) {
             />
           </FormControl>
 
-<<<<<<< HEAD
-          <FormControl isRequired>
-            <FormControl.Label _text={{ bold: true }}>
-              Capacité de transport:
-            </FormControl.Label>
-            <Input
-              placeholder="En kg"
-              marginBottom="5"
-              onChangeText={(e) => setWeight(e)}
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormControl.Label _text={{ bold: true }}>
-              Date de trajet
-            </FormControl.Label>
-            <Input placeholder="Date" onChangeText={(e) => setDateJourney(e)} />
-          </FormControl>
-        </VStack>
-        <Button.Group
-          display="flex"
-          flexDirection="column"
-          size="lg"
-          marginTop="4"
-          mx="12"
-=======
-        <Button
-          onPress={() => props.user ?
-            props.navigation.navigate("PurposeDetails", {
-              departure: departure,
-              arrival: arrival,
-              weight: weight,
-              dateJourney: dateJourney,
-            }) :
-            props.navigation.navigate("Profil")
-          }
-          leftIcon={<EvilIcons name="arrow-right" size={24} color="white" />}
-          style={{ backgroundColor: "indigo" }}
->>>>>>> 5833fe3cefc2c7a197e7113181e3dd4c782f1be7
-        >
           <Button onPress={() => setShowModal(true)} marginBottom="4">
             Simuler
           </Button>
 
           <Button
-            onPress={() => props.user ?
-              props.navigation.navigate("PurposeDetails", {
-                departure: departure,
-                arrival: arrival,
-                weight: weight,
-                dateJourney: dateJourney,
-              }) :
-              props.navigation.navigate("User")
+            onPress={() =>
+              props.user
+                ? props.navigation.navigate("PurposeDetails", {
+                    departure: departure,
+                    arrival: arrival,
+                    weight: weight,
+                    dateJourney: dateJourney,
+                  })
+                : props.navigation.navigate("Profil")
             }
             leftIcon={<EvilIcons name="arrow-right" size={24} color="white" />}
             style={{ backgroundColor: "indigo" }}
           >
             Suivant
           </Button>
-        </Button.Group>
+        </VStack>
       </ScrollView>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
         <Modal.Content maxWidth="350">
@@ -147,11 +110,8 @@ function PurposeJourney(props) {
   );
 }
 
-function mapStateToProps(state){
-  return {user: state.userReducer}
+function mapStateToProps(state) {
+  return { user: state.userReducer };
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(PurposeJourney);
+export default connect(mapStateToProps, null)(PurposeJourney);
