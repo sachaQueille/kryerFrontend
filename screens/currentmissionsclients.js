@@ -21,6 +21,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 
 
+const logo = require("../assets/avatarfemal.jpg");
 
 export default function CurrentMissionClient(props) {
     const [showModalItem, setshowModalItem] = useState(false)
@@ -57,7 +58,7 @@ export default function CurrentMissionClient(props) {
 
                     <Box
                         w="100%">
-                            
+
                         <Center mb="10">
                             <Heading size="md">Capacite de transport restante: 10kg</Heading>
                         </Center>
@@ -222,8 +223,10 @@ export default function CurrentMissionClient(props) {
                             }}
                             size="lg"
                         >
-                            <Button style={{ backgroundColor: "#e11d48", marginRight: "20%" }}>Refuser</Button>
-                            <Button style={{ backgroundColor: "#059669" }}>Accepter</Button>
+                            <Button style={{ backgroundColor: "#e11d48", marginRight: "20%" }}>Annuler</Button>
+                            <Button
+                                onPress={() => props.navigation.navigate("TerminateMission")}
+                                style={{ backgroundColor: "#059669" }}>Terminer</Button>
                         </Button.Group>
                     </VStack>
 

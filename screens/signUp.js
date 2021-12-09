@@ -3,41 +3,48 @@ import { View } from "react-native";
 import {
   NativeBaseProvider,
   Text,
-  Box,
   Button,
   VStack,
   FormControl,
   Input,
+  ScrollView
+ 
 } from "native-base";
-import { ScrollView } from "react-native-gesture-handler";
+import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function signUp(props) {
-  const [signUpFirstname, setSignUpFirstname] = useState("");
-  const [signUpLastname, setSignUpLastname] = useState("");
-  const [signUpEmail, setSignUpEmail] = useState("");
-  const [signUpPassword, setSignUpPassword] = useState("");
-  const [signUpPhone, setSignUpPhone] = useState("");
+  const [signUpFirstname, setSignUpFirstname] = useState('');
+  const [signUpLastname, setSignUpLastname] = useState('');
+  const [signUpEmail, setSignUpEmail] = useState('');
+  const [signUpPassword, setSignUpPassword] = useState('');
+  const [signUpPhone, setSignUpPhone] = useState('');
+  
+  const [listErrorsSignup, setErrorsSignup] = useState([]);
 
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
-    const data = await fetch("http://192.168.1.33:3000/signUp/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`,
-    });
+    
+    const data = await fetch("http://172.17.1.42:3000/signUp", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`
+    })
 
-    const body = await data.json();
-    console.log(body);
-
-    /*
+    const body = await data.json(); 
+    
     if(body.result === true){
-      props.addToken(body.token);
-      setUserExists(true);
+      props.addUser(body.user);
+      AsyncStorage.setItem('token',JSON.stringify(body.token));
+      props.navigation.navigate("Profil",{screen:'User'});   
     } else {
       setErrorsSignup(body.error)
     }
-    */
-  };
+    
+  }
+
+  //possibilité d'utiliser la liste des erreurs pour afficher un message
+
 
   return (
     <NativeBaseProvider>
@@ -114,4 +121,17 @@ function signUp(props) {
   );
 }
 
-export default signUp;
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addUser: function(user) {
+        dispatch( {type: 'addUser', user: user} )
+    }
+  }
+ }
+
+ export default connect(
+  null,
+  mapDispatchToProps
+)(signUp);

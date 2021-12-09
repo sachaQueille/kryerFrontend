@@ -12,7 +12,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 
+<<<<<<< HEAD
 export default function PurposeDetails({ route, navigation }) {
+=======
+
+export default function PurposeDetails({ route, navigation  }) {
+>>>>>>> 5833fe3cefc2c7a197e7113181e3dd4c782f1be7
   const { departure, arrival, weight, dateJourney } = route.params;
 
   const [recuperationPlace, setRecuperationPlace] = useState("");
@@ -33,12 +38,16 @@ export default function PurposeDetails({ route, navigation }) {
       pricePerKg,
       dateJourney,
     };
-    const response = await fetch("http://192.168.1.33:3000/saveMission/", {
+    const response = await fetch("http://172.17.1.42:3000/saveMission/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `departure=${data.departure}&arrival=${data.arrival}&weight=${data.weight}&dateJourney=${data.dateJourney}&recuperationPlace=${data.recuperationPlace}&recuperationDate=${data.recuperationDate}&deliveryPlace=${data.deliveryPlace}&deliveryDate=${data.deliveryDate}&pricePerKg=${data.pricePerKg}`,
     });
     console.log(data);
+
+    if(data){
+      navigation.navigate('Missions');
+    }
   };
 
   return (

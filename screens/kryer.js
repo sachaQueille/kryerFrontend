@@ -18,13 +18,11 @@ function Kryer(props){
 
     const acceptClick=()=>{
         if(props.user){
-            props.navigation.navigate('ReceipientCoordinate')
-        }else{
-            props.navigation.navigate('User')
-        }
+            props.navigation.navigate('ReceipientCoordinate',{price:props.kryer.price})
+         }else{
+             props.navigation.navigate('Profil')
+         }
     }
-
-    console.log(props.kryer)
 
     return (
         <NativeBaseProvider>
@@ -180,7 +178,7 @@ function Kryer(props){
 }
 
 function mapStateToProps(state){
-    return {kryer : state.kryerReducer}
+    return {kryer : state.kryerReducer, user: state.userReducer}
 }
 
 export default connect(

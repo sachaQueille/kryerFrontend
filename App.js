@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
+import {connect} from 'react-redux';
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -22,7 +23,6 @@ import Kryer from "./screens/kryer";
 import CurrentMissionClient from "./screens/currentmissionsclients";
 import TerminateMission from "./screens/terminatemission";
 import ReceipientCoordinate from "./screens/receipientCoordinate";
-import ConnectionScreen from "./screens/connectionScreen";
 import signIn from "./screens/signIn";
 import signUp from "./screens/signUp";
 
@@ -31,8 +31,11 @@ import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import kryerListReducer from "./reducers/kryerListReducer";
 import kryerReducer from "./reducers/kryerReducer";
+import userReducer from "./reducers/userReducer";
+import infoDelivery from "./reducers/infoDeliveryReducer";
 
-const store = createStore(combineReducers({ kryerListReducer, kryerReducer }));
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer,infoDelivery }));
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,12 +49,9 @@ function StackJourneyNavigator() {
       <Stack.Screen name="CurrentMission" component={CurrentMission} />
       <Stack.Screen name="FinishedMissions" component={FinishedMissions} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
-      <Stack.Screen name="SendDelivery" component={SendDelivery} />
+      <Stack.Screen name="SendDelivery" component={SendDelivery}/>
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen
-        name="CurrentMissionClient"
-        component={CurrentMissionClient}
-      />
+      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient}/>
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );
@@ -66,10 +66,7 @@ function StackHomeNavigator() {
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="KryerList" component={KryerList} />
       <Stack.Screen name="Kryer" component={Kryer} />
-      <Stack.Screen
-        name="ReceipientCoordinate"
-        component={ReceipientCoordinate}
-      />
+      <Stack.Screen name="ReceipientCoordinate" component={ReceipientCoordinate} />
     </Stack.Navigator>
   );
 }
@@ -77,16 +74,17 @@ function StackHomeNavigator() {
 function StackProfilNavigator(props) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {props.user ? (
-        <Stack.Screen name="User" component={User} />
-      ) : (
-        <Stack.Screen name="ConnectionScreen" component={ConnectionScreen} />
-      )}
+      <Stack.Screen name="User" component={User} />
       <Stack.Screen name="signIn" component={signIn} />
       <Stack.Screen name="signUp" component={signUp} />
     </Stack.Navigator>
   );
 }
+
+function mapStateToProps(state){
+  return {user:state.userReducer};
+}
+
 
 export default function App(props) {
   return (
@@ -115,7 +113,7 @@ export default function App(props) {
             tabBarInactiveTintColor: "#FFFFFF",
           })}
         >
-          <Tab.Screen name="Accueil" component={StackHomeNavigator} />
+          <Tab.Screen name="Accueil" component={StackHomeNavigator} /> 
           <Tab.Screen name="Colis" component={DeliveryStatus} />
           <Tab.Screen name="Missions" component={StackJourneyNavigator} />
           <Tab.Screen name="Tchat" component={Tchat} />
@@ -125,3 +123,5 @@ export default function App(props) {
     </Provider>
   );
 }
+
+

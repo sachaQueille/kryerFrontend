@@ -11,9 +11,10 @@ import {
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
+import {connect} from 'react-redux';
 
 
-export default function PurposeJourney(props) {
+function PurposeJourney(props) {
   const [weight, setWeight] = useState("");
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
@@ -50,6 +51,7 @@ export default function PurposeJourney(props) {
             />
           </FormControl>
 
+<<<<<<< HEAD
           <FormControl isRequired>
             <FormControl.Label _text={{ bold: true }}>
               Capacité de transport:
@@ -73,6 +75,20 @@ export default function PurposeJourney(props) {
           size="lg"
           marginTop="4"
           mx="12"
+=======
+        <Button
+          onPress={() => props.user ?
+            props.navigation.navigate("PurposeDetails", {
+              departure: departure,
+              arrival: arrival,
+              weight: weight,
+              dateJourney: dateJourney,
+            }) :
+            props.navigation.navigate("Profil")
+          }
+          leftIcon={<EvilIcons name="arrow-right" size={24} color="white" />}
+          style={{ backgroundColor: "indigo" }}
+>>>>>>> 5833fe3cefc2c7a197e7113181e3dd4c782f1be7
         >
           <Button onPress={() => setShowModal(true)} marginBottom="4">
             Simuler
@@ -130,3 +146,12 @@ export default function PurposeJourney(props) {
     </NativeBaseProvider>
   );
 }
+
+function mapStateToProps(state){
+  return {user: state.userReducer}
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(PurposeJourney);

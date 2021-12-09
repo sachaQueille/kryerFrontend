@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View } from "react-native";
+
 import {
   NativeBaseProvider,
   Text,
@@ -8,30 +9,41 @@ import {
   VStack,
   FormControl,
   Input,
+  Heading
+ 
 } from "native-base";
+import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function signIn(props) {
-  const [signInEmail, setSignInEmail] = useState("");
-  const [signInPassword, setSignInPassword] = useState("");
+  const [signInEmail, setSignInEmail] = useState('')
+  const [signInPassword, setSignInPassword] = useState('');
+  const [listErrorsSignin, setErrorsSignin] = useState([]);
+
 
   var handleSubmitSignin = async () => {
- 
-    const data = await fetch("http://192.168.1.33:3000/signIn/", {
+    const data = await fetch("http://172.17.1.42:3000/signIn", {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
     })
 
     const body = await data.json();
-    console.log(body);
+    console.log(body.result)
 
-    /* if(body.result === true){
-      props.addToken(body.token);
-      setUserExists(true)
+     if(body.result === true){      
+      props.addUser(body.user);      
+      AsyncStorage.setItem('token',JSON.stringify(body.token))
+      props.navigation.navigate("Profil",{screen:'User'});      
     }  else {
       setErrorsSignin(body.error)
-    } */
-  };
+    } 
+
+     
+  }
+
+  //possibilité d'utiliser la liste des erreurs pour afficher un message spécifique
+
 
   return (
     <NativeBaseProvider>
@@ -72,24 +84,25 @@ function signIn(props) {
           style={{ backgroundColor: "indigo" }}
           mx="12"
           size="lg"
-          onPress={() => handleSubmitSignin()}
+          onPress={()=>handleSubmitSignin()}
         >
           Connexion
-        </Button>
-
-        <Text>Vous n'avez pas de compte ?</Text>
-
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          mx="12"
-          size="lg"
-          onPress={() => props.navigation.navigate("signUp")}
-        >
-          Inscription
         </Button>
       </VStack>
     </NativeBaseProvider>
   );
 }
 
-export default signIn;
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addUser: function(user) {
+        dispatch( {type: 'addUser', user: user} )
+    }
+  }
+ }
+
+ export default connect(
+  null,
+  mapDispatchToProps
+)(signIn);
