@@ -32,17 +32,17 @@ export default function NewMissionOne(props) {
         <NativeBaseProvider>
             <ScrollView>
                 <Center
-                    bg="indigo.800"
+                    style={{ backgroundColor: "indigo" }}
                     _text={{
-                        color: "#9b59b6",
+                        color: "#ffffff",
                         fontWeight: "600",
                         fontSize: "32",
+                        marginTop: "10%"
 
                     }}
-                    height={130}
+                    height={120}
                     width="100%">
-
-                    Nouvelle mission
+                    Nouvelles missions
                 </Center>
 
 
@@ -74,8 +74,8 @@ export default function NewMissionOne(props) {
                                 uri: "https://meragor.com/files/styles//ava_800_800_wm/dlya_devochek2.jpg",
                             }}
                         />
-                        
-                        <Text>
+
+                        <Text fontWeight="bold">
                             Alice DUPONT
                         </Text>
 
@@ -91,6 +91,7 @@ export default function NewMissionOne(props) {
                             />
                         </AspectRatio>
                         <Center
+                            style={{ backgroundColor: "indigo" }}
                             bg="violet.500"
                             _dark={{
                                 bg: "violet.400",
@@ -110,7 +111,7 @@ export default function NewMissionOne(props) {
                     </Box>
 
                     <VStack>
-                        <Button onPress={() => setShowModal(true)}>Dimensions</Button>
+                        <Button style={{ backgroundColor: "indigo" }} onPress={() => setShowModal(true)}>Dimensions</Button>
                         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
                             <Modal.Content maxWidth="400px">
                                 <Modal.CloseButton />
@@ -129,6 +130,7 @@ export default function NewMissionOne(props) {
                                 <Modal.Footer>
                                     <Button.Group space={2}>
                                         <Button
+                                            style={{ backgroundColor: "indigo" }}
                                             onPress={() => {
                                                 setShowModal(false)
                                             }}
@@ -143,6 +145,7 @@ export default function NewMissionOne(props) {
 
                     <VStack>
                         <Button.Group
+                            marginTop="30%"
                             colorScheme="indigo"
                             mx={{
                                 base: "auto",
@@ -150,8 +153,8 @@ export default function NewMissionOne(props) {
                             }}
                             size="lg"
                         >
-                            <Button>Refuser</Button>
-                            <Button>Accepter</Button>
+                            <Button style={{ backgroundColor: "#e11d48", marginRight: "20%" }}>Refuser</Button>
+                            <Button style={{ backgroundColor: "#059669" }}>Accepter</Button>
                         </Button.Group>
                     </VStack>
 
@@ -164,149 +167,3 @@ export default function NewMissionOne(props) {
         </NativeBaseProvider>
     );
 }
-
-
-
-
-
-
-// import { React, useState } from "react";
-
-// import {
-//     NativeBaseProvider,
-//     Center,
-//     HStack,
-//     Badge,
-//     Box,
-//     Button,
-//     Stack,
-//     Icon,
-//     Text,
-//     Avatar,
-//     Image,
-//     Modal,
-//     VStack,
-//     Radio,
-// } from 'native-base';
-
-
-
-// export default function NewMission(props) {
-//     const [showModal, setShowModal] = useState(false);
-//     return (
-//         <NativeBaseProvider>
-
-//             <Center
-//                 bg="indigo.800"
-//                 _text={{
-//                     color: "#9b59b6",
-//                     fontWeight: "600",
-//                     fontSize: "32",
-
-//                 }}
-//                 height={160}
-//                 width="100%">
-
-//                 Nouvelle mission
-//             </Center>
-
-
-
-//             <Stack flex={1}
-//                 direction={{
-//                     base: "column",
-//                     md: "row",
-//                     justifyContent: 'center',
-
-//                 }}
-//                 space={8}
-//                 px="10"
-//                 py="10"
-//                 width="100%"
-//                 height="80%"
-//                 flexDir="column">
-
-
-//                 <Center>
-//                     <Avatar
-//                         bg="pink.600"
-//                         alignSelf="center"
-//                         size="xl"
-//                         source={{
-//                             uri: "https://meragor.com/fr/avatar/photo-de-visage-de-filles-sur-telechargement-avatar",
-//                         }}
-//                     >
-//                     </Avatar>
-//                     <Text>Alice DUPONT</Text>
-//                     <Image
-//                         source={{
-//                             uri: "https://wallpaperaccess.com/full/317501.jpg",
-//                         }}
-//                         alt="Alternate Text"
-//                         size="2xl"
-//                     />
-//                     <Avatar
-//                         bg="indigo.800"
-//                         alignSelf="center"
-//                         size="lg"
-//                     >
-//                         2 kg
-//                     </Avatar>
-//                 </Center>
-
-//             </Stack>
-
-//             <Center flex={1} px="3">
-//                 <Button onPress={() => setShowModal(true)}>Button</Button>
-//                 <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
-//                     <Modal.Content maxWidth="350">
-//                         <Modal.CloseButton />
-//                         <Modal.Header>Order</Modal.Header>
-//                         <Modal.Body>
-//                             <VStack space={3}>
-//                                 <HStack alignItems="center" justifyContent="space-between">
-//                                     <Text fontWeight="medium">Largeur</Text>
-//                                     <Text color="blueGray.400">10 cm</Text>
-//                                 </HStack>
-//                                 <HStack alignItems="center" justifyContent="space-between">
-//                                     <Text fontWeight="medium">Longueur</Text>
-//                                     <Text color="blueGray.400">20 cm</Text>
-//                                 </HStack>
-//                                 <HStack alignItems="center" justifyContent="space-between">
-//                                     <Text fontWeight="medium">Hauteur</Text>
-//                                     <Text color="green.500">5 cm</Text>
-//                                 </HStack>
-//                             </VStack>
-//                         </Modal.Body>
-//                         <Modal.Footer>
-//                             <Button
-//                                 flex="1"
-//                                 onPress={() => {
-//                                     setShowModal(false)
-//                                 }}
-//                             >
-//                                 Quitter
-//                             </Button>
-//                         </Modal.Footer>
-//                     </Modal.Content>
-//                 </Modal>
-//             </Center>
-
-//             <Button.Group
-//                 colorScheme="purple"
-//                 mx={{
-//                     base: "auto",
-//                     md: 0,
-//                 }}
-//                 size="lg"
-//             >
-//                 <Button>Refuser</Button>
-//                 <Button>Accepter</Button>
-//             </Button.Group>
-
-
-
-//         </NativeBaseProvider>
-//     );
-// }
-

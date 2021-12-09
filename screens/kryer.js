@@ -17,11 +17,11 @@ import {
 function Kryer(props){
 
     const acceptClick=()=>{
-        if(props.user){
-            props.navigation.navigate('ReceipientCoordinate')
-        }else{
-            props.navigation.navigate('User')
-        }
+        //if(props.user){
+            props.navigation.navigate('ReceipientCoordinate',{price:props.kryer.price})
+        // }else{
+        //     props.navigation.navigate('User')
+        // }
     }
 
     console.log(props.kryer)

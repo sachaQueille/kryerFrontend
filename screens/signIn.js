@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import {
   NativeBaseProvider,
@@ -21,8 +21,8 @@ function signIn(props) {
   const [token, setToken] = useState('');
   const [userExists, setUserExists] = useState(false);
 
+
   var handleSubmitSignin = async () => {
- 
     const data = await fetch("http://192.168.1.109:3000/signIn/", {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},

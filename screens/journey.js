@@ -1,32 +1,56 @@
 import React from "react";
-import { View, Button } from 'react-native';
+import { View, Text } from "react-native";
+import { Button, NativeBaseProvider, VStack, } from "native-base";
 
-function Journey(props) {
+export default function Home(props) {
     return (
-        
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <View >
-                <Button
-                    title="Nouvelle mission"
-                    onPress={() => props.navigation.navigate('NewMission')}
-                />
-            </View>
+        <NativeBaseProvider>
+            <VStack
+                mx="auto"
+                marginTop="50%"
+                justifyContent="flex-end"
+                alignItems="flex-end"
+            >
+                <Text style={{ fontSize: 40, fontWeight: "bold"}}>KRYER</Text>
+            </VStack>
 
-            <View>
-                <Button
-                    title="Mission en cours"
-                    onPress={() => props.navigation.navigate('CurrentMission')}
-                />
-            </View>
+            <VStack
+                mx="auto"
+                marginTop="10%"
+                justifyContent="center"
+                alignItems="center"
+            >
 
-            <View>
                 <Button
-                    title="Mission accomplie"
-                    onPress={() => props.navigation.navigate('FinishedMissions')}
-                />
-            </View>
-        </View>
+                    style={{ backgroundColor: "indigo" }}
+                    onPress={() => props.navigation.navigate("NewMission")}
+                    marginBottom={10}
+                    marginTop={20}
+                    mx="12"
+                    size="lg"
+                >
+                    Nouvelles missions
+                </Button>
+
+                <Button
+                    style={{ backgroundColor: "indigo" }}
+                    onPress={() => props.navigation.navigate("CurrentMission")}
+                    marginBottom={10}
+                    mx="12"
+                    size="lg"
+                >
+                    Missions en cours
+                </Button>
+                <Button
+                    style={{ backgroundColor: "indigo" }}
+                    onPress={() => props.navigation.navigate("FinishedMission")}
+                    mx="12"
+                    size="lg"
+                >
+                    Missions accomplies
+                </Button>
+            </VStack>
+        </NativeBaseProvider>
     );
 }
 
-export default Journey;

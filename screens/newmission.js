@@ -1,35 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-// import { View, Text } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 import {
     NativeBaseProvider,
     Center,
     HStack,
-    Badge,
     Box,
-    Button,
-    Stack,
-    Icon,
     Text,
-    Avatar,
     FlatList,
     Heading,
     VStack,
     Spacer,
-    ScrollView,
-    View
+    Avatar,
 } from 'native-base';
-
-// import { ScrollView } from "react-native-gesture-handler";
 
 
 export const MissionList = (props) => {
     const [dataNewMission, setDataNewMission] = useState([]);
-    // const [dataUser, setDataUser] = useState([]);
-    // const [dataDelivery, setDataDelivery] = useState([]);
 
 
     useEffect(() => {
@@ -37,20 +26,7 @@ export const MissionList = (props) => {
         async function loadMission() {
             const rawResponse = await fetch('http://192.168.1.109:3000/getMission');
             const response = await rawResponse.json();
-          
             setDataNewMission(response);
-
-           
-
-            //     const rawUserResponse = await fetch('http://192.168.1.33:3000/user');
-            //     const userRespclearronse = await rawUserResponse.json();
-            //     console.log("userResponse : ", userResponse);
-            //     setDataUser();
-
-            //     const rawDeliveryResponse = await fetch('http://192.168.1.33:3000/delivery');
-            //     const deliveryResponse = await rawDeliveryResponse.json();
-            //     console.log("deliveryResponse : ", deliveryResponse);
-            //     setDataDelivery();
         }
         loadMission()
     }, []);
@@ -83,13 +59,13 @@ export const MissionList = (props) => {
                             py="2"
                         >
                             <HStack
-                                space={3} justifyContent="space-evenly">
-                                {/* <Avatar
+                                space={3} justifyContent="space-between">
+                                <Avatar
                                     size="48px"
                                     source={{
                                         uri: item.avatarUrl,
                                     }}
-                                /> */}
+                                />
                                 <VStack>
                                     <Text
                                         _dark={{
@@ -98,7 +74,7 @@ export const MissionList = (props) => {
                                         color="coolGray.800"
                                         bold
                                     >
-                                        {item.departure_journey} / {item.arrival_journey}
+                                        {item.firstName} {item.lastName}
                                     </Text>
                                     <Text
                                         color="coolGray.600"
@@ -106,21 +82,22 @@ export const MissionList = (props) => {
                                             color: "warmGray.200",
                                         }}
                                     >
-                                        {item.date_journey}
+                                        {item.departure_journey}  <FontAwesome name="arrow-right"/>  {item.arrival_journey}
                                     </Text>
                                 </VStack>
                                 <Spacer />
                                 <Text
                                     fontSize="xs"
+                                    fontWeight="bold"
                                     _dark={{
                                         color: "warmGray.50",
                                     }}
                                     color="coolGray.800"
                                     alignSelf="flex-start"
                                 >
-                                    {item.transport_capacity_total}
+                                    {item.transport_capacity_total} kg
                                 </Text>
-                                <FontAwesome name="cube" size={32} type="Ionicons" color="purple" />
+                                <FontAwesome name="cube" size={32} type="Ionicons" color="indigo" />
                             </HStack>
                         </Box>
                     </TouchableOpacity>
@@ -135,24 +112,26 @@ export default function NewMission(props) {
 
     return (
         <NativeBaseProvider>
-                            
-                <Center
-                    bg="#3730a3"
-                    _text={{
-                        color: "#9b59b6",
-                        fontWeight: "600",
-                        fontSize: "32",
-                    }}
-                    height={120}
-                    width="100%">
-                    Nouvelle mission
-                </Center>
 
-                <Center flex={1} px="3">
-                    <MissionList {...props} />
-                </Center>
-                                
-            
+            <Center
+                style={{ backgroundColor: "indigo" }}
+                _text={{
+                    color: "#ffffff",
+                    fontWeight: "600",
+                    fontSize: "32",
+                    marginTop: "10%"
+                    
+                }}
+                height={120}
+                width="100%">
+                Nouvelles missions
+            </Center>
+
+            <Center flex={1} px="3">
+                <MissionList {...props} />
+            </Center>
+
+
         </NativeBaseProvider>
     );
 }

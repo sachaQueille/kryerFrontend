@@ -1,27 +1,27 @@
 import React from "react"
 import {
-  Box,
-  FlatList,
-  Heading,
-  Avatar,
-  HStack,
-  VStack,
-  Text,
-  Spacer,
-  Center,
-  NativeBaseProvider,
+    Box,
+    FlatList,
+    Heading,
+    Avatar,
+    HStack,
+    VStack,
+    Text,
+    Spacer,
+    Center,
+    NativeBaseProvider,
 } from "native-base";
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 
 
-function KryerList(props){
+function KryerList(props) {
 
     console.log(props.kryerList);
 
     const boxClick = (e) => {
-      
+
         props.kryer(e)
         props.navigation.navigate('Kryer');
     }
@@ -29,26 +29,26 @@ function KryerList(props){
 
     //valeur de l'affichage
     var kryerList = "";
-    if(props.kryerList.length === 0){
-        kryerList = <Text style={{textAlign:'center'}}>"Aucun Kryer ne correspond a votre recherche , essaye avec d'autres critères :)"</Text>
-    }else{
-        kryerList = 
-                <Box
-                    w={{
-                        base: "100%",
-                        md: "25%",
-                    }}
-                    >
-                    <Heading fontSize="xl" p="4" pb="3" style={{textAlign:'center',marginBottom:20}}>
-                        Kryer disponible
-                    </Heading>
-                    <FlatList
-                        data={props.kryerList}
-                        renderItem={({ item }) => (
+    if (props.kryerList.length === 0) {
+        kryerList = <Text style={{ textAlign: 'center' }}>"Aucun Kryer ne correspond a votre recherche , essaye avec d'autres critères :)"</Text>
+    } else {
+        kryerList =
+            <Box
+                w={{
+                    base: "100%",
+                    md: "25%",
+                }}
+            >
+                <Heading fontSize="xl" p="4" pb="3" style={{ textAlign: 'center', marginBottom: 20 }}>
+                    Kryer disponible
+                </Heading>
+                <FlatList
+                    data={props.kryerList}
+                    renderItem={({ item }) => (
                         <Box
                             borderBottomWidth="1"
                             _dark={{
-                            borderColor: "gray.600",
+                                borderColor: "gray.600",
                             }}
                             borderColor="coolGray.200"
                             pl="4"
@@ -56,49 +56,49 @@ function KryerList(props){
                             py="2"
                         >
                             <HStack space={3} justifyContent="space-between">
-                            <Avatar
-                                size="48px"
-                                source={{
-                                uri: item.avatarUrl,
-                                }}
-                            />
-                            <VStack>
+                                <Avatar
+                                    size="48px"
+                                    source={{
+                                        uri: item.avatarUrl,
+                                    }}
+                                />
+                                <VStack>
+                                    <Text
+                                        _dark={{
+                                            color: "warmGray.50",
+                                        }}
+                                        color="coolGray.800"
+                                        bold
+                                        onPress={() => boxClick(item)}>
+                                        {item.departure} / {item.arrival}
+                                    </Text>
+                                    <Text
+                                        color="coolGray.600"
+                                        _dark={{
+                                            color: "warmGray.200",
+                                        }}
+                                    >
+                                        {item.date}
+                                    </Text>
+                                </VStack>
+                                <Spacer />
                                 <Text
-                                _dark={{
-                                    color: "warmGray.50",
-                                }}
-                                color="coolGray.800"
-                                bold
-                                onPress={()=>boxClick(item)}>
-                                {item.departure} / {item.arrival}
-                                </Text>
-                                <Text
-                                color="coolGray.600"
-                                _dark={{
-                                    color: "warmGray.200",
-                                }}
+                                    fontSize="xs"
+                                    _dark={{
+                                        color: "warmGray.50",
+                                    }}
+                                    color="coolGray.800"
+                                    alignSelf="flex-start"
                                 >
-                                {item.date}
+                                    {item.price} €
                                 </Text>
-                            </VStack>
-                            <Spacer />
-                            <Text
-                                fontSize="xs"
-                                _dark={{
-                                color: "warmGray.50",
-                                }}
-                                color="coolGray.800"
-                                alignSelf="flex-start"
-                            >
-                                {item.price} €
-                            </Text>
                             </HStack>
                         </Box>
-                        )}
-                        keyExtractor={(item) => item.id}
-                    />
-                    </Box>
-          
+                    )}
+                    keyExtractor={(item) => item.id}
+                />
+            </Box>
+
     }
 
     return (
@@ -111,18 +111,18 @@ function KryerList(props){
 
 }
 
-function mapStateToProps(state){
-    return {kryerList : state.kryerListReducer}
+function mapStateToProps(state) {
+    return { kryerList: state.kryerListReducer }
 }
 
 
 function mapDispatchToProps(dispatch) {
     return {
-      kryer: function(e) {
-            dispatch( {type: 'kryer', kryer:e} )
+        kryer: function (e) {
+            dispatch({ type: 'kryer', kryer: e })
         }
     }
-   };
+};
 
 export default connect(
     mapStateToProps,
