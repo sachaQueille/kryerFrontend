@@ -52,6 +52,30 @@ function PurposeJourney(props) {
             />
           </FormControl>
 
+          <FormControl isRequired>
+            <FormControl.Label _text={{ bold: true }}>
+              Capacité de transport:
+            </FormControl.Label>
+            <Input
+              placeholder="En kg"
+              marginBottom="5"
+              onChangeText={(e) => setWeight(e)}
+            />
+          </FormControl>
+          <FormControl isRequired>
+            <FormControl.Label _text={{ bold: true }}>
+              Date de trajet
+            </FormControl.Label>
+            <Input placeholder="Date" onChangeText={(e) => setDateJourney(e)} />
+          </FormControl>
+        </VStack>
+        <Button.Group
+          display="flex"
+          flexDirection="column"
+          size="lg"
+          marginTop="4"
+          mx="12"
+        >
           <Button onPress={() => setShowModal(true)} marginBottom="4">
             Simuler
           </Button>
@@ -72,7 +96,7 @@ function PurposeJourney(props) {
           >
             Suivant
           </Button>
-        </VStack>
+        </Button.Group>
       </ScrollView>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
         <Modal.Content maxWidth="350">
