@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View } from "react-native";
+
 import {
   NativeBaseProvider,
   Text,
@@ -19,11 +20,11 @@ function signIn(props) {
   const [signInPassword, setSignInPassword] = useState('');
   const [listErrorsSignin, setErrorsSignin] = useState([]);
   const [token, setToken] = useState('');
-  const [userExists, setUserExists] = useState(false);
+  const [userExists, setUserExists] = useState(true);
 
 
   var handleSubmitSignin = async () => {
-    const data = await fetch("http://192.168.1.109:3000/signIn/", {
+    const data = await fetch("http://172.17.1.16:3000/signIn/", {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
@@ -38,6 +39,10 @@ function signIn(props) {
     }  else {
       setErrorsSignin(body.error)
     } 
+
+    if(userExists){
+      props.navigation.navigate("user");
+    }
   }
 
   //possibilité d'utiliser la liste des erreurs pour afficher un message spécifique
@@ -82,8 +87,7 @@ function signIn(props) {
           mx="12"
           size="lg"
           onPress={()=>{handleSubmitSignin();
-                        AsyncStorage.setItem('token',JSON.stringify(token));
-                        props.navigation.navigate('User');
+                        AsyncStorage.setItem('token',JSON.stringify(token))
                   }}
         >
           Connexion

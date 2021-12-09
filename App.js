@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
+import {connect} from 'react-redux';
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -125,3 +126,5 @@ export default function App(props) {
     </Provider>
   );
 }
+
+
