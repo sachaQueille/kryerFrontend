@@ -1,10 +1,11 @@
 import React from "react";
 import { Box, Heading,NativeBaseProvider, Progress, Center, Avatar,
 FormControl, Select,CheckIcon, Image, Button, Text} from 'native-base';
+import { connect } from "react-redux";
 
 const logo = require("../assets/avatarfemal.jpg");
 
-export default function CurrentMissionClient(props) {
+function CurrentMissionClient(props) {
     
     return (
         <NativeBaseProvider marginTop="4">
@@ -19,7 +20,7 @@ export default function CurrentMissionClient(props) {
                 <Avatar size={32}>45€</Avatar>
 
                 <FormControl marginTop="4" style={{width:'50%'}} isRequired isInvalid>
-                    <FormControl.Label>Selectionner un client</FormControl.Label>
+                    <FormControl.Label>Selectionner un expediteur</FormControl.Label>
                     <Select
                     minWidth="200"
                     accessibilityLabel="Appliquer le filtre"
@@ -94,4 +95,11 @@ export default function CurrentMissionClient(props) {
     );
 }
 
-
+function mapStateToProps(state){
+    return {idmission : state.idmissionReducer}
+  }
+  
+  export default connect(
+    mapStateToProps,
+    null
+  )(CurrentMissionClient);

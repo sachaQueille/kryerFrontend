@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 
 function KryerList(props) {
 
-    console.log(props.kryerList);
+  
 
     const boxClick = (e) => {
 

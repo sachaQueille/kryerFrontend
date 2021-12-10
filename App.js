@@ -25,6 +25,9 @@ import TerminateMission from "./screens/terminatemission";
 import ReceipientCoordinate from "./screens/receipientCoordinate";
 import signIn from "./screens/signIn";
 import signUp from "./screens/signUp";
+import MissionsScreen from "./screens/missionsScreen";
+import MissionsScreen2 from "./screens/missionsScreen2";
+import MissionsScreen3 from "./screens/missionsScreen3";
 
 // redux
 import { Provider } from "react-redux";
@@ -33,8 +36,10 @@ import kryerListReducer from "./reducers/kryerListReducer";
 import kryerReducer from "./reducers/kryerReducer";
 import userReducer from "./reducers/userReducer";
 import infoDelivery from "./reducers/infoDeliveryReducer";
+import missionsReducer from "./reducers/missionsReducer";
+import deliveriesReducer from "./reducers/deliveriesReducer";
 
-const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer,infoDelivery }));
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer,infoDelivery , missionsReducer, deliveriesReducer}));
 
 
 const Stack = createStackNavigator();
@@ -52,6 +57,10 @@ function StackJourneyNavigator() {
       <Stack.Screen name="SendDelivery" component={SendDelivery}/>
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient}/>
+      <Stack.Screen name="MissionsScreen" component={MissionsScreen}/>
+      <Stack.Screen name="MissionsScreen2" component={MissionsScreen2}/>
+      <Stack.Screen name="MissionsScreen3" component={MissionsScreen3}/>
+      
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );

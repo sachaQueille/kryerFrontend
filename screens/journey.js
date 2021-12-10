@@ -1,8 +1,28 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { Button, NativeBaseProvider, VStack, } from "native-base";
+import { connect } from "react-redux";
 
-export default function Home(props) {
+function Journey(props) {
+
+  
+
+    async function buttonClick(e){
+        var  responce = await fetch("http://172.17.1.42:3000/loadMissions", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `idKryer=${props.user._id}&status=${e}`
+            });
+
+        responce = await responce.json();
+
+      
+        props.addMissions(responce);
+
+        props.navigation.navigate("MissionsScreen");
+    }
+
+
     return (
         <NativeBaseProvider>
             <VStack
@@ -23,7 +43,7 @@ export default function Home(props) {
 
                 <Button
                     style={{ backgroundColor: "indigo" }}
-                    onPress={() => props.navigation.navigate("NewMission")}
+                    onPress={() => buttonClick("newMission")}
                     marginBottom={10}
                     marginTop={20}
                     mx="12"
@@ -34,7 +54,7 @@ export default function Home(props) {
 
                 <Button
                     style={{ backgroundColor: "indigo" }}
-                    onPress={() => props.navigation.navigate("CurrentMission")}
+                    onPress={() => buttonClick("currentMission")}
                     marginBottom={10}
                     mx="12"
                     size="lg"
@@ -43,7 +63,7 @@ export default function Home(props) {
                 </Button>
                 <Button
                     style={{ backgroundColor: "indigo" }}
-                    onPress={() => props.navigation.navigate("FinishedMission")}
+                    onPress={() => buttonClick("finishedMission")}
                     mx="12"
                     size="lg"
                 >
@@ -54,3 +74,20 @@ export default function Home(props) {
     );
 }
 
+function mapStateToProps(state){
+    return { user: state.userReducer}
+  }
+  
+
+  function mapDispatchToProps(dispatch) {
+    return {
+        addMissions: function(e) {
+            dispatch( {type: 'addMissions', missions: e } )
+        }
+    }
+   };
+
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Journey);
