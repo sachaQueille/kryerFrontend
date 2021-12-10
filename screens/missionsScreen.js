@@ -11,7 +11,7 @@ function MissionsScreen(props){
 
     async function buttonClick(e){
 
-        var  responce = await fetch("http://172.17.1.42:3000/loadDeliveries", {
+        var  responce = await fetch("http://192.168.1.32:3000/loadDeliveries", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idMission=${e.id}&status=${e.status}`

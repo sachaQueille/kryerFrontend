@@ -7,10 +7,11 @@ import {
   VStack,
   FormControl,
   Input,
-  ScrollView,
+
 } from "native-base";
 import { connect } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ScrollView } from "react-native-gesture-handler";
 
 function signUp(props) {
   const [signUpFirstname, setSignUpFirstname] = useState("");
@@ -32,7 +33,7 @@ function signUp(props) {
     const body = await data.json();
 
     if (body.result === true) {
-      props.addUser(body.user);
+      props.addUser(body.saveUser);
       AsyncStorage.setItem("token", JSON.stringify(body.token));
       props.navigation.navigate("Profil", { screen: "User" });
     } else {
@@ -112,7 +113,7 @@ function signUp(props) {
             Inscription
           </Button>
         </VStack>
-      </ScrollView>
+        </ScrollView>
     </NativeBaseProvider>
   );
 }

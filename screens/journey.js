@@ -8,7 +8,8 @@ function Journey(props) {
   
 
     async function buttonClick(e){
-        var  responce = await fetch("http://172.17.1.42:3000/loadMissions", {
+        if(props.user){
+        var  responce = await fetch("http://192.168.1.33:3000/loadMissions", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idKryer=${props.user._id}&status=${e}`
@@ -21,7 +22,7 @@ function Journey(props) {
 
         props.navigation.navigate("MissionsScreen");
     }
-
+}
 
     return (
         <NativeBaseProvider>

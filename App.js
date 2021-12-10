@@ -50,15 +50,14 @@ function StackJourneyNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="JourneyScreen" component={Journey} />
-      <Stack.Screen name="NewMission" component={NewMission} />
+      {/* <Stack.Screen name="NewMission" component={NewMission} />
       <Stack.Screen name="NewMissionDetails" component={NewMissionDetails} />
-      <Stack.Screen name="NewMissionToAccept" component={NewMissionToAccept} />
-      <Stack.Screen name="CurrentMission" component={CurrentMission} />
-      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} />
+      <Stack.Screen name="NewMissionToAccept" component={NewMissionToAccept} /> */}
+      {/* <Stack.Screen name="CurrentMission" component={CurrentMission} /> */}
       <Stack.Screen name="FinishedMissions" component={FinishedMissions} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} />
+      {/* <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} /> */}
       <Stack.Screen name="MissionsScreen" component={MissionsScreen} />
       <Stack.Screen name="MissionsScreen2" component={MissionsScreen2} />
       <Stack.Screen name="MissionsScreen3" component={MissionsScreen3} />

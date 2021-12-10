@@ -19,7 +19,7 @@ function MissionsScreen2(props){
     async function loadExpeditor(e){
 
         if(expeditor.length != props.deliveries.length){
-            var Expeditor = await fetch(`http://172.17.1.42:3000/getUserById?id=${e}`);
+            var Expeditor = await fetch(`http://192.168.1.32:3000/getUserById?id=${e}`);
             Expeditor = await Expeditor.json();
             
             Expeditor =  Expeditor.user;

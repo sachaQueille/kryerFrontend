@@ -35,7 +35,7 @@ function PurposeDetails(props) {
       pricePerKg,
       dateJourney,
     };
-    const response = await fetch("http://172.17.1.42:3000/saveMission/", {
+    const response = await fetch("http://192.178.1.32:3000/saveMission/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `departure=${data.departure}&arrival=${data.arrival}&weight=${data.weight}&dateJourney=${data.dateJourney}&recuperationPlace=${data.recuperationPlace}&recuperationDate=${data.recuperationDate}&deliveryPlace=${data.deliveryPlace}&deliveryDate=${data.deliveryDate}&pricePerKg=${data.pricePerKg}&idKryer=${props.user._id}`,
