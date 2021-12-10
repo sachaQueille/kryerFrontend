@@ -26,6 +26,7 @@ import TerminateMission from "./screens/terminatemission";
 import ReceipientCoordinate from "./screens/receipientCoordinate";
 import signIn from "./screens/signIn";
 import signUp from "./screens/signUp";
+import FollowMyDelivery from "./screens/followmydelivery";
 
 // redux
 import { Provider } from "react-redux";
@@ -84,6 +85,16 @@ function StackProfilNavigator(props) {
   );
 }
 
+function StackDeliveryNavigator(props) {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="FollowMyDelivery" component={DeliveryStatus} />
+      <Stack.Screen name="signIn" component={signIn} />
+      <Stack.Screen name="signUp" component={signUp} />
+    </Stack.Navigator>
+  );
+}
+
 function mapStateToProps(state){
   return {user:state.userReducer};
 }
@@ -117,7 +128,7 @@ export default function App(props) {
           })}
         >
           <Tab.Screen name="Accueil" component={StackHomeNavigator} /> 
-          <Tab.Screen name="Colis" component={DeliveryStatus} />
+          <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
           <Tab.Screen name="Missions" component={StackJourneyNavigator} />
           <Tab.Screen name="Tchat" component={Tchat} />
           <Tab.Screen name="Profil" component={StackProfilNavigator} />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 
 import { FontAwesome } from '@expo/vector-icons';
+import {connect} from 'react-redux';
 
 import {
     NativeBaseProvider,
