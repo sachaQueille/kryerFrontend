@@ -14,19 +14,17 @@ import {
     Button,
     AspectRatio,
     Modal,
-    Stack
-
-} from 'native-base';
+    Stack,
+} from "native-base";
 
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 
-
 const logo = require("../assets/avatarfemal.jpg");
 
 function CurrentMissionClient(props) {
-    const [showModalItem, setshowModalItem] = useState(false)
-    const [showModalRecipient, setshowModalRecipient] = useState(false)
+    const [showModalItem, setshowModalItem] = useState(false);
+    const [showModalRecipient, setshowModalRecipient] = useState(false);
     return (
         <NativeBaseProvider>
             <ScrollView>
@@ -36,34 +34,39 @@ function CurrentMissionClient(props) {
                         color: "#ffffff",
                         fontWeight: "600",
                         fontSize: "32",
-                        marginTop: "10%"
+                        marginTop: "10%",
                     }}
                     height={120}
-                    width="100%">
+                    width="100%"
+                >
                     Missions en cours
                 </Center>
 
-                <Stack flex={1}
+                <Stack
+                    flex={1}
                     direction={{
                         base: "column",
                         md: "row",
-                        justifyContent: 'center',
-
+                        justifyContent: "center",
                     }}
                     space={8}
                     px="10"
                     py="10"
                     width="100%"
                     height="0%"
-                    flexDir="column">
-
-                    <Box
-                        w="100%">
-
+                    flexDir="column"
+                >
+                    <Box w="100%">
                         <Center mb="10">
                             <Heading size="md">Capacite de transport restante: 10kg</Heading>
                         </Center>
-                        <Progress colorScheme="violet" bg="purple.300" mb="4" value={50} mx="4" />
+                        <Progress
+                            colorScheme="violet"
+                            bg="purple.300"
+                            mb="4"
+                            value={50}
+                            mx="4"
+                        />
                     </Box>
 
                     <VStack alignItems="center" space={4}>
@@ -146,8 +149,16 @@ function CurrentMissionClient(props) {
                     </Box>
 
                     <VStack>
-                        <Button style={{ backgroundColor: "indigo" }} onPress={() => setshowModalItem(true)}>Dimensions</Button>
-                        <Modal isOpen={showModalItem} onClose={() => setshowModalItem(false)}>
+                        <Button
+                            style={{ backgroundColor: "indigo" }}
+                            onPress={() => setshowModalItem(true)}
+                        >
+                            Dimensions
+                        </Button>
+                        <Modal
+                            isOpen={showModalItem}
+                            onClose={() => setshowModalItem(false)}
+                        >
                             <Modal.Content maxWidth="400px">
                                 <Modal.CloseButton />
                                 <Modal.Header>Dimensions</Modal.Header>
@@ -167,7 +178,7 @@ function CurrentMissionClient(props) {
                                         <Button
                                             style={{ backgroundColor: "indigo" }}
                                             onPress={() => {
-                                                setshowModalItem(false)
+                                                setshowModalItem(false);
                                             }}
                                         >
                                             Revenir
@@ -179,8 +190,16 @@ function CurrentMissionClient(props) {
                     </VStack>
 
                     <VStack>
-                        <Button style={{ backgroundColor: "indigo" }} onPress={() => setshowModalRecipient(true)}>Coordonnées du receveur</Button>
-                        <Modal isOpen={showModalRecipient} onClose={() => setshowModalRecipient(false)}>
+                        <Button
+                            style={{ backgroundColor: "indigo" }}
+                            onPress={() => setshowModalRecipient(true)}
+                        >
+                            Coordonnées du receveur
+                        </Button>
+                        <Modal
+                            isOpen={showModalRecipient}
+                            onClose={() => setshowModalRecipient(false)}
+                        >
                             <Modal.Content maxWidth="400px">
                                 <Modal.CloseButton />
                                 <Modal.Header>Coordonnées du receveur</Modal.Header>
@@ -192,7 +211,9 @@ function CurrentMissionClient(props) {
                                         <FormControl.Label>Prenom : Alexis</FormControl.Label>
                                     </FormControl>
                                     <FormControl mt="3">
-                                        <FormControl.Label>Email : alexis.dumant@gmail.com</FormControl.Label>
+                                        <FormControl.Label>
+                                            Email : alexis.dumant@gmail.com
+                                        </FormControl.Label>
                                     </FormControl>
                                     <FormControl mt="3">
                                         <FormControl.Label>Tel : 06 07 08 09 13</FormControl.Label>
@@ -203,7 +224,7 @@ function CurrentMissionClient(props) {
                                         <Button
                                             style={{ backgroundColor: "indigo" }}
                                             onPress={() => {
-                                                setshowModalRecipient(false)
+                                                setshowModalRecipient(false);
                                             }}
                                         >
                                             Revenir
@@ -224,28 +245,27 @@ function CurrentMissionClient(props) {
                             }}
                             size="lg"
                         >
-                            <Button style={{ backgroundColor: "#e11d48", marginRight: "20%" }}>Annuler</Button>
+                            <Button
+                                style={{ backgroundColor: "#e11d48", marginRight: "20%" }}
+                            >
+                                Annuler
+                            </Button>
                             <Button
                                 onPress={() => props.navigation.navigate("TerminateMission")}
-                                style={{ backgroundColor: "#059669" }}>Terminer</Button>
+                                style={{ backgroundColor: "#059669" }}
+                            >
+                                Terminer
+                            </Button>
                         </Button.Group>
                     </VStack>
-
-
-
                 </Stack>
-            </ScrollView >
-
-
-        </NativeBaseProvider >
+            </ScrollView>
+        </NativeBaseProvider>
     );
 }
 
-function mapStateToProps(state){
-    return {idmission : state.idmissionReducer}
-  }
-  
-  export default connect(
-    mapStateToProps,
-    null
-  )(CurrentMissionClient);
+function mapStateToProps(state) {
+    return { idmission: state.idmissionReducer };
+}
+
+export default connect(mapStateToProps, null)(CurrentMissionClient);
