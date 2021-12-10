@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { View , ScrollView} from "react-native";
 import {
   NativeBaseProvider,
   Text,
   Button,
   VStack,
   FormControl,
-  Input
-  
+  Input,
 } from "native-base";
 import { connect } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ScrollView } from "react-native-gesture-handler";
 
 function signUp(props) {
   const [signUpFirstname, setSignUpFirstname] = useState("");
@@ -23,7 +22,7 @@ function signUp(props) {
 
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
-    const data = await fetch("http://172.17.1.42:3000/signUp", {
+    const data = await fetch("http://192.168.1.32:3000/signUp", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`,

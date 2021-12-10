@@ -14,26 +14,7 @@ import { connect } from 'react-redux';
 
 function MissionsScreen2(props){
 
-    // const [expeditor , setExpeditor] = useState([])
 
-    // async function loadExpeditor(e){
-
-    //     if(expeditor.length != props.deliveries.length){
-    //         var Expeditor = await fetch(`http://172.17.1.42:3000/getUserById?id=${e}`);
-    //         Expeditor = await Expeditor.json();
-            
-    //         Expeditor =  Expeditor.user;
-
-            
-            
-
-          
-    //             setExpeditor([...expeditor,Expeditor]);
-            
-            
-    //     }
-       
-    // };
 
 
     function deliveryClick(e){
@@ -49,7 +30,7 @@ function MissionsScreen2(props){
 
         
         
-      console.log(e)
+      console.log
 
         return (
             <Box
@@ -116,13 +97,7 @@ function mapStateToProps(state){
   }
   
 
-//   function mapDispatchToProps(dispatch) {
-//     return {
-//       addDeliveries: function(e) {
-//             dispatch( {type: 'addDeliveries', deliveries:e} )
-//         }
-//     }
-//    };
+
 
   export default connect(
     mapStateToProps,

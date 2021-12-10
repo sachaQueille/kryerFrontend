@@ -13,7 +13,6 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 
-
 function PurposeDetails(props) {
   const { departure, arrival, weight, dateJourney } = props.route.params;
 
@@ -35,15 +34,14 @@ function PurposeDetails(props) {
       pricePerKg,
       dateJourney,
     };
-    const response = await fetch("http://172.17.1.42:3000/saveMission/", {
+    const response = await fetch("http://192.168.1.32:3000/saveMission/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `departure=${data.departure}&arrival=${data.arrival}&weight=${data.weight}&dateJourney=${data.dateJourney}&recuperationPlace=${data.recuperationPlace}&recuperationDate=${data.recuperationDate}&deliveryPlace=${data.deliveryPlace}&deliveryDate=${data.deliveryDate}&pricePerKg=${data.pricePerKg}&idKryer=${props.user._id}&avatarKryer=${props.user.avatar}&firstNameKryer=${props.user.firstName}&lastNameKryer=${props.user.lastName}`,
     });
-   
 
-    if(data){
-      props.navigation.navigate('Missions');
+    if (data) {
+      props.navigation.navigate("Missions");
     }
   };
 
@@ -164,11 +162,8 @@ function PurposeDetails(props) {
   );
 }
 
-function mapStateToProps(state){
-  return { user: state.userReducer}
+function mapStateToProps(state) {
+  return { user: state.userReducer };
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(PurposeDetails);
+export default connect(mapStateToProps, null)(PurposeDetails);

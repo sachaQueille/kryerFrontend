@@ -10,12 +10,13 @@ import {
   Divider,
 } from "native-base";
 import { connect } from "react-redux";
+import { ScrollView } from "react-native-gesture-handler";
 
 function User(props) {
   const [changeAvatar, setChangeAvatar] = useState(false);
 
   const updateAvatar = async (avatarChoose) => {
-    let rawResponse = await fetch("http://172.17.1.42:3000/updateInfos/", {
+    let rawResponse = await fetch("http://192.168.1.32:3000/updateInfos/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `token=${props.user.token}&avatar=${avatarChoose}`,
@@ -27,15 +28,14 @@ function User(props) {
   if (!props.user) {
     return (
       <NativeBaseProvider>
-        
-        <VStack
+        <Center
           mx="auto"
           marginTop="40%"
           justifyContent="center"
           alignItems="center"
         >
           <Text style={{ fontSize: 40, fontWeight: "bold" }}>KRYER</Text>
-        </VStack>
+        </Center>
 
         <VStack
           mx="auto"

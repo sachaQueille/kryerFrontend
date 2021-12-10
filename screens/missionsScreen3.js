@@ -35,7 +35,7 @@ function MissionsScreen3(props){
         <Center>
 
             
-            <HStack space={3} justifyContent="space-between" onPress={()=>deliveryClick()} style={{marginLeft:'10%'}}>
+            <HStack space={3} justifyContent="space-between"  style={{marginLeft:'10%'}}>
                 <Avatar 
                     size="48px"
                     source={{
