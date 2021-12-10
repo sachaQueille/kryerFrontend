@@ -32,7 +32,8 @@ function signUp(props) {
     const body = await data.json();
 
     if (body.result === true) {
-      props.addUser(body.user);
+      console.log(body);
+      props.addUser(body.saveUser);
       AsyncStorage.setItem("token", JSON.stringify(body.token));
       props.navigation.navigate("Profil", { screen: "User" });
     } else {
