@@ -21,7 +21,7 @@ function Journey(props) {
       
         props.addMissions(responce);
 
-        props.navigation.navigate("MissionsScreen");
+        props.navigation.navigate("MissionsScreen",{status:e});
         
     }else{
         props.navigation.navigate('Profil');
@@ -69,7 +69,7 @@ function Journey(props) {
                 </Button>
                 <Button
                     style={{ backgroundColor: "indigo" }}
-                    onPress={() => buttonClick("finishedMission")}
+                    onPress={() => buttonClick("finishMission")}
                     mx="12"
                     size="lg"
                 >

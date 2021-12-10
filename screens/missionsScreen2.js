@@ -14,20 +14,26 @@ import { connect } from 'react-redux';
 
 function MissionsScreen2(props){
 
-    const [expeditor , setExpeditor] = useState([])
+    // const [expeditor , setExpeditor] = useState([])
 
-    async function loadExpeditor(e){
+    // async function loadExpeditor(e){
 
-        if(expeditor.length != props.deliveries.length){
-            var Expeditor = await fetch(`http://172.17.1.42:3000/getUserById?id=${e}`);
-            Expeditor = await Expeditor.json();
+    //     if(expeditor.length != props.deliveries.length){
+    //         var Expeditor = await fetch(`http://172.17.1.42:3000/getUserById?id=${e}`);
+    //         Expeditor = await Expeditor.json();
             
-            Expeditor =  Expeditor.user;
+    //         Expeditor =  Expeditor.user;
 
-            setExpeditor([...expeditor,Expeditor]);
-        }
+            
+            
+
+          
+    //             setExpeditor([...expeditor,Expeditor]);
+            
+            
+    //     }
        
-    };
+    // };
 
 
     function deliveryClick(e){
@@ -39,11 +45,11 @@ function MissionsScreen2(props){
     var deliveries = (props.deliveries.length != 0) ? props.deliveries.map(function(e,i){
 
         
-        loadExpeditor(e.expeditor_id);
+      
 
         
         
-       if(expeditor.length == props.deliveries.length){
+      console.log(e)
 
         return (
             <Box
@@ -61,7 +67,7 @@ function MissionsScreen2(props){
                 <Avatar key={`avatar${i}`}
                     size="48px"
                     source={{
-                        uri: expeditor[i].avatar,
+                        uri: e.infoExpeditor.avatar,
                     }}
                     bg='transparent'
                 />
@@ -72,9 +78,9 @@ function MissionsScreen2(props){
                         }}
                         color="coolGray.800"
                         bold
-                        onPress={()=>deliveryClick({infoDelivery:e,infoExpeditor:expeditor[i]})}
+                        onPress={()=>deliveryClick(e)}
                         >
-                        {expeditor[i].firstName} {expeditor[i].lastName}
+                        {e.infoExpeditor.firstName} {e.infoExpeditor.lastName}
                     </Text>
                     
                 </VStack>
@@ -91,9 +97,7 @@ function MissionsScreen2(props){
                 </Text>
             </HStack>
         </Box>
-        )}else{
-            return <Text>Loading ...</Text>
-        }
+        )
     }) : <Text>tu n'as aucune demande pour cette mission </Text>
 
     return (

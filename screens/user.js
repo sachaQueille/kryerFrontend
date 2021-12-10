@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ScrollView } from "react-native";
 import {
   Button,
   NativeBaseProvider,
@@ -26,6 +27,7 @@ function User(props) {
   if (!props.user) {
     return (
       <NativeBaseProvider>
+        
         <VStack
           mx="auto"
           marginTop="40%"
@@ -67,11 +69,13 @@ function User(props) {
             Se connecter
           </Button>
         </VStack>
+       
       </NativeBaseProvider>
     );
   } else {
     return (
       <NativeBaseProvider>
+        <ScrollView>
         <Center
           style={{ backgroundColor: "indigo" }}
           _text={{
@@ -171,6 +175,7 @@ function User(props) {
           <Text fontSize="xl">{props.user.phone}</Text>
           <Divider my="2" />
         </VStack>
+        </ScrollView>
       </NativeBaseProvider>
     );
   }

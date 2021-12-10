@@ -10,6 +10,7 @@ import {
     Spacer,
     Center,
     NativeBaseProvider,
+    Button
 } from "native-base";
 
 import { connect } from 'react-redux';
@@ -19,6 +20,7 @@ import { connect } from 'react-redux';
 function KryerList(props) {
 
   
+    console.log(props.kryerList)
 
     const boxClick = (e) => {
 
@@ -59,8 +61,9 @@ function KryerList(props) {
                                 <Avatar
                                     size="48px"
                                     source={{
-                                        uri: item.avatar,
+                                        uri: item.infoKryer.avatar,
                                     }}
+                                    bg='transparent'
                                 />
                                 <VStack>
                                     <Text
@@ -97,6 +100,9 @@ function KryerList(props) {
                     )}
                     keyExtractor={(item) => item.id}
                 />
+                <Center margin={5}>
+                <Button variant="outline" colorScheme='indigo' style={{marginRight:50}} onPress={()=>props.navigation.navigate('SendDelivery')}>retour</Button>
+                </Center>
             </Box>
 
     }

@@ -38,8 +38,9 @@ import userReducer from "./reducers/userReducer";
 import infoDelivery from "./reducers/infoDeliveryReducer";
 import missionsReducer from "./reducers/missionsReducer";
 import deliveriesReducer from "./reducers/deliveriesReducer";
+import missionIdReducer from "./reducers/missionIdReducer"
 
-const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer,infoDelivery , missionsReducer, deliveriesReducer}));
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer,infoDelivery , missionsReducer, deliveriesReducer, missionIdReducer}));
 
 
 const Stack = createStackNavigator();

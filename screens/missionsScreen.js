@@ -14,13 +14,14 @@ function MissionsScreen(props){
         var  responce = await fetch("http://172.17.1.42:3000/loadDeliveries", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `idMission=${e.id}&status=${e.status}`
+            body: `idMission=${e}&status=${props.route.params.status}`
             });
 
         responce = await responce.json();
      
 
         props.addDeliveries(responce);
+        props.addMissionId(e)
 
         props.navigation.navigate("MissionsScreen2")
     }
@@ -33,7 +34,7 @@ function MissionsScreen(props){
             mx="12"
             size="lg"
             marginBottom="5"
-            onPress={() => buttonClick({id:e._id,status:e.mission_status})}
+            onPress={() => buttonClick(e._id)}
             >
             <Text>
                 {e.departure_journey} / {e.arrival_journey} le {e.date_journey}
@@ -62,7 +63,11 @@ function mapStateToProps(state){
     return {
       addDeliveries: function(e) {
             dispatch( {type: 'addDeliveries', deliveries:e} )
+        },
+        addMissionId: function(e) {
+            dispatch( {type: 'addMissionId', missionId:e} )
         }
+
     }
    };
 
