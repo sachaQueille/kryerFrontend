@@ -31,7 +31,7 @@ function Journey(props) {
                 justifyContent="flex-end"
                 alignItems="flex-end"
             >
-                <Text style={{ fontSize: 40, fontWeight: "bold"}}>KRYER</Text>
+                <Text style={{ fontSize: 40, fontWeight: "bold" }}>KRYER</Text>
             </VStack>
 
             <VStack
