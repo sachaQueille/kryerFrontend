@@ -24,12 +24,6 @@ function DeliveryStatus() {
     if (pass1) { inProgress= 33 }
     if (pass1 && pass2) { inProgress = inProgress = 66 }
     if(pass1 && pass2 && pass3) { inProgress = 100 }
-    
-
-    console.log("inProgress", inProgress)
-    console.log("inProgress", inProgress, "pass1", pass1)
-    console.log("inProgress", inProgress, "pass2", pass2)
-    console.log("inProgress", inProgress, "pass3", pass3)
 
     return (
         <NativeBaseProvider>
