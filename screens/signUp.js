@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { View } from "react-native";
 import {
   NativeBaseProvider,
   Text,
@@ -7,7 +6,6 @@ import {
   VStack,
   FormControl,
   Input,
-
 } from "native-base";
 import { connect } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";

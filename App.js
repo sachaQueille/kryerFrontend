@@ -40,8 +40,16 @@ import infoDelivery from "./reducers/infoDeliveryReducer";
 import missionsReducer from "./reducers/missionsReducer";
 import deliveriesReducer from "./reducers/deliveriesReducer";
 
-const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer, infoDelivery, missionsReducer, deliveriesReducer }));
-
+const store = createStore(
+  combineReducers({
+    kryerListReducer,
+    kryerReducer,
+    userReducer,
+    infoDelivery,
+    missionsReducer,
+    deliveriesReducer,
+  })
+);
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -56,8 +64,12 @@ function StackJourneyNavigator() {
       {/* <Stack.Screen name="CurrentMission" component={CurrentMission} /> */}
       <Stack.Screen name="FinishedMissions" component={FinishedMissions} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
+      <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      {/* <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} /> */}
+      <Stack.Screen
+        name="CurrentMissionClient"
+        component={CurrentMissionClient}
+      />
       <Stack.Screen name="MissionsScreen" component={MissionsScreen} />
       <Stack.Screen name="MissionsScreen2" component={MissionsScreen2} />
       <Stack.Screen name="MissionsScreen3" component={MissionsScreen3} />
@@ -76,7 +88,10 @@ function StackHomeNavigator() {
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="KryerList" component={KryerList} />
       <Stack.Screen name="Kryer" component={Kryer} />
-      <Stack.Screen name="ReceipientCoordinate" component={ReceipientCoordinate} />
+      <Stack.Screen
+        name="ReceipientCoordinate"
+        component={ReceipientCoordinate}
+      />
     </Stack.Navigator>
   );
 }
@@ -91,20 +106,9 @@ function StackProfilNavigator(props) {
   );
 }
 
-function StackDeliveryNavigator(props) {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="FollowMyDelivery" component={DeliveryStatus} />
-      <Stack.Screen name="signIn" component={signIn} />
-      <Stack.Screen name="signUp" component={signUp} />
-    </Stack.Navigator>
-  );
-}
-
 function mapStateToProps(state) {
   return { user: state.userReducer };
 }
-
 
 export default function App(props) {
   return (
@@ -134,7 +138,7 @@ export default function App(props) {
           })}
         >
           <Tab.Screen name="Accueil" component={StackHomeNavigator} />
-          <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
+          <Tab.Screen name="Colis" component={DeliveryStatus} />
           <Tab.Screen name="Missions" component={StackJourneyNavigator} />
           <Tab.Screen name="Tchat" component={Tchat} />
           <Tab.Screen name="Profil" component={StackProfilNavigator} />
@@ -143,5 +147,3 @@ export default function App(props) {
     </Provider>
   );
 }
-
-

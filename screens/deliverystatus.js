@@ -107,7 +107,6 @@ function DeliveryStatus(props) {
                     </Box>
                 </VStack>
             </Center>
-
         </NativeBaseProvider>
     )
 }
