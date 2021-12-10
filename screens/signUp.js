@@ -24,7 +24,7 @@ function signUp(props) {
 
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
-    const data = await fetch("http://192.168.1.33:3000/signUp", {
+    const data = await fetch("http://192.168.1.32:3000/signUp", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`,
@@ -45,6 +45,7 @@ function signUp(props) {
 
   return (
     <NativeBaseProvider>
+      <ScrollView>
       <VStack
         space={3}
         mt="5"
@@ -112,6 +113,7 @@ function signUp(props) {
           Inscription
         </Button>
       </VStack>
+      </ScrollView>
     </NativeBaseProvider>
   );
 }

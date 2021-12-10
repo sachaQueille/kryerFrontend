@@ -15,7 +15,7 @@ function User(props) {
   const [changeAvatar, setChangeAvatar] = useState(false);
 
   const updateAvatar = async (avatarChoose) => {
-    let rawResponse = await fetch("http://192.168.1.33:3000/updateInfos/", {
+    let rawResponse = await fetch("http://192.168.1.32:3000/updateInfos/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `token=${props.user.token}&avatar=${avatarChoose}`,
