@@ -45,7 +45,6 @@ function signUp(props) {
 
   return (
     <NativeBaseProvider>
-      <ScrollView>
         <VStack
           space={3}
           mt="5"
@@ -113,7 +112,6 @@ function signUp(props) {
             Inscription
           </Button>
         </VStack>
-      </ScrollView>
     </NativeBaseProvider>
   );
 }

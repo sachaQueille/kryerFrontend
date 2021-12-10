@@ -47,7 +47,50 @@ function MyDelivery(props) {
     } else {
 
     deliveryList =
-            <Box
+    <Box width="80%" height="50%" >
+                    <List mt={2} fontSize={24} spacing={4} my={2} divider={<Divider />} borderRadius="lg">
+                        <List.Item>
+                            <Icon
+                                as={<MaterialCommunityIcons name="cube-send" />}
+                                size={8}
+                                mr="5"
+                                color="indigo.800"
+                            />
+                            <Text> Paris / Lille - 20kg - 30€ </Text>
+                            <Icon
+                                as={<Ionicons name="chevron-forward" />}
+                                size={6}
+                                ml="5"
+                                color="indigo.800"
+
+                                onPress={() => handleDeliveryClick("item")}
+                            />
+                        </List.Item>
+
+                        <List.Item 
+                        
+                        >
+                            <Icon
+                                as={<MaterialCommunityIcons name="cube-send" />}
+                                size={8}
+                                mr="5"
+                                color="indigo.800"
+                            />
+                            <Text> Paris / Lille - 20kg - 30€ </Text>
+                            <Icon
+                                as={<FontAwesome5 name="ellipsis-h" />}
+                                size={6}
+                                ml="5"
+                                color="indigo.800"
+
+                                onPress={() => handleDeliveryClick("item")}
+                            />
+                        </List.Item>
+                    </List>
+                    
+                </Box>
+
+            {/* <Box
                 w={{
                     base: "100%",
                     md: "25%",
@@ -112,7 +155,7 @@ function MyDelivery(props) {
                     )}
                     keyExtractor={(item) => item.id}
                 />
-            </Box>
+            </Box> */}
 
         }
 
@@ -120,48 +163,7 @@ function MyDelivery(props) {
         <NativeBaseProvider style={{ flex: 1 }}>
             <Center  paddingTop="48">
                 {deliveryList}
-                <Box width="80%" height="50%" >
-                    <List mt={2} fontSize={24} spacing={4} my={2} divider={<Divider />} borderRadius="lg">
-                        <List.Item>
-                            <Icon
-                                as={<MaterialCommunityIcons name="cube-send" />}
-                                size={8}
-                                mr="5"
-                                color="indigo.800"
-                            />
-                            <Text> Paris / Lille - 20kg - 30€ </Text>
-                            <Icon
-                                as={<Ionicons name="chevron-forward" />}
-                                size={6}
-                                ml="5"
-                                color="indigo.800"
-
-                                onPress={() => handleDeliveryClick("item")}
-                            />
-                        </List.Item>
-
-                        <List.Item 
-                        
-                        >
-                            <Icon
-                                as={<MaterialCommunityIcons name="cube-send" />}
-                                size={8}
-                                mr="5"
-                                color="indigo.800"
-                            />
-                            <Text> Paris / Lille - 20kg - 30€ </Text>
-                            <Icon
-                                as={<FontAwesome5 name="ellipsis-h" />}
-                                size={6}
-                                ml="5"
-                                color="indigo.800"
-
-                                onPress={() => handleDeliveryClick("item")}
-                            />
-                        </List.Item>
-                    </List>
-                    
-                </Box>
+                
             </Center>
         </NativeBaseProvider>
     );
