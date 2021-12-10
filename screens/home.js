@@ -8,6 +8,7 @@ function Home(props) {
 
 
     useEffect(()=>{
+            
             AsyncStorage.getItem("token", function(error, data) {
             console.log(data);
 
