@@ -46,7 +46,7 @@ function SendDelivery(props) {
         });
 
         responce = await responce.json();
-        console.log(responce);
+       
         props.kryerList(responce);
         props.infoDelivery({height:height,width:width,length:length, weight:weight});
         props.navigation.navigate('KryerList')

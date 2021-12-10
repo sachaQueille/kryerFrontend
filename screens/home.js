@@ -10,14 +10,14 @@ function Home(props) {
     useEffect(()=>{
             AsyncStorage.clear();
             AsyncStorage.getItem("token", function(error, data) {
-            console.log(data);
+           
 
             if (data){
                 async function loadUser(){
                 var user = await fetch(`http://192.168.1.109:3000/getUser?token=${JSON.parse(data)}`);
                 user = await user.json();
-                console.log(user);
-                props.addUser(user);
+               
+                props.addUser(user.user[0]);
             }
             
             loadUser()

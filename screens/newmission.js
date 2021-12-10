@@ -21,8 +21,9 @@ export const MissionList = (props) => {
     const [dataUser, setDataUser] = useState([]);
     
     useEffect(() => {
-        async function loadUser() {
-            const rawResponse = await fetch('http://192.168.1.109:3000/searchUser');
+
+        async function loadMission() {
+            const rawResponse = await fetch('http://172.17.1.16:3000/getMission');
             const response = await rawResponse.json();
             setDataUser(response);
 

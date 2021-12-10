@@ -1,9 +1,16 @@
-import React from "react";
+import React , {useState}  from "react";
 import { View, Text } from "react-native";
 import { Button, NativeBaseProvider, VStack, Input, StatusBar, KeyboardAvoidingView, Heading, Center } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import { connect } from "react-redux";
 
 export default function TerminateMission(props) {
+
+  const [verifCode, setVerifCode] = useState("");
+
+ 
+
+
   return (
     
     <NativeBaseProvider>
@@ -17,7 +24,7 @@ export default function TerminateMission(props) {
         justifyContent="center"
         alignItems="center"       
       >       
-        <Heading size="xs">Entrer le code que vous avez reçu.</Heading>
+        <Heading size="xs">Entrer le code de validation</Heading>
 
         <Input
         marginTop="4"
@@ -27,9 +34,11 @@ export default function TerminateMission(props) {
             base: "75%",
             md: "50%",
         }}
+        onChangeText={(value)=>setVerifCode(value)}
+        value={verifCode}
         />
 
-        <Button marginTop="4">Terminer la mission</Button>
+        <Button marginTop="4" onPress={()=>finishClick()}>Terminer la mission</Button>
 
       </VStack>
       </ScrollView>
