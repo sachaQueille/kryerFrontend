@@ -13,7 +13,7 @@ function Home(props) {
 
             if (data){
                 async function loadUser(){
-                var user = await fetch(`http://172.17.1.42:3000/getUser?token=${JSON.parse(data)}`);
+                var user = await fetch(`http://192.168.1.109:3000/getUser?token=${JSON.parse(data)}`);
                 user = await user.json();
                 console.log(user);
                 props.addUser(user);

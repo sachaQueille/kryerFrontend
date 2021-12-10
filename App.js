@@ -121,8 +121,8 @@ export default function App(props) {
         >
           <Tab.Screen name="Accueil" component={StackHomeNavigator} /> 
           <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
-          <Tab.Screen name="Missions" component={StackJourneyNavigator} />
-          <Tab.Screen name="Tchat" component={Tchat} />
+          <Tab.Screen name="Missions" options={{tabBarBadge:5}} component={StackJourneyNavigator} />
+          <Tab.Screen name="Tchat" options={{tabBarBadge:5}} component={Tchat} />
           <Tab.Screen name="Profil" component={StackProfilNavigator} />
         </Tab.Navigator>
       </NavigationContainer>
