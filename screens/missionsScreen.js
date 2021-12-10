@@ -26,7 +26,7 @@ function MissionsScreen(props){
     }
 
 
-    var missions = props.missions.map(function(e,i){
+    var missions = (props.missions.length !=0 ) ? props.missions.map(function(e,i){
         return (
             <Button variant="outline"
             key={i}
@@ -40,7 +40,7 @@ function MissionsScreen(props){
             </Text> 
             </Button> 
         )
-    })
+    }) : <Text>tu n'as aucune missions a afficher</Text>
 
 
     return (

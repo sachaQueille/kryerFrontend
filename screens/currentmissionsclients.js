@@ -240,11 +240,11 @@ export default function CurrentMissionClient(props) {
     );
 }
 
-function mapStateToProps(state){
-    return {idmission : state.idmissionReducer}
-  }
+// function mapStateToProps(state){
+//     return {idmission : state.idmissionReducer}
+//   }
   
-  export default connect(
-    mapStateToProps,
-    null
-  )(CurrentMissionClient);
+//   export default connect(
+//     mapStateToProps,
+//     null
+//   )(CurrentMissionClient);

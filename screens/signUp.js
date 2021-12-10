@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { View , ScrollView} from "react-native";
 import {
   NativeBaseProvider,
   Text,
   Button,
   VStack,
   FormControl,
-  Input,
-  ScrollView,
+  Input
+  
 } from "native-base";
 import { connect } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -23,7 +23,7 @@ function signUp(props) {
 
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
-    const data = await fetch("http://192.168.0.30:3000/signUp", {
+    const data = await fetch("http://172.17.1.42:3000/signUp", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`,
@@ -32,7 +32,7 @@ function signUp(props) {
     const body = await data.json();
 
     if (body.result === true) {
-      props.addUser(body.user);
+      props.addUser(body.saveUser);
       AsyncStorage.setItem("token", JSON.stringify(body.token));
       props.navigation.navigate("Profil", { screen: "User" });
     } else {
