@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -26,7 +26,9 @@ import TerminateMission from "./screens/terminatemission";
 import ReceipientCoordinate from "./screens/receipientCoordinate";
 import signIn from "./screens/signIn";
 import signUp from "./screens/signUp";
-import FollowMyDelivery from "./screens/followmydelivery";
+import MissionsScreen from "./screens/missionsScreen";
+import MissionsScreen2 from "./screens/missionsScreen2";
+import MissionsScreen3 from "./screens/missionsScreen3";
 
 // redux
 import { Provider } from "react-redux";
@@ -35,9 +37,10 @@ import kryerListReducer from "./reducers/kryerListReducer";
 import kryerReducer from "./reducers/kryerReducer";
 import userReducer from "./reducers/userReducer";
 import infoDelivery from "./reducers/infoDeliveryReducer";
-import idmissionReducer from "./reducers/idmissionReducer";
+import missionsReducer from "./reducers/missionsReducer";
+import deliveriesReducer from "./reducers/deliveriesReducer";
 
-const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer,infoDelivery, idmissionReducer }));
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer, infoDelivery, missionsReducer, deliveriesReducer }));
 
 
 const Stack = createStackNavigator();
@@ -51,11 +54,15 @@ function StackJourneyNavigator() {
       <Stack.Screen name="NewMissionDetails" component={NewMissionDetails} />
       <Stack.Screen name="NewMissionToAccept" component={NewMissionToAccept} />
       <Stack.Screen name="CurrentMission" component={CurrentMission} />
-      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient}/>
+      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} />
       <Stack.Screen name="FinishedMissions" component={FinishedMissions} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen name="SendDelivery" component={SendDelivery}/>
+      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient} />
+      <Stack.Screen name="MissionsScreen" component={MissionsScreen} />
+      <Stack.Screen name="MissionsScreen2" component={MissionsScreen2} />
+      <Stack.Screen name="MissionsScreen3" component={MissionsScreen3} />
+
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );
@@ -95,8 +102,8 @@ function StackDeliveryNavigator(props) {
   );
 }
 
-function mapStateToProps(state){
-  return {user:state.userReducer};
+function mapStateToProps(state) {
+  return { user: state.userReducer };
 }
 
 
@@ -127,7 +134,7 @@ export default function App(props) {
             tabBarInactiveTintColor: "#FFFFFF",
           })}
         >
-          <Tab.Screen name="Accueil" component={StackHomeNavigator} /> 
+          <Tab.Screen name="Accueil" component={StackHomeNavigator} />
           <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
           <Tab.Screen name="Missions" component={StackJourneyNavigator} />
           <Tab.Screen name="Tchat" component={Tchat} />

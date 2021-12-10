@@ -19,11 +19,12 @@ import {
 } from 'native-base';
 
 import { ScrollView } from "react-native-gesture-handler";
+import { connect } from "react-redux";
 
 
 const logo = require("../assets/avatarfemal.jpg");
 
-export default function CurrentMissionClient(props) {
+function CurrentMissionClient(props) {
     const [showModalItem, setshowModalItem] = useState(false)
     const [showModalRecipient, setshowModalRecipient] = useState(false)
     return (
@@ -240,4 +241,11 @@ export default function CurrentMissionClient(props) {
     );
 }
 
-
+function mapStateToProps(state){
+    return {idmission : state.idmissionReducer}
+  }
+  
+  export default connect(
+    mapStateToProps,
+    null
+  )(CurrentMissionClient);

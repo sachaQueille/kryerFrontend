@@ -16,9 +16,11 @@ import {
 
 function Kryer(props){
 
+    
+
     const acceptClick=()=>{
         if(props.user){
-            props.navigation.navigate('ReceipientCoordinate',{price:props.kryer.price})
+            props.navigation.navigate('ReceipientCoordinate',{ id: props.kryer.id , price: props.kryer.price})
          }else{
              props.navigation.navigate('Profil')
          }

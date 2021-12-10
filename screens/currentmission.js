@@ -32,7 +32,7 @@ export default function CurrentMission(props) {
     useEffect(() => {
 
         async function loadMission() {
-            const rawResponse = await fetch('172.17.1.42:3000/getMission');
+            const rawResponse = await fetch('http://172.17.1.42:3000/getMission');
             const response = await rawResponse.json();          
             setDataCurrentMission(response);
         }
@@ -40,7 +40,7 @@ export default function CurrentMission(props) {
     }, []);
 
     const data = dataCurrentMission;
-    /* console.log(data); */
+   
     return (
         <NativeBaseProvider theme={theme} style={{ flex: 1 }}>
             <Center
