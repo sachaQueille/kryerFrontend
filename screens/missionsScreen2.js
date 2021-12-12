@@ -24,13 +24,8 @@ function MissionsScreen2(props){
     
 
     var deliveries = (props.deliveries.length != 0) ? props.deliveries.map(function(e,i){
-
-        
-      
-
         
         
-      console.log
 
         return (
             <Box

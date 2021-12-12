@@ -5,20 +5,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 
 function MissionsScreen(props) {
-  async function buttonClick(e) {
-    var responce = await fetch("http://192.168.0.30:3000/loadDeliveries", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `idMission=${e.id}&status=${e.status}`,
-    });
-
-    responce = await responce.json();
+ 
 
    
 
     async function buttonClick(e){
 
-        var  responce = await fetch("http://192.168.1.32:3000/loadDeliveries", {
+        var  responce = await fetch("http://10.5.49.160:3000/loadDeliveries", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idMission=${e}&status=${props.route.params.status}`
@@ -33,8 +26,7 @@ function MissionsScreen(props) {
         props.navigation.navigate("MissionsScreen2")
     }
 
-    props.navigation.navigate("MissionsScreen2");
-  }
+   
 
   var missions =
     props.missions.length != 0 ? (
