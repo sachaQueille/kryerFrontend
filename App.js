@@ -46,6 +46,9 @@ const store = createStore(combineReducers({ kryerListReducer, kryerReducer, user
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+var nbMissions = 4;
+var nbChat = 5;
+
 function StackJourneyNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -130,8 +133,8 @@ export default function App(props) {
         >
           <Tab.Screen name="Accueil" component={StackHomeNavigator} /> 
           <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
-          <Tab.Screen name="Missions" options={{tabBarBadge:5}} component={StackJourneyNavigator} />
-          <Tab.Screen name="Tchat" options={{tabBarBadge:5}} component={Tchat} />
+          <Tab.Screen name="Missions" options={{tabBarBadge:nbMissions}} component={StackJourneyNavigator} />
+          <Tab.Screen name="Tchat" options={{tabBarBadge:nbChat}} component={Tchat} />
           <Tab.Screen name="Profil" component={StackProfilNavigator} />
         </Tab.Navigator>
       </NavigationContainer>

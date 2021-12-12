@@ -19,7 +19,7 @@ function MissionsScreen2(props){
     async function loadExpeditor(e){
 
         if(expeditor.length != props.deliveries.length){
-            var Expeditor = await fetch(`http://172.17.1.16:3000/getUserById?id=${e}`);
+            var Expeditor = await fetch(`http://192.168.1.109:3000/getUserById?id=${e}`);
             Expeditor = await Expeditor.json();
             
             Expeditor =  Expeditor.user;
@@ -36,14 +36,14 @@ function MissionsScreen2(props){
 
     
 
-    var deliveries = props.deliveries.map(function(e,i){
+    var deliveries = (props.deliveries.length != 0) ? props.deliveries.map(function(e,i){
 
         
         loadExpeditor(e.expeditor_id);
 
         
         
-       if(expeditor.length != 0){
+       if(expeditor.length == props.deliveries.length){
 
         return (
             <Box
@@ -63,6 +63,7 @@ function MissionsScreen2(props){
                     source={{
                         uri: expeditor[i].avatar,
                     }}
+                    bg='transparent'
                 />
                 <VStack>
                     <Text key={`username${i}`}
@@ -90,8 +91,10 @@ function MissionsScreen2(props){
                 </Text>
             </HStack>
         </Box>
-        )}
-    })
+        )}else{
+            return <Text>Loading ...</Text>
+        }
+    }) : <Text>tu n'as aucune demande pour cette mission </Text>
 
     return (
         <NativeBaseProvider>

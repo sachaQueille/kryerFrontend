@@ -24,7 +24,7 @@ function ReceipientCoordinate(props){
     const [modalIsVisible, setModalIsVisible] = useState(false);
 
     async function validateClick(){
-        const response = await fetch("http://172.17.1.16:3000/saveDelivery", {
+        const response = await fetch("http://192.168.1.109:3000/saveDelivery", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: `height=${props.infoDelivery.height}&length=${props.infoDelivery.length}&width=${props.infoDelivery.width}&weight=${props.infoDelivery.weight}&price=${props.route.params.price}&idMission=${props.route.params.id}&firstname=${firstname}&lastname=${lastname}&email=${email}&phone=${phone}&expeditorId=${props.user._id}`

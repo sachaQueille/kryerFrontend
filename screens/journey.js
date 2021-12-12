@@ -6,10 +6,10 @@ import { connect } from "react-redux";
 function Journey(props) {
 
   
-
+    
     async function buttonClick(e){
         if(props.user){
-        var  responce = await fetch("http://172.17.1.16:3000/loadMissions", {
+        var  responce = await fetch("http://192.168.1.109:3000/loadMissions", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idKryer=${props.user._id}&status=${e}`
@@ -21,8 +21,9 @@ function Journey(props) {
         props.addMissions(responce);
 
         props.navigation.navigate("MissionsScreen");
-    } else {
-        props.navigation.navigate("Profil");
+        
+    }else{
+        props.navigation.navigate('Profil');
     }
     }
 

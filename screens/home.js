@@ -8,7 +8,6 @@ function Home(props) {
 
 
     useEffect(()=>{
-            AsyncStorage.clear();
             AsyncStorage.getItem("token", function(error, data) {
            
 
@@ -66,7 +65,7 @@ function Home(props) {
                     mx="12"
                     size="lg"
                 >
-                    Envoyer colis
+                    Envoyer un colis
                 </Button>
             </VStack>
         </NativeBaseProvider>

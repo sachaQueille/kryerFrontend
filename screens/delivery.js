@@ -3,167 +3,102 @@ import {connect} from 'react-redux';
 import {
     NativeBaseProvider,
     Text,
-    Spacer,
-    VStack,
-    HStack,
     Center,
-    FlatList,
     Box,
     Heading,
-    Avatar,
-    List,
-    Divider,
-    Icon
+    Icon,
+    Pressable
    
   } from "native-base";
 
-  import { Ionicons, MaterialCommunityIcons, MaterialIcons, AntDesign, FontAwesome5 } from "@expo/vector-icons";
-  import variables from "../vglobal/variable";
-  const logo = require("../assets/avatarfemal.jpg");
+  //import styles from "../vglobal/styles";
+
+import {MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+
 
 function MyDelivery(props) {
     const[dataDelivery, setDataDelivery] = useState('');
+
     useEffect(() => {
 
-        async function loadDelivery() {
-            const rawResponse = await fetch(`http://192.168.1.109:3000/getDelivery`);
-            const response = await rawResponse.json();          
-            setDataDelivery(response.deliveries);
+        async function loadDelivery() {          
+            var response = await fetch("http://192.168.1.109:3000/loadMyDeliveries", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `userId=${props.user._id}`
+        });
+
+            response = await response.json();
+
+            console.log(response.deliveries);
+            setDataDelivery(response.deliveries); 
         }
         loadDelivery()
+
+            
     }, []);
 
     const data=dataDelivery;
-    console.log(data);
-    console.log(data.length);
 
-    const handleDeliveryClick=(item)=>{
-        props.navigation.navigate('DeliveryStatus',{delivery:item});
+    const handleDeliveryClick=(sendata)=>{
+        props.navigation.navigate('DeliveryStatus',{deliveryStatus:
+            {verifcode:sendata.verifCode,prisEnCharge:true, enTransit:false,livre:false}});
+    }
+
+    var iconName = "";
+    const selectIcon=(status)=>{
+        if(status == "notYet"){
+            iconName = "schedule-send";
+            return(iconName)
+        } else if(status == "validate"){
+            iconName = "send";
+            return(iconName)
+        } else if (status == "cancel"){
+            iconName = "cancel-schedule-send";
+            return(iconName)
+        }
     }
 
     var deliveryList = "";
-    if (data.length === 0) {
-        deliveryList = <Text style={{ textAlign: 'center' }}>"Vous n'avez aucun colis pour l'instant :)"</Text>
+    if (data.length == 0) {
+        deliveryList =  <Text style={{ textAlign: 'center' }}>
+                            Vous n'avez pas encore envoyé un colis!
+                        </Text>
     } else {
-
-    deliveryList =
-    <Box width="80%" height="50%" >
-                    <List mt={2} fontSize={24} spacing={4} my={2} divider={<Divider />} borderRadius="lg">
-                        <List.Item>
-                            <Icon
-                                as={<MaterialCommunityIcons name="cube-send" />}
-                                size={8}
-                                mr="5"
-                                color="indigo.800"
-                            />
-                            <Text> Paris / Lille - 20kg - 30€ </Text>
-                            <Icon
-                                as={<Ionicons name="chevron-forward" />}
-                                size={6}
-                                ml="5"
-                                color="indigo.800"
-
-                                onPress={() => handleDeliveryClick("item")}
-                            />
-                        </List.Item>
-
-                        <List.Item 
-                        
-                        >
-                            <Icon
-                                as={<MaterialCommunityIcons name="cube-send" />}
-                                size={8}
-                                mr="5"
-                                color="indigo.800"
-                            />
-                            <Text> Paris / Lille - 20kg - 30€ </Text>
-                            <Icon
-                                as={<FontAwesome5 name="ellipsis-h" />}
-                                size={6}
-                                ml="5"
-                                color="indigo.800"
-
-                                onPress={() => handleDeliveryClick("item")}
-                            />
-                        </List.Item>
-                    </List>
-                    
-                </Box>
-
-            {/* <Box
-                w={{
-                    base: "100%",
-                    md: "25%",
-                }}
-            >
-                <Heading fontSize="xl" p="4" pb="3" style={{ textAlign: 'center', marginBottom: 20 }}>
-                    Suivez vos colis
-                </Heading>
-                <FlatList
-                    data={data}
-                    renderItem={({ item }) => (
-                        <Box
-                            borderBottomWidth="1"
-                            _dark={{
-                                borderColor: "gray.600",
-                            }}
-                            borderColor="coolGray.200"
-                            pl="4"
-                            pr="5"
-                            py="2"
-                        >
-                            <HStack space={3} justifyContent="space-between">
-                                <Avatar
-                                    size="48px"
-                                    source={{
-                                        uri: item.url_image,
-                                    }}
-                                />
-                                <VStack>
-                                    
-                                    <Text
-                                        _dark={{
-                                            color: "warmGray.50",
-                                        }}
-                                        color="coolGray.800"
-                                        bold
-                                        onPress={() => handleDeliveryClick(item)}>
-                                        {item.weigth} 
-                                    </Text>
-                                    <Text
-                                        color="coolGray.600"
-                                        _dark={{
-                                            color: "warmGray.200",
-                                        }}
-                                    >
-                                        {item.date}
-                                    </Text>
-                                </VStack>
-                                <Spacer />
-                                <Text
-                                    fontSize="xs"
-                                    _dark={{
-                                        color: "warmGray.50",
-                                    }}
-                                    color="coolGray.800"
-                                    alignSelf="flex-start"
-                                >
-                                    {item.price} €
-                                </Text>
-                            </HStack>
-                        </Box>
-                    )}
-                    keyExtractor={(item) => item.id}
-                />
-            </Box> */}
-
-        }
+        deliveryList = 
+        <Box >
+            {data.map(item=>
+                <Pressable onPress={() => handleDeliveryClick(item)}
+                key={item._id}
+                marginBottom="5"
+                p={2} borderWidth={1} borderRadius="md" bgColor="cyan.200" borderColor="cyan.200"
+                style={{ flexDirection: "row", justifyContent: "center", alignItems:"center", 
+                padding:5 }}
+                >
+                    <Icon
+                               as={<MaterialCommunityIcons name="cube-send" />}
+                               size={8}
+                               mr="5"
+                               color="indigo.800"
+                    />
+                    <Text> {item.departure_journey} / {item.arrival_journey} - {item.weight}kg - {item.price}€  </Text>
+                    <Icon
+                               as={<MaterialIcons name={selectIcon(item.status_delivery)} />}
+                               size={6}
+                               ml="5"
+                               color="indigo.800"
+                    />  
+                </Pressable> 
+                )} 
+            </Box> 
+    }
 
     return (
-        <NativeBaseProvider style={{ flex: 1 }}>
-            <Center  paddingTop="48">
-                {deliveryList}
-                
+        <NativeBaseProvider>
+            
+            <Center flex={1} px="3" > 
+            <Heading marginBottom="5">Suivre mes colis</Heading>
+            {deliveryList}
             </Center>
         </NativeBaseProvider>
     );

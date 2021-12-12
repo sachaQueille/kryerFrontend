@@ -22,6 +22,7 @@ export default function MissionsScreen3(props){
                     source={{
                         uri: info.infoExpeditor.avatar,
                     }}
+                    bg='transparent'
                 />
                 <VStack>
                     <Text 
@@ -92,14 +93,14 @@ export default function MissionsScreen3(props){
                 mx="12"
                 >
                     <Button style={{width:'50%'}}>
-                        Annuler
+                        refuser
                     </Button> 
 
                     <Button 
                     style={{backgroundColor:"indigo",width:'50%'}}
                     onPress={() => props.navigation.navigate("TerminateMission")}
                     >
-                        Terminer
+                        accepter 
                     </Button>   
                 </Button.Group> 
         </Center>                     

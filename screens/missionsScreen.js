@@ -11,7 +11,7 @@ function MissionsScreen(props){
 
     async function buttonClick(e){
 
-        var  responce = await fetch("http://172.17.1.16:3000/loadDeliveries", {
+        var  responce = await fetch("http://192.168.1.109:3000/loadDeliveries", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idMission=${e.id}&status=${e.status}`
@@ -26,7 +26,7 @@ function MissionsScreen(props){
     }
 
 
-    var missions = props.missions.map(function(e,i){
+    var missions = (props.missions.length !=0 ) ? props.missions.map(function(e,i){
         return (
             <Button variant="outline"
             key={i}
@@ -40,7 +40,7 @@ function MissionsScreen(props){
             </Text> 
             </Button> 
         )
-    })
+    }) : <Text>tu n'as aucune missions a afficher</Text>
 
 
     return (
