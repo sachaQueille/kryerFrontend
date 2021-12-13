@@ -16,23 +16,29 @@ import {
 
 function DeliveryStatus(props) {
 
-    console.log(props.route.params)
     const [supportedDelivery, setSupportedDelivery] = useState(false);
     const [inTransitDelivery, setIntransitDelivery] = useState(false);
     const [delivered, setDelivered] = useState(false);
     const [inProgress, setInProgress] = useState(0);
     const [disableButton, setDisableButton] = useState(true)
 
+    var enTransit = props.params.deliveryStatus.enTransit;
+    var livre = props.params.deliveryStatus.livre;
+    var prisEnCharge = props.params.deliveryStatus.prisEnCharge;
+    var verifcode = props.params.deliveryStatus.verifcode;
+
 
     useEffect(() => {
-        if (supportedDelivery) {
-            setInProgress(33);            
+        if (prisEnCharge) {
+            setInProgress(33); setSupportedDelivery(true)           
         }
-        if (inTransitDelivery) {
+        if (enTransit) {
+            setIntransitDelivery(true)
             setInProgress(66);
             setDisableButton(false);
         }
-        if (delivered) {
+        if (livre) {
+            setDelivered(true)
             setInProgress(100); 
             setDisableButton(false);
         }
