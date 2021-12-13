@@ -5,25 +5,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 
 function Home(props) {
-  // useEffect(() => {
-  //   AsyncStorage.getItem("token", function (error, data) {
-  //     if (data) {
-  //       async function loadUser() {
-  //         var user = await fetch(
-  //           `http://192.168.0.30:3000/getUser?token=${JSON.parse(data)}`
-  //         );
-  //         user = await user.json();
 
-  //         props.addUser(user.user[0]);
-  //       }
 
     useEffect(()=>{
+
             AsyncStorage.getItem("token", function(error, data) {
            
 
             if (data){
                 async function loadUser(){
-                var user = await fetch(`http://192.168.1.32:3000/getUser?token=${JSON.parse(data)}`);
+                var user = await fetch(`http://10.5.49.160:3000/getUser?token=${JSON.parse(data)}`);
                 user = await user.json();
                
                 props.addUser(user.user[0]);

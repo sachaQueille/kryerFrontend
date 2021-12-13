@@ -63,8 +63,9 @@ function Kryer(props){
                             <Avatar
                                 size="48px"
                                 source={{
-                                uri: props.kryer.avatarUrl,
+                                uri: props.kryer.infoKryer.avatar,
                                 }}
+                                bg='transparent'
                             />
                             <VStack>
                                 <Text

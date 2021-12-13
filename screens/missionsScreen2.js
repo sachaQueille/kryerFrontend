@@ -1,137 +1,100 @@
-import React, { useEffect, useState } from "react";
+import React , {useEffect, useState} from "react"
 import {
-  Box,
-  Avatar,
-  HStack,
-  VStack,
-  Text,
-  Spacer,
-  Center,
-  NativeBaseProvider,
+    Box,
+    Avatar,
+    HStack,
+    VStack,
+    Text,
+    Spacer,
+    Center,
+    NativeBaseProvider,
 } from "native-base";
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-function MissionsScreen2(props) {
-  const [expeditor, setExpeditor] = useState([]);
+function MissionsScreen2(props){
 
-  async function loadExpeditor(e) {
-    if (expeditor.length != props.deliveries.length) {
-      var Expeditor = await fetch(
-        `http://192.168.0.30:3000/getUserById?id=${e}`
-      );
-      Expeditor = await Expeditor.json();
 
-      Expeditor = Expeditor.user;
-
-        if(expeditor.length != props.deliveries.length){
-            var Expeditor = await fetch(`http://192.168.1.32:3000/getUserById?id=${e}`);
-            Expeditor = await Expeditor.json();
-            
-            Expeditor =  Expeditor.user;
-
-            setExpeditor([...expeditor,Expeditor]);
-        }
-       
-    };
 
 
     function deliveryClick(e){
         props.navigation.navigate("MissionsScreen3", e)
     }
-  }
 
-  // function deliveryClick(e) {
-  //   props.navigation.navigate("MissionsScreen3", e);
-  // }
+    
 
-  var deliveries =
-    props.deliveries.length != 0 ? (
-      props.deliveries.map(function (e, i) {
-        loadExpeditor(e.expeditor_id);
+    var deliveries = (props.deliveries.length != 0) ? props.deliveries.map(function(e,i){
+        
+        
 
-        if (expeditor.length == props.deliveries.length) {
-          return (
+        return (
             <Box
-              key={i}
-              borderBottomWidth="1"
-              _dark={{
+            key={i}
+            borderBottomWidth="1"
+            _dark={{
                 borderColor: "gray.600",
-              }}
-              borderColor="coolGray.200"
-              pl="4"
-              pr="5"
-              py="2"
-            >
-              <HStack space={3} justifyContent="space-between">
-                <Avatar
-                  key={`avatar${i}`}
-                  size="48px"
-                  source={{
-                    uri: expeditor[i].avatar,
-                  }}
-                  bg="transparent"
+            }}
+            borderColor="coolGray.200"
+            pl="4"
+            pr="5"
+            py="2"
+        >
+            <HStack space={3} justifyContent="space-between" >
+                <Avatar key={`avatar${i}`}
+                    size="48px"
+                    source={{
+                        uri: e.infoExpeditor.avatar,
+                    }}
+                    bg='transparent'
                 />
                 <VStack>
-                  <Text
-                    key={`username${i}`}
-                    _dark={{
-                      color: "warmGray.50",
-                    }}
-                    color="coolGray.800"
-                    bold
-                    onPress={() =>
-                      deliveryClick({
-                        infoDelivery: e,
-                        infoExpeditor: expeditor[i],
-                      })
-                    }
-                  >
-                    {expeditor[i].firstName} {expeditor[i].lastName}
-                  </Text>
+                    <Text key={`username${i}`}
+                        _dark={{
+                            color: "warmGray.50",
+                        }}
+                        color="coolGray.800"
+                        bold
+                        onPress={()=>deliveryClick(e)}
+                        >
+                        {e.infoExpeditor.firstName} {e.infoExpeditor.lastName}
+                    </Text>
+                    
                 </VStack>
                 <Spacer />
-                <Text
-                  key={`weigth${i}`}
-                  fontSize="xs"
-                  _dark={{
-                    color: "warmGray.50",
-                  }}
-                  color="coolGray.800"
-                  alignSelf="flex-start"
+                <Text key={`weigth${i}`}
+                    fontSize="xs"
+                    _dark={{
+                        color: "warmGray.50",
+                    }}
+                    color="coolGray.800"
+                    alignSelf="flex-start"
                 >
-                  {e.weigth} kg
+                    {e.weigth} kg
                 </Text>
-              </HStack>
-            </Box>
-          );
-        } else {
-          return <Text>Loading ...</Text>;
-        }
-      })
-    ) : (
-      <Text>tu n'as aucune demande pour cette mission </Text>
-    );
+            </HStack>
+        </Box>
+        )
+    }) : <Text>tu n'as aucune demande pour cette mission </Text>
 
-  return (
-    <NativeBaseProvider>
-      <Center flex={1} px="3">
-        {deliveries}
-      </Center>
-    </NativeBaseProvider>
-  );
+    return (
+        <NativeBaseProvider>
+            <Center flex={1} px="3">
+                {deliveries}
+            </Center>
+            
+        </NativeBaseProvider>
+    )
+
 }
 
-function mapStateToProps(state) {
-  return { deliveries: state.deliveriesReducer };
-}
+function mapStateToProps(state){
+    return { deliveries: state.deliveriesReducer}
+  }
+  
 
-//   function mapDispatchToProps(dispatch) {
-//     return {
-//       addDeliveries: function(e) {
-//             dispatch( {type: 'addDeliveries', deliveries:e} )
-//         }
-//     }
-//    };
 
-export default connect(mapStateToProps, null)(MissionsScreen2);
+
+  export default connect(
+    mapStateToProps,
+    null
+  )(MissionsScreen2);

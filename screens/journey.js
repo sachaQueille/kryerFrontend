@@ -7,15 +7,21 @@ function Journey(props) {
 
     async function buttonClick(e){
         if(props.user){
-        var  responce = await fetch("http://192.168.1.32:3000/loadMissions", {
+        var  responce = await fetch("http://10.5.49.160:3000/loadMissions", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idKryer=${props.user._id}&status=${e}`
             });
 
-      props.navigation.navigate("MissionsScreen");
-    } else {
-      props.navigation.navigate("Profil");
+        responce = await responce.json();
+
+      
+        props.addMissions(responce);
+
+        props.navigation.navigate("MissionsScreen",{status:e});
+        
+    }else{
+        props.navigation.navigate('Profil');
     }
   }
 
@@ -47,26 +53,26 @@ function Journey(props) {
           Nouvelles missions
         </Button>
 
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          onPress={() => buttonClick("currentMission")}
-          marginBottom={10}
-          mx="12"
-          size="lg"
-        >
-          Missions en cours
-        </Button>
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          onPress={() => buttonClick("finishedMission")}
-          mx="12"
-          size="lg"
-        >
-          Missions accomplies
-        </Button>
-      </VStack>
-    </NativeBaseProvider>
-  );
+                <Button
+                    style={{ backgroundColor: "indigo" }}
+                    onPress={() => buttonClick("currentMission")}
+                    marginBottom={10}
+                    mx="12"
+                    size="lg"
+                >
+                    Missions en cours
+                </Button>
+                <Button
+                    style={{ backgroundColor: "indigo" }}
+                    onPress={() => buttonClick("finishMission")}
+                    mx="12"
+                    size="lg"
+                >
+                    Missions accomplies
+                </Button>
+            </VStack>
+        </NativeBaseProvider>
+    );
 }
 
 function mapStateToProps(state) {

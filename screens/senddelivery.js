@@ -59,7 +59,11 @@ function SendDelivery(props) {
 
   // function de recherche de Kryer
   async function searchClick() {
+<<<<<<< HEAD
     var responce = await fetch("http://192.168.1.32:3000/searchKryer", {
+=======
+    var responce = await fetch("http://10.5.49.160:3000/searchKryer", {
+>>>>>>> e11cb04c81ce4b8f369e34f1a41703e42e74f275
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `departure=${departure}&arrival=${arrival}&date=${date}&weight=${weight}`,
