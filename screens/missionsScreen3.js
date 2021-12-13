@@ -26,6 +26,8 @@ function MissionsScreen3(props){
         responce = await responce.json();
         if(responce == true){
             props.navigation.navigate('JourneyScreen')
+
+            console.log("info",  info)
         }
     }
 

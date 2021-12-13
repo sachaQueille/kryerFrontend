@@ -48,7 +48,7 @@ function MyDelivery(props) {
     const handleDeliveryClick = (sendata) => {
         props.navigation.navigate('DeliveryStatus', {
             deliveryStatus:
-                { verifcode: sendata.verifCode, delivery_status: "inTransitDelivery" }
+                { verifcode: sendata.verifCode, delivery_status: "supportedDelivery" }
         });
     }
 
@@ -104,9 +104,21 @@ function MyDelivery(props) {
 
     return (
         <NativeBaseProvider>
+            <Center
+                style={{ backgroundColor: "indigo" }}
+                _text={{
+                    color: "#ffffff",
+                    fontWeight: "600",
+                    fontSize: "32",
+                    marginTop: "10%"
+
+                }}
+                height={120}
+                width="100%">
+                Suivre mes colis
+            </Center>
 
             <Center flex={1} px="3" >
-                <Heading marginBottom="5">Suivre mes colis</Heading>
                 {deliveryList}
             </Center>
         </NativeBaseProvider>
