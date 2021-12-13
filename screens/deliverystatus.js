@@ -49,13 +49,8 @@ function DeliveryStatus(props) {
 
     }, []);
 
-    // console.log("supportedDelivery", supportedDelivery, inProgress)
-    // console.log("inTransitDelivery", inTransitDelivery, inProgress)
-    // console.log("delivered", delivered, inProgress)
-    // console.log("disableButton", disableButton);
-
     console.log(props.route.params.deliveryStatus);
-    // console.log("props.route.params.deliveryStatus.delivery_status", props.route.params.deliveryStatus.delivery_status)
+    
     return (
         <NativeBaseProvider>
             <Center
