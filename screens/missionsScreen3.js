@@ -23,9 +23,8 @@ function MissionsScreen3(props) {
     if (info.delivery_status == "accept") {
       props.navigation.navigate("TerminateMission");
     }
-
     var responce = await fetch(
-      "http://192.168.1.109:3000/changeStatusMission",
+      "http://192.168.1.32:3000/changeStatusMission",
       {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -33,17 +32,24 @@ function MissionsScreen3(props) {
       }
     );
 
-    let addMessage = await fetch("http://192.168.1.109:3000/addMessageAccept", {
+    console.log(props.user)
+
+    var addMessage = await fetch("http://192.168.1.32:3000/addMessageAccept", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `expeditor=${info.expeditor_id}&recipient=${
-        props.user._id
-      }&date=${newDate()}`,
+      body: `expeditor=${info.expeditor_id}&recipient=${props.user._id}&date="13/12/2021"`,
     });
+    
+    
 
     responce = await responce.json();
+
+    console.log("responce", responce)
+    
     if (responce == true) {
       props.navigation.navigate("JourneyScreen");
+
+      
     }
   }
 
@@ -145,7 +151,7 @@ function MissionsScreen3(props) {
 }
 
 function mapStateToProps(state) {
-  return { missionId: state.missionIdReducer };
+  return { missionId: state.missionIdReducer, user: state.userReducer };
 }
 
 export default connect(mapStateToProps, null)(MissionsScreen3);

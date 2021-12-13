@@ -18,7 +18,7 @@ function Home(props) {
                 user = await user.json();
                
                 props.addUser(user.user[0]);
-                console.log("props.user", props.user)
+                console.log("props.user", user)
             }            
             loadUser()            
             }            
