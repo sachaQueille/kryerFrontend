@@ -7,7 +7,7 @@ function Journey(props) {
 
     async function buttonClick(e){
         if(props.user){
-        var  responce = await fetch("http://192.168.1.109:3000/loadMissions", {
+        var  responce = await fetch("http://192.168.1.32:3000/loadMissions", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idKryer=${props.user._id}&status=${e}`

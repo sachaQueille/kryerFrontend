@@ -17,7 +17,7 @@ function MissionsScreen3(props){
             props.navigation.navigate("TerminateMission")
         }
 
-        var  responce = await fetch("http://192.168.1.109:3000/changeStatusMission", {
+        var  responce = await fetch("http://192.168.1.32:3000/changeStatusMission", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idMission=${props.missionId}&weigth=${info.weigth}&idDelivery=${info._id}`
@@ -26,6 +26,8 @@ function MissionsScreen3(props){
         responce = await responce.json();
         if(responce == true){
             props.navigation.navigate('JourneyScreen')
+
+            console.log("info",  info)
         }
 
         console.log("infos",info);
