@@ -22,7 +22,7 @@ function MyDelivery(props) {
     useEffect(() => {
 
         async function loadDelivery() {
-            var response = await fetch("http://192.168.1.32:3000/loadMyDeliveries", {
+            var response = await fetch("http://192.168.1.109:3000/loadMyDeliveries", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `userId=${props.user._id}`
