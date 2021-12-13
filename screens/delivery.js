@@ -17,13 +17,8 @@ import {MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 
 function MyDelivery(props) {
-    const[dataDelivery, setDataDelivery] = useState('');
-    const[prisEnCharge, setPrisEnCharge] = useState(false);
-    const[enTransit, setEnTransit] = useState(false);
-    const[livre, setLivre] = useState(false);
+    const[dataDelivery, setDataDelivery] = useState('');   
     
-    
-
     useEffect(() => {
 
         async function loadDelivery() {          
