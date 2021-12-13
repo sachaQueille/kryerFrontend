@@ -18,6 +18,11 @@ import {MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 function MyDelivery(props) {
     const[dataDelivery, setDataDelivery] = useState('');
+    const[prisEnCharge, setPrisEnCharge] = useState(false);
+    const[enTransit, setEnTransit] = useState(false);
+    const[livre, setLivre] = useState(false);
+    
+    
 
     useEffect(() => {
 
@@ -40,9 +45,14 @@ function MyDelivery(props) {
 
     const data=dataDelivery;
 
+    /* const handleDeliveryClick=(sendata)=>{
+        props.navigation.navigate('DeliveryStatus',{deliveryStatus:
+            {verifcode:sendata.verifCode,delivery_status:sendata.delivery_status}});
+    } */
+
     const handleDeliveryClick=(sendata)=>{
         props.navigation.navigate('DeliveryStatus',{deliveryStatus:
-            {verifcode:sendata.verifCode,prisEnCharge:true, enTransit:false,livre:false}});
+            {verifcode:sendata.verifCode,delivery_status:"inTransitDelivery"}});
     }
 
     var iconName = "";
@@ -83,7 +93,7 @@ function MyDelivery(props) {
                     />
                     <Text> {item.departure_journey} / {item.arrival_journey} - {item.weight}kg - {item.price}€  </Text>
                     <Icon
-                               as={<MaterialIcons name={selectIcon(item.status_delivery)} />}
+                               as={<MaterialIcons name={selectIcon(item.status_mission)} />}
                                size={6}
                                ml="5"
                                color="indigo.800"
