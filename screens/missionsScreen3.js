@@ -45,9 +45,9 @@ function MissionsScreen3(props) {
     responce = await responce.json();
 
     console.log("responce", responce)
-    
-    if (responce == true) {
-      props.navigation.navigate("JourneyScreen");
+
+    if (responce) {
+      props.navigation.navigate("HomeScreen");
 
       
     }
@@ -122,6 +122,7 @@ function MissionsScreen3(props) {
             <Text>Telephone : {info.coordinates_recipient.phone}</Text>
           </Box>
         </Center>
+        
         {info.delivery_status == "terminate" ? null : (
           <Center>
             <Button.Group
