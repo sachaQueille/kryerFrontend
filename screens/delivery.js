@@ -22,7 +22,7 @@ function MyDelivery(props) {
     useEffect(() => {
 
         async function loadDelivery() {          
-            var response = await fetch("http://192.168.1.109:3000/loadMyDeliveries", {
+            var response = await fetch("http://192.168.1.32:3000/loadMyDeliveries", {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `userId=${props.user._id}`
@@ -30,7 +30,7 @@ function MyDelivery(props) {
 
             response = await response.json();
 
-            console.log(response.deliveries);
+            console.log("response.deliveries", response.deliveries);
             setDataDelivery(response.deliveries); 
         }
         loadDelivery()
@@ -41,8 +41,8 @@ function MyDelivery(props) {
     const data=dataDelivery;
 
     const handleDeliveryClick=(sendata)=>{
-        props.navigation.navigate('DeliveryStatus',{deliveryStatus:
-            {verifcode:sendata.verifCode,prisEnCharge:true, enTransit:false,livre:false}});
+        props.navigation.navigate('DeliveryStatus', 
+            {verifcode:sendata.verifCode, prisEnCharge:true, enTransit:false, livre:false});
     }
 
     var iconName = "";
