@@ -47,7 +47,7 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 var nbMissions = 4;
-var nbChat = 5;
+var nbChat = 0;
 
 function StackJourneyNavigator() {
   return (
