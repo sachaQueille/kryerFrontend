@@ -14,33 +14,35 @@ import {
     Checkbox
 } from 'native-base';
 
-
-
 function DeliveryStatus(props) {
 
-
-
     console.log(props.route.params)
-    const [supportedDelivery, setSupportedDelivery] = useState(true);
-    const [inTransitDelivery, setIntransitDelivery] = useState(true);
-    const [delivered, setDelivered] = useState(true);
+    const [supportedDelivery, setSupportedDelivery] = useState(false);
+    const [inTransitDelivery, setIntransitDelivery] = useState(false);
+    const [delivered, setDelivered] = useState(false);
     const [inProgress, setInProgress] = useState(0);
+    const [disableButton, setDisableButton] = useState(true)
+
 
     useEffect(() => {
         if (supportedDelivery) {
-          setInProgress(33);
+            setInProgress(33);            
         }
         if (inTransitDelivery) {
-          setInProgress(66);
+            setInProgress(66);
+            setDisableButton(false);
         }
         if (delivered) {
-          setInProgress(100);
+            setInProgress(100); 
+            setDisableButton(false);
         }
-      }, []);
+
+    }, []);
 
     console.log("supportedDelivery", supportedDelivery, inProgress)
     console.log("inTransitDelivery", inTransitDelivery, inProgress)
     console.log("delivered", delivered, inProgress)
+    console.log("disableButton", disableButton);
 
     return (
         <NativeBaseProvider>
@@ -101,18 +103,17 @@ function DeliveryStatus(props) {
             <Center marginTop="150">
                 <VStack space={4} alignItems="center">
                     <Box>
-                        <Button size="lg" backgroundColor="error.800" >
-                            Annuler la demande
-                        </Button>
+                        {disableButton ? <Button size="lg"
+                backgroundColor="error.800"
+                onPress={() => console.log("disableButton", disableButton)
+                }>
+                Annuler la demande
+            </Button> : null}
                     </Box>
                 </VStack>
             </Center>
         </NativeBaseProvider>
     )
 }
-
-
-
-
 
 export default DeliveryStatus;

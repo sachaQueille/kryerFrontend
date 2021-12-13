@@ -41,9 +41,9 @@ function MissionsScreen2(props) {
     }
   }
 
-  function deliveryClick(e) {
-    props.navigation.navigate("MissionsScreen3", e);
-  }
+  // function deliveryClick(e) {
+  //   props.navigation.navigate("MissionsScreen3", e);
+  // }
 
   var deliveries =
     props.deliveries.length != 0 ? (

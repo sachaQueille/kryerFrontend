@@ -13,6 +13,7 @@ import {
 } from "native-base";
 
 import { connect } from 'react-redux';
+import {TouchableOpacity} from 'react-native'
 
 
 
@@ -45,6 +46,7 @@ function KryerList(props) {
                 <FlatList
                     data={props.kryerList}
                     renderItem={({ item }) => (
+                        <TouchableOpacity onPress={() => boxClick(item)}>
                         <Box
                             borderBottomWidth="1"
                             _dark={{
@@ -69,7 +71,7 @@ function KryerList(props) {
                                         }}
                                         color="coolGray.800"
                                         bold
-                                        onPress={() => boxClick(item)}>
+                                        >
                                         {item.departure} / {item.arrival}
                                     </Text>
                                     <Text
@@ -94,6 +96,7 @@ function KryerList(props) {
                                 </Text>
                             </HStack>
                         </Box>
+                        </TouchableOpacity>
                     )}
                     keyExtractor={(item) => item.id}
                 />

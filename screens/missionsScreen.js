@@ -5,14 +5,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 
 function MissionsScreen(props) {
-  async function buttonClick(e) {
-    var responce = await fetch("http://192.168.0.30:3000/loadDeliveries", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `idMission=${e.id}&status=${e.status}`,
-    });
+  // async function buttonClick(e) {
+  //   var responce = await fetch("http://192.168.0.30:3000/loadDeliveries", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //     body: `idMission=${e.id}&status=${e.status}`,
+  //   });
 
-    responce = await responce.json();
+  //   responce = await responce.json();
 
    
 
@@ -29,8 +29,8 @@ function MissionsScreen(props) {
 
         props.addDeliveries(responce);
 
-        props.navigation.navigate("MissionsScreen2")
-    }
+    //     props.navigation.navigate("MissionsScreen2")
+    // }
 
     props.navigation.navigate("MissionsScreen2");
   }
@@ -54,7 +54,7 @@ function MissionsScreen(props) {
         );
       })
     ) : (
-      <Text>tu n'as aucune missions a afficher</Text>
+      <Text>Tu n'as aucune missions à afficher</Text>
     );
 
   return (
