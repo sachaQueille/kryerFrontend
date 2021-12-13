@@ -3,12 +3,31 @@ import { Box, Heading,NativeBaseProvider, Center, Avatar,
  Image, Button, Text, HStack, Spacer, VStack} from 'native-base';
 import { connect } from "react-redux";
 
-export default function MissionsScreen3(props){
+function MissionsScreen3(props){
 
 
     var info = props.route.params;
-
+    
+    
     const logo = require("../assets/download.jpeg");
+
+    async function acceptClick(){
+        
+        if(info.delivery_status == "accept"){
+            props.navigation.navigate("TerminateMission")
+        }
+
+        var  responce = await fetch("http://192.168.1.109:3000/changeStatusMission", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `idMission=${props.missionId}&weigth=${info.weigth}&idDelivery=${info._id}`
+            });
+
+        responce = await responce.json();
+        if(responce == true){
+            props.navigation.navigate('JourneyScreen')
+        }
+    }
 
     return ( 
     <NativeBaseProvider>
@@ -16,7 +35,7 @@ export default function MissionsScreen3(props){
         <Center>
 
             
-            <HStack space={3} justifyContent="space-between" onPress={()=>deliveryClick({infoDelivery:e,infoExpeditor:expeditor})} style={{marginLeft:'10%'}}>
+            <HStack space={3} justifyContent="space-between"  style={{marginLeft:'10%'}}>
                 <Avatar 
                     size="48px"
                     source={{
@@ -66,24 +85,25 @@ export default function MissionsScreen3(props){
            
                     <Box p="3">
                         <Text>Information Colis</Text>
-                        <Text>Poids : {info.infoDelivery.weigth}</Text>
-                        <Text>Hauteur : {info.infoDelivery.measures.heigth} </Text>
-                        <Text>Longueur : {info.infoDelivery.measures.length}</Text>
-                        <Text>Largeur : {info.infoDelivery.measures.width} </Text>
+                        <Text>Poids : {info.weigth}</Text>
+                        <Text>Hauteur : {info.measures.heigth} </Text>
+                        <Text>Longueur : {info.measures.length}</Text>
+                        <Text>Largeur : {info.measures.width} </Text>
                     </Box>
             </Box> 
                     <Box p="3">
                         <Text>Coordonnées du receveur</Text>
-                        <Text>Nom : {info.infoDelivery.coordinates_recipient.lastName}</Text>
-                        <Text>Prenom : {info.infoDelivery.coordinates_recipient.firstName}</Text>
-                        <Text>Email : {info.infoDelivery.coordinates_recipient.email}</Text>
-                        <Text>Telephone : {info.infoDelivery.coordinates_recipient.phone}</Text>
+                        <Text>Nom : {info.coordinates_recipient.lastName}</Text>
+                        <Text>Prenom : {info.coordinates_recipient.firstName}</Text>
+                        <Text>Email : {info.coordinates_recipient.email}</Text>
+                        <Text>Telephone : {info.coordinates_recipient.phone}</Text>
                     </Box>                
            
 
         </Center>
-
+        {(info.delivery_status == "terminate") ? null : 
         <Center>
+            
                 <Button.Group
                 display="flex"
                 flexDirection="row"
@@ -93,20 +113,30 @@ export default function MissionsScreen3(props){
                 mx="12"
                 >
                     <Button style={{width:'50%'}}>
-                        refuser
+                    { (info.delivery_status == "accept") ? "Annuler" : "Refuser"} 
                     </Button> 
 
                     <Button 
                     style={{backgroundColor:"indigo",width:'50%'}}
-                    onPress={() => props.navigation.navigate("TerminateMission")}
+                    onPress={() => acceptClick()}
                     >
-                        accepter 
+                      { (info.delivery_status == "accept") ? "Terminer" : "accepter"} 
                     </Button>   
                 </Button.Group> 
-        </Center>                     
+        </Center>   }                  
     </Center>
     
 </NativeBaseProvider>)
    
 }
 
+function mapStateToProps(state){
+    return { missionId: state.missionIdReducer}
+  }
+  
+
+
+  export default connect(
+    mapStateToProps,
+    null
+  )(MissionsScreen3);

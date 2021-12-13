@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
 
 import { FontAwesome } from '@expo/vector-icons';
 // import { View, Text } from 'react-native';
@@ -16,20 +15,38 @@ import {
 } from 'native-base';
 
 function DeliveryStatus(props) {
-    const [pass1, setPass1] = useState(false);
-    const [pass2, setPass2] = useState(false);
-    const [pass3, setPass3] = useState(false);
 
-    var inProgress = 0;
+    console.log(props.route.params)
+    const [supportedDelivery, setSupportedDelivery] = useState(false);
+    const [inTransitDelivery, setIntransitDelivery] = useState(false);
+    const [delivered, setDelivered] = useState(false);
+    const [inProgress, setInProgress] = useState(0);
+    const [disableButton, setDisableButton] = useState(true)
 
-    if (pass1) { inProgress= 33 }
-    if (pass1 && pass2) { inProgress = inProgress = 66 }
-    if(pass1 && pass2 && pass3) { inProgress = 100 }
+
+    useEffect(() => {
+        if (supportedDelivery) {
+            setInProgress(33);            
+        }
+        if (inTransitDelivery) {
+            setInProgress(66);
+            setDisableButton(false);
+        }
+        if (delivered) {
+            setInProgress(100); 
+            setDisableButton(false);
+        }
+
+    }, []);
+
+    console.log("supportedDelivery", supportedDelivery, inProgress)
+    console.log("inTransitDelivery", inTransitDelivery, inProgress)
+    console.log("delivered", delivered, inProgress)
+    console.log("disableButton", disableButton);
 
     console.log(props.route.params);
     return (
         <NativeBaseProvider>
-            <ScrollView>
             <Center
                 style={{ backgroundColor: "indigo" }}
                 _text={{
@@ -51,8 +68,8 @@ function DeliveryStatus(props) {
                             Etat de la livraison
                         </Heading>
                         <VStack mx="4" space="md">
-                        <Progress size="2xl" colorScheme="cyan.200" value={inProgress} />
-                            
+                            <Progress size="2xl" colorScheme="purple" value={inProgress} />
+
                         </VStack>
                     </VStack>
                 </Box>
@@ -63,21 +80,21 @@ function DeliveryStatus(props) {
                     <Checkbox
                         colorScheme="purple"
                         size="lg"
-                        onChange={() => setPass1(!pass1)}
+                        isChecked={supportedDelivery}
                     >
                         Colis pris en charge
                     </Checkbox>
                     <Checkbox
                         colorScheme="purple"
                         size="lg"
-                        onChange={() => setPass2(!pass2)}
+                        isChecked={inTransitDelivery}
                     >
                         Colis en transit
                     </Checkbox>
                     <Checkbox
                         colorScheme="purple"
                         size="lg"
-                        onChange={() => setPass3(!pass3)}
+                        isChecked={delivered}
                     >
                         Colis livré
                     </Checkbox>
@@ -87,13 +104,15 @@ function DeliveryStatus(props) {
             <Center marginTop="150">
                 <VStack space={4} alignItems="center">
                     <Box>
-                        <Button size="lg" backgroundColor="error.800" >
-                            Annuler la demande
-                        </Button>
+                        {disableButton ? <Button size="lg"
+                backgroundColor="error.800"
+                onPress={() => console.log("disableButton", disableButton)
+                }>
+                Annuler la demande
+            </Button> : null}
                     </Box>
                 </VStack>
             </Center>
-            </ScrollView>
         </NativeBaseProvider>
     )
 }

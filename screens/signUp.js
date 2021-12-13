@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { View , ScrollView} from "react-native";
 import {
   NativeBaseProvider,
   Text,
   Button,
   VStack,
   FormControl,
-  Input
-  
+  Input,
 } from "native-base";
 import { connect } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ScrollView } from "react-native-gesture-handler";
 
 function signUp(props) {
   const [signUpFirstname, setSignUpFirstname] = useState("");

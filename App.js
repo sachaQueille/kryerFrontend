@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -13,12 +13,13 @@ import Journey from "./screens/journey";
 import User from "./screens/user";
 import Tchat from "./screens/tchat";
 import NewMission from "./screens/newmission";
+import NewMissionDetails from "./screens/newmissiondetails";
+import NewMissionToAccept from "./screens/newmissiontoaccept";
 import CurrentMission from "./screens/currentmission";
 import FinishedMissions from "./screens/finishedmissions";
 import PurposeJourney from "./screens/purposejourney";
 import SendDelivery from "./screens/senddelivery";
 import KryerList from "./screens/kryerList";
-import NewMissionOne from "./screens/newmissionone";
 import PurposeDetails from "./screens/purposedetails";
 import Kryer from "./screens/kryer";
 import CurrentMissionClient from "./screens/currentmissionsclients";
@@ -39,8 +40,9 @@ import userReducer from "./reducers/userReducer";
 import infoDelivery from "./reducers/infoDeliveryReducer";
 import missionsReducer from "./reducers/missionsReducer";
 import deliveriesReducer from "./reducers/deliveriesReducer";
+import missionIdReducer from "./reducers/missionIdReducer"
 
-const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer,infoDelivery , missionsReducer, deliveriesReducer}));
+const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer,infoDelivery , missionsReducer, deliveriesReducer, missionIdReducer}));
 
 
 const Stack = createStackNavigator();
@@ -53,18 +55,22 @@ function StackJourneyNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="JourneyScreen" component={Journey} />
-      <Stack.Screen name="NewMission" component={NewMission} />
-      <Stack.Screen name="NewMissionOne" component={NewMissionOne} />
-      <Stack.Screen name="CurrentMission" component={CurrentMission} />
+      {/* <Stack.Screen name="NewMission" component={NewMission} />
+      <Stack.Screen name="NewMissionDetails" component={NewMissionDetails} />
+      <Stack.Screen name="NewMissionToAccept" component={NewMissionToAccept} /> */}
+      {/* <Stack.Screen name="CurrentMission" component={CurrentMission} /> */}
       <Stack.Screen name="FinishedMissions" component={FinishedMissions} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
-      <Stack.Screen name="SendDelivery" component={SendDelivery}/>
+      <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient}/>
-      <Stack.Screen name="MissionsScreen" component={MissionsScreen}/>
-      <Stack.Screen name="MissionsScreen2" component={MissionsScreen2}/>
-      <Stack.Screen name="MissionsScreen3" component={MissionsScreen3}/>
-      
+      <Stack.Screen
+        name="CurrentMissionClient"
+        component={CurrentMissionClient}
+      />
+      <Stack.Screen name="MissionsScreen" component={MissionsScreen} />
+      <Stack.Screen name="MissionsScreen2" component={MissionsScreen2} />
+      <Stack.Screen name="MissionsScreen3" component={MissionsScreen3} />
+
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );
@@ -79,7 +85,10 @@ function StackHomeNavigator() {
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="KryerList" component={KryerList} />
       <Stack.Screen name="Kryer" component={Kryer} />
-      <Stack.Screen name="ReceipientCoordinate" component={ReceipientCoordinate} />
+      <Stack.Screen
+        name="ReceipientCoordinate"
+        component={ReceipientCoordinate}
+      />
     </Stack.Navigator>
   );
 }
@@ -102,7 +111,6 @@ function StackDeliveryNavigator(props) {
     </Stack.Navigator>
   );
 }
-
 
 export default function App(props) {
   return (
@@ -141,5 +149,3 @@ export default function App(props) {
     </Provider>
   );
 }
-
-

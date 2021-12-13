@@ -26,7 +26,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 
 
-export default function NewMissionOne(props) {
+export default function NewMissionToAccept(props) {
     const [showModal, setShowModal] = useState(false)
     return (
         <NativeBaseProvider>
