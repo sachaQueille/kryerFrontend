@@ -29,7 +29,7 @@ function KryerList(props) {
         props.navigation.navigate('Kryer');
     }
 
-
+    
     //valeur de l'affichage
     var kryerList = "";
     if (props.kryerList.length === 0) {
