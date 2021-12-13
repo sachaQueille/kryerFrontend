@@ -16,35 +16,46 @@ import {
 
 function DeliveryStatus(props) {
 
-    console.log(props.route.params)
     const [supportedDelivery, setSupportedDelivery] = useState(false);
     const [inTransitDelivery, setIntransitDelivery] = useState(false);
     const [delivered, setDelivered] = useState(false);
     const [inProgress, setInProgress] = useState(0);
     const [disableButton, setDisableButton] = useState(true)
 
+    var statusDelivery = props.route.params.deliveryStatus.delivery_status;
+    // var livre = props.params.livre;
+    // var prisEnCharge = props.params.prisEnCharge;
+    var verifcode = props.route.params.deliveryStatus.verifcode;
+
 
     useEffect(() => {
-        if (supportedDelivery) {
+        if (statusDelivery === 'supportedDelivery') {
+            setSupportedDelivery(true);
             setInProgress(33);            
         }
-        if (inTransitDelivery) {
+        if (statusDelivery === 'inTransitDelivery') {
+            setSupportedDelivery(true);
+            setIntransitDelivery(true);
             setInProgress(66);
             setDisableButton(false);
         }
-        if (delivered) {
+        if (statusDelivery === 'delivered') {
+            setSupportedDelivery(true);
+            setIntransitDelivery(true);
+            setDelivered(true)
             setInProgress(100); 
             setDisableButton(false);
         }
 
     }, []);
 
-    console.log("supportedDelivery", supportedDelivery, inProgress)
-    console.log("inTransitDelivery", inTransitDelivery, inProgress)
-    console.log("delivered", delivered, inProgress)
-    console.log("disableButton", disableButton);
+    // console.log("supportedDelivery", supportedDelivery, inProgress)
+    // console.log("inTransitDelivery", inTransitDelivery, inProgress)
+    // console.log("delivered", delivered, inProgress)
+    // console.log("disableButton", disableButton);
 
-    console.log(props.route.params);
+    console.log(props.route.params.deliveryStatus);
+    // console.log("props.route.params.deliveryStatus.delivery_status", props.route.params.deliveryStatus.delivery_status)
     return (
         <NativeBaseProvider>
             <Center
