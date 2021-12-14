@@ -1,13 +1,13 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Home from "./screens/home";
-import MyDelivery from "./screens/delivery"
+import MyDelivery from "./screens/delivery";
 import DeliveryStatus from "./screens/deliverystatus";
 import Journey from "./screens/journey";
 import User from "./screens/user";
@@ -40,10 +40,21 @@ import userReducer from "./reducers/userReducer";
 import infoDelivery from "./reducers/infoDeliveryReducer";
 import missionsReducer from "./reducers/missionsReducer";
 import deliveriesReducer from "./reducers/deliveriesReducer";
-import missionIdReducer from "./reducers/missionIdReducer"
+import missionIdReducer from "./reducers/missionIdReducer";
 
-const store = createStore(combineReducers({ kryerListReducer, kryerReducer, userReducer,infoDelivery , missionsReducer, deliveriesReducer, missionIdReducer}));
+import variable from "./vglobal/variable";
 
+const store = createStore(
+  combineReducers({
+    kryerListReducer,
+    kryerReducer,
+    userReducer,
+    infoDelivery,
+    missionsReducer,
+    deliveriesReducer,
+    missionIdReducer,
+  })
+);
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -139,10 +150,18 @@ export default function App(props) {
             tabBarInactiveTintColor: "#FFFFFF",
           })}
         >
-          <Tab.Screen name="Accueil" component={StackHomeNavigator} /> 
+          <Tab.Screen name="Accueil" component={StackHomeNavigator} />
           <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
-          <Tab.Screen name="Missions" options={{tabBarBadge:nbMissions}} component={StackJourneyNavigator} />
-          <Tab.Screen name="Tchat" options={{tabBarBadge:nbChat}} component={Tchat} />
+          <Tab.Screen
+            name="Missions"
+            options={{ tabBarBadge: nbMissions }}
+            component={StackJourneyNavigator}
+          />
+          <Tab.Screen
+            name="Tchat"
+            options={{ tabBarBadge: nbChat }}
+            component={Tchat}
+          />
           <Tab.Screen name="Profil" component={StackProfilNavigator} />
         </Tab.Navigator>
       </NavigationContainer>

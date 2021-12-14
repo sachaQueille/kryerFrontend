@@ -23,33 +23,26 @@ function MissionsScreen3(props) {
     if (info.delivery_status == "accept") {
       props.navigation.navigate("TerminateMission");
     }
-    var responce = await fetch(
-      "http://192.168.1.32:3000/changeStatusMission",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `idMission=${props.missionId}&weigth=${info.weigth}&idDelivery=${info._id}`,
-      }
-    );
+    var responce = await fetch(`${global.ipa}changeStatusMission`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `idMission=${props.missionId}&weigth=${info.weigth}&idDelivery=${info._id}`,
+    });
 
-    console.log(props.user)
+    console.log(props.user);
 
-    var addMessage = await fetch("http://192.168.1.32:3000/addMessageAccept", {
+    var addMessage = await fetch(`${global.ipa}addMessageAccept`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `expeditor=${info.expeditor_id}&recipient=${props.user._id}&date="13/12/2021"`,
     });
-    
-    
 
     responce = await responce.json();
 
-    console.log("responce", responce)
+    console.log("responce", responce);
 
     if (responce) {
       props.navigation.navigate("HomeScreen");
-
-      
     }
   }
 
@@ -122,7 +115,7 @@ function MissionsScreen3(props) {
             <Text>Telephone : {info.coordinates_recipient.phone}</Text>
           </Box>
         </Center>
-        
+
         {info.delivery_status == "terminate" ? null : (
           <Center>
             <Button.Group
