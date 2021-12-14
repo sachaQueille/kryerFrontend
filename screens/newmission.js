@@ -18,13 +18,11 @@ import {
 
 //recupération du user avec les missions et delivery en clef étrangère
 export const MissionList = (props) => {
-
-
   const [dataUser, setDataUser] = useState([]);
 
   useEffect(() => {
     async function loadMission() {
-      const rawResponse = await fetch("http://192.168.1.109:3000/getMission");
+      const rawResponse = await fetch(`${global.ipa}getMission`);
       const response = await rawResponse.json();
       setDataUser(response);
 

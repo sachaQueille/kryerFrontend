@@ -5,25 +5,22 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 
 function Home(props) {
+  useEffect(() => {
+    AsyncStorage.getItem("token", function (error, data) {
+      if (data) {
+        async function loadUser() {
+          var user = await fetch(
+            `${global.ipa}getUser?token=${JSON.parse(data)}`
+          );
+          user = await user.json();
 
-
-    useEffect(()=>{
-
-            AsyncStorage.getItem("token", function(error, data) {
-           
-
-            if (data){
-                async function loadUser(){
-                var user = await fetch(`http://192.168.1.32:3000/getUser?token=${JSON.parse(data)}`);
-                user = await user.json();
-               
-                props.addUser(user.user[0]);
-                console.log("props.user", user)
-            }            
-            loadUser()            
-            }            
-          });       
-    },[])
+          props.addUser(user.user[0]);
+          console.log("props.user", user);
+        }
+        loadUser();
+      }
+    });
+  }, []);
 
   return (
     <NativeBaseProvider>
@@ -55,17 +52,17 @@ function Home(props) {
           Proposer une mission
         </Button>
 
-                <Button
-                    style={{ backgroundColor: "indigo" }}
-                    onPress={() => props.navigation.navigate("SendDelivery")}
-                    mx="12"
-                    size="lg"
-                >
-                    Envoyer un colis
-                </Button>
-            </VStack>
-        </NativeBaseProvider>
-    );
+        <Button
+          style={{ backgroundColor: "indigo" }}
+          onPress={() => props.navigation.navigate("SendDelivery")}
+          mx="12"
+          size="lg"
+        >
+          Envoyer un colis
+        </Button>
+      </VStack>
+    </NativeBaseProvider>
+  );
 }
 
 function mapDispatchToProps(dispatch) {
