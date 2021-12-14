@@ -15,17 +15,25 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 
-export default function TerminateMission(props) {
+function TerminateMission(props) {
   const [verifCode, setVerifCode] = useState("");
   const [showModalSuccess, setShowModalSuccess] = useState(false);
   const [showModalFail, setShowModalFail] = useState(false);
 
-  const { code, price } = props.route.params;
-  console.log(code);
+ const code = props.route.params.verifCode
+ const price = props.route.params.price
+ const info = props.route.params;
 
-  const finishClick = () => {
+
+  async function finishClick  () {
     if (code === verifCode) {
       setShowModalSuccess(true);
+      await fetch("http://10.5.49.160:3000/changeStatusValidate", {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `idMission=${props.missionId}&idDelivery=${info._id}`
+                });
+
     } else {
       setShowModalFail(true);
     }
@@ -127,3 +135,14 @@ export default function TerminateMission(props) {
     </NativeBaseProvider>
   );
 }
+
+function mapStateToProps(state){
+  return { missionId: state.missionIdReducer}
+}
+
+
+
+export default connect(
+  mapStateToProps,
+  null
+)(TerminateMission);

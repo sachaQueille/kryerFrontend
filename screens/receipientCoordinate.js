@@ -93,20 +93,23 @@ function ReceipientCoordinate(props) {
       {/* modal  */}
 
       <Modal isOpen={modalIsVisible} onClose={setModalIsVisible} size={"lg"}>
-        <Modal.Content maxH="212">
+        <Modal.Content maxH="500">
           <Modal.CloseButton />
           <Modal.Header>Felicition !</Modal.Header>
-          <Modal.Body>
-            <ScrollView>
+          <Modal.Body >
+            
               <Text>
-                Tu viens de faire une demande aupres d'un Kryer. Il faut
-                maintenant qu'il accepte. Verrifier dans la partie colis pour
-                connaitre l'etat de la demande. Une fois accepté , tu y trouvera
+                Tu viens de faire une demande aupres d'un Kryer ! {"\n"}{"\n"}
+                
+                Il faut maintenant qu'il accepte.  {"\n"}{"\n"}
+                Verrifier dans la partie colis pour
+                connaitre l'etat de la demande.  {"\n"}{"\n"}
+                Une fois accepté , tu y trouvera
                 un code de verification. Transmet ce code a la personne qui
                 recupera le colis car il lui sera demandé lors de l'echange
-                entre le Kryer et cette personne.
+                avec le Kryer .
               </Text>
-            </ScrollView>
+            
           </Modal.Body>
           <Modal.Footer>
             <Button colorScheme="indigo" onPress={() => validateClick()}>

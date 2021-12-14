@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text , ScrollView} from "react-native";
 import { Button, NativeBaseProvider, VStack } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
@@ -24,9 +24,10 @@ function Home(props) {
 
   return (
     <NativeBaseProvider>
+      <ScrollView>
       <VStack
         mx="auto"
-        marginTop="40%"
+        marginTop="20%"
         justifyContent="center"
         alignItems="center"
       >
@@ -35,7 +36,7 @@ function Home(props) {
 
       <VStack
         mx="auto"
-        marginTop="30%"
+        marginTop="15%"
         justifyContent="center"
         alignItems="center"
       >
@@ -61,6 +62,7 @@ function Home(props) {
           Envoyer un colis
         </Button>
       </VStack>
+      </ScrollView>
     </NativeBaseProvider>
   );
 }

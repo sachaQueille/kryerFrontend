@@ -8,8 +8,9 @@ import {
   Avatar,
   Divider,
 } from "native-base";
+import { ScrollView } from "react-native";
 import { connect } from "react-redux";
-import { ScrollView } from "react-native-gesture-handler";
+
 
 function User(props) {
   const [changeAvatar, setChangeAvatar] = useState(false);
@@ -27,18 +28,20 @@ function User(props) {
   if (!props.user) {
     return (
       <NativeBaseProvider>
+        <ScrollView>
         <Center
           mx="auto"
-          marginTop="40%"
+          marginTop="20%"
           justifyContent="center"
           alignItems="center"
+         
         >
-          <Text style={{ fontSize: 40, fontWeight: "bold" }}>KRYER</Text>
+          <Text style={{ fontSize:40, fontWeight: "bold" , padding:20}}>KRYER</Text>
         </Center>
 
         <VStack
           mx="auto"
-          marginTop="30%"
+          marginTop="10%"
           justifyContent="center"
           alignItems="center"
         >
@@ -68,6 +71,7 @@ function User(props) {
             Se connecter
           </Button>
         </VStack>
+       </ScrollView>
       </NativeBaseProvider>
     );
   } else {

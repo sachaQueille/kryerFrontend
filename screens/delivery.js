@@ -13,6 +13,7 @@ import {
 //import styles from "../vglobal/styles";
 
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { ScrollView } from "react-native-gesture-handler";
 
 function MyDelivery(props) {
     const [dataDelivery, setDataDelivery] = useState("");
@@ -96,11 +97,7 @@ function MyDelivery(props) {
                             mr="5"
                             color="indigo.800"
                         />
-                        <Text>
-                            {" "}
-                            {item.departure_journey} / {item.arrival_journey} - {item.weight}
-                            kg - {item.price}€{" "}
-                        </Text>
+                        <Text> {item.departure_journey} / {item.arrival_journey} - {item.weight}kg - {item.price}€  </Text>
                         <Icon
                             as={<MaterialIcons name={selectIcon(item.status_mission)} />}
                             size={6}

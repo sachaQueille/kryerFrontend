@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { Button, NativeBaseProvider, VStack } from "native-base";
 import { connect } from "react-redux";
 
@@ -24,9 +24,10 @@ function Journey(props) {
 
   return (
     <NativeBaseProvider>
+      <ScrollView>
       <VStack
         mx="auto"
-        marginTop="50%"
+        marginTop="20%"
         justifyContent="flex-end"
         alignItems="flex-end"
       >
@@ -50,26 +51,27 @@ function Journey(props) {
           Nouvelles missions
         </Button>
 
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          onPress={() => buttonClick("currentMission")}
-          marginBottom={10}
-          mx="12"
-          size="lg"
-        >
-          Missions en cours
-        </Button>
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          onPress={() => buttonClick("finishMission")}
-          mx="12"
-          size="lg"
-        >
-          Missions accomplies
-        </Button>
-      </VStack>
-    </NativeBaseProvider>
-  );
+                <Button
+                    style={{ backgroundColor: "indigo" }}
+                    onPress={() => buttonClick("currentMission")}
+                    marginBottom={10}
+                    mx="12"
+                    size="lg"
+                >
+                    Missions en cours
+                </Button>
+                <Button
+                    style={{ backgroundColor: "indigo" }}
+                    onPress={() => buttonClick("finishMission")}
+                    mx="12"
+                    size="lg"
+                >
+                    Missions accomplies
+                </Button>
+            </VStack>
+            </ScrollView>
+        </NativeBaseProvider>
+    );
 }
 
 function mapStateToProps(state) {

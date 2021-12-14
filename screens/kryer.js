@@ -48,27 +48,29 @@ function Kryer(props){
                 backgroundColor: "gray.50",
             }}
             >
-                 <Box
-                             
-                            borderBottomWidth="1"
-                            _dark={{
-                            borderColor: "gray.600",
-                            }}
-                            borderColor="coolGray.200"
-                            pl="4"
-                            pr="5"
-                            py="2"
-                        >
+                 <Box 
+                    borderBottomWidth="1"
+                    _dark={{
+                    borderColor: "gray.600",
+                    }}
+                    borderColor="coolGray.200"
+                    pl="4"
+                    pr="5"
+                    py="2"
+                >
                             <HStack space={3} justifyContent="space-between">
-                            <Avatar
-                                size="48px"
-                                source={{
-                                uri: props.kryer.infoKryer.avatar,
-                                }}
-                                bg='transparent'
-                            />
-                            <VStack>
-                                <Text
+                            <View style={{alignItems:"center", width:120}}>
+                                    <Avatar
+                                        size="48px"
+                                        source={{
+                                            uri: props.kryer.infoKryer.avatar,
+                                        }}
+                                        bg='transparent'
+                                    />
+                                    <Text>{props.kryer.infoKryer.firstName} {props.kryer.infoKryer.lastName}</Text>
+                            </View>
+                            <VStack justifyContent="center">
+                                <Text style={{textAlign:"center"}}
                                 _dark={{
                                     color: "warmGray.50",
                                 }}
@@ -78,6 +80,7 @@ function Kryer(props){
                                 {props.kryer.departure} / {props.kryer.arrival}
                                 </Text>
                                 <Text
+                                style={{textAlign:"center"}}
                                 color="coolGray.600"
                                 _dark={{
                                     color: "warmGray.200",

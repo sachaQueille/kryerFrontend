@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-
+ 
 import { FontAwesome } from '@expo/vector-icons';
 // import { View, Text } from 'react-native';
-
+ 
 import {
     NativeBaseProvider,
     Center,
@@ -127,10 +127,14 @@ function DeliveryStatus(props) {
                             Annuler la demande
                         </Button> : null}
                     </Box>
-                </VStack>
-            </Center>
-        </NativeBaseProvider>
-    )
-}
+           
+
+      
+
+            </VStack>
+        </Center>
+    </NativeBaseProvider>
+)}
+
 
 export default DeliveryStatus;

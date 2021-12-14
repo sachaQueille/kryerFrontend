@@ -30,6 +30,7 @@ import signUp from "./screens/signUp";
 import MissionsScreen from "./screens/missionsScreen";
 import MissionsScreen2 from "./screens/missionsScreen2";
 import MissionsScreen3 from "./screens/missionsScreen3";
+import TchatDetails from "./screens/tchatdetails";
 
 // redux
 import { Provider } from "react-redux";
@@ -123,6 +124,15 @@ function StackDeliveryNavigator(props) {
   );
 }
 
+function StackTchatNavigator(props) {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Tchats" component={Tchat} />
+      <Stack.Screen name="TchatDetails" component={TchatDetails} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App(props) {
   return (
     <Provider store={store}>
@@ -152,16 +162,8 @@ export default function App(props) {
         >
           <Tab.Screen name="Accueil" component={StackHomeNavigator} />
           <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
-          <Tab.Screen
-            name="Missions"
-            options={{ tabBarBadge: nbMissions }}
-            component={StackJourneyNavigator}
-          />
-          <Tab.Screen
-            name="Tchat"
-            options={{ tabBarBadge: nbChat }}
-            component={Tchat}
-          />
+          <Tab.Screen name="Missions" options={{tabBarBadge:nbMissions}} component={StackJourneyNavigator} />
+          <Tab.Screen name="Tchat" options={{tabBarBadge:nbChat}} component={StackTchatNavigator} />
           <Tab.Screen name="Profil" component={StackProfilNavigator} />
         </Tab.Navigator>
       </NavigationContainer>
