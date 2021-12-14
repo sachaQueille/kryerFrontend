@@ -17,6 +17,7 @@ import {
 
 
 function DeliveryStatus(props) {
+
     var statusDelivery = props.route.params.deliveryStatus.delivery_status;
     var verifcode = props.route.params.deliveryStatus.verifcode
 
@@ -25,10 +26,6 @@ function DeliveryStatus(props) {
     const [delivered, setDelivered] = useState(false);
     const [inProgress, setInProgress] = useState(0);
     const [disableButton, setDisableButton] = useState(true)
-
-    
-
-
 
 
     useEffect(() => {
@@ -51,6 +48,13 @@ function DeliveryStatus(props) {
         }
 
     }, []);
+
+    async function deleteMyDelivery (verifcode) {
+        var response = await fetch(`${global.ipa}deleteMyDeliveries/${verifcode}`, {
+            method: 'DELETE',
+        });
+        response = await response.json()
+    }
 
     console.log(props.route.params.deliveryStatus);
 
@@ -114,7 +118,7 @@ function DeliveryStatus(props) {
             <Center 
             marginTop="20%"
             justifyContent="center" >
-                <Text>Veuillez indiquer ce code à votre personne de confiance qui receptionnera votre colis : {verifcode} </Text>
+                <Text>Veuillez indiquer ce code à votre personne de confiance qui réceptionnera votre colis : {verifcode} </Text>
             </Center>
 
             <Center marginTop="100">
@@ -122,7 +126,7 @@ function DeliveryStatus(props) {
                     <Box>
                         {disableButton ? <Button size="lg"
                             backgroundColor="error.800"
-                            onPress={() => console.log("disableButton", disableButton)
+                            onPress={() => {deleteMyDelivery(verifcode)}
                             }>
                             Annuler la demande
                         </Button> : null}
