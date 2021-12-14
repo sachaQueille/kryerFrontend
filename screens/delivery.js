@@ -30,7 +30,7 @@ function MyDelivery(props) {
 
             response = await response.json();
 
-            console.log("response.deliveries", response.deliveries);
+            console.log("response.deliveries", Object.getOwnPropertyNames(response.deliveries));
             setDataDelivery(response.deliveries);
         }
         loadDelivery()
