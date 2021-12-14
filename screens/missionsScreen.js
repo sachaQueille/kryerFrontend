@@ -34,7 +34,7 @@ function MissionsScreen(props) {
             size="lg"
             marginBottom="5"
             onPress={() => buttonClick(e._id)}
-            colorScheme="indigo"
+            borderColor="black"
             width="200"
             >
             <Text style={{fontSize:16}}>
@@ -48,31 +48,32 @@ function MissionsScreen(props) {
       <Text>Tu n'as aucune missions à afficher</Text>
     );
 
-    var statusScreen = <Text style={{fontSize:25,color:'#ffffff'}}> Missions Accomplies :</Text>
+    var statusScreen = <Text style={{fontSize:25,color:'#ffffff', marginTop:"10%"}}> Missions Accomplies</Text>
     if (props.route.params.status== "newMission"){
-      statusScreen =  <Text style={{fontSize:25,color:'#ffffff'}}> Nouvelles Missions :</Text>
+      statusScreen =  <Text style={{fontSize:25,color:'#ffffff', marginTop:"10%"}}> Nouvelles Missions</Text>
     }else if (props.route.params.status == "currentMission"){
-      statusScreen = <Text style={{fontSize:25,color:'#ffffff'}}> Missions  en cours :</Text>
+      statusScreen = <Text style={{fontSize:25,color:'#ffffff', marginTop:"10%"}}> Missions  en cours</Text>
     }
 
 
   return (
     <NativeBaseProvider >
-      <ScrollView>
-      <Center
+      
+      <Center           
                 style={{ backgroundColor: "indigo" }}
                 _text={{
                     color: "#ffffff",
                     fontWeight: "600",
                     fontSize: "32",
-                    marginTop: "10%"
 
                 }}
                 height={120}
-                width="100%">
+                width="100%"
+                >
                 {statusScreen}
       </Center>
-     
+      
+      <ScrollView>
       <Center flex={1} px="3" marginTop="20">
         {missions}
       </Center>

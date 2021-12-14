@@ -81,11 +81,15 @@ function MissionsScreen2(props){
         )
     }) : <Text>tu n'as aucune demande pour cette mission </Text>
 
-    var statusScreen = <Text style={{fontSize:25,color:'#ffffff'}}> Missions Accomplies :</Text>
+    var statusScreen = <Text marginTop="15%" style={{fontSize:25,color:'#ffffff'}}> Missions Accomplies</Text>
     if (props.route.params.status== "newMission"){
-      statusScreen =  <Text style={{fontSize:25,color:'#ffffff'}}> Nouvelles Missions :</Text>
+      statusScreen =  <Text
+      marginTop="15%"
+       style={{fontSize:25,color:'#ffffff'}}> Nouvelles Missions</Text>
     }else if (props.route.params.status == "currentMission"){
-      statusScreen = <Text style={{fontSize:25,color:'#ffffff'}}> Missions  en cours :</Text>
+      statusScreen = <Text 
+      marginTop="15%"
+      style={{fontSize:25,color:'#ffffff'}}> Missions  en cours</Text>
     }
 
 
