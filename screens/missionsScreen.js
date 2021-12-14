@@ -13,12 +13,13 @@ function MissionsScreen(props) {
     });
 
     responce = await responce.json();
+    console.log(responce)
 
-    props.addDeliveries(responce);
+    props.addDeliveries(responce.result);
     props.addMissionId(e);
 
 
-    props.navigation.navigate("MissionsScreen2",{status:props.route.params.status})
+    props.navigation.navigate("MissionsScreen2",{status:props.route.params.status, etatCapacity: responce.etatCapacity , cagnotte: responce.cagnotte})
     }
 
    

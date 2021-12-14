@@ -17,6 +17,9 @@ function MissionsScreen3(props) {
     const [showModal, setShowModal] = useState(false);
     const [err, setErr] = useState(false)
     const [cancelIsClick, setCancelIsClick] = useState(false);
+    
+
+
 
     async function acceptClick(){
         
@@ -37,23 +40,26 @@ function MissionsScreen3(props) {
             if (responce.err){
                 setErr(true);
                 setShowModal(true);
+            }else{
+               var addMessage = await fetch(`${global.ipa}addMessageAccept`, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `expeditor=${info.expeditor_id}&recipient=${props.user._id}&date="13/12/2021"`,
+              });
+          
+              var responceMessage = await addMessage.json();
+          
+              console.log("responce", responce);
+          
+              if (responceMessage) {
+                props.navigation.navigate("HomeScreen");
+              }
             }
-        }
 
-        var addMessage = await fetch(`${global.ipa}addMessageAccept`, {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `expeditor=${info.expeditor_id}&recipient=${props.user._id}&date="13/12/2021"`,
-          });
       
-          responce = await responce.json();
-      
-          console.log("responce", responce);
-      
-          if (responce) {
-            props.navigation.navigate("HomeScreen");
-          }
+
        
+        }
     }
     
     async function cancelClick(){
@@ -65,6 +71,10 @@ function MissionsScreen3(props) {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idDelivery=${info._id}&idMission=${props.missionId}&weigth=${info.weigth}`
             });
+
+        if(responce){
+          props.navigation.navigate("HomeScreen")
+        }
 
   }
 
@@ -114,7 +124,6 @@ function MissionsScreen3(props) {
                             padding: 10,
                             margin:5}}
             >
-              {info.infoExpeditor.note}
 
                     <Box p="3">
                         <Image

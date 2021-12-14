@@ -64,7 +64,7 @@ var nbChat = 0;
 
 function StackJourneyNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}  >
       <Stack.Screen name="JourneyScreen" component={Journey} />
       {/* <Stack.Screen name="NewMission" component={NewMission} />
       <Stack.Screen name="NewMissionDetails" component={NewMissionDetails} />
@@ -89,7 +89,7 @@ function StackJourneyNavigator() {
 
 function StackHomeNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }} >
       <Stack.Screen name="HomeScreen" component={Home} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
@@ -156,13 +156,14 @@ export default function App(props) {
             name="Missions"
             options={{ tabBarBadge: nbMissions }}
             component={StackJourneyNavigator}
+          
           />
           <Tab.Screen
             name="Tchat"
             options={{ tabBarBadge: nbChat }}
             component={Tchat}
           />
-          <Tab.Screen name="Profil" component={StackProfilNavigator} />
+          <Tab.Screen name="Profil" component={StackProfilNavigator}/>
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>

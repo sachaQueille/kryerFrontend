@@ -8,15 +8,24 @@ import {
     Spacer,
     Center,
     NativeBaseProvider,
+    Heading,
+    Progress
 } from "native-base";
 
 import { connect } from 'react-redux';
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity , Image} from "react-native";
 
 function MissionsScreen2(props){
 
 
+    const [inProgress , setInProgress] = useState(0);
+    const [cagnotte , setCagnotte] = useState(0);
 
+
+    useEffect(()=>{
+          setInProgress(props.route.params.etatCapacity);
+          setCagnotte(props.route.params.cagnotte);
+    },[])
 
     function deliveryClick(e){
         props.navigation.navigate("MissionsScreen3", e)
@@ -104,6 +113,26 @@ function MissionsScreen2(props){
                 width="100%">
                 {statusScreen}
         </Center>
+        {(props.route.params.status !== "newMission" && props.deliveries.length !==0)?
+            <Center marginTop="60">
+                <Box w="90%">
+                    <VStack space="md">
+                        <Heading textAlign="center" mb="10" size="md">
+                            capacitée de transport restante :
+                        </Heading>
+                        <VStack mx="3" space="md">
+                            <Progress size="2xl" colorScheme="purple" value={inProgress} />
+
+                        </VStack>
+                    </VStack>
+                </Box>
+                <Box style={{marginTop:"10%"}}>
+                    <Center>
+                    <Text style={{fontSize:30,position:"relative",zIndex:1,paddingTop:20,marginTop:20,color:"white"}}>{cagnotte} €</Text>
+                    <Image source={require('../assets/euro.png')} style={{position:"absolute"}}/>
+                    </Center>
+                </Box>
+            </Center> : null }
             <Center flex={1} px="3" marginTop="10">
                 {deliveries}
             </Center>
@@ -114,7 +143,7 @@ function MissionsScreen2(props){
 }
 
 function mapStateToProps(state){
-    return { deliveries: state.deliveriesReducer}
+    return { deliveries: state.deliveriesReducer, missionId: state.missionIdReducer}
   }
   
 

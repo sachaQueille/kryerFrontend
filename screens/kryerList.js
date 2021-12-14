@@ -39,14 +39,14 @@ function KryerList(props) {
         kryerList = props.kryerList.map(function(item,i){
             return(
                  <Box
-                 
+                 key={i}
                 w={{
                     base: "100%",
                     md: "25%",
                 }}
             >
                 
-                <TouchableOpacity onPress={()=>boxClick(item)} key={i} >
+                <TouchableOpacity onPress={()=>boxClick(item)}  >
                         <Box
                             borderBottomWidth="1"
                             _dark={{
