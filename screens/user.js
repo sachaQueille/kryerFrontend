@@ -8,6 +8,7 @@ import {
   Avatar,
   Divider,
 } from "native-base";
+import { ScrollView } from "react-native";
 import { connect } from "react-redux";
 
 

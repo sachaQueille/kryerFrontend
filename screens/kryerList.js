@@ -15,7 +15,7 @@ import {
 } from "native-base";
 import {View, ScrollView , TouchableOpacity} from "react-native";
 import { connect } from 'react-redux';
-import {TouchableOpacity} from 'react-native'
+
 
 
 

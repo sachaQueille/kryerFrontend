@@ -13,7 +13,6 @@ function MissionsScreen3(props) {
     console.log(info)
     
     
-    const logo = require("../assets/download.jpeg");
   
     const [showModal, setShowModal] = useState(false);
     const [err, setErr] = useState(false)
