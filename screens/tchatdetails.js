@@ -4,7 +4,7 @@ import {
     Box,
     FlatList,
     Icon,
-    Avatar,
+    Center,
     HStack,
     VStack,
     Text,
@@ -102,6 +102,19 @@ function TchatDetails(props) {
 
     return (
         <NativeBaseProvider >
+            <Center
+                style={{ backgroundColor: "indigo" }}
+                _text={{
+                    color: "#ffffff",
+                    fontWeight: "600",
+                    fontSize: "32",
+                    marginTop: "10%"
+
+                }}
+                height={120}
+                width="100%">
+                Name
+            </Center>
             <Box
             w={{
                 base: "100%",
