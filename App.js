@@ -99,9 +99,7 @@ function StackProfilNavigator(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return { user: state.userReducer };
-}
+
 
 export default function App(props) {
   return (

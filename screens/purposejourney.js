@@ -8,6 +8,7 @@ import {
   Modal,
   HStack,
   Text,
+  Center
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
@@ -23,6 +24,7 @@ function PurposeJourney(props) {
 
   return (
     <NativeBaseProvider>
+      <Center>
       <ScrollView>
         <VStack
           width="80%"
@@ -97,6 +99,7 @@ function PurposeJourney(props) {
           </Button>
         </Button.Group>
       </ScrollView>
+      </Center>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
         <Modal.Content maxWidth="350">
           <Modal.CloseButton />

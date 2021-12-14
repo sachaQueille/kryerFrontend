@@ -7,10 +7,10 @@ import {
   Button,
   HStack,
   Icon,
+  Center,
 } from "native-base";
-import { MaterialIcons } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { ScrollView } from "react-native-gesture-handler";
+import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import {  ScrollView} from "react-native";
 import { connect } from "react-redux";
 
 function PurposeDetails(props) {
@@ -33,6 +33,7 @@ function PurposeDetails(props) {
       deliveryDate,
       pricePerKg,
       dateJourney,
+      Center
     };
     const response = await fetch("http://10.5.49.160:3000/saveMission/", {
       method: "POST",
@@ -47,17 +48,18 @@ function PurposeDetails(props) {
 
   return (
     <NativeBaseProvider>
+      <Center>
       <ScrollView>
         <VStack
           width="80%"
           mx="auto"
-          marginTop="40%"
+          marginTop="20%"
           marginBottom="50"
           justifyContent="center"
           alignItems="center"
         >
           <FormControl isRequired>
-            <FormControl.Label _text={{ bold: true }}>
+            <FormControl.Label >
               Récupération du colis
             </FormControl.Label>
             <HStack space={2}>
@@ -65,7 +67,7 @@ function PurposeDetails(props) {
                 placeholder="Lieu de récupération"
                 w={{
                   base: "100%",
-                  md: "25%",
+                  md: "60%",
                 }}
                 marginBottom="2"
                 InputLeftElement={
@@ -84,7 +86,7 @@ function PurposeDetails(props) {
             <Input
               placeholder="Date"
               w={{
-                md: "25%",
+                md: "60%",
               }}
               marginBottom="5"
               InputLeftElement={
@@ -101,7 +103,7 @@ function PurposeDetails(props) {
             <Input
               placeholder="Lieu de livraison"
               w={{
-                md: "25%",
+                md: "60%",
               }}
               marginBottom="2"
               InputLeftElement={
@@ -117,7 +119,7 @@ function PurposeDetails(props) {
               <Input
                 placeholder="Date de livraison"
                 w={{
-                  md: "25%",
+                  md: "60%",
                 }}
                 marginBottom="5"
                 InputLeftElement={
@@ -139,7 +141,7 @@ function PurposeDetails(props) {
             <Input
               placeholder="Prix par kg"
               w={{
-                md: "25%",
+                md: "60%",
               }}
               marginBottom="5"
               InputLeftElement={
@@ -158,6 +160,7 @@ function PurposeDetails(props) {
           Valider
         </Button>
       </ScrollView>
+      </Center>
     </NativeBaseProvider>
   );
 }

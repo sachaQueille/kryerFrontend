@@ -1,26 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Heading,NativeBaseProvider, Center, Avatar, 
- Image, Button, Text, HStack, Spacer, VStack} from 'native-base';
+ Image, Button, Text, HStack, Spacer, VStack, Modal} from 'native-base';
 import { connect } from "react-redux";
 
 function MissionsScreen3(props){
 
 
     var info = props.route.params;
+
+    console.log(info)
     
     
     const logo = require("../assets/download.jpeg");
+  
+    const [showModal, setShowModal] = useState(false);
+    const [err, setErr] = useState(false)
+    const [cancelIsClick, setCancelIsClick] = useState(false);
 
     async function acceptClick(){
         
-        if(info.delivery_status == "accept"){
-            props.navigation.navigate("TerminateMission")
+        setCancelIsClick(false);
+
+        if(info.isValidate == "accept"){
+            props.navigation.navigate("TerminateMission",info)
+        }else{
+                var  responce = await fetch("http://10.5.49.160:3000/changeStatusValidate", {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `idMission=${props.missionId}&weigth=${info.weigth}&idDelivery=${info._id}`
+                });
+
+            responce = await responce.json();
+
+            console.log(responce.err)
+            if(responce == true){
+                props.navigation.navigate('JourneyScreen')
+            }
+
+            if (responce.err){
+                setErr(true);
+                setShowModal(true);
+            }
         }
 
-        var  responce = await fetch("http://10.5.49.160:3000/changeStatusMission", {
+       
+    }
+
+
+    async function cancelClick(){
+
+        setCancelIsClick(true);
+
+        var  responce = await fetch("http://10.5.49.160:3000/changeStatusCancel", {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `idMission=${props.missionId}&weigth=${info.weigth}&idDelivery=${info._id}`
+            body: `idDelivery=${info._id}&idMission=${props.missionId}&weigth=${info.weigth}`
             });
 
         responce = await responce.json();
@@ -33,9 +67,8 @@ function MissionsScreen3(props){
     <NativeBaseProvider>
     <Center flex={1} px="3" >
         <Center>
-
-            
-            <HStack space={3} justifyContent="space-between"  style={{marginLeft:'10%'}}>
+            <Box >
+            <HStack space={3} justifyContent="space-between"  style={{marginBottom:'5%'}}>
                 <Avatar 
                     size="48px"
                     source={{
@@ -67,6 +100,7 @@ function MissionsScreen3(props){
                     {info.infoExpeditor.note} 
                 </Text>
             </HStack>
+            </Box>
             
             
             <Box style={{   flexDirection:'row', 
@@ -91,18 +125,20 @@ function MissionsScreen3(props){
                         <Text>Largeur : {info.measures.width} </Text>
                     </Box>
             </Box> 
-                    <Box p="3">
-                        <Text>Coordonnées du receveur</Text>
-                        <Text>Nom : {info.coordinates_recipient.lastName}</Text>
-                        <Text>Prenom : {info.coordinates_recipient.firstName}</Text>
-                        <Text>Email : {info.coordinates_recipient.email}</Text>
-                        <Text>Telephone : {info.coordinates_recipient.phone}</Text>
-                    </Box>                
+            <Box p="3">
+                <Text>Coordonnées du receveur</Text>
+                <Text>Nom : {info.coordinates_recipient.lastName}</Text>
+                <Text>Prenom : {info.coordinates_recipient.firstName}</Text>
+                <Text>Email : {info.coordinates_recipient.email}</Text>
+                <Text>Telephone : {info.coordinates_recipient.phone}</Text>
+            </Box>                
            
 
         </Center>
-        {(info.delivery_status == "terminate") ? null : 
-        <Center>
+        {(info.delivery_status == "delivered") ? 
+        <Button variant="outline" colorScheme='indigo' style={{marginRight:50}} onPress={()=>props.navigation.navigate('JourneyScreen')}>retour aux missions</Button>
+        : 
+        <Center marginTop="5%">
             
                 <Button.Group
                 display="flex"
@@ -112,20 +148,76 @@ function MissionsScreen3(props){
                 marginBottom="4"
                 mx="12"
                 >
-                    <Button style={{width:'50%'}}>
-                    { (info.delivery_status == "accept") ? "Annuler" : "Refuser"} 
+                    <Button style={{width:'50%'}}
+                    onPress={()=>setShowModal(true)}>
+                    { (info.isValidate == "accept") ? "Annuler" : "Refuser"} 
                     </Button> 
 
                     <Button 
                     style={{backgroundColor:"indigo",width:'50%'}}
                     onPress={() => acceptClick()}
                     >
-                      { (info.delivery_status == "accept") ? "Terminer" : "accepter"} 
+                      { (info.isValidate == "accept") ? "Terminer" : "accepter"} 
                     </Button>   
                 </Button.Group> 
         </Center>   }                  
     </Center>
     
+    <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        { (err  && cancelIsClick == false)? 
+         <Modal.Content maxWidth="400px">
+         <Modal.CloseButton />
+         
+         <Modal.Body>
+           <Text>Tu n'as maleureusement pas assez de place dans tes bagages pour accepter cette mission</Text>
+         </Modal.Body>
+         <Modal.Footer>
+             <Button
+               variant="outline"
+               colorScheme="indigo"
+               onPress={() => {
+                 props.navigation.navigate("JourneyScreen")
+               }}
+             >
+               retour sur mes missions
+             </Button>
+            
+         </Modal.Footer>
+       </Modal.Content> 
+       :
+        <Modal.Content maxWidth="400px">
+          <Modal.CloseButton />
+          
+          <Modal.Body>
+            <Text>tu es sur de vouloir {info.isValidate == "accept" ? "annuler" : "refuser" } cette demande ?</Text>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button.Group space={2}>
+              <Button
+                variant="outline"
+                colorScheme="indigo"
+                onPress={() => {
+                  setShowModal(false)
+                }}
+              >
+                non
+              </Button>
+              <Button
+                onPress={() => {
+                  cancelClick()
+                }}
+              >
+                oui
+              </Button>
+            </Button.Group>
+          </Modal.Footer>
+        </Modal.Content> 
+        
+        
+       }
+       
+      </Modal>
+
 </NativeBaseProvider>)
    
 }

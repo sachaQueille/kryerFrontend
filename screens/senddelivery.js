@@ -83,7 +83,7 @@ function SendDelivery(props) {
         {/* trouver un Kryer */}
 
         <Stack space={4} w="100%" alignItems="center" marginBottom="10%">
-          <FormControl.Label>Trouve un Kryer</FormControl.Label>
+          <FormControl.Label>Trouve un Kryer </FormControl.Label>
           <Input
             isRequired
             w={{
@@ -155,7 +155,7 @@ function SendDelivery(props) {
                 color="indigo.800"
               />
             }
-            placeholder="Poid"
+            placeholder="Poid en Kg"
             onChangeText={(e) => setWeight(e)}
             value={weight}
           />
@@ -209,7 +209,7 @@ function SendDelivery(props) {
                   }
                   placeholder="hauteur"
                   onChangeText={(e) => setHeight(e)}
-                  //value={height}
+                  value={height}
                 />
 
                 <Input
@@ -227,7 +227,7 @@ function SendDelivery(props) {
                   }
                   placeholder="largeur"
                   onChangeText={(e) => setWidth(e)}
-                  //value={width}
+                  value={width}
                 />
 
                 <Input
@@ -245,8 +245,17 @@ function SendDelivery(props) {
                   }
                   placeholder="longeur"
                   onChangeText={(e) => setLength(e)}
-                  //value={length}
+                  value={length}
                 />
+                 <Button
+                    onPress={() => {
+                      setShowModal(false);
+                    }}
+                    style={{ width: "75%", marginTop:10}}
+                    colorScheme="indigo"
+                  >
+                    ok
+                  </Button>
               </Modal.Body>
             </View>
           ) : (
