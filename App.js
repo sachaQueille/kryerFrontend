@@ -12,17 +12,17 @@ import DeliveryStatus from "./screens/deliverystatus";
 import Journey from "./screens/journey";
 import User from "./screens/user";
 import Tchat from "./screens/tchat";
-import NewMission from "./screens/newmission";
-import NewMissionDetails from "./screens/newmissiondetails";
-import NewMissionToAccept from "./screens/newmissiontoaccept";
-import CurrentMission from "./screens/currentmission";
+// import NewMission from "./screens/newmission";
+// import NewMissionDetails from "./screens/newmissiondetails";
+// import NewMissionToAccept from "./screens/newmissiontoaccept";
+// import CurrentMission from "./screens/currentmission";
 import FinishedMissions from "./screens/finishedmissions";
 import PurposeJourney from "./screens/purposejourney";
 import SendDelivery from "./screens/senddelivery";
 import KryerList from "./screens/kryerList";
 import PurposeDetails from "./screens/purposedetails";
 import Kryer from "./screens/kryer";
-import CurrentMissionClient from "./screens/currentmissionsclients";
+// import CurrentMissionClient from "./screens/currentmissionsclients";
 import TerminateMission from "./screens/terminatemission";
 import ReceipientCoordinate from "./screens/receipientCoordinate";
 import signIn from "./screens/signIn";
@@ -30,6 +30,7 @@ import signUp from "./screens/signUp";
 import MissionsScreen from "./screens/missionsScreen";
 import MissionsScreen2 from "./screens/missionsScreen2";
 import MissionsScreen3 from "./screens/missionsScreen3";
+import TchatDetails from "./screens/tchatdetails";
 
 // redux
 import { Provider } from "react-redux";
@@ -74,10 +75,7 @@ function StackJourneyNavigator() {
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
-      <Stack.Screen
-        name="CurrentMissionClient"
-        component={CurrentMissionClient}
-      />
+      {/* <Stack.Screen name="CurrentMissionClient" component={CurrentMissionClient}/> */}
       <Stack.Screen name="MissionsScreen" component={MissionsScreen} />
       <Stack.Screen name="MissionsScreen2" component={MissionsScreen2} />
       <Stack.Screen name="MissionsScreen3" component={MissionsScreen3} />
@@ -123,6 +121,15 @@ function StackDeliveryNavigator(props) {
   );
 }
 
+function StackTchatNavigator(props) {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Tchats" component={Tchat} />
+      <Stack.Screen name="TchatDetails" component={TchatDetails} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App(props) {
   return (
     <Provider store={store}>
@@ -152,18 +159,9 @@ export default function App(props) {
         >
           <Tab.Screen name="Accueil" component={StackHomeNavigator} />
           <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
-          <Tab.Screen
-            name="Missions"
-            options={{ tabBarBadge: nbMissions }}
-            component={StackJourneyNavigator}
-          
-          />
-          <Tab.Screen
-            name="Tchat"
-            options={{ tabBarBadge: nbChat }}
-            component={Tchat}
-          />
-          <Tab.Screen name="Profil" component={StackProfilNavigator}/>
+          <Tab.Screen name="Missions" options={{tabBarBadge:nbMissions}} component={StackJourneyNavigator} />
+          <Tab.Screen name="Tchat" options={{tabBarBadge:nbChat}} component={StackTchatNavigator} />
+          <Tab.Screen name="Profil" component={StackProfilNavigator} />
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>
