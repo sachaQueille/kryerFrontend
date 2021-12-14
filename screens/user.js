@@ -29,49 +29,49 @@ function User(props) {
     return (
       <NativeBaseProvider>
         <ScrollView>
-        <Center
-          mx="auto"
-          marginTop="20%"
-          justifyContent="center"
-          alignItems="center"
-         
-        >
-          <Text style={{ fontSize:40, fontWeight: "bold" , padding:20}}>KRYER</Text>
-        </Center>
+          <Center
+            mx="auto"
+            marginTop="45%"
+            justifyContent="center"
+            alignItems="center"
 
-        <VStack
-          mx="auto"
-          marginTop="10%"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Text>Reveille le Kryer qui est en toi !</Text>
-
-          <Button
-            style={{ backgroundColor: "indigo" }}
-            onPress={() => props.navigation.navigate("signUp")}
-            marginBottom={5}
-            marginTop={5}
-            mx="12"
-            size="lg"
           >
-            S'inscrire
-          </Button>
+            <Text style={{ fontSize: 40, fontWeight: "bold", padding: 20 }}>KRYER</Text>
+          </Center>
 
-          <Text>Tu es déjà un Kryer de confiance ?</Text>
-
-          <Button
-            style={{ backgroundColor: "indigo" }}
-            onPress={() => props.navigation.navigate("signIn")}
-            marginBottom={5}
-            marginTop={5}
-            mx="12"
-            size="lg"
+          <VStack
+            mx="auto"
+            marginTop="10%"
+            justifyContent="center"
+            alignItems="center"
           >
-            Se connecter
-          </Button>
-        </VStack>
-       </ScrollView>
+            <Text>Reveille le Kryer qui est en toi !</Text>
+
+            <Button
+              style={{ backgroundColor: "indigo" }}
+              onPress={() => props.navigation.navigate("signUp")}
+              marginBottom={5}
+              marginTop={5}
+              mx="12"
+              size="lg"
+            >
+              S'inscrire
+            </Button>
+
+            <Text>Tu es déjà un Kryer de confiance ?</Text>
+
+            <Button
+              style={{ backgroundColor: "indigo" }}
+              onPress={() => props.navigation.navigate("signIn")}
+              marginBottom={5}
+              marginTop={5}
+              mx="12"
+              size="lg"
+            >
+              Se connecter
+            </Button>
+          </VStack>
+        </ScrollView>
       </NativeBaseProvider>
     );
   } else {

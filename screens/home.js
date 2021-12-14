@@ -27,7 +27,7 @@ function Home(props) {
       <ScrollView>
       <VStack
         mx="auto"
-        marginTop="20%"
+        marginTop="45%"
         justifyContent="center"
         alignItems="center"
       >
