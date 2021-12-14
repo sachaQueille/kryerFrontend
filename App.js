@@ -30,7 +30,7 @@ import signUp from "./screens/signUp";
 import MissionsScreen from "./screens/missionsScreen";
 import MissionsScreen2 from "./screens/missionsScreen2";
 import MissionsScreen3 from "./screens/missionsScreen3";
-import TchatDetails from "./reducers/tchatdetails";
+import TchatDetails from "./screens/tchatdetails";
 
 // redux
 import { Provider } from "react-redux";

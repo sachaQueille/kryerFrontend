@@ -1,4 +1,5 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
+import { connect } from 'react-redux';
 import {
   Box,
   FlatList,
@@ -13,8 +14,28 @@ import {
 } from "native-base"
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function Tchat(props){
-  const data = [
+function Tchat(props){
+    const [dataMessages, setDataMessages] = useState();
+
+    useEffect(() => {
+
+        async function loadMessages() {
+            var response = await fetch("http://192.168.1.109:3000/loadLastMessage", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `token=${props.user.token}`
+            });
+
+            response = await response.json();
+            setDataMessages(response.messages);
+            //console.log("response", response.messages);
+        }
+        loadMessages()
+        
+    }, []);
+
+    const data = dataMessages;
+  /* const data = [
     {
       id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
       fullName: "Aafreen Khan",
@@ -54,7 +75,7 @@ export default function Tchat(props){
       avatarUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU",
     },
-  ]
+  ] */
   return (
     <NativeBaseProvider>
     <Box
@@ -64,12 +85,12 @@ export default function Tchat(props){
       }}
     >
       <Heading paddingTop="10" fontSize="xl" p="4" pb="3">
-        Mes messsges
+        Mes messages
       </Heading>
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => props.navigation.navigate('TchatDetails')}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('TchatDetails',{idRecipient:item.id_dest})}>
           <Box
             borderBottomWidth="1"
             _dark={{
@@ -95,7 +116,7 @@ export default function Tchat(props){
                   color="coolGray.800"
                   bold
                 >
-                  {item.fullName}
+                  {item.firstName_dest} {item.lastName_dest}
                 </Text>
                 <Text
                   color="coolGray.600"
@@ -103,7 +124,7 @@ export default function Tchat(props){
                     color: "warmGray.200",
                   }}
                 >
-                  {item.recentText}
+                  {item.msg}
                 </Text>
               </VStack>
               <Spacer />
@@ -121,19 +142,18 @@ export default function Tchat(props){
           </Box>
           </TouchableOpacity>
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id_dest}
       />
     </Box>
     </NativeBaseProvider>
   )
 }
 
-/* export default (props) => {
-  return (
-    <NativeBaseProvider>
-      <Center flex={1} px="3">
-        <Tchat />
-      </Center>
-    </NativeBaseProvider>
-  )
-} */
+function mapStateToProps(state) {
+    return { user: state.userReducer }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(Tchat);

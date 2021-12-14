@@ -14,6 +14,7 @@ import {
 //import styles from "../vglobal/styles";
 
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { ScrollView } from "react-native-gesture-handler";
 
 
 function MyDelivery(props) {
@@ -117,10 +118,11 @@ function MyDelivery(props) {
                 width="100%">
                 Suivre mes colis
             </Center>
-
+            <ScrollView>
             <Center flex={1} px="3" >
                 {deliveryList}
             </Center>
+            </ScrollView>
         </NativeBaseProvider>
     );
 }
