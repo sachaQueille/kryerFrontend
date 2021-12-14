@@ -84,7 +84,7 @@ function DeliveryStatus(props) {
                 </Box>
             </Center>
 
-            <Center marginTop="150">
+            <Center marginTop="100">
                 <VStack space={3}>
                     <Checkbox
                         colorScheme="purple"
@@ -112,12 +112,12 @@ function DeliveryStatus(props) {
 
 
             <Center 
-            marginTop="10%"
+            marginTop="20%"
             justifyContent="center" >
                 <Text>Veuillez indiquer ce code à votre personne de confiance qui receptionnera votre colis : {verifcode} </Text>
             </Center>
 
-            <Center marginTop="150">
+            <Center marginTop="100">
                 <VStack space={4} alignItems="center">
                     <Box>
                         {disableButton ? <Button size="lg"
