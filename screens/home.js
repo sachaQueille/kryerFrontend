@@ -1,35 +1,33 @@
 import React, { useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text , ScrollView} from "react-native";
 import { Button, NativeBaseProvider, VStack } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 
 function Home(props) {
+  useEffect(() => {
+    AsyncStorage.getItem("token", function (error, data) {
+      if (data) {
+        async function loadUser() {
+          var user = await fetch(
+            `${global.ipa}getUser?token=${JSON.parse(data)}`
+          );
+          user = await user.json();
 
-
-    useEffect(()=>{
-
-            AsyncStorage.getItem("token", function(error, data) {
-           
-
-            if (data){
-                async function loadUser(){
-                var user = await fetch(`http://192.168.1.109:3000/getUser?token=${JSON.parse(data)}`);
-                user = await user.json();
-               
-                props.addUser(user.user[0]);
-                console.log("props.user", props.user)
-            }            
-            loadUser()            
-            }            
-          });       
-    },[])
+          props.addUser(user.user[0]);
+          console.log("props.user", user);
+        }
+        loadUser();
+      }
+    });
+  }, []);
 
   return (
     <NativeBaseProvider>
+      <ScrollView>
       <VStack
         mx="auto"
-        marginTop="40%"
+        marginTop="20%"
         justifyContent="center"
         alignItems="center"
       >
@@ -38,7 +36,7 @@ function Home(props) {
 
       <VStack
         mx="auto"
-        marginTop="30%"
+        marginTop="15%"
         justifyContent="center"
         alignItems="center"
       >
@@ -55,17 +53,18 @@ function Home(props) {
           Proposer une mission
         </Button>
 
-                <Button
-                    style={{ backgroundColor: "indigo" }}
-                    onPress={() => props.navigation.navigate("SendDelivery")}
-                    mx="12"
-                    size="lg"
-                >
-                    Envoyer un colis
-                </Button>
-            </VStack>
-        </NativeBaseProvider>
-    );
+        <Button
+          style={{ backgroundColor: "indigo" }}
+          onPress={() => props.navigation.navigate("SendDelivery")}
+          mx="12"
+          size="lg"
+        >
+          Envoyer un colis
+        </Button>
+      </VStack>
+      </ScrollView>
+    </NativeBaseProvider>
+  );
 }
 
 function mapDispatchToProps(dispatch) {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-
+ 
 import { FontAwesome } from '@expo/vector-icons';
 // import { View, Text } from 'react-native';
-
+ 
 import {
     NativeBaseProvider,
     Center,
@@ -11,10 +11,14 @@ import {
     VStack,
     Heading,
     Progress,
-    Checkbox
+    Checkbox,
+    Text
 } from 'native-base';
 
+
 function DeliveryStatus(props) {
+    var statusDelivery = props.route.params.deliveryStatus.delivery_status;
+    var verifcode = props.route.params.deliveryStatus.verifcode
 
     const [supportedDelivery, setSupportedDelivery] = useState(false);
     const [inTransitDelivery, setIntransitDelivery] = useState(false);
@@ -22,16 +26,15 @@ function DeliveryStatus(props) {
     const [inProgress, setInProgress] = useState(0);
     const [disableButton, setDisableButton] = useState(true)
 
-    var statusDelivery = props.route.params.deliveryStatus.delivery_status;
-    // var livre = props.params.livre;
-    // var prisEnCharge = props.params.prisEnCharge;
-    var verifcode = props.route.params.deliveryStatus.verifcode;
+    
+
+
 
 
     useEffect(() => {
         if (statusDelivery === 'supportedDelivery') {
             setSupportedDelivery(true);
-            setInProgress(33);            
+            setInProgress(33);
         }
         if (statusDelivery === 'inTransitDelivery') {
             setSupportedDelivery(true);
@@ -43,19 +46,14 @@ function DeliveryStatus(props) {
             setSupportedDelivery(true);
             setIntransitDelivery(true);
             setDelivered(true)
-            setInProgress(100); 
+            setInProgress(100);
             setDisableButton(false);
         }
 
     }, []);
 
-    // console.log("supportedDelivery", supportedDelivery, inProgress)
-    // console.log("inTransitDelivery", inTransitDelivery, inProgress)
-    // console.log("delivered", delivered, inProgress)
-    // console.log("disableButton", disableButton);
-
     console.log(props.route.params.deliveryStatus);
-    // console.log("props.route.params.deliveryStatus.delivery_status", props.route.params.deliveryStatus.delivery_status)
+
     return (
         <NativeBaseProvider>
             <Center
@@ -112,20 +110,31 @@ function DeliveryStatus(props) {
                 </VStack>
             </Center>
 
+
+            <Center 
+            marginTop="10%"
+            justifyContent="center" >
+                <Text>Veuillez indiquer ce code à votre personne de confiance qui receptionnera votre colis : {verifcode} </Text>
+            </Center>
+
             <Center marginTop="150">
                 <VStack space={4} alignItems="center">
                     <Box>
                         {disableButton ? <Button size="lg"
-                backgroundColor="error.800"
-                onPress={() => console.log("disableButton", disableButton)
-                }>
-                Annuler la demande
-            </Button> : null}
+                            backgroundColor="error.800"
+                            onPress={() => console.log("disableButton", disableButton)
+                            }>
+                            Annuler la demande
+                        </Button> : null}
                     </Box>
-                </VStack>
-            </Center>
-        </NativeBaseProvider>
-    )
-}
+           
+
+      
+
+            </VStack>
+        </Center>
+    </NativeBaseProvider>
+)}
+
 
 export default DeliveryStatus;
