@@ -22,7 +22,7 @@ function signUp(props) {
 
   //fonction  submit signUp
   var handleSubmitSignup = async () => {
-    const data = await fetch("http://10.5.49.160:3000/signUp", {
+    const data = await fetch(`${global.ipa}signUp`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `firstNameFromFront=${signUpFirstname}&lastNameFromFront=${signUpLastname}&emailFromFront=${signUpEmail}&passwordFromFront=${signUpPassword}&phoneFromFront=${signUpPhone}`,
@@ -44,73 +44,73 @@ function signUp(props) {
   return (
     <NativeBaseProvider>
       <ScrollView>
-      <VStack
-        space={3}
-        mt="5"
-        width="80%"
-        mx="auto"
-        marginTop="40%"
-        marginBottom="50"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Text>Je crée mon compte</Text>
-
-        <FormControl isRequired>
-          <FormControl.Label>Nom</FormControl.Label>
-          <Input
-            w={{
-              base: "100%",
-              md: "25%",
-            }}
-            placeholder="Nom"
-            marginBottom="5"
-            onChangeText={(e) => setSignUpLastname(e)}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormControl.Label>Prénom</FormControl.Label>
-          <Input
-            placeholder="Prénom"
-            marginBottom="5"
-            onChangeText={(e) => setSignUpFirstname(e)}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormControl.Label>Email</FormControl.Label>
-          <Input
-            placeholder="Adresse email"
-            marginBottom="5"
-            onChangeText={(e) => setSignUpEmail(e)}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormControl.Label>Téléphone</FormControl.Label>
-          <Input
-            placeholder="Téléphone"
-            marginBottom="5"
-            onChangeText={(e) => setSignUpPhone(e)}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormControl.Label>Mot de passe</FormControl.Label>
-          <Input
-            placeholder="Mot de passe"
-            type="password"
-            marginBottom="5"
-            onChangeText={(e) => setSignUpPassword(e)}
-          />
-        </FormControl>
-
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          mx="12"
-          size="lg"
-          onPress={() => handleSubmitSignup()}
+        <VStack
+          space={3}
+          mt="5"
+          width="80%"
+          mx="auto"
+          marginTop="40%"
+          marginBottom="50"
+          justifyContent="center"
+          alignItems="center"
         >
-          Inscription
-        </Button>
-      </VStack>
+          <Text>Je crée mon compte</Text>
+
+          <FormControl isRequired>
+            <FormControl.Label>Nom</FormControl.Label>
+            <Input
+              w={{
+                base: "100%",
+                md: "25%",
+              }}
+              placeholder="Nom"
+              marginBottom="5"
+              onChangeText={(e) => setSignUpLastname(e)}
+            />
+          </FormControl>
+          <FormControl isRequired>
+            <FormControl.Label>Prénom</FormControl.Label>
+            <Input
+              placeholder="Prénom"
+              marginBottom="5"
+              onChangeText={(e) => setSignUpFirstname(e)}
+            />
+          </FormControl>
+          <FormControl isRequired>
+            <FormControl.Label>Email</FormControl.Label>
+            <Input
+              placeholder="Adresse email"
+              marginBottom="5"
+              onChangeText={(e) => setSignUpEmail(e)}
+            />
+          </FormControl>
+          <FormControl isRequired>
+            <FormControl.Label>Téléphone</FormControl.Label>
+            <Input
+              placeholder="Téléphone"
+              marginBottom="5"
+              onChangeText={(e) => setSignUpPhone(e)}
+            />
+          </FormControl>
+          <FormControl isRequired>
+            <FormControl.Label>Mot de passe</FormControl.Label>
+            <Input
+              placeholder="Mot de passe"
+              type="password"
+              marginBottom="5"
+              onChangeText={(e) => setSignUpPassword(e)}
+            />
+          </FormControl>
+
+          <Button
+            style={{ backgroundColor: "indigo" }}
+            mx="12"
+            size="lg"
+            onPress={() => handleSubmitSignup()}
+          >
+            Inscription
+          </Button>
+        </VStack>
       </ScrollView>
     </NativeBaseProvider>
   );

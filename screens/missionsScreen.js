@@ -5,25 +5,20 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 
 function MissionsScreen(props) {
- 
+  async function buttonClick(e) {
+    var responce = await fetch(`${global.ipa}loadDeliveries`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `idMission=${e}&status=${props.route.params.status}`,
+    });
 
-   
+    responce = await responce.json();
 
-    async function buttonClick(e){
+    props.addDeliveries(responce);
+    props.addMissionId(e);
 
-        var  responce = await fetch("http://10.5.49.160:3000/loadDeliveries", {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `idMission=${e}&status=${props.route.params.status}`
-            });
 
-        responce = await responce.json();
-     
-
-        props.addDeliveries(responce);
-        props.addMissionId(e)
-
-        props.navigation.navigate("MissionsScreen2",{status:props.route.params.status})
+    props.navigation.navigate("MissionsScreen2",{status:props.route.params.status})
     }
 
    
@@ -50,7 +45,7 @@ function MissionsScreen(props) {
         );
       })
     ) : (
-      <Text>tu n'as aucune missions a afficher</Text>
+      <Text>Tu n'as aucune missions à afficher</Text>
     );
 
     var statusScreen = <Text style={{fontSize:25,color:'#ffffff'}}> Missions Accomplies :</Text>
@@ -90,16 +85,15 @@ function mapStateToProps(state) {
   return { missions: state.missionsReducer };
 }
 
-  function mapDispatchToProps(dispatch) {
-    return {
-      addDeliveries: function(e) {
-            dispatch( {type: 'addDeliveries', deliveries:e} )
-        },
-        addMissionId: function(e) {
-            dispatch( {type: 'addMissionId', missionId:e} )
-        }
-
-    }
-   };
+function mapDispatchToProps(dispatch) {
+  return {
+    addDeliveries: function (e) {
+      dispatch({ type: "addDeliveries", deliveries: e });
+    },
+    addMissionId: function (e) {
+      dispatch({ type: "addMissionId", missionId: e });
+    },
+  };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(MissionsScreen);

@@ -3,8 +3,10 @@ import { Box, Heading,NativeBaseProvider, Center, Avatar,
  Image, Button, Text, HStack, Spacer, VStack, Modal} from 'native-base';
 import { connect } from "react-redux";
 
-function MissionsScreen3(props){
+function MissionsScreen3(props) {
+  var info = props.route.params;
 
+  const logo = require("../assets/download.jpeg");
 
     var info = props.route.params;
 
@@ -24,7 +26,7 @@ function MissionsScreen3(props){
         if(info.isValidate == "accept"){
             props.navigation.navigate("TerminateMission",info)
         }else{
-                var  responce = await fetch("http://10.5.49.160:3000/changeStatusValidate", {
+                var  responce = await fetch(`${global.ipa}changeStatusValidate`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: `idMission=${props.missionId}&weigth=${info.weigth}&idDelivery=${info._id}`
@@ -32,10 +34,6 @@ function MissionsScreen3(props){
 
             responce = await responce.json();
 
-            console.log(responce.err)
-            if(responce == true){
-                props.navigation.navigate('JourneyScreen')
-            }
 
             if (responce.err){
                 setErr(true);
@@ -43,29 +41,37 @@ function MissionsScreen3(props){
             }
         }
 
+        var addMessage = await fetch(`${global.ipa}addMessageAccept`, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `expeditor=${info.expeditor_id}&recipient=${props.user._id}&date="13/12/2021"`,
+          });
+      
+          responce = await responce.json();
+      
+          console.log("responce", responce);
+      
+          if (responce) {
+            props.navigation.navigate("HomeScreen");
+          }
        
     }
-
-
+    
     async function cancelClick(){
 
         setCancelIsClick(true);
 
-        var  responce = await fetch("http://10.5.49.160:3000/changeStatusCancel", {
+        var  responce = await fetch(`${global.ipa}changeStatusCancel`, {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `idDelivery=${info._id}&idMission=${props.missionId}&weigth=${info.weigth}`
             });
 
-        responce = await responce.json();
-        if(responce == true){
-            props.navigation.navigate('JourneyScreen')
-        }
-    }
+  }
 
-    return ( 
+  return (
     <NativeBaseProvider>
-    <Center flex={1} px="3" >
+      <Center flex={1} px="3">
         <Center>
             <Box >
             <HStack space={3} justifyContent="space-between"  style={{marginBottom:'5%'}}>
@@ -109,6 +115,7 @@ function MissionsScreen3(props){
                             padding: 10,
                             margin:5}}
             >
+              {info.infoExpeditor.note}
 
                     <Box p="3">
                         <Image
@@ -134,6 +141,7 @@ function MissionsScreen3(props){
             </Box>                
            
 
+           
         </Center>
         {(info.delivery_status == "delivered") ? 
         <Button variant="outline" colorScheme='indigo' style={{marginRight:50}} onPress={()=>props.navigation.navigate('JourneyScreen')}>retour aux missions</Button>
@@ -218,17 +226,14 @@ function MissionsScreen3(props){
        
       </Modal>
 
-</NativeBaseProvider>)
-   
+</NativeBaseProvider>
+)   
 }
 
-function mapStateToProps(state){
-    return { missionId: state.missionIdReducer}
-  }
-  
+          
 
+function mapStateToProps(state) {
+  return { missionId: state.missionIdReducer, user: state.userReducer };
+}
 
-  export default connect(
-    mapStateToProps,
-    null
-  )(MissionsScreen3);
+export default connect(mapStateToProps, null)(MissionsScreen3);

@@ -4,24 +4,21 @@ import { Button, NativeBaseProvider, VStack } from "native-base";
 import { connect } from "react-redux";
 
 function Journey(props) {
+  async function buttonClick(e) {
+    if (props.user) {
+      var responce = await fetch(`${global.ipa}loadMissions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `idKryer=${props.user._id}&status=${e}`,
+      });
 
-    async function buttonClick(e){
-        if(props.user){
-        var  responce = await fetch("http://10.5.49.160:3000/loadMissions", {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `idKryer=${props.user._id}&status=${e}`
-            });
+      responce = await responce.json();
 
-        responce = await responce.json();
+      props.addMissions(responce);
 
-      
-        props.addMissions(responce);
-
-        props.navigation.navigate("MissionsScreen",{status:e});
-        
-    }else{
-        props.navigation.navigate('Profil');
+      props.navigation.navigate("MissionsScreen", { status: e });
+    } else {
+      props.navigation.navigate("Profil");
     }
   }
 
