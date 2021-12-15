@@ -42,7 +42,7 @@ function PurposeDetails(props) {
     });
 
     if (data) {
-      props.navigation.navigate("Missions");
+      props.navigation.navigate("JourneyScreen");
     }
   };
 

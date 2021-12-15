@@ -17,7 +17,6 @@ import {
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 function TchatDetails(props) {
-    console.log(props.route.params);
     const[valueLoadMessage, setValueLoadMessage]=useState(false);
     //on va chercher tous les messages en lien avec cet utilisateur
 
@@ -61,6 +60,7 @@ function TchatDetails(props) {
   //cette fonction permet d'aligner les messages du user à droite et celui du destinataire à gauche
   var propertyJusifyContent = "";
   function flexMessageProperty(userId){
+      console.log(userId);
       if(userId === props.user._id){
           propertyJusifyContent = "flex-end"; 
       } else {
@@ -86,15 +86,9 @@ function TchatDetails(props) {
                 width="100%">
                 {props.route.params.name_dest}
             </Center>
-            {/*< Box
-            w={{
-                base: "100%",
-                md: "25%",
-            }}
-            > */}
                 <FlatList
                     data={dataMessages}
-                    renderItem={({ item }) => (
+                    renderItem={({ item }) => {console.log("item", item); return (
                     <Box
                         borderBottomWidth="1"
                         _dark={{
@@ -137,10 +131,9 @@ function TchatDetails(props) {
                         </HStack>
                     </Box>
 
-                    )}
+                    )}}
                     keyExtractor={(item) => item._id}
                 />
-            {/* </Box> */}
 
             <VStack style = {{position: 'absolute', left: 0, right: 0, bottom: 0}}>
                 

@@ -19,6 +19,8 @@ import {Image} from "react-native"
 function Tchat(props){
     const [dataMessages, setDataMessages] = useState();
 
+    const isFocused = useIsFocused(false);
+
     async function loadMessages() {
       var response = await fetch(`${global.ipa}loadLastMessage`, {
           method: 'POST',
@@ -31,13 +33,12 @@ function Tchat(props){
       //console.log("response", response.messages);
   }
 
-    useEffect(() => {       
-        loadMessages() 
-    }, []);
+    useEffect(() => {   
+      if(isFocused){    
+        loadMessages();
+      }
+    }, [isFocused]);
 
-    if (useIsFocused){
-      loadMessages();
-    }
 
   return (
     <NativeBaseProvider>
