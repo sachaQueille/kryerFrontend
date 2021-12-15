@@ -107,7 +107,9 @@ function ReceipientCoordinate(props) {
               {"\n"}
               Une fois acceptée, tu y trouveras un code de verification.
               Transmets ce code à la personne qui récupérera le colis car il lui
-              sera demandé lors de l'echange avec le Kryer .
+              sera demandé lors de l'echange avec le Kryer .{"\n"}
+              Une fois la livraison effectuée, ton compte Kryer sera débité du
+              montant de la mission !
             </Text>
           </Modal.Body>
           <Modal.Footer>

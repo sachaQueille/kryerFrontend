@@ -94,7 +94,7 @@ function SendDelivery(props) {
           Rechercher un Kryer
         </Center>
 
-        <Stack space={4} w="100%" alignItems="center" marginTop="30%">
+        <Stack space={4} w="100%" alignItems="center" marginTop="10%">
           <FormControl.Label>Informations sur votre trajet </FormControl.Label>
           <Input
             isRequired
