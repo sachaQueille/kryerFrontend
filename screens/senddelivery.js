@@ -19,7 +19,7 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 import DatePicker from "react-native-datepicker";
-import { StyleSheet, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, KeyboardAvoidingView , Image, ScrollView} from "react-native";
 import { connect } from "react-redux";
 
 function SendDelivery(props) {
@@ -79,6 +79,8 @@ function SendDelivery(props) {
 
   return (
     <NativeBaseProvider>
+      <Image source={require("../assets/search.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
+      <ScrollView>
       <Center>
         <Center
           style={{ backgroundColor: "indigo" }}
@@ -310,6 +312,8 @@ function SendDelivery(props) {
           )}
         </Modal.Content>
       </Modal>
+      </ScrollView>
+      
     </NativeBaseProvider>
   );
 }

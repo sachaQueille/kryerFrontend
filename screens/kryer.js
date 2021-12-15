@@ -9,7 +9,6 @@ import {
   View,
   Avatar,
   VStack,
-  Heading,
   Spacer,
   Button,
 } from "native-base";

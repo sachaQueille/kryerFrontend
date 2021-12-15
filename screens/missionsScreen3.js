@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import {
   Box,
   Heading,
@@ -22,11 +22,14 @@ function MissionsScreen3(props) {
 
   var info = props.route.params;
 
-  console.log(info);
+
+
+
 
   const [showModal, setShowModal] = useState(false);
   const [err, setErr] = useState(false);
   const [cancelIsClick, setCancelIsClick] = useState(false);
+  const [isChecked, setIsChecked] = useState(false)
 
   async function acceptClick() {
     setCancelIsClick(false);
@@ -72,6 +75,28 @@ function MissionsScreen3(props) {
       props.navigation.navigate("HomeScreen");
     }
   }
+
+  useEffect(()=>{
+    async function changeStatusTransit(){
+        if(isChecked){
+        var responce = await fetch(`${global.ipa}changeStatusTransit`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `idDelivery=${info._id}`
+        });
+      }
+    }
+    changeStatusTransit()
+   
+
+  },[isChecked])
+
+  useEffect(()=>{
+    if(info.delivery_status == "inTransitDelivery"){
+    setIsChecked(true);
+  }
+  },[])
+  
 
   return (
     <NativeBaseProvider>
@@ -131,6 +156,23 @@ function MissionsScreen3(props) {
             <Text>Email : {info.coordinates_recipient.email}</Text>
             <Text>Telephone : {info.coordinates_recipient.phone}</Text>
           </Box>
+
+          {(info.isValidate == "accept") ?
+          <Box>
+              <Text style={{fontSize:18,marginTop:"5%"}}>Signale ton depart a l'expediteur :</Text>
+              <Checkbox
+                            marginTop="5"
+                            colorScheme="purple"
+                            size="sm"
+                            isChecked={isChecked}
+                            onPress={()=>setIsChecked(true)}
+                        >
+                            Colis en transit
+              </Checkbox>
+          </Box> : null}
+
+
+
         </Center>
         {info.delivery_status == "delivered" ? (
           <Button

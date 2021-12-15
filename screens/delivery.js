@@ -9,6 +9,7 @@ import {
     Icon,
     Pressable,
 } from "native-base";
+import { Image, ScrollView} from "react-native";
 
 //import styles from "../vglobal/styles";
 
@@ -112,7 +113,9 @@ function MyDelivery(props) {
     }
 
     return (
-        <NativeBaseProvider>
+        <NativeBaseProvider style={{backgroundColor:"white"}}>
+            <Image source={require("../assets/delivery1.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
+           
             <Center
                 style={{ backgroundColor: "indigo" }}
                 _text={{
@@ -126,10 +129,12 @@ function MyDelivery(props) {
             >
                 Suivre mes colis
             </Center>
-
-            <Center flex={1} px="3">
+            
+            <ScrollView>
+            <Center flex={1} px="3" marginTop="10%">
                 {deliveryList}
             </Center>
+            </ScrollView>
         </NativeBaseProvider>
     );
 }

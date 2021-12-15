@@ -14,6 +14,7 @@ import {
   NativeBaseProvider,
 } from "native-base"
 import { TouchableOpacity } from "react-native-gesture-handler";
+import {Image} from "react-native"
 
 function Tchat(props){
     const [dataMessages, setDataMessages] = useState();
@@ -40,6 +41,7 @@ function Tchat(props){
 
   return (
     <NativeBaseProvider>
+       <Image source={require(`../assets/tchat.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
     <Box
       w={{
         base: "100%",

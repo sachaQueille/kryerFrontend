@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text , ScrollView , Image} from "react-native";
 import { Button, NativeBaseProvider, VStack } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
@@ -15,7 +15,6 @@ function Home(props) {
           user = await user.json();
 
           props.addUser(user.user[0]);
-          console.log("props.user", user);
         }
         loadUser();
       }
@@ -24,6 +23,7 @@ function Home(props) {
 
   return (
     <NativeBaseProvider>
+      <Image source={require("../assets/home.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
       <ScrollView>
         <VStack
           mx="auto"
@@ -63,6 +63,7 @@ function Home(props) {
           </Button>
         </VStack>
       </ScrollView>
+      
     </NativeBaseProvider>
   );
 }

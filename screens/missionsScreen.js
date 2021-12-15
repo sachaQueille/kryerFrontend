@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView ,Image} from "react-native";
 import { Button, NativeBaseProvider, VStack, Center, Box } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
@@ -98,7 +98,7 @@ function MissionsScreen(props) {
       >
         {statusScreen}
       </Center>
-
+      <Image source={require("../assets/astronaute.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
       <ScrollView>
         <Center flex={1} px="3" marginTop="20">
           {missions}
