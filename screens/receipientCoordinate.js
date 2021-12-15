@@ -30,11 +30,12 @@ function ReceipientCoordinate(props) {
 
   return (
     <NativeBaseProvider>
+      
       <ScrollView>
         <VStack
           width="80%"
           mx="auto"
-          marginTop="40%"
+          marginTop="30%"
           marginBottom="50"
           justifyContent="center"
           alignItems="center"
@@ -47,7 +48,7 @@ function ReceipientCoordinate(props) {
               Prénom{" "}
             </FormControl.Label>
             <Input
-              placeholder="willly"
+              placeholder="Prénom"
               marginBottom="5"
               onChangeText={(e) => setFirstname(e)}
             />
@@ -56,7 +57,7 @@ function ReceipientCoordinate(props) {
           <FormControl isRequired>
             <FormControl.Label _text={{ bold: true }}>Nom</FormControl.Label>
             <Input
-              placeholder="Wonka"
+              placeholder="Nom"
               marginBottom="5"
               onChangeText={(e) => setLastname(e)}
             />
@@ -67,15 +68,15 @@ function ReceipientCoordinate(props) {
               Numéro de téléphone
             </FormControl.Label>
             <Input
-              placeholder="XX XX XX XX XX"
+              placeholder="Numéro"
               marginBottom="5"
               onChangeText={(e) => setPhone(e)}
             />
           </FormControl>
           <FormControl isRequired>
-            <FormControl.Label _text={{ bold: true }}>email</FormControl.Label>
+            <FormControl.Label _text={{ bold: true }}>Email</FormControl.Label>
             <Input
-              placeholder="willy.Wonka@chocolat.com"
+              placeholder="Adresse email"
               onChangeText={(e) => setEmail(e)}
             />
           </FormControl>
@@ -95,29 +96,36 @@ function ReceipientCoordinate(props) {
       <Modal isOpen={modalIsVisible} onClose={setModalIsVisible} size={"lg"}>
         <Modal.Content maxH="500">
           <Modal.CloseButton />
-          <Modal.Header>Félicition !</Modal.Header>
-          <Modal.Body >
-            
-              <Text>
-                Vous venez de faire une demande auprès d'un Kryer ! {"\n"}{"\n"}
-                
-                Il faut maintenant qu'il accepte.  {"\n"}{"\n"}
-                Verrifiez dans la partie colis pour
-                connaitre l'état de la demande.  {"\n"}{"\n"}
-                Une fois accepté , vous y trouverez
-                un code de vérification. Transmettez ce code à la personne qui
-                récupèrera le colis car il lui sera demandé lors de l'échange
-                avec le Kryer .
-              </Text>
-            
+          <Modal.Header>Felicitions !</Modal.Header>
+          <Modal.Body>
+            <Text>
+              Tu viens de faire une demande aupres d'un Kryer ! {"\n"}
+              {"\n"}
+              Il faut maintenant qu'il accepte. {"\n"}
+              {"\n"}
+              Vérifier dans la partie colis pour connaître l'état de la demande.{" "}
+              {"\n"}
+              {"\n"}
+              Une fois acceptée, tu y trouveras un code de verification.
+              Transmets ce code à la personne qui récupérera le colis car il lui
+              sera demandé lors de l'echange avec le Kryer .{"\n"}
+              Une fois la livraison effectuée, ton compte Kryer sera débité du
+              montant de la mission !
+            </Text>
           </Modal.Body>
           <Modal.Footer>
-            <Button colorScheme="indigo" onPress={() => validateClick()}>
+            <Button
+              style={{ backgroundColor: "indigo" }}
+              mx="12"
+              size="lg"
+              onPress={() => validateClick()}
+            >
               Embarquer dans l'aventure
             </Button>
           </Modal.Footer>
         </Modal.Content>
       </Modal>
+     
     </NativeBaseProvider>
   );
 }

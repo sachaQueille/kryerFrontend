@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView ,Image} from "react-native";
 import { Button, NativeBaseProvider, VStack, Center, Box } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
@@ -14,18 +14,21 @@ function MissionsScreen(props) {
     });
 
     responce = await responce.json();
+    console.log(responce)
 
-    props.addDeliveries(responce);
+    props.addDeliveries(responce.result);
     props.addMissionId(e);
 
 
-    props.navigation.navigate("MissionsScreen2", { status: props.route.params.status })
-  }
+    props.navigation.navigate("MissionsScreen2",{status:props.route.params.status, etatCapacity: responce.etatCapacity , cagnotte: responce.cagnotte})
+    }
+
 
   var missions =
     (props.missions.length != 0) ? (
       props.missions.map(function (e, i) {
         return (
+
           <VStack key={e._id}>
             <TouchableOpacity onPress={() => buttonClick(e._id)} >
               <Box
@@ -35,19 +38,39 @@ function MissionsScreen(props) {
                 width="300"
               >
                 <Text
+
                   style={{ fontSize: 16, textAlign: "center" }}>
                   {e.departure_journey} / {e.arrival_journey}
                 </Text>
                 <Text style={{ color: 'grey', textAlign: "center" }}>le {e.date_journey}</Text>
+
               </Box>
             </TouchableOpacity>
+
           </VStack>
+
+          // <Button
+          // bg="transparent"
+          // borderWidth="1"
+          // variant="solid"
+
+          //   key={i}
+          //   mx="12"
+          //   size="lg"
+          //   marginBottom="5"
+          //   onPress={() => buttonClick(e._id)}
+
+          //   width="300"
+          //   >
+          //   <Text style={{fontSize:16}}>
+          //     {e.departure_journey} / {e.arrival_journey} 
+          //   </Text>
+          //   <Text style={{color:'grey',textAlign:"center"}}>le {e.date_journey}</Text>
+          // </Button>
         );
       })
     ) : (
-      <Center marginTop="50%">
-        <Text >Vous n'avez aucune missions à afficher</Text>
-      </Center>
+      <Text>Tu n'as aucune missions à afficher</Text>
     );
 
   var statusScreen = "Missions Accomplies"
@@ -57,8 +80,10 @@ function MissionsScreen(props) {
     statusScreen = "Missions  en cours"
   }
 
+
   return (
     <NativeBaseProvider >
+
       <Center
         style={{ backgroundColor: "indigo" }}
         _text={{
@@ -73,7 +98,7 @@ function MissionsScreen(props) {
       >
         {statusScreen}
       </Center>
-
+      <Image source={require("../assets/astronaute.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
       <ScrollView>
         <Center flex={1} px="3" marginTop="20">
           {missions}

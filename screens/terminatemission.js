@@ -25,9 +25,12 @@ function TerminateMission(props) {
  const info = props.route.params;
 
 
+
+
   async function finishClick  () {
-    if (code === verifCode) {
+    if (code === verifCode) { console.log(info.weigth);
       setShowModalSuccess(true);
+     
       await fetch(`${global.ipa}changeStatusValidate`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},

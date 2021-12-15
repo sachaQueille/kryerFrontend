@@ -9,7 +9,7 @@ import {
   Icon,
   Modal,
   Text,
-  View,
+  View
 } from "native-base";
 import {
   Ionicons,
@@ -19,7 +19,7 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 import DatePicker from "react-native-datepicker";
-import { StyleSheet, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, KeyboardAvoidingView , Image, ScrollView} from "react-native";
 import { connect } from "react-redux";
 
 function SendDelivery(props) {
@@ -79,11 +79,26 @@ function SendDelivery(props) {
 
   return (
     <NativeBaseProvider>
-      <Center flex={1} px="3">
-        {/* trouver un Kryer */}
-
-        <Stack space={4} w="100%" alignItems="center" marginBottom="10%">
-          <FormControl.Label>Trouve un Kryer </FormControl.Label>
+      <Image source={require("../assets/search.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
+      <ScrollView>
+      <Center>
+        <Center
+          style={{ backgroundColor: "indigo" }}
+          _text={{
+            color: "#ffffff",
+            fontWeight: "600",
+            fontSize: "32",
+            marginTop: "10%",
+          }}
+          height={120}
+          width="100%"
+        >
+          Rechercher un Kryer
+        </Center>
+        
+        
+        <Stack space={4} w="100%" alignItems="center" marginTop="10%">
+          <FormControl.Label>Informations sur votre trajet </FormControl.Label>
           <Input
             isRequired
             w={{
@@ -98,7 +113,7 @@ function SendDelivery(props) {
                 color="indigo.800"
               />
             }
-            placeholder="Depart"
+            placeholder="Départ"
             onChangeText={(e) => setDeparture(e)}
             value={departure}
           />
@@ -129,19 +144,19 @@ function SendDelivery(props) {
               setShowModal(true);
               setDateIsChoose(true);
             }}
-            style={{ width: "75%" }}
-            variant="outline"
-            colorScheme="indigo"
+            style={{ backgroundColor: "indigo" }}
+            mx="12"
+            size="lg"
           >
-            Choisi une date
+            Choisir une date
           </Button>
           <Text>{messageDate}</Text>
         </Stack>
 
         {/* information sur le colis */}
-
-        <Stack space={4} w="100%" alignItems="center">
-          <FormControl.Label>Information sur votre Colis</FormControl.Label>
+        
+        <Stack space={4} w="100%" alignItems="center" marginTop="10%">
+          <FormControl.Label>Informations sur votre Colis</FormControl.Label>
           <Input
             w={{
               base: "75%",
@@ -155,7 +170,7 @@ function SendDelivery(props) {
                 color="indigo.800"
               />
             }
-            placeholder="Poid en Kg"
+            placeholder="Poids en Kg"
             onChangeText={(e) => setWeight(e)}
             value={weight}
           />
@@ -165,11 +180,11 @@ function SendDelivery(props) {
               setMeasureClick(true);
               setShowModal(true);
             }}
-            style={{ width: "75%" }}
-            variant="outline"
-            colorScheme="indigo"
+            style={{ backgroundColor: "indigo" }}
+            mx="12"
+            size="lg"
           >
-            dimensions
+            Dimensions
           </Button>
 
           <Icon
@@ -181,6 +196,7 @@ function SendDelivery(props) {
           />
         </Stack>
       </Center>
+      
 
       {/* modale ( affichage selon si je click sur dimension ou sur choisir une date) */}
 
@@ -262,7 +278,7 @@ function SendDelivery(props) {
             // date
 
             <View>
-              <Modal.Header>Choisi une date</Modal.Header>
+              <Modal.Header>Choisir une date</Modal.Header>
               <Modal.Body>
                 <DatePicker
                   style={styles.datePickerStyle}
@@ -296,6 +312,8 @@ function SendDelivery(props) {
           )}
         </Modal.Content>
       </Modal>
+      </ScrollView>
+      
     </NativeBaseProvider>
   );
 }

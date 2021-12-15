@@ -8,10 +8,10 @@ import {
   Modal,
   HStack,
   Text,
-  Center
+  Center,
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, ImageBackground , Image} from "react-native";
 import { connect } from "react-redux";
 
 function PurposeJourney(props) {
@@ -24,13 +24,27 @@ function PurposeJourney(props) {
 
   return (
     <NativeBaseProvider>
+      <Image source={require("../assets/traveler.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
       <Center>
+        <Center
+          style={{ backgroundColor: "indigo" }}
+          _text={{
+            color: "#ffffff",
+            fontWeight: "600",
+            fontSize: "32",
+            marginTop: "10%",
+          }}
+          height={120}
+          width="100%"
+        >
+          Proposer une mission
+        </Center>
         <ScrollView>
           <VStack
             width="80%"
             mx="auto"
-            marginTop="40%"
-            marginBottom="50"
+            marginTop="10%"
+            marginBottom="10%"
             justifyContent="center"
             alignItems="center"
           >
@@ -38,19 +52,23 @@ function PurposeJourney(props) {
               <FormControl.Label _text={{ bold: true }}>
                 Départ
               </FormControl.Label>
-
-              <Input
-                placeholder="Ex : Paris"
-                marginBottom="5"
-                onChangeText={(e) => setDeparture(e)}
-              />
+              <HStack space={2}>
+                <Input
+                  w={{
+                    base: "100%",
+                    md: "60%",
+                  }}
+                  placeholder="Ex : Paris"
+                  marginBottom="5"
+                  onChangeText={(e) => setDeparture(e)}
+                />
+              </HStack>
             </FormControl>
 
             <FormControl isRequired>
               <FormControl.Label _text={{ bold: true }}>
                 Arrivée
               </FormControl.Label>
-
               <Input
                 placeholder="Ex : Rome"
                 marginBottom="5"
@@ -62,45 +80,41 @@ function PurposeJourney(props) {
               <FormControl.Label _text={{ bold: true }}>
                 Capacité de transport:
               </FormControl.Label>
-
               <Input
                 placeholder="En kg"
                 marginBottom="5"
                 onChangeText={(e) => setWeight(e)}
               />
             </FormControl>
-
             <FormControl isRequired>
               <FormControl.Label _text={{ bold: true }}>
                 Date de trajet
               </FormControl.Label>
-
-              <Input placeholder="Date" onChangeText={(e) => setDateJourney(e)} />
+              <Input
+                placeholder="Date"
+                onChangeText={(e) => setDateJourney(e)}
+              />
             </FormControl>
           </VStack>
-
-          <Button.Group
-            display="flex"
-            flexDirection="column"
-            size="lg"
-            marginTop="4"
-            mx="12"
-          >
+          <Button.Group display="flex" flexDirection="column" size="lg" mx="12">
             <Button onPress={() => setShowModal(true)} marginBottom="4">
               Simuler
             </Button>
 
             <Button
-              onPress={() => props.user ?
-                props.navigation.navigate("PurposeDetails", {
-                  departure: departure,
-                  arrival: arrival,
-                  weight: weight,
-                  dateJourney: dateJourney,
-                }) :
-                props.navigation.navigate("Profil")
+              onPress={() =>
+                props.user
+                  ? props.navigation.navigate("PurposeDetails", {
+                      departure: departure,
+                      arrival: arrival,
+                      weight: weight,
+                      dateJourney: dateJourney,
+                    })
+                  : props.navigation.navigate("Profil")
               }
-              leftIcon={<EvilIcons name="arrow-right" size={24} color="white" />}
+              leftIcon={
+                <EvilIcons name="arrow-right" size={24} color="white" />
+              }
               style={{ backgroundColor: "indigo" }}
             >
               Suivant
@@ -145,6 +159,7 @@ function PurposeJourney(props) {
           </Modal.Footer>
         </Modal.Content>
       </Modal>
+   
     </NativeBaseProvider>
   );
 }

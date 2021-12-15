@@ -10,7 +10,7 @@ import {
   Center,
 } from "native-base";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
-import { ScrollView } from "react-native";
+import {  ScrollView, Image} from "react-native";
 import { connect } from "react-redux";
 
 function PurposeDetails(props) {
@@ -33,7 +33,7 @@ function PurposeDetails(props) {
       deliveryDate,
       pricePerKg,
       dateJourney,
-      Center
+      Center,
     };
     const response = await fetch(`${global.ipa}saveMission/`, {
       method: "POST",
@@ -48,21 +48,34 @@ function PurposeDetails(props) {
 
   return (
     <NativeBaseProvider>
+      <Image source={require("../assets/traveler2.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
       <Center>
+        <Center
+          style={{ backgroundColor: "indigo" }}
+          _text={{
+            color: "#ffffff",
+            fontWeight: "600",
+            fontSize: "32",
+            marginTop: "10%",
+          }}
+          height={120}
+          width="100%"
+        >
+          Proposer une mission
+        </Center>
         <ScrollView>
           <VStack
             width="80%"
             mx="auto"
-            marginTop="20%"
-            marginBottom="50"
+            marginTop="10%"
+            marginBottom="10%"
             justifyContent="center"
             alignItems="center"
           >
             <FormControl isRequired>
-              <FormControl.Label >
+              <FormControl.Label _text={{ bold: true }}>
                 Récupération du colis
               </FormControl.Label>
-
               <HStack space={2}>
                 <Input
                   placeholder="Lieu de récupération"
@@ -91,7 +104,11 @@ function PurposeDetails(props) {
                 }}
                 marginBottom="5"
                 InputLeftElement={
-                  <MaterialIcons name="calendar-today" size={25} color="indigo" />
+                  <MaterialIcons
+                    name="calendar-today"
+                    size={25}
+                    color="indigo"
+                  />
                 }
                 onChangeText={(e) => setRecuperationDate(e)}
               />
@@ -101,7 +118,6 @@ function PurposeDetails(props) {
               <FormControl.Label _text={{ bold: true }}>
                 Livraison du colis :
               </FormControl.Label>
-
               <Input
                 placeholder="Lieu de livraison"
                 w={{
@@ -140,7 +156,6 @@ function PurposeDetails(props) {
               <FormControl.Label _text={{ bold: true }}>
                 Tarif de la mission :
               </FormControl.Label>
-
               <Input
                 placeholder="Prix par kg"
                 w={{
@@ -154,7 +169,6 @@ function PurposeDetails(props) {
               />
             </FormControl>
           </VStack>
-          
           <Button
             style={{ backgroundColor: "indigo" }}
             mx="12"
