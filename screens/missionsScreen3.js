@@ -12,6 +12,7 @@ import {
   Spacer,
   VStack,
   Modal,
+  Checkbox
 } from "native-base";
 import { connect } from "react-redux";
 
@@ -96,7 +97,9 @@ function MissionsScreen3(props) {
     setIsChecked(true);
   }
   },[])
-  
+
+
+  console.log(info.url_image);
 
   return (
     <NativeBaseProvider>
@@ -139,7 +142,7 @@ function MissionsScreen3(props) {
             {info.infoExpeditor.note}
 
             <Box p="3">
-              <Image source={logo} alt="image" width="110" height="110" />
+              <Image source={{uri:info.url_image}} alt="box" size="lg"/>
             </Box>
             <Box p="3">
               <Text>Information Colis</Text>
