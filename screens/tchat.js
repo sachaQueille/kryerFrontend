@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { connect } from 'react-redux';
+import { useIsFocused } from '@react-navigation/native';
 import {
   Box,
   FlatList,
@@ -18,24 +19,26 @@ import {Image} from "react-native"
 function Tchat(props){
     const [dataMessages, setDataMessages] = useState();
 
-    useEffect(() => {
-        
-        async function loadMessages() {
-            var response = await fetch(`${global.ipa}loadLastMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `token=${props.user.token}`
-            });
+    async function loadMessages() {
+      var response = await fetch(`${global.ipa}loadLastMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `token=${props.user.token}`
+      });
 
-            response = await response.json();
-            setDataMessages(response.messages);
-            //console.log("response", response.messages);
-        }
-        loadMessages()
-        
+      response = await response.json();
+      setDataMessages(response.messages);
+      //console.log("response", response.messages);
+  }
+
+    useEffect(() => {       
+        loadMessages() 
     }, []);
 
-    const data = dataMessages;
+    if (useIsFocused){
+      loadMessages();
+    }
+
   return (
     <NativeBaseProvider>
        <Image source={require(`../assets/tchat.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
@@ -59,11 +62,11 @@ function Tchat(props){
   </Center>
 
       <FlatList
-        data={data}
+        data={dataMessages}
         renderItem={({ item }) => (
           <TouchableOpacity 
             onPress={() => 
-              props.navigation.navigate('TchatDetails',{idRecipient:item.id_dest,name_dest:item.lastName_dest+" "+item.firstName_dest})
+              props.navigation.navigate('TchatDetails',{idRecipient:item.id_dest,name_dest:item.firstName_dest+" "+item.lastName_dest})
             }
           >
           <Box
@@ -78,6 +81,7 @@ function Tchat(props){
           >
             <HStack space={3} justifyContent="space-between">
               <Avatar
+                bg="transparent"
                 size="48px"
                 source={{
                   uri: item.avatarUrl,

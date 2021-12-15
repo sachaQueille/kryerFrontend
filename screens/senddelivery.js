@@ -9,7 +9,7 @@ import {
   Icon,
   Modal,
   Text,
-  View,
+  View
 } from "native-base";
 import {
   Ionicons,
@@ -95,7 +95,8 @@ function SendDelivery(props) {
         >
           Rechercher un Kryer
         </Center>
-
+        
+        
         <Stack space={4} w="100%" alignItems="center" marginTop="10%">
           <FormControl.Label>Informations sur votre trajet </FormControl.Label>
           <Input
@@ -153,7 +154,7 @@ function SendDelivery(props) {
         </Stack>
 
         {/* information sur le colis */}
-
+        
         <Stack space={4} w="100%" alignItems="center" marginTop="10%">
           <FormControl.Label>Informations sur votre Colis</FormControl.Label>
           <Input
@@ -205,6 +206,7 @@ function SendDelivery(props) {
           />
         </Stack>
       </Center>
+      
 
       {/* modale ( affichage selon si je click sur dimension ou sur choisir une date) */}
 
