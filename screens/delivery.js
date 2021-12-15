@@ -53,7 +53,7 @@ function MyDelivery(props) {
         if (status == "notYet") {
             iconName = "schedule-send";
             return iconName;
-        } else if (status == "validate") {
+        } else if (status == "accept") {
             iconName = "send";
             return iconName;
         } else if (status == "cancel") {
