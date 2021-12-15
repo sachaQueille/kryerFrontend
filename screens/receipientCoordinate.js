@@ -30,6 +30,7 @@ function ReceipientCoordinate(props) {
 
   return (
     <NativeBaseProvider>
+      
       <ScrollView>
         <VStack
           width="80%"
@@ -118,6 +119,7 @@ function ReceipientCoordinate(props) {
           </Modal.Footer>
         </Modal.Content>
       </Modal>
+     
     </NativeBaseProvider>
   );
 }

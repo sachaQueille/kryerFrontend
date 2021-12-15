@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView ,Image} from "react-native";
 import { Button, NativeBaseProvider, VStack, Center } from "native-base";
 import { connect } from "react-redux";
 
@@ -24,6 +24,7 @@ function Journey(props) {
 
   return (
     <NativeBaseProvider>
+      
       <Center
         style={{ backgroundColor: "indigo" }}
         _text={{
@@ -37,7 +38,7 @@ function Journey(props) {
       >
         Missions
       </Center>
-
+      <Image source={require("../assets/mission1.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
       <ScrollView>
       
       <VStack
@@ -76,6 +77,7 @@ function Journey(props) {
                 </Button>
             </VStack>
             </ScrollView>
+           
         </NativeBaseProvider>
     );
 }

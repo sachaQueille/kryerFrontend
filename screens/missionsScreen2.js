@@ -22,7 +22,7 @@ function MissionsScreen2(props) {
 
     const [inProgress , setInProgress] = useState(0);
     const [cagnotte , setCagnotte] = useState(0);
-
+    
 
     useEffect(()=>{
           setInProgress(props.route.params.etatCapacity);
@@ -98,13 +98,17 @@ function MissionsScreen2(props) {
         )
     }) : <Text>tu n'as aucune demande pour cette mission </Text>
 
-    var statusScreen = "Missions Accomplies"
+    var statusScreen = "Missions Accomplies";
+   var namePhoto = "finishMission"
     if (props.route.params.status == "newMission") {
-        statusScreen = "Nouvelles Missions"
+        statusScreen = "Nouvelles Missions";
+        namePhoto="newMission"
     } else if (props.route.params.status == "currentMission") {
-        statusScreen = "Missions en cours"
+        statusScreen = "Missions en cours";
+        namePhoto="currentMission";
     }
 
+    console.log(namePhoto)
 
     return (
         <NativeBaseProvider>
@@ -121,6 +125,8 @@ function MissionsScreen2(props) {
                 width="100%">
                 {statusScreen}
         </Center>
+        <Image source={require(`../assets/currentMission.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
+       
         {(props.route.params.status !== "newMission" && props.deliveries.length !==0)?
             <Center marginTop="60">
                 <Box w="90%">

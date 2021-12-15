@@ -11,7 +11,7 @@ import {
   Center
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, ImageBackground , Image} from "react-native";
 import { connect } from "react-redux";
 
 function PurposeJourney(props) {
@@ -24,6 +24,7 @@ function PurposeJourney(props) {
 
   return (
     <NativeBaseProvider>
+      <Image source={require("../assets/traveler.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
       <Center>
       <ScrollView>
         <VStack
@@ -132,6 +133,7 @@ function PurposeJourney(props) {
           </Modal.Footer>
         </Modal.Content>
       </Modal>
+   
     </NativeBaseProvider>
   );
 }

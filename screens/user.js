@@ -28,6 +28,7 @@ function User(props) {
   if (!props.user) {
     return (
       <NativeBaseProvider>
+        
         <ScrollView>
           <Center
             mx="auto"
@@ -45,7 +46,7 @@ function User(props) {
             justifyContent="center"
             alignItems="center"
           >
-            <Text>Reveille le Kryer qui est en toi !</Text>
+            <Text>Reveil le Kryer qui est en toi !</Text>
 
             <Button
               style={{ backgroundColor: "indigo" }}
@@ -77,6 +78,7 @@ function User(props) {
   } else {
     return (
       <NativeBaseProvider>
+        
         <ScrollView>
           <Center
             style={{ backgroundColor: "indigo" }}
@@ -178,6 +180,7 @@ function User(props) {
             <Divider my="2" />
           </VStack>
         </ScrollView>
+       
       </NativeBaseProvider>
     );
   }

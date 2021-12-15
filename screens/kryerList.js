@@ -13,7 +13,7 @@ import {
     Button,
    
 } from "native-base";
-import {View, ScrollView , TouchableOpacity} from "react-native";
+import {View, ScrollView , TouchableOpacity, Image} from "react-native";
 import { connect } from 'react-redux';
 
 
@@ -117,6 +117,7 @@ function KryerList(props) {
 
     return (
         <NativeBaseProvider>
+            <Image source={require("../assets/astronaute.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
             <ScrollView>
             <Center flex={1} px="3">
             <Heading fontSize="xl" p="4" pb="3" style={{ textAlign: 'center', marginBottom: 20 }}>

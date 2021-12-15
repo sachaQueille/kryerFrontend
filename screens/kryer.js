@@ -12,7 +12,8 @@ import {
     Heading,
     Spacer,
     Button
-  } from "native-base"
+  } from "native-base";
+  
 
 function Kryer(props){
 
