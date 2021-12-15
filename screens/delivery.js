@@ -36,7 +36,7 @@ function MyDelivery(props) {
 
     const data = dataDelivery;
 
-    
+    console.log("data", data);
 
     const handleDeliveryClick = (sendata) => {
         props.navigation.navigate("DeliveryStatus", {

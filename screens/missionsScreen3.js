@@ -12,6 +12,7 @@ import {
   Spacer,
   VStack,
   Modal,
+  Checkbox
 } from "native-base";
 import { connect } from "react-redux";
 
