@@ -28,7 +28,7 @@ function TerminateMission(props) {
   async function finishClick  () {
     if (code === verifCode) {
       setShowModalSuccess(true);
-      await fetch("http://10.5.49.160:3000/changeStatusValidate", {
+      await fetch(`${global.ipa}changeStatusValidate`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: `idMission=${props.missionId}&idDelivery=${info._id}`

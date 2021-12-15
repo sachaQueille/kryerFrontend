@@ -35,6 +35,8 @@ function MyDelivery(props) {
 
     const data = dataDelivery;
 
+    console.log("data", data)
+
     /* const handleDeliveryClick=(sendata)=>{
           props.navigation.navigate('DeliveryStatus',{deliveryStatus:
               {verifcode:sendata.verifCode,delivery_status:sendata.delivery_status}});
@@ -44,7 +46,7 @@ function MyDelivery(props) {
         props.navigation.navigate("DeliveryStatus", {
             deliveryStatus: {
                 verifcode: sendata.verifCode,
-                delivery_status: "supportedDelivery",
+                delivery_status: "delivered", price: sendata.price
             },
         });
     };
@@ -67,7 +69,7 @@ function MyDelivery(props) {
     if (data.length == 0) {
         deliveryList = (
             <Text style={{ textAlign: "center" }}>
-                Vous n'avez pas encore envoyé un colis!
+                Vous n'avez pas encore envoyé de colis!
             </Text>
         );
     } else {

@@ -39,45 +39,45 @@ function Journey(props) {
       </Center>
 
       <ScrollView>
-      
-      <VStack
-        mx="auto"
-        marginTop="35%"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          onPress={() => buttonClick("newMission")}
-          marginBottom={10}
-          marginTop={20}
-          mx="12"
-          size="lg"
-        >
-          Nouvelles missions
-        </Button>
 
-                <Button
-                    style={{ backgroundColor: "indigo" }}
-                    onPress={() => buttonClick("currentMission")}
-                    marginBottom={10}
-                    mx="12"
-                    size="lg"
-                >
-                    Missions en cours
-                </Button>
-                <Button
-                    style={{ backgroundColor: "indigo" }}
-                    onPress={() => buttonClick("finishMission")}
-                    mx="12"
-                    size="lg"
-                >
-                    Missions accomplies
-                </Button>
-            </VStack>
-            </ScrollView>
-        </NativeBaseProvider>
-    );
+        <VStack
+          mx="auto"
+          marginTop="35%"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Button
+            style={{ backgroundColor: "indigo" }}
+            onPress={() => buttonClick("newMission")}
+            marginBottom={10}
+            marginTop={20}
+            mx="12"
+            size="lg"
+          >
+            Nouvelles missions
+          </Button>
+
+          <Button
+            style={{ backgroundColor: "indigo" }}
+            onPress={() => buttonClick("currentMission")}
+            marginBottom={10}
+            mx="12"
+            size="lg"
+          >
+            Missions en cours
+          </Button>
+          <Button
+            style={{ backgroundColor: "indigo" }}
+            onPress={() => buttonClick("finishMission")}
+            mx="12"
+            size="lg"
+          >
+            Missions accomplies
+          </Button>
+        </VStack>
+      </ScrollView>
+    </NativeBaseProvider>
+  );
 }
 
 function mapStateToProps(state) {

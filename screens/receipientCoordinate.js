@@ -40,11 +40,11 @@ function ReceipientCoordinate(props) {
           alignItems="center"
         >
           <FormControl.Label>
-            Coordonnee de la personne qui va recuperer le colis :
+            Coordonnées de la personne qui va récupérer le colis :
           </FormControl.Label>
           <FormControl isRequired>
             <FormControl.Label _text={{ bold: true }}>
-              Prenom{" "}
+              Prénom{" "}
             </FormControl.Label>
             <Input
               placeholder="willly"
@@ -64,7 +64,7 @@ function ReceipientCoordinate(props) {
 
           <FormControl isRequired>
             <FormControl.Label _text={{ bold: true }}>
-              numero de telephone
+              Numéro de téléphone
             </FormControl.Label>
             <Input
               placeholder="XX XX XX XX XX"
@@ -85,7 +85,7 @@ function ReceipientCoordinate(props) {
             onPress={() => setModalIsVisible(true)}
             style={{ backgroundColor: "indigo" }}
           >
-            valider
+            Valider
           </Button>
         </VStack>
       </ScrollView>
@@ -95,25 +95,25 @@ function ReceipientCoordinate(props) {
       <Modal isOpen={modalIsVisible} onClose={setModalIsVisible} size={"lg"}>
         <Modal.Content maxH="500">
           <Modal.CloseButton />
-          <Modal.Header>Felicition !</Modal.Header>
+          <Modal.Header>Félicition !</Modal.Header>
           <Modal.Body >
             
               <Text>
-                Tu viens de faire une demande aupres d'un Kryer ! {"\n"}{"\n"}
+                Vous venez de faire une demande auprès d'un Kryer ! {"\n"}{"\n"}
                 
                 Il faut maintenant qu'il accepte.  {"\n"}{"\n"}
-                Verrifier dans la partie colis pour
-                connaitre l'etat de la demande.  {"\n"}{"\n"}
-                Une fois accepté , tu y trouvera
-                un code de verification. Transmet ce code a la personne qui
-                recupera le colis car il lui sera demandé lors de l'echange
+                Verrifiez dans la partie colis pour
+                connaitre l'état de la demande.  {"\n"}{"\n"}
+                Une fois accepté , vous y trouverez
+                un code de vérification. Transmettez ce code à la personne qui
+                récupèrera le colis car il lui sera demandé lors de l'échange
                 avec le Kryer .
               </Text>
             
           </Modal.Body>
           <Modal.Footer>
             <Button colorScheme="indigo" onPress={() => validateClick()}>
-              Embarquer dans l'avanture
+              Embarquer dans l'aventure
             </Button>
           </Modal.Footer>
         </Modal.Content>

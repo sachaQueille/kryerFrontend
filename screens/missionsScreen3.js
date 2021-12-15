@@ -130,16 +130,18 @@ function MissionsScreen3(props) {
           <Box p="3">
             <Text>Coordonnées du receveur</Text>
             <Text>Nom : {info.coordinates_recipient.lastName}</Text>
-            <Text>Prenom : {info.coordinates_recipient.firstName}</Text>
+            <Text>Prénom : {info.coordinates_recipient.firstName}</Text>
             <Text>Email : {info.coordinates_recipient.email}</Text>
-            <Text>Telephone : {info.coordinates_recipient.phone}</Text>
+            <Text>Téléphone : {info.coordinates_recipient.phone}</Text>
           </Box>
 
 
 
         </Center>
         {(info.delivery_status == "delivered") ?
-          <Button variant="outline" colorScheme='indigo' style={{ marginRight: 50 }} onPress={() => props.navigation.navigate('JourneyScreen')}>retour aux missions</Button>
+          <Button variant="outline" colorScheme='indigo' style={{ marginRight: 50 }} onPress={() => props.navigation.navigate('JourneyScreen')}>
+            Retour aux missions
+          </Button>
           :
           <Center marginTop="5%">
 
@@ -151,13 +153,13 @@ function MissionsScreen3(props) {
               marginBottom="4"
               mx="12"
             >
-              <Button style={{ width: '50%' }}
+              <Button style={{ backgroundColor: "#e11d48", width: '50%' }}
                 onPress={() => setShowModal(true)}>
                 {(info.isValidate == "accept") ? "Annuler" : "Refuser"}
               </Button>
 
               <Button
-                style={{ backgroundColor: "indigo", width: '50%' }}
+                style={{ backgroundColor: "#059669", width: '50%' }}
                 onPress={() => acceptClick()}
               >
                 {(info.isValidate == "accept") ? "Terminer" : "accepter"}
@@ -172,7 +174,9 @@ function MissionsScreen3(props) {
             <Modal.CloseButton />
 
             <Modal.Body>
-              <Text>Tu n'as maleureusement pas assez de place dans tes bagages pour accepter cette mission</Text>
+              <Text>
+                Vous n'avez maleureusement pas assez de place dans vos bagages pour accepter cette mission
+              </Text>
             </Modal.Body>
             <Modal.Footer>
               <Button
@@ -182,7 +186,7 @@ function MissionsScreen3(props) {
                   props.navigation.navigate("JourneyScreen")
                 }}
               >
-                retour sur mes missions
+                Retour sur mes missions
               </Button>
 
             </Modal.Footer>
@@ -192,8 +196,11 @@ function MissionsScreen3(props) {
             <Modal.CloseButton />
 
             <Modal.Body>
-              <Text>tu es sur de vouloir {info.isValidate == "accept" ? "annuler" : "refuser"} cette demande ?</Text>
+              <Text>
+                Vous êtes sûr de vouloir {info.isValidate == "accept" ? "annuler" : "refuser"} cette demande ?
+              </Text>
             </Modal.Body>
+
             <Modal.Footer>
               <Button.Group space={2}>
                 <Button
@@ -203,7 +210,7 @@ function MissionsScreen3(props) {
                     setShowModal(false)
                   }}
                 >
-                  non
+                  Non
                 </Button>
                 <Button
                   onPress={() => {

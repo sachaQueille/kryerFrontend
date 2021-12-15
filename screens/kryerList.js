@@ -11,9 +11,9 @@ import {
     Center,
     NativeBaseProvider,
     Button,
-   
+
 } from "native-base";
-import {View, ScrollView , TouchableOpacity} from "react-native";
+import { View, ScrollView, TouchableOpacity } from "react-native";
 import { connect } from 'react-redux';
 
 
@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
 
 function KryerList(props) {
 
-  
+
     console.log(props.kryerList)
 
     const boxClick = (e) => {
@@ -30,24 +30,25 @@ function KryerList(props) {
         props.navigation.navigate('Kryer');
     }
 
-    
+
     //valeur de l'affichage
     var kryerList = "";
     if (props.kryerList.length === 0) {
-        kryerList = <Text style={{ textAlign: 'center' }}>"Aucun Kryer ne correspond a votre recherche , essaye avec d'autres critères :)"</Text>
+        kryerList = <Text marginTop="80%" style={{ textAlign: 'center' }}>Aucun Kryer ne correspond a votre recherche , essayez avec d'autres critères :)</Text>
     } else {
-        kryerList = props.kryerList.map(function(item,i){
-            return(
-                 <Box
-                 
-                w={{
-                    base: "100%",
-                    md: "25%",
-                }}
-            >
-                
-                <TouchableOpacity onPress={()=>boxClick(item)} key={i} >
+        kryerList = props.kryerList.map(function (item, i) {
+            return (
+                <Box
+
+                    w={{
+                        base: "100%",
+                        md: "25%",
+                    }}
+                >
+
+                    <TouchableOpacity onPress={() => boxClick(item)} key={i} >
                         <Box
+                        marginTop="10%"
                             borderBottomWidth="1"
                             _dark={{
                                 borderColor: "gray.600",
@@ -58,7 +59,7 @@ function KryerList(props) {
                             py="2"
                         >
                             <HStack space={3} justifyContent="space-between">
-                                <View style={{alignItems:"center",width:120}} justifyContent="center">
+                                <View style={{ alignItems: "center", width: 120 }} justifyContent="center">
                                     <Avatar
                                         size="48px"
                                         source={{
@@ -70,17 +71,17 @@ function KryerList(props) {
                                 </View>
                                 <VStack justifyContent="center">
                                     <Text
-                                        style={{fontSize:16,textAlign:"center"}}
+                                        style={{ fontSize: 16, textAlign: "center" }}
                                         _dark={{
                                             color: "warmGray.50",
                                         }}
                                         color="coolGray.800"
                                         bold
-                                        >
+                                    >
                                         {item.departure} / {item.arrival}
                                     </Text>
                                     <Text
-                                        style={{textAlign:"center"}}
+                                        style={{ textAlign: "center" }}
                                         color="coolGray.600"
                                         _dark={{
                                             color: "warmGray.200",
@@ -91,25 +92,25 @@ function KryerList(props) {
                                 </VStack>
                                 <Spacer />
                                 <View justifyContent="center">
-                                <Text 
-                                    
-                                    fontSize="lg"
-                                    _dark={{
-                                        color: "warmGray.50",
-                                    }}
-                                    color="coolGray.800"
-                                    alignSelf="flex-start"
-                                >
-                                    {item.price} €
-                                </Text>
+                                    <Text
+
+                                        fontSize="lg"
+                                        _dark={{
+                                            color: "warmGray.50",
+                                        }}
+                                        color="coolGray.800"
+                                        alignSelf="flex-start"
+                                    >
+                                        {item.price} €
+                                    </Text>
                                 </View>
                             </HStack>
-                        </Box> 
-                        </TouchableOpacity>
+                        </Box>
+                    </TouchableOpacity>
                     <Center margin={5}>
-                        <Button variant="outline" colorScheme='indigo' style={{marginRight:50}} onPress={()=>props.navigation.navigate('SendDelivery')}>retour</Button>
+                        <Button variant="outline" colorScheme='indigo' style={{ marginRight: 50 }} onPress={() => props.navigation.navigate('SendDelivery')}>retour</Button>
                     </Center>
-            </Box>
+                </Box>
 
             )
         })
@@ -117,13 +118,23 @@ function KryerList(props) {
 
     return (
         <NativeBaseProvider>
+            <Center
+        style={{ backgroundColor: "indigo" }}
+        _text={{
+          color: "#ffffff",
+          fontWeight: "600",
+          fontSize: "32",
+          marginTop: "10%",
+        }}
+        height={120}
+        width="100%"
+      >
+        Disponibilité du Kryer
+      </Center>
             <ScrollView>
-            <Center flex={1} px="3">
-            <Heading fontSize="xl" p="4" pb="3" style={{ textAlign: 'center', marginBottom: 20 }}>
-                    Kryer disponible
-            </Heading>
-                {kryerList}
-            </Center>
+                <Center flex={1} px="3">                    
+                    {kryerList}
+                </Center>
             </ScrollView>
         </NativeBaseProvider>
     )

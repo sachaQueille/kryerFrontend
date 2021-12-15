@@ -8,8 +8,6 @@ import {
     Spacer,
     Center,
     NativeBaseProvider,
-    Heading,
-    FlatList,
 
 } from "native-base";
 
@@ -20,14 +18,9 @@ import { TouchableOpacity } from "react-native";
 
 function MissionsScreen2(props) {
 
-
-
-
     function deliveryClick(e) {
         props.navigation.navigate("MissionsScreen3", e)
     }
-
-
 
     var deliveries = (props.deliveries.length != 0) ? props.deliveries.map(function (e, i) {
 
@@ -53,44 +46,30 @@ function MissionsScreen2(props) {
                             >
                                 {e.infoExpeditor.firstName} {e.infoExpeditor.lastName}
                             </Text>
-
                         </VStack>
+                        
                         <Spacer />
 
                         <Center>
-                  <Text
-                    fontSize="xs"
-                    fontWeight="bold"                   
-                    alignSelf="flex-start"
-                  >
-                    {e.weigth} kg
-                  </Text>
-                  <FontAwesome
-                    name="cube"
-                    size={32}
-                    type="Ionicons"
-                    color="indigo"
-                  />
-                </Center>
-
-                        {/* <Text margin="4" key={`weigth${i}`}
-                            fontSize="xs"
-                            alignSelf="flex-start"
-                        >
+                            <Text
+                                fontSize="xs"
+                                fontWeight="bold"
+                                alignSelf="flex-start"
+                            >
+                                {e.weigth} kg
+                            </Text>
                             <FontAwesome
-                    name="cube"
-                    size={32}
-                    type="Ionicons"
-                    color="indigo"
-                  />
-                            {e.weigth} kg
-                        </Text> */}
+                                name="cube"
+                                size={32}
+                                type="Ionicons"
+                                color="indigo"
+                            />
+                        </Center>
                     </HStack>
                 </Box>
             </TouchableOpacity>
-
         )
-    }) : <Text>tu n'as aucune demande pour cette mission </Text>
+    }) : <Text>Vous n'avez aucune demande pour cette mission </Text>
 
     var statusScreen = "Missions Accomplies"
     if (props.route.params.status == "newMission") {
@@ -119,18 +98,13 @@ function MissionsScreen2(props) {
             <Center flex={1} px="3" marginTop="10">
                 {deliveries}
             </Center>
-
         </NativeBaseProvider>
     )
-
 }
 
 function mapStateToProps(state) {
     return { deliveries: state.deliveriesReducer }
 }
-
-
-
 
 export default connect(
     mapStateToProps,

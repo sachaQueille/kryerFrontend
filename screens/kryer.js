@@ -175,7 +175,7 @@ function Kryer(props){
 
             <View style={{flexDirection:'row',marginTop:20}}> 
                 <Button variant="outline" colorScheme='indigo' style={{marginRight:50}} onPress={()=>props.navigation.navigate('KryerList')}>retour</Button>
-                <Button colorScheme='indigo' onPress={()=> acceptClick()}>Accepter</Button>
+                <Button backgroundColor= "#059669" onPress={()=> acceptClick()}>Accepter</Button>
             </View>
 
         </Center>

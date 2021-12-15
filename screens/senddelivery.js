@@ -247,15 +247,15 @@ function SendDelivery(props) {
                   onChangeText={(e) => setLength(e)}
                   value={length}
                 />
-                 <Button
-                    onPress={() => {
-                      setShowModal(false);
-                    }}
-                    style={{ width: "75%", marginTop:10}}
-                    colorScheme="indigo"
-                  >
-                    ok
-                  </Button>
+                <Button
+                  onPress={() => {
+                    setShowModal(false);
+                  }}
+                  style={{ width: "75%", marginTop: 10 }}
+                  colorScheme="indigo"
+                >
+                  ok
+                </Button>
               </Modal.Body>
             </View>
           ) : (
