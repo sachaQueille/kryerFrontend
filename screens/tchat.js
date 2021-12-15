@@ -66,7 +66,7 @@ function Tchat(props){
         renderItem={({ item }) => (
           <TouchableOpacity 
             onPress={() => 
-              props.navigation.navigate('TchatDetails',{idRecipient:item.id_dest,name_dest:item.lastName_dest+" "+item.firstName_dest})
+              props.navigation.navigate('TchatDetails',{idRecipient:item.id_dest,name_dest:item.firstName_dest+" "+item.lastName_dest})
             }
           >
           <Box
@@ -81,6 +81,7 @@ function Tchat(props){
           >
             <HStack space={3} justifyContent="space-between">
               <Avatar
+                bg="transparent"
                 size="48px"
                 source={{
                   uri: item.avatarUrl,
