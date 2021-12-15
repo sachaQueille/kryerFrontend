@@ -42,8 +42,8 @@ function PurposeJourney(props) {
           <VStack
             width="80%"
             mx="auto"
-            marginTop="30%"
-            marginBottom="50"
+            marginTop="10%"
+            marginBottom="10%"
             justifyContent="center"
             alignItems="center"
           >
@@ -95,13 +95,7 @@ function PurposeJourney(props) {
               />
             </FormControl>
           </VStack>
-          <Button.Group
-            display="flex"
-            flexDirection="column"
-            size="lg"
-            marginTop="4"
-            mx="12"
-          >
+          <Button.Group display="flex" flexDirection="column" size="lg" mx="12">
             <Button onPress={() => setShowModal(true)} marginBottom="4">
               Simuler
             </Button>

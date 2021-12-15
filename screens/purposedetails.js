@@ -66,8 +66,8 @@ function PurposeDetails(props) {
           <VStack
             width="80%"
             mx="auto"
-            marginTop="20%"
-            marginBottom="50"
+            marginTop="10%"
+            marginBottom="10%"
             justifyContent="center"
             alignItems="center"
           >
