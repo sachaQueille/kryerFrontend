@@ -23,16 +23,14 @@ function TchatDetails(props) {
 
 
     const [currentMessage, setCurrentMessage] = useState("");
-    const [dataMessages, setDataMessages] = useState();
+    const [dataMessages, setDataMessages] = useState([]);
 
     //fonction load message
     async function loadMessages() {
-        let controller = new AbortController();
             var response = await fetch(`${global.ipa}loadMessages`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `token=${props.user.token}&idRecipient=${props.route.params.idRecipient}`,
-                signal: controller.signal
+                body: `token=${props.user.token}&idRecipient=${props.route.params.idRecipient}`
             });    
             response = await response.json();
             setDataMessages(response.messages);
@@ -42,10 +40,10 @@ function TchatDetails(props) {
 
     useEffect(() => {        
         loadMessages();        
-    }, [valueLoadMessage]);
+    }, []);
 
 
-  async function onClickSaveMessage(message){
+  async function onClickSaveMessage(){
     var response = await fetch(`${global.ipa}sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -54,13 +52,10 @@ function TchatDetails(props) {
   
       response = await response.json();     
       
-      console.log(response);
       if(response.result){
-        //loadMessages();
+        loadMessages();
         setValueLoadMessage(!valueLoadMessage);        
       }
-
-      console.log(dataMessages); 
   }
 
   //cette fonction permet d'aligner les messages du user à droite et celui du destinataire à gauche
@@ -74,8 +69,7 @@ function TchatDetails(props) {
       return propertyJusifyContent;
   }
 
-  const data = dataMessages;
-  //console.log(data);
+  //console.log("taille messages",dataMessages);
 
     return (
         <NativeBaseProvider >
@@ -92,14 +86,14 @@ function TchatDetails(props) {
                 width="100%">
                 {props.route.params.name_dest}
             </Center>
-            <Box
+            {/*< Box
             w={{
                 base: "100%",
                 md: "25%",
             }}
-            >
+            > */}
                 <FlatList
-                    data={data}
+                    data={dataMessages}
                     renderItem={({ item }) => (
                     <Box
                         borderBottomWidth="1"
@@ -146,7 +140,7 @@ function TchatDetails(props) {
                     )}
                     keyExtractor={(item) => item._id}
                 />
-            </Box>
+            {/* </Box> */}
 
             <VStack style = {{position: 'absolute', left: 0, right: 0, bottom: 0}}>
                 
@@ -160,7 +154,7 @@ function TchatDetails(props) {
                     InputRightElement={
                     <Button
                     onPress={()=> {
-                        onClickSaveMessage({currentMessage});
+                        onClickSaveMessage();
                         setCurrentMessage('');
                       } } 
                     style={{backgroundColor:"transparent"}}

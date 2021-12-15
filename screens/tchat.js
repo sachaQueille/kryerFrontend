@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { connect } from 'react-redux';
+import { useIsFocused } from '@react-navigation/native';
 import {
   Box,
   FlatList,
@@ -17,24 +18,26 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 function Tchat(props){
     const [dataMessages, setDataMessages] = useState();
 
-    useEffect(() => {
-        
-        async function loadMessages() {
-            var response = await fetch(`${global.ipa}loadLastMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `token=${props.user.token}`
-            });
+    async function loadMessages() {
+      var response = await fetch(`${global.ipa}loadLastMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `token=${props.user.token}`
+      });
 
-            response = await response.json();
-            setDataMessages(response.messages);
-            //console.log("response", response.messages);
-        }
-        loadMessages()
-        
+      response = await response.json();
+      setDataMessages(response.messages);
+      //console.log("response", response.messages);
+  }
+
+    useEffect(() => {       
+        loadMessages() 
     }, []);
 
-    const data = dataMessages;
+    if (useIsFocused){
+      loadMessages();
+    }
+
   return (
     <NativeBaseProvider>
     <Box
@@ -57,7 +60,7 @@ function Tchat(props){
   </Center>
 
       <FlatList
-        data={data}
+        data={dataMessages}
         renderItem={({ item }) => (
           <TouchableOpacity 
             onPress={() => 

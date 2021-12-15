@@ -35,10 +35,7 @@ function MyDelivery(props) {
 
     const data = dataDelivery;
 
-    /* const handleDeliveryClick=(sendata)=>{
-          props.navigation.navigate('DeliveryStatus',{deliveryStatus:
-              {verifcode:sendata.verifCode,delivery_status:sendata.delivery_status}});
-      } */
+    
 
     const handleDeliveryClick = (sendata) => {
         props.navigation.navigate("DeliveryStatus", {
