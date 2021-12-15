@@ -72,7 +72,9 @@ function PurposeDetails(props) {
             alignItems="center"
           >
             <FormControl isRequired>
-              <FormControl.Label>Récupération du colis</FormControl.Label>
+              <FormControl.Label _text={{ bold: true }}>
+                Récupération du colis
+              </FormControl.Label>
               <HStack space={2}>
                 <Input
                   placeholder="Lieu de récupération"

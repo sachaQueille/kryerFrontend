@@ -42,7 +42,7 @@ function PurposeJourney(props) {
           <VStack
             width="80%"
             mx="auto"
-            marginTop="40%"
+            marginTop="30%"
             marginBottom="50"
             justifyContent="center"
             alignItems="center"
