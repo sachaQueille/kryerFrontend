@@ -186,6 +186,16 @@ function SendDelivery(props) {
           >
             Dimensions
           </Button>
+          <Button
+            onPress={() => {
+             props.navigation.navigate("CameraScreen")
+            }}
+            style={{ backgroundColor: "indigo" }}
+            mx="12"
+            size="lg"
+          >
+            prendre une photo du colis
+          </Button>
 
           <Icon
             onPress={() => searchClick()}

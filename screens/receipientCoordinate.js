@@ -19,11 +19,12 @@ function ReceipientCoordinate(props) {
   const [phone, setPhone] = useState("");
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
+  console.log(props.urlDelivery.url)
   async function validateClick() {
     const response = await fetch(`${global.ipa}saveDelivery`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `height=${props.infoDelivery.height}&length=${props.infoDelivery.length}&width=${props.infoDelivery.width}&weight=${props.infoDelivery.weight}&price=${props.route.params.price}&idMission=${props.route.params.id}&firstname=${firstname}&lastname=${lastname}&email=${email}&phone=${phone}&expeditorId=${props.user._id}&avatarExp=${props.user.avatar}&firstNameExp=${props.user.firstName}&lastNameExp=${props.user.lastName}`,
+      body: `height=${props.infoDelivery.height}&length=${props.infoDelivery.length}&width=${props.infoDelivery.width}&weight=${props.infoDelivery.weight}&price=${props.route.params.price}&idMission=${props.route.params.id}&firstname=${firstname}&lastname=${lastname}&email=${email}&phone=${phone}&expeditorId=${props.user._id}&avatarExp=${props.user.avatar}&firstNameExp=${props.user.firstName}&lastNameExp=${props.user.lastName}&urlDelivery=${props.urlDelivery.url}`,
     });
     props.navigation.navigate("Colis");
   }
@@ -131,7 +132,7 @@ function ReceipientCoordinate(props) {
 }
 
 function mapStateToProps(state) {
-  return { infoDelivery: state.infoDelivery, user: state.userReducer };
+  return { infoDelivery: state.infoDelivery, user: state.userReducer , urlDelivery: state.photoReducer };
 }
 
 export default connect(mapStateToProps, null)(ReceipientCoordinate);

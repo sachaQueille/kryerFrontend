@@ -31,6 +31,7 @@ import MissionsScreen from "./screens/missionsScreen";
 import MissionsScreen2 from "./screens/missionsScreen2";
 import MissionsScreen3 from "./screens/missionsScreen3";
 import TchatDetails from "./screens/tchatdetails";
+import cameraScreen from "./screens/cameraScreen";
 
 // redux
 import { Provider } from "react-redux";
@@ -42,8 +43,10 @@ import infoDelivery from "./reducers/infoDeliveryReducer";
 import missionsReducer from "./reducers/missionsReducer";
 import deliveriesReducer from "./reducers/deliveriesReducer";
 import missionIdReducer from "./reducers/missionIdReducer";
+import photoReducer from "./reducers/photoReducer";
 
 import variable from "./vglobal/variable";
+
 
 const store = createStore(
   combineReducers({
@@ -54,6 +57,7 @@ const store = createStore(
     missionsReducer,
     deliveriesReducer,
     missionIdReducer,
+    photoReducer
   })
 );
 
@@ -91,10 +95,8 @@ function StackHomeNavigator() {
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="KryerList" component={KryerList} />
       <Stack.Screen name="Kryer" component={Kryer} />
-      <Stack.Screen
-        name="ReceipientCoordinate"
-        component={ReceipientCoordinate}
-      />
+      <Stack.Screen name="ReceipientCoordinate" component={ReceipientCoordinate}/>
+      <Stack.Screen name="CameraScreen" component={cameraScreen}/>
     </Stack.Navigator>
   );
 }
