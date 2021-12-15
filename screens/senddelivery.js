@@ -79,11 +79,23 @@ function SendDelivery(props) {
 
   return (
     <NativeBaseProvider>
-      <Center flex={1} px="3">
-        {/* trouver un Kryer */}
+      <Center>
+        <Center
+          style={{ backgroundColor: "indigo" }}
+          _text={{
+            color: "#ffffff",
+            fontWeight: "600",
+            fontSize: "32",
+            marginTop: "10%",
+          }}
+          height={120}
+          width="100%"
+        >
+          Rechercher un Kryer
+        </Center>
 
-        <Stack space={4} w="100%" alignItems="center" marginBottom="10%">
-          <FormControl.Label>Trouve un Kryer </FormControl.Label>
+        <Stack space={4} w="100%" alignItems="center" marginTop="30%">
+          <FormControl.Label>Informations sur votre trajet </FormControl.Label>
           <Input
             isRequired
             w={{
@@ -98,7 +110,7 @@ function SendDelivery(props) {
                 color="indigo.800"
               />
             }
-            placeholder="Depart"
+            placeholder="Départ"
             onChangeText={(e) => setDeparture(e)}
             value={departure}
           />
@@ -129,19 +141,19 @@ function SendDelivery(props) {
               setShowModal(true);
               setDateIsChoose(true);
             }}
-            style={{ width: "75%" }}
-            variant="outline"
-            colorScheme="indigo"
+            style={{ backgroundColor: "indigo" }}
+            mx="12"
+            size="lg"
           >
-            Choisi une date
+            Choisir une date
           </Button>
           <Text>{messageDate}</Text>
         </Stack>
 
         {/* information sur le colis */}
 
-        <Stack space={4} w="100%" alignItems="center">
-          <FormControl.Label>Information sur votre Colis</FormControl.Label>
+        <Stack space={4} w="100%" alignItems="center" marginTop="10%">
+          <FormControl.Label>Informations sur votre Colis</FormControl.Label>
           <Input
             w={{
               base: "75%",
@@ -155,7 +167,7 @@ function SendDelivery(props) {
                 color="indigo.800"
               />
             }
-            placeholder="Poid en Kg"
+            placeholder="Poids en Kg"
             onChangeText={(e) => setWeight(e)}
             value={weight}
           />
@@ -165,11 +177,11 @@ function SendDelivery(props) {
               setMeasureClick(true);
               setShowModal(true);
             }}
-            style={{ width: "75%" }}
-            variant="outline"
-            colorScheme="indigo"
+            style={{ backgroundColor: "indigo" }}
+            mx="12"
+            size="lg"
           >
-            dimensions
+            Dimensions
           </Button>
 
           <Icon
@@ -247,22 +259,22 @@ function SendDelivery(props) {
                   onChangeText={(e) => setLength(e)}
                   value={length}
                 />
-                 <Button
-                    onPress={() => {
-                      setShowModal(false);
-                    }}
-                    style={{ width: "75%", marginTop:10}}
-                    colorScheme="indigo"
-                  >
-                    ok
-                  </Button>
+                <Button
+                  onPress={() => {
+                    setShowModal(false);
+                  }}
+                  style={{ width: "75%", marginTop: 10 }}
+                  colorScheme="indigo"
+                >
+                  ok
+                </Button>
               </Modal.Body>
             </View>
           ) : (
             // date
 
             <View>
-              <Modal.Header>Choisi une date</Modal.Header>
+              <Modal.Header>Choisir une date</Modal.Header>
               <Modal.Body>
                 <DatePicker
                   style={styles.datePickerStyle}
