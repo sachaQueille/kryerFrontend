@@ -60,9 +60,6 @@ const store = createStore(
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-var nbMissions = 4;
-var nbChat = 0;
-
 function StackJourneyNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -91,7 +88,7 @@ function StackJourneyNavigator() {
 function StackHomeNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HomeScreen" component={Home} />
+      <Stack.Screen name="HomeScreen" component={Home}/>
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
@@ -134,6 +131,9 @@ function StackTchatNavigator(props) {
 }
 
 export default function App(props) {
+var nbMissions = 4;
+var nbChat = 0;
+
   return (
     <Provider store={store}>
       <NavigationContainer>
