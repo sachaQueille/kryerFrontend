@@ -17,6 +17,7 @@ import {
 
 
 function DeliveryStatus(props) {
+    console.log(props.route.params);
 
     var statusDelivery = props.route.params.deliveryStatus.delivery_status;
     var verifcode = props.route.params.deliveryStatus.verifcode

@@ -25,44 +25,43 @@ function Home(props) {
     <NativeBaseProvider>
       <Image source={require("../assets/home.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
       <ScrollView>
-      
-      <VStack
-        mx="auto"
-        marginTop="45%"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Text style={{ fontSize: 40, fontWeight: "bold" }}>KRYER</Text>
-     
- </VStack>
-      <VStack
-        mx="auto"
-        marginTop="5%"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Text>Envoyez vos colis à l'international à moindre frais</Text>
-
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          onPress={() => props.navigation.navigate("PurposeJourney")}
-          marginBottom={10}
-          marginTop={20}
-          mx="12"
-          size="lg"
+        <VStack
+          mx="auto"
+          marginTop="45%"
+          justifyContent="center"
+          alignItems="center"
         >
-          Proposer une mission
-        </Button>
+          <Text style={{ fontSize: 40, fontWeight: "bold" }}>KRYER</Text>
+        </VStack>
 
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          onPress={() => props.navigation.navigate("SendDelivery")}
-          mx="12"
-          size="lg"
+        <VStack
+          mx="auto"
+          marginTop="15%"
+          justifyContent="center"
+          alignItems="center"
         >
-          Envoyer un colis
-        </Button>
-      </VStack>
+          <Text>Envoyez vos colis à l'international à moindre frais</Text>
+
+          <Button
+            style={{ backgroundColor: "indigo" }}
+            onPress={() => props.navigation.navigate("PurposeJourney")}
+            marginBottom={10}
+            marginTop={20}
+            mx="12"
+            size="lg"
+          >
+            Proposer une mission
+          </Button>
+
+          <Button
+            style={{ backgroundColor: "indigo" }}
+            onPress={() => props.navigation.navigate("SendDelivery")}
+            mx="12"
+            size="lg"
+          >
+            Envoyer un colis
+          </Button>
+        </VStack>
       </ScrollView>
       
     </NativeBaseProvider>

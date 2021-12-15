@@ -44,8 +44,9 @@ function MyDelivery(props) {
     const handleDeliveryClick = (sendata) => {
         props.navigation.navigate("DeliveryStatus", {
             deliveryStatus: {
+                price: sendata.price,
                 verifcode: sendata.verifCode,
-                delivery_status: "supportedDelivery",
+                delivery_status: sendata.delivery_status
             },
         });
     };
@@ -103,7 +104,7 @@ function MyDelivery(props) {
                             kg - {item.price}€{" "}
                         </Text>
                         <Icon
-                            as={<MaterialIcons name={selectIcon(item.status_mission)} />}
+                            as={<MaterialIcons name={selectIcon(item.validateStatus)} />}
                             size={6}
                             ml="5"
                             color="indigo.800"
