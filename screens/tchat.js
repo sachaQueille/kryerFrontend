@@ -42,10 +42,20 @@ function Tchat(props){
         base: "100%",
         md: "25%",
       }}
-    >
-      <Heading paddingTop="10" fontSize="xl" p="4" pb="3">
-        Mes messages
-      </Heading>
+    ><Center
+    style={{ backgroundColor: "indigo" }}
+    _text={{
+      color: "#ffffff",
+      fontWeight: "600",
+      fontSize: "32",
+      marginTop: "10%",
+    }}
+    height={120}
+    width="100%"
+  >
+    Mes messages
+  </Center>
+
       <FlatList
         data={data}
         renderItem={({ item }) => (

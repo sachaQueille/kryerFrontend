@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
-import { Button, NativeBaseProvider, VStack } from "native-base";
+import { Button, NativeBaseProvider, VStack, Center } from "native-base";
 import { connect } from "react-redux";
 
 function Journey(props) {
@@ -24,19 +24,25 @@ function Journey(props) {
 
   return (
     <NativeBaseProvider>
-      <ScrollView>
-      <VStack
-        mx="auto"
-        marginTop="20%"
-        justifyContent="flex-end"
-        alignItems="flex-end"
+      <Center
+        style={{ backgroundColor: "indigo" }}
+        _text={{
+          color: "#ffffff",
+          fontWeight: "600",
+          fontSize: "32",
+          marginTop: "10%",
+        }}
+        height={120}
+        width="100%"
       >
-        <Text style={{ fontSize: 40, fontWeight: "bold" }}>KRYER</Text>
-      </VStack>
+        Missions
+      </Center>
 
+      <ScrollView>
+      
       <VStack
         mx="auto"
-        marginTop="10%"
+        marginTop="35%"
         justifyContent="center"
         alignItems="center"
       >

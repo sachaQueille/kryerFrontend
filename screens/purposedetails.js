@@ -10,7 +10,7 @@ import {
   Center,
 } from "native-base";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
-import {  ScrollView} from "react-native";
+import { ScrollView } from "react-native";
 import { connect } from "react-redux";
 
 function PurposeDetails(props) {
@@ -33,7 +33,7 @@ function PurposeDetails(props) {
       deliveryDate,
       pricePerKg,
       dateJourney,
-      Center
+      Center,
     };
     const response = await fetch(`${global.ipa}saveMission/`, {
       method: "POST",
@@ -49,75 +49,55 @@ function PurposeDetails(props) {
   return (
     <NativeBaseProvider>
       <Center>
-      <ScrollView>
-        <VStack
-          width="80%"
-          mx="auto"
-          marginTop="20%"
-          marginBottom="50"
-          justifyContent="center"
-          alignItems="center"
+        <Center
+          style={{ backgroundColor: "indigo" }}
+          _text={{
+            color: "#ffffff",
+            fontWeight: "600",
+            fontSize: "32",
+            marginTop: "10%",
+          }}
+          height={120}
+          width="100%"
         >
-          <FormControl isRequired>
-            <FormControl.Label >
-              Récupération du colis
-            </FormControl.Label>
-            <HStack space={2}>
-              <Input
-                placeholder="Lieu de récupération"
-                w={{
-                  base: "100%",
-                  md: "60%",
-                }}
-                marginBottom="2"
-                InputLeftElement={
-                  <MaterialIcons
-                    name="location-history"
-                    size={25}
-                    color="indigo"
-                  />
-                }
-                onChangeText={(e) => setRecuperationPlace(e)}
-              />
-            </HStack>
-          </FormControl>
-
-          <FormControl isRequired>
-            <Input
-              placeholder="Date"
-              w={{
-                md: "60%",
-              }}
-              marginBottom="5"
-              InputLeftElement={
-                <MaterialIcons name="calendar-today" size={25} color="indigo" />
-              }
-              onChangeText={(e) => setRecuperationDate(e)}
-            />
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormControl.Label _text={{ bold: true }}>
-              Livraison du colis :
-            </FormControl.Label>
-            <Input
-              placeholder="Lieu de livraison"
-              w={{
-                md: "60%",
-              }}
-              marginBottom="2"
-              InputLeftElement={
-                <MaterialIcons
-                  name="location-history"
-                  size={25}
-                  color="indigo"
+          Proposer une mission
+        </Center>
+        <ScrollView>
+          <VStack
+            width="80%"
+            mx="auto"
+            marginTop="10%"
+            marginBottom="10%"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <FormControl isRequired>
+              <FormControl.Label _text={{ bold: true }}>
+                Récupération du colis
+              </FormControl.Label>
+              <HStack space={2}>
+                <Input
+                  placeholder="Lieu de récupération"
+                  w={{
+                    base: "100%",
+                    md: "60%",
+                  }}
+                  marginBottom="2"
+                  InputLeftElement={
+                    <MaterialIcons
+                      name="location-history"
+                      size={25}
+                      color="indigo"
+                    />
+                  }
+                  onChangeText={(e) => setRecuperationPlace(e)}
                 />
-              }
-              onChangeText={(e) => setDeliveryPlace(e)}
-            />
+              </HStack>
+            </FormControl>
+
             <FormControl isRequired>
               <Input
-                placeholder="Date de livraison"
+                placeholder="Date"
                 w={{
                   md: "60%",
                 }}
@@ -129,37 +109,74 @@ function PurposeDetails(props) {
                     color="indigo"
                   />
                 }
-                onChangeText={(e) => setDeliveryDate(e)}
+                onChangeText={(e) => setRecuperationDate(e)}
               />
             </FormControl>
-          </FormControl>
 
-          <FormControl isRequired>
-            <FormControl.Label _text={{ bold: true }}>
-              Tarif de la mission :
-            </FormControl.Label>
-            <Input
-              placeholder="Prix par kg"
-              w={{
-                md: "60%",
-              }}
-              marginBottom="5"
-              InputLeftElement={
-                <FontAwesome5 name="coins" size={25} color="indigo" />
-              }
-              onChangeText={(e) => setPricePerKg(e)}
-            />
-          </FormControl>
-        </VStack>
-        <Button
-          style={{ backgroundColor: "indigo" }}
-          mx="12"
-          size="lg"
-          onPress={sendToDB}
-        >
-          Valider
-        </Button>
-      </ScrollView>
+            <FormControl isRequired>
+              <FormControl.Label _text={{ bold: true }}>
+                Livraison du colis :
+              </FormControl.Label>
+              <Input
+                placeholder="Lieu de livraison"
+                w={{
+                  md: "60%",
+                }}
+                marginBottom="2"
+                InputLeftElement={
+                  <MaterialIcons
+                    name="location-history"
+                    size={25}
+                    color="indigo"
+                  />
+                }
+                onChangeText={(e) => setDeliveryPlace(e)}
+              />
+              <FormControl isRequired>
+                <Input
+                  placeholder="Date de livraison"
+                  w={{
+                    md: "60%",
+                  }}
+                  marginBottom="5"
+                  InputLeftElement={
+                    <MaterialIcons
+                      name="calendar-today"
+                      size={25}
+                      color="indigo"
+                    />
+                  }
+                  onChangeText={(e) => setDeliveryDate(e)}
+                />
+              </FormControl>
+            </FormControl>
+
+            <FormControl isRequired>
+              <FormControl.Label _text={{ bold: true }}>
+                Tarif de la mission :
+              </FormControl.Label>
+              <Input
+                placeholder="Prix par kg"
+                w={{
+                  md: "60%",
+                }}
+                marginBottom="5"
+                InputLeftElement={
+                  <FontAwesome5 name="coins" size={25} color="indigo" />
+                }
+                onChangeText={(e) => setPricePerKg(e)}
+              />
+            </FormControl>
+          </VStack>
+          <Button
+            style={{ backgroundColor: "indigo" }}
+            mx="12"
+            size="lg"
+            onPress={sendToDB}
+          >
+            Valider
+          </Button>
+        </ScrollView>
       </Center>
     </NativeBaseProvider>
   );
