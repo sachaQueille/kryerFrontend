@@ -51,11 +51,17 @@ function PurposeJourney(props) {
               <FormControl.Label _text={{ bold: true }}>
                 Départ
               </FormControl.Label>
-              <Input
-                placeholder="Ex : Paris"
-                marginBottom="5"
-                onChangeText={(e) => setDeparture(e)}
-              />
+              <HStack space={2}>
+                <Input
+                  w={{
+                    base: "100%",
+                    md: "60%",
+                  }}
+                  placeholder="Ex : Paris"
+                  marginBottom="5"
+                  onChangeText={(e) => setDeparture(e)}
+                />
+              </HStack>
             </FormControl>
 
             <FormControl isRequired>
