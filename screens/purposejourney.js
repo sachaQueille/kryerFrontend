@@ -122,10 +122,14 @@ function PurposeJourney(props) {
           </Button.Group>
         </ScrollView>
       </Center>
+
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
         <Modal.Content maxWidth="350">
           <Modal.CloseButton />
-          <Modal.Header>Mes gains potentiels</Modal.Header>
+          <Modal.Header>
+            Mes gains potentiels
+          </Modal.Header>
+
           <Modal.Body>
             <VStack space={3}>
               <HStack alignItems="center" justifyContent="space-between">
@@ -142,6 +146,7 @@ function PurposeJourney(props) {
               </HStack>
             </VStack>
           </Modal.Body>
+          
           <Modal.Footer>
             <Button
               flex="1"

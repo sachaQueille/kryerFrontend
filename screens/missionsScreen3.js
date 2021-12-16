@@ -57,7 +57,7 @@ function MissionsScreen3(props) {
     var addMessage = await fetch(`${global.ipa}addMessageAccept`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `expeditor=${info.expeditor_id}&recipient=${props.user._id}&date="13/12/2021"`,
+      body: `expeditor=${info.expeditor_id}&recipient=${props.user._id}&date=${new Date()}`,
     });
   }
 
@@ -144,7 +144,7 @@ function MissionsScreen3(props) {
             </Box>
             <Box p="3">
               <Text>Information Colis</Text>
-              <Text>Poids : {info.weigth}</Text>
+              <Text>Poids : {info.weigth}kg</Text>
               <Text>Hauteur : {info.measures.heigth} </Text>
               <Text>Longueur : {info.measures.length}</Text>
               <Text>Largeur : {info.measures.width} </Text>
@@ -160,7 +160,7 @@ function MissionsScreen3(props) {
 
           {(info.isValidate == "accept") ?
           <Box>
-              <Text style={{fontSize:18,marginTop:"5%"}}>Signale ton depart a l'expediteur :</Text>
+              <Text style={{fontSize:18,marginTop:"5%"}}>Signale ton depart à l'expéditeur :</Text>
               <Checkbox
                             marginTop="5"
                             colorScheme="purple"
@@ -195,17 +195,17 @@ function MissionsScreen3(props) {
               mx="12"
             >
               <Button
-                style={{ width: "50%" }}
+                style={{ backgroundColor: "#e11d48", width: "50%" }}
                 onPress={() => setShowModal(true)}
               >
                 {info.isValidate == "accept" ? "Annuler" : "Refuser"}
               </Button>
 
               <Button
-                style={{ backgroundColor: "indigo", width: "50%" }}
+                style={{ backgroundColor: "#059669", width: "50%" }}
                 onPress={() => acceptClick()}
               >
-                {info.isValidate == "accept" ? "Terminer" : "accepter"}
+                {info.isValidate == "accept" ? "Terminer" : "Accepter"}
               </Button>
             </Button.Group>
           </Center>

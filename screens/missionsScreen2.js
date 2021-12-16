@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 import {
-    Box,
-    Avatar,
-    HStack,
-    VStack,
-    Text,
-    Spacer,
-    Center,
-    NativeBaseProvider,
-    Heading,
-    Progress
+  Box,
+  Avatar,
+  HStack,
+  VStack,
+  Text,
+  Spacer,
+  Center,
+  NativeBaseProvider,
+  Heading,
+  Progress,
+ 
 } from "native-base";
 
 import { FontAwesome } from "@expo/vector-icons";
@@ -18,57 +19,49 @@ import { connect } from 'react-redux';
 import { TouchableOpacity , Image, ScrollView} from "react-native";
 
 function MissionsScreen2(props) {
+  const [inProgress, setInProgress] = useState(0);
+  const [cagnotte, setCagnotte] = useState(0);
 
+  useEffect(() => {
+    setInProgress(props.route.params.etatCapacity);
+    setCagnotte(props.route.params.cagnotte);
+  }, []);
 
-    const [inProgress , setInProgress] = useState(0);
-    const [cagnotte , setCagnotte] = useState(0);
-    
+  function deliveryClick(e) {
+    props.navigation.navigate("MissionsScreen3", e);
+  }
 
-    useEffect(()=>{
-          setInProgress(props.route.params.etatCapacity);
-          setCagnotte(props.route.params.cagnotte);
-    },[])
-
-    function deliveryClick(e){
-        props.navigation.navigate("MissionsScreen3", e)
-    }
-
-
-
-    var deliveries = (props.deliveries.length != 0) ? props.deliveries.map(function (e, i) {
-
-
-
+  var deliveries =
+    props.deliveries.length != 0 ? (
+      props.deliveries.map(function (e, i) {
         return (
-            <TouchableOpacity onPress={() => deliveryClick(e)} key={i}>
+          <TouchableOpacity onPress={() => deliveryClick(e)} key={i}>
+            <Box>
+              <HStack
+                borderBottomWidth="1"
+                width="300"
+                height="20"
+                space="3"
+                justifyContent="space-between"
+              >
+                <Avatar
+                  margin="4"
+                  key={`avatar${i}`}
+                  size="48px"
+                  source={{
+                    uri: e.infoExpeditor.avatar,
+                  }}
+                  bg="transparent"
+                />
+                <VStack>
+                  <Text margin="4" key={`username${i}`} fontWeight="bold">
+                    {e.infoExpeditor.firstName} {e.infoExpeditor.lastName}
+                  </Text>
+                </VStack>
+                <Spacer />
 
-                <Box>
-                    <HStack borderBottomWidth="1" width="300" height="20" space="3" justifyContent="space-between" >
-                        <Avatar margin="4" key={`avatar${i}`}
-                            size="48px"
-                            source={{
-                                uri: e.infoExpeditor.avatar,
-                            }}
-                            bg='transparent'
-                        />
-                        <VStack>
-                            <Text margin="4"
-                                key={`username${i}`}
-                                fontWeight="bold"
-
-                            >
-                                {e.infoExpeditor.firstName} {e.infoExpeditor.lastName}
-                            </Text>
-
-                        </VStack>
-                        <Spacer />
-
-                        <Center>
-                  <Text
-                    fontSize="xs"
-                    fontWeight="bold"                   
-                    alignSelf="flex-start"
-                  >
+                <Center>
+                  <Text fontSize="xs" fontWeight="bold" alignSelf="flex-start">
                     {e.weigth} kg
                   </Text>
                   <FontAwesome
@@ -79,7 +72,7 @@ function MissionsScreen2(props) {
                   />
                 </Center>
 
-                        {/* <Text margin="4" key={`weigth${i}`}
+                {/* <Text margin="4" key={`weigth${i}`}
                             fontSize="xs"
                             alignSelf="flex-start"
                         >
@@ -96,7 +89,9 @@ function MissionsScreen2(props) {
             </TouchableOpacity>
 
         )
-    }) : <Text>tu n'as aucune demande pour cette mission </Text>
+      }) 
+    )
+    : <Text>tu n'as aucune demande pour cette mission </Text>
 
     var statusScreen = "Missions Accomplies";
    var nameImage = <Image source={require(`../assets/winner.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'115%',marginLeft:'20%',opacity:0.7}} width="60%" height="30%"/>
@@ -158,14 +153,11 @@ function MissionsScreen2(props) {
 
 }
 
-function mapStateToProps(state){
-    return { deliveries: state.deliveriesReducer, missionId: state.missionIdReducer}
-  }
-  
+function mapStateToProps(state) {
+  return {
+    deliveries: state.deliveriesReducer,
+    missionId: state.missionIdReducer,
+  };
+}
 
-
-
-export default connect(
-    mapStateToProps,
-    null
-)(MissionsScreen2);
+export default connect(mapStateToProps, null)(MissionsScreen2);

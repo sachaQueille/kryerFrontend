@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react"
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import {
     Box,
     FlatList,
@@ -167,12 +167,8 @@ function TchatDetails(props) {
     );
 }
 
-
 function mapStateToProps(state) {
-    return { user: state.userReducer }
+  return { user: state.userReducer };
 }
 
-export default connect(
-    mapStateToProps,
-    null
-)(TchatDetails);
+export default connect(mapStateToProps, null)(TchatDetails);
