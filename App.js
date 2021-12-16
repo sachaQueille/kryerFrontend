@@ -1,6 +1,8 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { connect } from "react-redux";
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']);
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -40,6 +42,7 @@ import deliveriesReducer from "./reducers/deliveriesReducer";
 import missionIdReducer from "./reducers/missionIdReducer";
 import photoReducer from "./reducers/photoReducer";
 
+
 import variable from "./vglobal/variable";
 
 
@@ -53,13 +56,16 @@ const store = createStore(
     deliveriesReducer,
     missionIdReducer,
     photoReducer
+   
   })
 );
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function StackJourneyNavigator() {
+function StackJourneyNavigator(props) {
+  
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}  >
       <Stack.Screen name="JourneyScreen" component={Journey} />
@@ -119,9 +125,9 @@ function StackTchatNavigator(props) {
   );
 }
 
+
+
 export default function App(props) {
-var nbMissions = 4;
-var nbChat = 0;
 
   return (
     <Provider store={store}>
@@ -151,11 +157,12 @@ var nbChat = 0;
         >
           <Tab.Screen name="Accueil" component={StackHomeNavigator} />
           <Tab.Screen name="Colis" component={StackDeliveryNavigator} />
-          <Tab.Screen name="Missions" options={{tabBarBadge:nbMissions}} component={StackJourneyNavigator} />
-          <Tab.Screen name="Tchat" options={{tabBarBadge:nbChat}} component={StackTchatNavigator} />
+          <Tab.Screen name="Missions"  component={StackJourneyNavigator} />
+          <Tab.Screen name="Tchat"  component={StackTchatNavigator} />
           <Tab.Screen name="Profil" component={StackProfilNavigator} />
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>
   );
 }
+

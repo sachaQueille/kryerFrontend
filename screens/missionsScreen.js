@@ -19,6 +19,8 @@ function MissionsScreen(props) {
 
     props.addDeliveries(responce.result);
     props.addMissionId(e);
+   
+  
 
     props.navigation.navigate("MissionsScreen2", {
       status: props.route.params.status,
@@ -44,24 +46,6 @@ function MissionsScreen(props) {
             </TouchableOpacity>
           </VStack>
 
-          // <Button
-          // bg="transparent"
-          // borderWidth="1"
-          // variant="solid"
-
-          //   key={i}
-          //   mx="12"
-          //   size="lg"
-          //   marginBottom="5"
-          //   onPress={() => buttonClick(e._id)}
-
-          //   width="300"
-          //   >
-          //   <Text style={{fontSize:16}}>
-          //     {e.departure_journey} / {e.arrival_journey}
-          //   </Text>
-          //   <Text style={{color:'grey',textAlign:"center"}}>le {e.date_journey}</Text>
-          // </Button>
         );
       })
     ) : (
@@ -115,7 +99,7 @@ function mapDispatchToProps(dispatch) {
     },
     addMissionId: function (e) {
       dispatch({ type: "addMissionId", missionId: e });
-    },
+    }
   };
 }
 

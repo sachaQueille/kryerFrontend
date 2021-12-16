@@ -17,6 +17,18 @@ import {
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 function TchatDetails(props) {
+
+    //format date
+function formatDate(date) {
+    return (
+      ("0" + date.getDate()).slice(-2) +
+      "/" +
+      ("0" + parseInt(date.getMonth() + 1)).slice(-2) +
+      "/" +
+      date.getFullYear()+"  "+ ("0"+date.getHours()).slice(-2)+" H "+("0"+date.getMinutes()).slice(-2)
+    );
+  }
+
     const[valueLoadMessage, setValueLoadMessage]=useState(false);
     //on va chercher tous les messages en lien avec cet utilisateur
 
@@ -46,7 +58,7 @@ function TchatDetails(props) {
     var response = await fetch(`${global.ipa}sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `expeditor=${props.user._id}&recipient=${props.route.params.idRecipient}&date="13/12/2021"&message=${currentMessage}`,
+        body: `expeditor=${props.user._id}&recipient=${props.route.params.idRecipient}&date=${formatDate(new Date())}&message=${currentMessage}`,
       });
   
       response = await response.json();     

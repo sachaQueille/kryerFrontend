@@ -22,24 +22,27 @@ function MyDelivery(props) {
     const isFocused = useIsFocused(false);
 
    
-        async function loadDelivery() {
-            var response = await fetch(`${global.ipa}loadMyDeliveries`, {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `userId=${props.user._id}`,
-            });
-
-            response = await response.json();
-
-            console.log("response.deliveries", response.deliveries);
-            setDataDelivery(response.deliveries);
-        }
-        //loadDelivery();
+      
+       
   
 
   
     useEffect(() => {   
         if(isFocused){    
+
+            async function loadDelivery() {
+                        var response = await fetch(`${global.ipa}loadMyDeliveries`, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                            body: `userId=${props.user._id}`,
+                        });
+
+                        response = await response.json();
+
+                        console.log("response.deliveries", response.deliveries);
+                        setDataDelivery(response.deliveries);
+                    }
+
           loadDelivery();
         }
       }, [isFocused]);
