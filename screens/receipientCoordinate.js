@@ -97,19 +97,19 @@ function ReceipientCoordinate(props) {
       <Modal isOpen={modalIsVisible} onClose={setModalIsVisible} size={"lg"}>
         <Modal.Content maxH="500">
           <Modal.CloseButton />
-          <Modal.Header>Felicitions !</Modal.Header>
+          <Modal.Header>Félicitations !</Modal.Header>
           <Modal.Body>
             <Text>
-              Tu viens de faire une demande aupres d'un Kryer ! {"\n"}
+              Tu viens de faire une demande auprès d'un Kryer ! {"\n"}
               {"\n"}
               Il faut maintenant qu'il accepte. {"\n"}
               {"\n"}
               Vérifier dans la partie colis pour connaître l'état de la demande.{" "}
               {"\n"}
               {"\n"}
-              Une fois acceptée, tu y trouveras un code de verification.
+              Une fois acceptée, tu y trouveras un code de vérification.
               Transmets ce code à la personne qui récupérera le colis car il lui
-              sera demandé lors de l'echange avec le Kryer .{"\n"}
+              sera demandé lors de l'échange avec le Kryer .{"\n"}
               Une fois la livraison effectuée, ton compte Kryer sera débité du
               montant de la mission !
             </Text>

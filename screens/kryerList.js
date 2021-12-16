@@ -111,7 +111,7 @@ function KryerList(props) {
           </TouchableOpacity>
           <Center margin={5}>
             <Button
-              style={{ marginRight: 50 }}
+              style={{ marginRight: 50, backgroundColor: "indigo" }}
               onPress={() => props.navigation.navigate("SendDelivery")}
             >
               Retour
