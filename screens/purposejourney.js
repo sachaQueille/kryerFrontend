@@ -24,7 +24,7 @@ function PurposeJourney(props) {
 
   return (
     <NativeBaseProvider>
-      <Image source={require("../assets/traveler.png")} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', position: "absolute" }} width="100%" height="100%" />
+      <Image source={require("../assets/beforeGo.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'35%',marginLeft:'35%',opacity:0.8}} width="60%" height="30%"/>
       <Center>
         <Center
           style={{ backgroundColor: "indigo" }}

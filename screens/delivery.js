@@ -10,6 +10,7 @@ import {
     Pressable,
 } from "native-base";
 import { Image, ScrollView} from "react-native";
+import { useIsFocused } from '@react-navigation/native';
 
 //import styles from "../vglobal/styles";
 
@@ -18,7 +19,9 @@ import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 function MyDelivery(props) {
     const [dataDelivery, setDataDelivery] = useState("");
 
-    useEffect(() => {
+    const isFocused = useIsFocused(false);
+
+   
         async function loadDelivery() {
             var response = await fetch(`${global.ipa}loadMyDeliveries`, {
                 method: "POST",
@@ -31,8 +34,15 @@ function MyDelivery(props) {
             console.log("response.deliveries", response.deliveries);
             setDataDelivery(response.deliveries);
         }
-        loadDelivery();
-    }, []);
+        //loadDelivery();
+  
+
+  
+    useEffect(() => {   
+        if(isFocused){    
+          loadDelivery();
+        }
+      }, [isFocused]);
 
     const data = dataDelivery;
 
@@ -82,6 +92,7 @@ function MyDelivery(props) {
                         borderRadius="md"
                         bgColor="cyan.200"
                         borderColor="cyan.200"
+                        borderRadius="15"
                         style={{
                             flexDirection: "row",
                             justifyContent: "center",
@@ -114,7 +125,7 @@ function MyDelivery(props) {
 
     return (
         <NativeBaseProvider style={{backgroundColor:"white"}}>
-            <Image source={require("../assets/delivery1.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
+            <Image source={require("../assets/send.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute", marginTop:"60%",opacity:0.8}} width="50%" height="30%"/>
            
             <Center
                 style={{ backgroundColor: "indigo" }}

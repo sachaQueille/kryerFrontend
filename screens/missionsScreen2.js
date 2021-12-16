@@ -10,14 +10,13 @@ import {
   NativeBaseProvider,
   Heading,
   Progress,
-  ScrollView,
+ 
 } from "native-base";
 
 import { FontAwesome } from "@expo/vector-icons";
 
-import { connect } from "react-redux";
-import { TouchableOpacity, Image } from "react-native";
-import { ImageBackground } from "react-native";
+import { connect } from 'react-redux';
+import { TouchableOpacity , Image, ScrollView} from "react-native";
 
 function MissionsScreen2(props) {
   const [inProgress, setInProgress] = useState(0);
@@ -85,98 +84,73 @@ function MissionsScreen2(props) {
                   />
                             {e.weigth} kg
                         </Text> */}
-              </HStack>
-            </Box>
-          </TouchableOpacity>
-        );
-      })
-    ) : (
-      <Text>Tu n'as aucune demande pour cette mission </Text>
-    );
+                    </HStack>
+                </Box>
+            </TouchableOpacity>
 
-  var statusScreen = "Missions Accomplies";
-  var namePhoto = "finishMission";
-  if (props.route.params.status == "newMission") {
-    statusScreen = "Nouvelles Missions";
-    namePhoto = "newMission";
-  } else if (props.route.params.status == "currentMission") {
-    statusScreen = "Missions en cours";
-    namePhoto = "currentMission";
-  }
+        )
+      }) 
+    )
+    : <Text>tu n'as aucune demande pour cette mission </Text>
 
-  console.log(namePhoto);
+    var statusScreen = "Missions Accomplies";
+   var nameImage = <Image source={require(`../assets/winner.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'115%',marginLeft:'20%',opacity:0.8}} width="60%" height="30%"/>
+    if (props.route.params.status == "newMission") {
+        statusScreen = "Nouvelles Missions";
+        nameImage= <Image source={require(`../assets/question.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:"90%",marginLeft:'35%',opacity:0.8}} width="75%" height="50%"/>
+    } else if (props.route.params.status == "currentMission") {
+        statusScreen = "Missions en cours";
+        nameImage = null;
+    }
 
-  return (
-    <NativeBaseProvider>
-      <Center
-        style={{ backgroundColor: "indigo" }}
-        _text={{
-          color: "white",
-          fontWeight: "600",
-          fontSize: "32",
-          marginTop: "10%",
-        }}
-        height={120}
-        width="100%"
-      >
-        {statusScreen}
-      </Center>
+   
 
-      <ImageBackground
-        source={require(`../assets/currentMission.png`)}
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {props.route.params.status !== "newMission" &&
-        props.deliveries.length !== 0 ? (
-          <Center marginTop="30">
-            <Box w="90%">
-              <VStack space="md">
-                <Heading textAlign="center" mb="0" size="md">
-                  Capacitée de transport restante :
-                </Heading>
-                <VStack mx="3" space="md">
-                  <Progress
-                    size="2xl"
-                    colorScheme="purple"
-                    value={inProgress}
-                  />
-                </VStack>
-              </VStack>
-            </Box>
-            <Box style={{ marginTop: "10%" }}>
-              <Center>
-                <Text
-                  style={{
-                    fontSize: 30,
-                    position: "relative",
-                    zIndex: 1,
-                    paddingTop: 20,
-                    marginTop: 90,
+    return (
+        <NativeBaseProvider>
+            
+            <Center
+                style={{ backgroundColor: "indigo" }}
+                _text={{
                     color: "white",
-                  }}
-                >
-                  {cagnotte} €
-                </Text>
-                <Image
-                  source={require("../assets/euro.png")}
-                  style={{ position: "relative", bottom: "45%" }}
-                />
-              </Center>
-            </Box>
-          </Center>
-        ) : null}
+                    fontWeight: "600",
+                    fontSize: "32",
+                    marginTop: "10%",
+
+                }}
+                height={120}
+                width="100%">
+                {statusScreen}
+        </Center>
         
-        <Center flex={1} px="3">
-            {deliveries}
-          </Center>
-        
-      </ImageBackground>
-    </NativeBaseProvider>
-  );
+       {nameImage}
+        {(props.route.params.status !== "newMission" && props.deliveries.length !==0)?
+            <Center marginTop="30">
+                <Box w="80%">
+                    <VStack space="sm">
+                        <Heading textAlign="center" mb="2" size="sm">
+                            capacitée de transport restante :
+                        </Heading>
+                        <VStack style={{marginTop:3}} >
+                            <Progress size="lg" colorScheme="purple" value={inProgress} />
+
+                        </VStack>
+                    </VStack>
+                </Box>
+                <Box style={{marginTop:"10%"}}>
+                    <Center>
+                    <Text style={{fontSize:24,position:"relative",zIndex:1,paddingTop:20,marginTop:20,color:"white"}}> {cagnotte} </Text>
+                    <Image source={require('../assets/euro.png')} style={{position:"absolute"}} width="500%" height="200%"/>
+                    </Center>
+                </Box>
+            </Center> : null }
+            <ScrollView style={{marginTop:'10%'}}>
+            <Center flex={1} px="3" marginTop="10">
+                {deliveries}
+            </Center>
+            </ScrollView>
+        </NativeBaseProvider>
+    )
+
 }
 
 function mapStateToProps(state) {

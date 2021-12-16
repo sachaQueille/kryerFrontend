@@ -128,8 +128,8 @@ function KryerList(props) {
 
   return (
     <NativeBaseProvider>
-      <Image source={require("../assets/astronaute.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
-      <ScrollView>
+      <Image source={require("../assets/astronaut.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'70%',marginLeft:'10%',opacity:0.8}} width="60%" height="40%"/>
+      
         <Center>
           <Center
             style={{ backgroundColor: "indigo" }}
@@ -144,9 +144,11 @@ function KryerList(props) {
           >
             Kryer disponibles
           </Center>
+          <ScrollView>
           {kryerList}
+          </ScrollView>
         </Center>
-      </ScrollView>
+      
     </NativeBaseProvider>
   );
 }

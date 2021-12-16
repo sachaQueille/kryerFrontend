@@ -33,7 +33,8 @@ function MissionsScreen(props) {
         return (
           <VStack key={e._id}>
             <TouchableOpacity onPress={() => buttonClick(e._id)}>
-              <Box borderWidth="1" marginBottom="3" height="12" width="300" borderRadius="10">
+              <Box borderWidth="1" marginBottom="3" height="12" width="300" borderRadius="15" bgColor="cyan.200"
+                        borderColor="cyan.200">
                 <Text style={{ fontSize: 16, textAlign: "center", marginTop:"2%",  }}>
                   {e.departure_journey} / {e.arrival_journey}
                 </Text>
@@ -92,32 +93,13 @@ function MissionsScreen(props) {
       >
         {statusScreen}
       </Center>
-
-      <ImageBackground source={require("../assets/astronaute.png")}
-    style={{
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    }}>
-
-      {/* <Image
-        source={require("../assets/astronaute.png")}
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          position: "absolute",
-        }}
-        width="100%"
-        height="100%"
-      /> */}
-
+      <Image source={require(`../assets/go.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",opacity:0.8,marginTop:'80%',marginLeft:"5%"}} width="60%" height="30%"/>
       <ScrollView>
         <Center flex={1} px="3" marginTop="20">
           {missions}
         </Center>
       </ScrollView>
-      </ImageBackground>
+      
     </NativeBaseProvider>
     
   );
