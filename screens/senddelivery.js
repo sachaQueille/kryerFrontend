@@ -79,9 +79,9 @@ function SendDelivery(props) {
 
   return (
     <NativeBaseProvider>
-      <Image source={require("../assets/search.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
-      <ScrollView>
-      <Center>
+      <Image source={require("../assets/sendRocket.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'30%',marginLeft:'40%',opacity:0.5}} width="70%" height="40%"/>
+      
+      
         <Center
           style={{ backgroundColor: "indigo" }}
           _text={{
@@ -95,8 +95,9 @@ function SendDelivery(props) {
         >
           Rechercher un Kryer
         </Center>
-        
-        
+         <ScrollView>
+        <Center>
+       
         <Stack space={4} w="100%" alignItems="center" marginTop="10%">
           <FormControl.Label>Informations sur votre trajet </FormControl.Label>
           <Input
@@ -205,8 +206,9 @@ function SendDelivery(props) {
             marginTop="10"
           />
         </Stack>
+        
       </Center>
-      
+      </ScrollView>
 
       {/* modale ( affichage selon si je click sur dimension ou sur choisir une date) */}
 
@@ -322,7 +324,7 @@ function SendDelivery(props) {
           )}
         </Modal.Content>
       </Modal>
-      </ScrollView>
+     
       
     </NativeBaseProvider>
   );

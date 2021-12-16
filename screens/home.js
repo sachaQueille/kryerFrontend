@@ -23,7 +23,7 @@ function Home(props) {
 
   return (
     <NativeBaseProvider>
-      <Image source={require("../assets/home.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
+      <Image source={require("../assets/rocketBoy.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:"10%",opacity:0.8}} width="100%" height="60%"/>
       <ScrollView>
         <VStack
           mx="auto"

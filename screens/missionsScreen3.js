@@ -19,8 +19,6 @@ import { connect } from "react-redux";
 function MissionsScreen3(props) {
   var info = props.route.params;
 
-  const logo = require("../assets/download.jpeg");
-
   var info = props.route.params;
 
 

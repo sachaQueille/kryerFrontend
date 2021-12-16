@@ -98,7 +98,7 @@ function MissionsScreen(props) {
       >
         {statusScreen}
       </Center>
-      <Image source={require("../assets/astronaute.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
+      <Image source={require(`../assets/go.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",opacity:0.8,marginTop:'80%',marginLeft:"5%"}} width="60%" height="30%"/>
       <ScrollView>
         <Center flex={1} px="3" marginTop="20">
           {missions}

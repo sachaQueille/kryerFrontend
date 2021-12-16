@@ -8,7 +8,7 @@ import {
   Avatar,
   Divider,
 } from "native-base";
-import { ScrollView } from "react-native";
+import { ScrollView ,Image} from "react-native";
 import { connect } from "react-redux";
 
 
@@ -78,8 +78,8 @@ function User(props) {
   } else {
     return (
       <NativeBaseProvider>
-        
-        <ScrollView>
+         <Image source={require("../assets/flow.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'60%',marginLeft:'50%',opacity:0.6}} width="60%" height="30%"/>
+       
           <Center
             style={{ backgroundColor: "indigo" }}
             _text={{
@@ -93,7 +93,7 @@ function User(props) {
           >
             Profil
           </Center>
-
+          <ScrollView>
           <VStack
             mx="auto"
             ml="5%"

@@ -15,7 +15,7 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 
 import { connect } from 'react-redux';
-import { TouchableOpacity , Image} from "react-native";
+import { TouchableOpacity , Image, ScrollView} from "react-native";
 
 function MissionsScreen2(props) {
 
@@ -99,19 +99,20 @@ function MissionsScreen2(props) {
     }) : <Text>tu n'as aucune demande pour cette mission </Text>
 
     var statusScreen = "Missions Accomplies";
-   var namePhoto = "finishMission"
+   var nameImage = <Image source={require(`../assets/winner.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'115%',marginLeft:'20%',opacity:0.7}} width="60%" height="30%"/>
     if (props.route.params.status == "newMission") {
         statusScreen = "Nouvelles Missions";
-        namePhoto="newMission"
+        nameImage= <Image source={require(`../assets/question.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:"90%",marginLeft:'50%',opacity:0.8}} width="60%" height="50%"/>
     } else if (props.route.params.status == "currentMission") {
         statusScreen = "Missions en cours";
-        namePhoto="currentMission";
+        nameImage = null;
     }
 
-    console.log(namePhoto)
+   
 
     return (
         <NativeBaseProvider>
+            
             <Center
                 style={{ backgroundColor: "indigo" }}
                 _text={{
@@ -125,32 +126,33 @@ function MissionsScreen2(props) {
                 width="100%">
                 {statusScreen}
         </Center>
-        <Image source={require(`../assets/currentMission.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute"}} width="100%" height="100%"/>
-       
+        
+       {nameImage}
         {(props.route.params.status !== "newMission" && props.deliveries.length !==0)?
-            <Center marginTop="60">
-                <Box w="90%">
-                    <VStack space="md">
-                        <Heading textAlign="center" mb="10" size="md">
+            <Center marginTop="30">
+                <Box w="80%">
+                    <VStack space="sm">
+                        <Heading textAlign="center" mb="2" size="sm">
                             capacitée de transport restante :
                         </Heading>
-                        <VStack mx="3" space="md">
-                            <Progress size="2xl" colorScheme="purple" value={inProgress} />
+                        <VStack style={{marginTop:3}} >
+                            <Progress size="lg" colorScheme="purple" value={inProgress} />
 
                         </VStack>
                     </VStack>
                 </Box>
                 <Box style={{marginTop:"10%"}}>
                     <Center>
-                    <Text style={{fontSize:30,position:"relative",zIndex:1,paddingTop:20,marginTop:20,color:"white"}}>{cagnotte} €</Text>
-                    <Image source={require('../assets/euro.png')} style={{position:"absolute"}}/>
+                    <Text style={{fontSize:24,position:"relative",zIndex:1,paddingTop:20,marginTop:20,color:"white"}}> {cagnotte} </Text>
+                    <Image source={require('../assets/euro.png')} style={{position:"absolute"}} width="300%" height="200%"/>
                     </Center>
                 </Box>
             </Center> : null }
+            <ScrollView style={{marginTop:'10%'}}>
             <Center flex={1} px="3" marginTop="10">
                 {deliveries}
             </Center>
-
+            </ScrollView>
         </NativeBaseProvider>
     )
 
