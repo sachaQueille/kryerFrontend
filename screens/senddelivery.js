@@ -79,7 +79,7 @@ function SendDelivery(props) {
 
   return (
     <NativeBaseProvider>
-      <Image source={require("../assets/sendRocket.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'30%',marginLeft:'40%',opacity:0.5}} width="70%" height="40%"/>
+      <Image source={require("../assets/sendRocket.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'30%',marginLeft:'40%',opacity:0.8}} width="70%" height="40%"/>
       
       
         <Center

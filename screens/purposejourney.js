@@ -11,7 +11,7 @@ import {
   Center,
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
-import { ScrollView, ImageBackground , Image} from "react-native";
+import { ScrollView, ImageBackground, Image } from "react-native";
 import { connect } from "react-redux";
 
 function PurposeJourney(props) {
@@ -24,7 +24,7 @@ function PurposeJourney(props) {
 
   return (
     <NativeBaseProvider>
-      <Image source={require("../assets/beforeGo.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'35%',marginLeft:'35%',opacity:0.6}} width="60%" height="30%"/>
+      <Image source={require("../assets/beforeGo.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'35%',marginLeft:'35%',opacity:0.8}} width="60%" height="30%"/>
       <Center>
         <Center
           style={{ backgroundColor: "indigo" }}
@@ -105,11 +105,11 @@ function PurposeJourney(props) {
               onPress={() =>
                 props.user
                   ? props.navigation.navigate("PurposeDetails", {
-                      departure: departure,
-                      arrival: arrival,
-                      weight: weight,
-                      dateJourney: dateJourney,
-                    })
+                    departure: departure,
+                    arrival: arrival,
+                    weight: weight,
+                    dateJourney: dateJourney,
+                  })
                   : props.navigation.navigate("Profil")
               }
               leftIcon={
@@ -146,7 +146,7 @@ function PurposeJourney(props) {
               </HStack>
             </VStack>
           </Modal.Body>
-          
+
           <Modal.Footer>
             <Button
               flex="1"
@@ -159,7 +159,7 @@ function PurposeJourney(props) {
           </Modal.Footer>
         </Modal.Content>
       </Modal>
-   
+
     </NativeBaseProvider>
   );
 }

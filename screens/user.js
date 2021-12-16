@@ -78,7 +78,7 @@ function User(props) {
   } else {
     return (
       <NativeBaseProvider>
-         <Image source={require("../assets/flow.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'60%',marginLeft:'50%',opacity:0.6}} width="60%" height="30%"/>
+         <Image source={require("../assets/flow.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'60%',marginLeft:'50%',opacity:0.8}} width="60%" height="30%"/>
        
           <Center
             style={{ backgroundColor: "indigo" }}

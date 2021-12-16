@@ -38,7 +38,7 @@ function Journey(props) {
       >
         Missions
       </Center>
-      <Image source={require("../assets/plan.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'5%',opacity:0.9}} width="100%" height="60%"/>
+      <Image source={require("../assets/plan.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'5%',opacity:0.8}} width="100%" height="60%"/>
       <ScrollView>
       
       <VStack

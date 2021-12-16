@@ -128,7 +128,7 @@ function KryerList(props) {
 
   return (
     <NativeBaseProvider>
-      <Image source={require("../assets/astronaut.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'70%',marginLeft:'10%',opacity:0.6}} width="60%" height="40%"/>
+      <Image source={require("../assets/astronaut.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'70%',marginLeft:'10%',opacity:0.8}} width="60%" height="40%"/>
       
         <Center>
           <Center

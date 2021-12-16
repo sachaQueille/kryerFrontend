@@ -95,6 +95,7 @@ function MyDelivery(props) {
                         borderRadius="md"
                         bgColor="cyan.200"
                         borderColor="cyan.200"
+                        borderRadius="15"
                         style={{
                             flexDirection: "row",
                             justifyContent: "center",
@@ -127,7 +128,7 @@ function MyDelivery(props) {
 
     return (
         <NativeBaseProvider style={{backgroundColor:"white"}}>
-            <Image source={require("../assets/send.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute", marginTop:"60%",opacity:0.6}} width="50%" height="30%"/>
+            <Image source={require("../assets/send.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute", marginTop:"60%",opacity:0.8}} width="50%" height="30%"/>
            
             <Center
                 style={{ backgroundColor: "indigo" }}

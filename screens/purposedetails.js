@@ -48,7 +48,7 @@ function PurposeDetails(props) {
 
   return (
     <NativeBaseProvider>
-      <Image source={require("../assets/goo.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'40%',marginLeft:"40%",opacity:0.5}} width="60%" height="30%"/>
+      <Image source={require("../assets/goo.png")} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'40%',marginLeft:"40%",opacity:0.8}} width="60%" height="30%"/>
       <Center>
         <Center
           style={{ backgroundColor: "indigo" }}
