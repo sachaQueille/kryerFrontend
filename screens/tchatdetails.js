@@ -47,7 +47,7 @@ function TchatDetails(props) {
         var response = await fetch(`${global.ipa}sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `expeditor=${props.user._id}&recipient=${props.route.params.idRecipient}&date=${new Date()}"&message=${currentMessage}`,
+            body: `expeditor=${props.user._id}&recipient=${props.route.params.idRecipient}&date=${new Date()}&message=${currentMessage}`,
         });
 
         response = await response.json();

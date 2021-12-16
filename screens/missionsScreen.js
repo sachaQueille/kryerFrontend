@@ -33,7 +33,7 @@ function MissionsScreen(props) {
         return (
           <VStack key={e._id}>
             <TouchableOpacity onPress={() => buttonClick(e._id)}>
-              <Box borderWidth="1" marginBottom="3" height="12" width="300" borderRadius="15" bgColor="cyan.200"
+              <Box borderWidth="1" marginBottom="3" height="12" width="320" borderRadius="15" bgColor="cyan.200"
                         borderColor="cyan.200">
                 <Text style={{ fontSize: 16, textAlign: "center", marginTop:"2%",  }}>
                   {e.departure_journey} / {e.arrival_journey}

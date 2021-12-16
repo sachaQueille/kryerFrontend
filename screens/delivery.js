@@ -20,8 +20,8 @@ function MyDelivery(props) {
     const [dataDelivery, setDataDelivery] = useState("");
 
     const isFocused = useIsFocused(false);
-
-   
+    
+    useEffect(() => {
         async function loadDelivery() {
             var response = await fetch(`${global.ipa}loadMyDeliveries`, {
                 method: "POST",
@@ -34,11 +34,7 @@ function MyDelivery(props) {
             console.log("response.deliveries", response.deliveries);
             setDataDelivery(response.deliveries);
         }
-        //loadDelivery();
-  
-
-  
-    useEffect(() => {   
+        //loadDelivery();   
         if(isFocused){    
           loadDelivery();
         }
