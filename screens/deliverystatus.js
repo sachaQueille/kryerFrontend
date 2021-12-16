@@ -97,7 +97,7 @@ function DeliveryStatus(props) {
               size="lg"
               isChecked={supportedDelivery}
             >
-              Colis pris en charge
+              Demande accepter par le livreur
             </Checkbox>
             <Checkbox
               colorScheme="purple"

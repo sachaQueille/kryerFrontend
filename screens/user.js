@@ -157,6 +157,23 @@ function User(props) {
                     }}
                   ></Avatar>
                 </Button>
+                <Button
+                  onPress={() => {
+                    updateAvatar(
+                      "https://cdn.icon-icons.com/icons2/1879/PNG/512/iconfinder-1-avatar-2754574_120513.png"
+                    );
+                  }}
+                  bg="transparent"
+                >
+                  <Avatar
+                    alignSelf="center"
+                    bg="transparent"
+                    size="lg"
+                    source={{
+                      uri: "https://cdn.icon-icons.com/icons2/1879/PNG/512/iconfinder-1-avatar-2754574_120513.png",
+                    }}
+                  ></Avatar>
+                </Button>
               </>
             )}
           </VStack>

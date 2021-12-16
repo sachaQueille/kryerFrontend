@@ -52,13 +52,16 @@ function MyDelivery(props) {
     console.log("data", data);
 
     const handleDeliveryClick = (sendata) => {
-        props.navigation.navigate("DeliveryStatus", {
+        if(sendata.isValidate !== 'notYet'){
+            props.navigation.navigate("DeliveryStatus", {
             deliveryStatus: {
                 price: sendata.price,
                 verifcode: sendata.verifCode,
                 delivery_status: sendata.delivery_status
             },
         });
+        }
+        
     };
 
     var iconName = "";
