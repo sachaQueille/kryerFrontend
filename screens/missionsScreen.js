@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { View, Text, ScrollView, Image } from "react-native";
-import { Button, NativeBaseProvider, VStack, Center, Box } from "native-base";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from "react";
+import { Text, ScrollView, Image } from "react-native";
+import {  NativeBaseProvider, VStack, Center, Box } from "native-base";
+
 import { connect } from "react-redux";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { ImageBackground } from "react-native";
+
 
 function MissionsScreen(props) {
   async function buttonClick(e) {
@@ -15,7 +15,6 @@ function MissionsScreen(props) {
     });
 
     responce = await responce.json();
-    console.log(responce);
 
     props.addDeliveries(responce.result);
     props.addMissionId(e);
@@ -29,6 +28,7 @@ function MissionsScreen(props) {
     });
   }
 
+  
   var missions =
     props.missions.length != 0 ? (
       props.missions.map(function (e, i) {

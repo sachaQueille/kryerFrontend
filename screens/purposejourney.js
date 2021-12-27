@@ -11,7 +11,7 @@ import {
   Center,
 } from "native-base";
 import { EvilIcons } from "@expo/vector-icons";
-import { ScrollView, ImageBackground, Image } from "react-native";
+import { ScrollView,  Image } from "react-native";
 import { connect } from "react-redux";
 
 function PurposeJourney(props) {

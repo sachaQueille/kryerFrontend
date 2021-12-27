@@ -1,5 +1,5 @@
 import React ,{useState, useEffect,useRef}  from 'react';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
 import { Camera } from 'expo-camera';
 import { Button , Modal, NativeBaseProvider} from 'native-base';
 import { Ionicons } from '@expo/vector-icons';

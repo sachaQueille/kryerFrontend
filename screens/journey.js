@@ -1,15 +1,20 @@
 import React from "react";
-import { View, Text, ScrollView ,Image} from "react-native";
+import {  ScrollView ,Image} from "react-native";
 import { Button, NativeBaseProvider, VStack, Center } from "native-base";
 import { connect } from "react-redux";
 
 function Journey(props) {
+
+
   async function buttonClick(e) {
+
+    //recupere les missions selon le bouton pressé et envoi le missionList dans le store.
+    // le tatut du bouton est envoyé a la page suivante pour pouvoir filtrer selon ce statut dans la route loadDelivery
     if (props.user) {
       var responce = await fetch(`${global.ipa}loadMissions`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `idKryer=${props.user._id}&status=${e}`,
+        body: `token=${props.user.token}&status=${e}`,
       });
 
       responce = await responce.json();

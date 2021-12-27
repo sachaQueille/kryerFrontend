@@ -19,7 +19,7 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 import DatePicker from "react-native-datepicker";
-import { StyleSheet, KeyboardAvoidingView , Image, ScrollView} from "react-native";
+import { StyleSheet,  Image, ScrollView} from "react-native";
 import { connect } from "react-redux";
 
 function SendDelivery(props) {
@@ -39,6 +39,7 @@ function SendDelivery(props) {
   const [date, setDate] = useState(formatDate(new Date()));
 
   const [showModal, setShowModal] = useState(false);
+  const [modalIsClose, setModalIsClose] = useState(false);
 
   //boolen pour mettre une condition pour afficher la date choisie
   const [dateIsChoose, setDateIsChoose] = useState(false);
@@ -57,14 +58,18 @@ function SendDelivery(props) {
   const [length, setLength] = useState("");
 
   //pour afficher la date selectionnée
-  var messageDate = dateIsChoose ? `recherche a partir du ${date}` : "";
+  if (modalIsClose){
+    var messageDate = dateIsChoose ? `recherche a partir du ${date}` : "";
+  }
+  
 
   // function de recherche de Kryer
   async function searchClick() {
+  
     var responce = await fetch(`${global.ipa}searchKryer`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `departure=${departure}&arrival=${arrival}&date=${date}&weight=${weight}`,
+      body: `departure=${departure}&arrival=${arrival}&date=${date.split('-').join('/')}&weight=${weight}`,
     });
 
     responce = await responce.json();
@@ -214,7 +219,7 @@ function SendDelivery(props) {
 
       {/* modale ( affichage selon si je click sur dimension ou sur choisir une date) */}
 
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+      <Modal isOpen={showModal} onClose={() => {setShowModal(false);setModalIsClose(true)}}>
         <Modal.Content maxWidth="400px">
           <Modal.CloseButton />
           {measureClick ? (

@@ -8,7 +8,6 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Heading,
-  Center,
   Modal,
   HStack,
 } from "native-base";
@@ -28,7 +27,7 @@ function TerminateMission(props) {
 
 
   async function finishClick  () {
-    if (code === verifCode) { console.log(info.weigth);
+    if (code === verifCode) {
       setShowModalSuccess(true);
      
       await fetch(`${global.ipa}changeStatusValidate`, {

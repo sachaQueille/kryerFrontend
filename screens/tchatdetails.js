@@ -14,7 +14,7 @@ import {
     Input
 } from "native-base";
 
-import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 function TchatDetails(props) {
 
@@ -45,7 +45,7 @@ function formatDate(date) {
         });
         response = await response.json();
         setDataMessages(response.messages);
-        //console.log("response", response.messages);            
+                  
 
     }
 
@@ -72,7 +72,7 @@ function formatDate(date) {
   //cette fonction permet d'aligner les messages du user à droite et celui du destinataire à gauche
   var propertyJusifyContent = "";
   function flexMessageProperty(userId){
-      console.log(userId);
+    
       if(userId === props.user._id){
           propertyJusifyContent = "flex-end"; 
       } else {
@@ -81,7 +81,7 @@ function formatDate(date) {
       return propertyJusifyContent;
   }
 
-  //console.log("taille messages",dataMessages);
+
 
     return (
         <NativeBaseProvider >
@@ -101,7 +101,7 @@ function formatDate(date) {
             <FlatList
                 data={dataMessages}
                 renderItem={({ item }) => {
-                    console.log("item", item); return (
+                     return (
                         <Box
                             borderBottomWidth="1"
                             _dark={{

@@ -5,28 +5,28 @@ import {
     Text,
     Center,
     Box,
-    Heading,
     Icon,
     Pressable,
+    Modal
 } from "native-base";
 import { Image, ScrollView} from "react-native";
 import { useIsFocused } from '@react-navigation/native';
 
-//import styles from "../vglobal/styles";
-
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 function MyDelivery(props) {
+
     const [dataDelivery, setDataDelivery] = useState("");
 
     const isFocused = useIsFocused(false);
 
-   
-      
+    const [showModal, setShowModal] = useState(false);
+
+    const [messageModal, setMessageModal] = useState('')
        
   
 
-  
+  // chargement des colis a chaque fois qu'on va sur la page pour avoir les mise a jour
     useEffect(() => {   
         if(isFocused){    
 
@@ -39,7 +39,6 @@ function MyDelivery(props) {
 
                         response = await response.json();
 
-                        console.log("response.deliveries", response.deliveries);
                         setDataDelivery(response.deliveries);
                     }
 
@@ -49,10 +48,10 @@ function MyDelivery(props) {
 
     const data = dataDelivery;
 
-    console.log("data", data);
 
+    // si la demande est en attente ou si elle est annulé j'affiche la modale pour le signaler au user sinon j'affiche le screen deliverystatus
     const handleDeliveryClick = (sendata) => {
-        if(sendata.isValidate !== 'notYet'){
+        if(sendata.validateStatus == 'accept'){
             props.navigation.navigate("DeliveryStatus", {
             deliveryStatus: {
                 price: sendata.price,
@@ -60,6 +59,14 @@ function MyDelivery(props) {
                 delivery_status: sendata.delivery_status
             },
         });
+        }else{
+            if(sendata.validateStatus == 'notYet'){
+                setMessageModal('votre demande est en attente')
+            }else if(sendata.validateStatus == 'cancel'){
+                setMessageModal('votre demande a été annulé')
+            }
+            setShowModal(!showModal)
+
         }
         
     };
@@ -78,6 +85,8 @@ function MyDelivery(props) {
         }
     };
 
+
+    // affichage selon si il y a des colis ou non
     var deliveryList = "";
     if (data.length == 0) {
         deliveryList = (
@@ -151,6 +160,15 @@ function MyDelivery(props) {
             <Center flex={1} px="3" marginTop="10%">
                 {deliveryList}
             </Center>
+            
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                <Modal.Content maxWidth="400px">
+                <Modal.CloseButton />
+                <Modal.Body>
+                   <Text>{messageModal}</Text>
+                </Modal.Body>
+                </Modal.Content>
+            </Modal>
             </ScrollView>
         </NativeBaseProvider>
     );

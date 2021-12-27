@@ -1,7 +1,6 @@
 import React, { useState , useEffect} from "react";
 import {
   Box,
-  Heading,
   NativeBaseProvider,
   Center,
   Avatar,
@@ -17,6 +16,18 @@ import {
 import { connect } from "react-redux";
 
 function MissionsScreen3(props) {
+
+  function formatDate(date) {
+    return (
+      ("0" + date.getDate()).slice(-2) +
+      "/" +
+      ("0" + parseInt(date.getMonth() + 1)).slice(-2) +
+      "/" +
+      date.getFullYear()+"  "+ ("0"+date.getHours()).slice(-2)+"H"+("0"+date.getMinutes()).slice(-2)
+    );
+  }
+
+
   var info = props.route.params;
 
   var info = props.route.params;
@@ -47,18 +58,16 @@ function MissionsScreen3(props) {
       if (responce.err) {
         setErr(true);
         setShowModal(true);
-      }
-
-      if (responce) {
+      }else{
         props.navigation.navigate("HomeScreen");
+      
+        var addMessage = await fetch(`${global.ipa}addMessageAccept`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `expeditor=${props.user._id}&recipient=${info.expeditor_id}&date=${formatDate(new Date())}`,
+        });
       }
     }
-
-    var addMessage = await fetch(`${global.ipa}addMessageAccept`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `expeditor=${info.expeditor_id}&recipient=${props.user._id}&date=${new Date()}`,
-    });
   }
 
   async function cancelClick() {
@@ -97,7 +106,6 @@ function MissionsScreen3(props) {
   },[])
 
 
-  console.log(info.url_image);
 
   return (
     <NativeBaseProvider>

@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 
 function Home(props) {
+  
   useEffect(() => {
     AsyncStorage.getItem("token", function (error, data) {
       if (data) {

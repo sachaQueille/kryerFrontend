@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { View, ScrollView, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 import {
   NativeBaseProvider,
   Button,
@@ -11,7 +11,7 @@ import {
 } from "native-base";
 
 function ReceipientCoordinate(props) {
-  console.log(props.user);
+
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -19,7 +19,6 @@ function ReceipientCoordinate(props) {
   const [phone, setPhone] = useState("");
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
-  console.log(props.urlDelivery.url)
   async function validateClick() {
     const response = await fetch(`${global.ipa}saveDelivery`, {
       method: "POST",

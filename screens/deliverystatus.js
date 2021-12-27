@@ -11,11 +11,14 @@ import {
   Text,
   Modal,
 } from "native-base";
+import { ScrollView } from "react-native";
 
 function DeliveryStatus(props) {
+
   var statusDelivery = props.route.params.deliveryStatus.delivery_status;
   var verifcode = props.route.params.deliveryStatus.verifcode;
   var price = props.route.params.deliveryStatus.price;
+
   const [supportedDelivery, setSupportedDelivery] = useState(false);
   const [inTransitDelivery, setIntransitDelivery] = useState(false);
   const [delivered, setDelivered] = useState(false);
@@ -58,11 +61,11 @@ function DeliveryStatus(props) {
     }
   }
 
-  console.log("props", props.route.params.deliveryStatus);
 
   if (existDelivery) {
     return (
       <NativeBaseProvider>
+       
         <Center
           style={{ backgroundColor: "indigo" }}
           _text={{
@@ -76,7 +79,7 @@ function DeliveryStatus(props) {
         >
           Suivre mon colis
         </Center>
-
+        <ScrollView>
         <Center marginTop="60">
           <Box w="90%">
             <VStack space="md">
@@ -140,6 +143,7 @@ function DeliveryStatus(props) {
             </Box>
           </VStack>
         </Center>
+        </ScrollView>
 
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
           <Modal.Content maxWidth="400px">
@@ -177,7 +181,7 @@ function DeliveryStatus(props) {
           height={120}
           width="100%"
         >
-          Nouvelles missions
+          suivre mon colis
         </Center>
         <Center marginTop="50%">
           <Text>Vous n'avez plus d'informations pour ce colis</Text>

@@ -21,20 +21,25 @@ function Tchat(props){
 
     const isFocused = useIsFocused(false);
 
-    async function loadMessages() {
-      var response = await fetch(`${global.ipa}loadLastMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: `token=${props.user.token}`
-      });
-
-      response = await response.json();
-      setDataMessages(response.messages);
-      //console.log("response", response.messages);
-  }
+   
 
     useEffect(() => {   
-      if(isFocused){    
+      if(isFocused){   
+
+      
+
+         async function loadMessages() {
+          var response = await fetch(`${global.ipa}loadLastMessage`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: `token=${props.user.token}`
+          });
+
+          response = await response.json();
+          setDataMessages(response.messages);
+         
+      }
+        
         loadMessages();
       }
     }, [isFocused]);

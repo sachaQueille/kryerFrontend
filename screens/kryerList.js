@@ -19,7 +19,6 @@ import { connect } from 'react-redux';
 
 
 function KryerList(props) {
-  console.log(props.kryerList);
 
   const boxClick = (e) => {
     props.kryer(e);
@@ -56,7 +55,7 @@ function KryerList(props) {
               pr="5"
               py="2"
             >
-              <HStack space={3} justifyContent="space-between" marginTop="50%">
+              <HStack space={3} justifyContent="space-between" marginTop="5%">
                 <View
                   style={{ alignItems: "center", width: 120 }}
                   justifyContent="center"
@@ -109,14 +108,7 @@ function KryerList(props) {
               </HStack>
             </Box>
           </TouchableOpacity>
-          <Center margin={5}>
-            <Button
-              style={{ marginRight: 50, backgroundColor: "indigo" }}
-              onPress={() => props.navigation.navigate("SendDelivery")}
-            >
-              Retour
-            </Button>
-          </Center>
+      
         </Box>
       );
     });
@@ -146,7 +138,15 @@ function KryerList(props) {
           </Center>
           <ScrollView>
           {kryerList}
-          </ScrollView>
+          </ScrollView>  
+            <Center margin={5}>
+            <Button
+              style={{ marginRight: 50, backgroundColor: "indigo" }}
+              onPress={() => props.navigation.navigate("SendDelivery")}
+            >
+              Retour
+            </Button>
+          </Center>
         </Center>
       
     </NativeBaseProvider>

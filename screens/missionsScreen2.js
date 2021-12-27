@@ -72,18 +72,6 @@ function MissionsScreen2(props) {
                   />
                 </Center>
 
-                {/* <Text margin="4" key={`weigth${i}`}
-                            fontSize="xs"
-                            alignSelf="flex-start"
-                        >
-                            <FontAwesome
-                    name="cube"
-                    size={32}
-                    type="Ionicons"
-                    color="indigo"
-                  />
-                            {e.weigth} kg
-                        </Text> */}
                     </HStack>
                 </Box>
             </TouchableOpacity>
@@ -93,8 +81,9 @@ function MissionsScreen2(props) {
     )
     : <Text>tu n'as aucune demande pour cette mission </Text>
 
+    // affichage different selon l'etat de la mission
     var statusScreen = "Missions Accomplies";
-   var nameImage = <Image source={require(`../assets/winner.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'115%',marginLeft:'20%',opacity:0.8}} width="60%" height="30%"/>
+    var nameImage = <Image source={require(`../assets/winner.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:'115%',marginLeft:'20%',opacity:0.8}} width="60%" height="30%"/>
     if (props.route.params.status == "newMission") {
         statusScreen = "Nouvelles Missions";
         nameImage= <Image source={require(`../assets/question.png`)} style={{flex:1, justifyContent:'center', alignItems:'center',position:"absolute",marginTop:"90%",marginLeft:'35%',opacity:0.8}} width="75%" height="50%"/>
@@ -123,6 +112,8 @@ function MissionsScreen2(props) {
         </Center>
         
        {nameImage}
+
+       {/* si on est dans mission en cours ou mission accomplie affiche la cagnotte et l'etat de la capacityTransport */}
         {(props.route.params.status !== "newMission" && props.deliveries.length !==0)?
             <Center marginTop="30">
                 <Box w="80%">

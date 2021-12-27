@@ -6,7 +6,6 @@ import {
   Input,
   Button,
   HStack,
-  Icon,
   Center,
 } from "native-base";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
@@ -40,6 +39,7 @@ function PurposeDetails(props) {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `departure=${data.departure}&arrival=${data.arrival}&weight=${data.weight}&dateJourney=${data.dateJourney}&recuperationPlace=${data.recuperationPlace}&recuperationDate=${data.recuperationDate}&deliveryPlace=${data.deliveryPlace}&deliveryDate=${data.deliveryDate}&pricePerKg=${data.pricePerKg}&idKryer=${props.user._id}&avatarKryer=${props.user.avatar}&firstNameKryer=${props.user.firstName}&lastNameKryer=${props.user.lastName}`,
     });
+
 
     if (data) {
       props.navigation.navigate("Missions");

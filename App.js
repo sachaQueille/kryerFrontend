@@ -1,8 +1,11 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import { connect } from "react-redux";
+
+
+
 import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -14,7 +17,6 @@ import DeliveryStatus from "./screens/deliverystatus";
 import Journey from "./screens/journey";
 import User from "./screens/user";
 import Tchat from "./screens/tchat";
-import FinishedMissions from "./screens/finishedmissions";
 import PurposeJourney from "./screens/purposejourney";
 import SendDelivery from "./screens/senddelivery";
 import KryerList from "./screens/kryerList";
@@ -69,14 +71,12 @@ function StackJourneyNavigator(props) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}  >
       <Stack.Screen name="JourneyScreen" component={Journey} />
-      <Stack.Screen name="FinishedMissions" component={FinishedMissions} />
       <Stack.Screen name="PurposeJourney" component={PurposeJourney} />
       <Stack.Screen name="SendDelivery" component={SendDelivery} />
       <Stack.Screen name="PurposeDetails" component={PurposeDetails} />
       <Stack.Screen name="MissionsScreen" component={MissionsScreen} />
       <Stack.Screen name="MissionsScreen2" component={MissionsScreen2} />
       <Stack.Screen name="MissionsScreen3" component={MissionsScreen3} />
-
       <Stack.Screen name="TerminateMission" component={TerminateMission} />
     </Stack.Navigator>
   );
