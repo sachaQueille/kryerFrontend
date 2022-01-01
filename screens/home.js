@@ -14,8 +14,7 @@ function Home(props) {
             `${global.ipa}getUser?token=${JSON.parse(data)}`
           );
           user = await user.json();
-
-          props.addUser(user.user[0]);
+          props.addUser(user);
         }
         loadUser();
       }

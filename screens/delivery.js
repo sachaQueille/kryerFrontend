@@ -34,7 +34,7 @@ function MyDelivery(props) {
                         var response = await fetch(`${global.ipa}loadMyDeliveries`, {
                             method: "POST",
                             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                            body: `userId=${props.user._id}`,
+                            body: `token=${props.user.token}`,
                         });
 
                         response = await response.json();

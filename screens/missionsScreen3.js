@@ -30,7 +30,7 @@ function MissionsScreen3(props) {
 
   var info = props.route.params;
 
-  var info = props.route.params;
+ 
 
 
 
@@ -64,7 +64,7 @@ function MissionsScreen3(props) {
         var addMessage = await fetch(`${global.ipa}addMessageAccept`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `expeditor=${props.user._id}&recipient=${info.expeditor_id}&date=${formatDate(new Date())}`,
+        body: `expeditorToken=${props.user.token}&recipient=${info.expeditor_id}&date=${formatDate(new Date())}`,
         });
       }
     }
